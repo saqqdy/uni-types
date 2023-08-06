@@ -13,10 +13,7 @@ yarn-error.log
 selenium-debug.log
 
 *.bak
-*.bak.js
-*.bak.mjs
-*.bak.cjs
-*.bak.ts
+*.bak.*
 *_bak
 stats.html
 
