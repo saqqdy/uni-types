@@ -189,16 +189,29 @@ export type GreaterThan<A, B> = ...
 export type LessThan<A, B> = ...
 export type Max<A, B> = ...
 export type Min<A, B> = ...
-export type IsEven<N> = ...
-export type IsOdd<N> = ...
-export type Neg<N> = ...
 ```
 
-### Testing
+### Documentation ✓
+
+- [x] Updated VitePress config with new sidebar entries
+- [x] 92 English API reference pages (was 69)
+- [x] 92 Chinese API reference pages (fully synchronized)
+- [x] 8 new guide pages (brand, conditional, functions, keys, numeric, path, record, template)
+- [x] Updated API overview with all 128+ types
+- [x] Updated introduction page with new features
+- [x] Updated quick-start page with new modules
+- [x] Updated deep operations guide with DeepOmit/DeepPick
+
+### Testing ✓
 
 - [x] 71 new type tests added
 - [x] All tests passing (162 total)
 - [x] Full type coverage validation
+
+### Code Quality ✓
+
+- [x] Fixed lint errors (ts/no-empty-object-type, ts/no-unsafe-function-type)
+- [x] All lint checks passing
 
 ---
 
