@@ -38,10 +38,10 @@ import type {
 	OmitRequired,
 	Optional,
 	OptionalKeys,
+	Paths,
 	PathValue,
 	PickPartial,
 	PickRequired,
-	Paths,
 	ReadonlyKeys,
 	RequiredKeys,
 	Reverse,
@@ -703,7 +703,7 @@ describe('Path Types', () => {
 					}
 				}
 			}
-			expectTypeOf<PathValue<Obj, 'a'>>().toEqualTypeOf<{ b: string; c: { d: number } }>()
+			expectTypeOf<PathValue<Obj, 'a'>>().toEqualTypeOf<{ b: string, c: { d: number } }>()
 			expectTypeOf<PathValue<Obj, 'a.b'>>().toEqualTypeOf<string>()
 			expectTypeOf<PathValue<Obj, 'a.c.d'>>().toEqualTypeOf<number>()
 		})
@@ -733,11 +733,11 @@ describe('Other Utilities', () => {
 
 	describe('Exclusive', () => {
 		it('should create exclusive union', () => {
-			type Union = { type: 'a'; valueA: string } | { type: 'b'; valueB: number }
+			type Union = { type: 'a', valueA: string } | { type: 'b', valueB: number }
 			type Actual = Exclusive<Union, 'type'>
 
 			// Only one type can be selected at a time
-			expectTypeOf<{ type?: undefined; valueA: string } | { type?: undefined; valueB: number }>().toMatchTypeOf<Actual>()
+			expectTypeOf<{ type?: undefined, valueA: string } | { type?: undefined, valueB: number }>().toMatchTypeOf<Actual>()
 		})
 	})
 
