@@ -1,0 +1,92 @@
+/* Custom styles for uni-types docs */
+
+:root {
+	--vp-home-hero-name-color: transparent;
+	--vp-home-hero-name-background: linear-gradient(120deg, #3178c6 30%, #235a9e);
+	--vp-home-hero-image-background-image: linear-gradient(120deg, #3178c6 50%, #235a9e 50%);
+	--vp-home-hero-image-filter: blur(44px);
+}
+
+/* TypeScript blue theme color */
+:root {
+	--vp-c-brand-1: #3178c6;
+	--vp-c-brand-2: #235a9e;
+	--vp-c-brand-3: #3178c6;
+	--vp-c-brand-soft: #3178c633;
+}
+
+.dark {
+	--vp-c-brand-1: #3178c6;
+	--vp-c-brand-2: #235a9e;
+	--vp-c-brand-3: #4a9eff;
+}
+
+/* Custom badge styles */
+.custom-badge {
+	border-radius: 4px;
+	padding: 2px 8px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.badge-ts {
+	background-color: #3178c6;
+	color: white;
+}
+
+.badge-vue {
+	background-color: #42b883;
+	color: white;
+}
+
+/* Code block enhancements */
+.vp-code-group .tabs label {
+	font-weight: 500;
+}
+
+/* Type signature styling */
+.type-signature {
+	font-family: 'JetBrains Mono', 'Fira Code', monospace;
+	background: var(--vp-c-bg-soft);
+	border-radius: 8px;
+	padding: 16px;
+	margin: 16px 0;
+	border: 1px solid var(--vp-c-divider);
+}
+
+.type-signature code {
+	color: var(--vp-c-brand-1);
+}
+
+/* Example section styling */
+.example-block {
+	background: var(--vp-c-bg-soft);
+	border-radius: 8px;
+	padding: 16px;
+	margin: 16px 0;
+	border-left: 4px solid var(--vp-c-brand-1);
+}
+
+/* Related types section */
+.related-types {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin-top: 16px;
+}
+
+.related-types a {
+	display: inline-flex;
+	align-items: center;
+	padding: 4px 12px;
+	border-radius: 4px;
+	background: var(--vp-c-bg-soft);
+	border: 1px solid var(--vp-c-divider);
+	font-size: 14px;
+	transition: all 0.2s;
+}
+
+.related-types a:hover {
+	background: var(--vp-c-brand-soft);
+	border-color: var(--vp-c-brand-1);
+}
