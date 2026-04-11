@@ -1,4 +1,4 @@
-type BuiltIn = Date | Function | Map<unknown, unknown> | Set<unknown> | RegExp
+type BuiltIn = Date | ((...args: unknown[]) => unknown) | Map<unknown, unknown> | Set<unknown> | RegExp
 
 /**
  * Deep optional - Make all nested properties optional

@@ -4,7 +4,7 @@ import { h } from 'vue'
 import './style.css'
 
 export default {
-	enhanceApp({ app, router: _router, siteData: _siteData }) {
+	enhanceApp({ app: _app, router: _router, siteData: _siteData }) {
 		// register global components if needed
 	},
 	extends: DefaultTheme,

@@ -169,6 +169,7 @@ export type UnionToTuple<T> = UnionToIntersection<
  * ```
  */
 export type RequiredKeys<T> = {
+	// eslint-disable-next-line ts/no-empty-object-type
 	[K in keyof T]-?: {} extends Pick<T, K> ? never : K
 }[keyof T]
 
@@ -185,6 +186,7 @@ export type RequiredKeys<T> = {
  * ```
  */
 export type OptionalKeys<T> = {
+	// eslint-disable-next-line ts/no-empty-object-type
 	[K in keyof T]-?: {} extends Pick<T, K> ? K : never
 }[keyof T]
 
