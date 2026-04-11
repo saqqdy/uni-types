@@ -147,3 +147,57 @@ type MutableConfig = DeepMutable<Config>
 type ReadonlyArray = readonly string[]
 type MutableArray = DeepMutable<ReadonlyArray> // string[]
 ```
+
+## DeepOmit
+
+移除嵌套路径处的属性。
+
+```typescript
+import type { DeepOmit } from 'uni-types'
+
+interface User {
+  profile: {
+    name: string
+    email: string
+    settings: {
+      theme: string
+      lang: string
+    }
+  }
+}
+
+type WithoutSettings = DeepOmit<User, 'profile.settings'>
+// { profile: { name: string; email: string } }
+```
+
+## DeepPick
+
+仅保留指定路径处的属性。
+
+```typescript
+import type { DeepPick } from 'uni-types'
+
+interface User {
+  profile: {
+    name: string
+    email: string
+    settings: {
+      theme: string
+    }
+  }
+}
+
+type JustName = DeepPick<User, 'profile.name'>
+// { profile: { name: string } }
+```
+
+### 多个路径
+
+对于联合路径，使用 `DeepPickPaths`：
+
+```typescript
+import type { DeepPickPaths } from 'uni-types'
+
+type NameAndEmail = DeepPickPaths<User, 'profile.name' | 'profile.email'>
+// { profile: { name: string; email: string } }
+```

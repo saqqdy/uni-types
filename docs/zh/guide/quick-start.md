@@ -155,6 +155,14 @@ type DataKeys = NonFunctionKeys<Obj> // 'name'
 - [核心操作](./core) - 了解 PickRequired、PickPartial 等
 - [元组操作](./tuple) - 操作元组类型
 - [深度操作](./deep) - 转换嵌套对象
+- [品牌类型](./brand) - 创建名义类型
+- [条件类型](./conditional) - 类型级别逻辑
+- [函数类型](./functions) - 函数类型工具
+- [键工具](./keys) - 操作对象键
+- [数字类型](./numeric) - 编译时算术
+- [路径工具](./path) - 类型安全嵌套路径
+- [记录类型](./record) - 记录操作
+- [模板字面量](./template) - 字符串操作
 - [类型判断](./guards) - 编译时类型检查
 - [类型推导](./infer) - 从结构提取类型
 - [实用类型](./utils) - 各种实用类型

@@ -34,6 +34,79 @@ Complete API reference for all type utilities in uni-types.
 | [`DeepRequired<T>`](/api/deep/deep-required) | Make all nested properties required |
 | [`DeepReadonly<T>`](/api/deep/deep-readonly) | Make all nested properties readonly |
 | [`DeepMutable<T>`](/api/deep/deep-mutable) | Make all nested properties mutable |
+| [`DeepOmit<T, P>`](/api/deep/deep-omit) | Omit properties at nested paths |
+| [`DeepPick<T, P>`](/api/deep/deep-pick) | Pick properties at nested paths |
+
+### [Brand Types](#brand-types-1)
+
+| Type | Description |
+|------|-------------|
+| [`Brand<T, B>`](/api/brand/brand) | Create a branded nominal type |
+| [`Unbrand<T>`](/api/brand/unbrand) | Extract underlying type from branded type |
+
+### [Conditional Types](#conditional-types-1)
+
+| Type | Description |
+|------|-------------|
+| [`If<C, T, F>`](/api/conditional/if) | If-then-else at type level |
+| [`Not<B>`](/api/conditional/not) | Logical NOT for boolean types |
+| [`And<A, B>`](/api/conditional/and) | Logical AND for boolean types |
+| [`Or<A, B>`](/api/conditional/or) | Logical OR for boolean types |
+
+### [Function Types](#function-types-1)
+
+| Type | Description |
+|------|-------------|
+| [`Parameters<T>`](/api/functions/parameters) | Get function parameters as tuple |
+| [`ReturnType<T>`](/api/functions/return-type) | Get function return type |
+| [`NthParameter<T, N>`](/api/functions/nth-parameter) | Get Nth parameter type |
+| [`AsyncReturnType<T>`](/api/functions/async-return-type) | Unwrap Promise return type |
+
+### [Key Utilities](#key-utilities-1)
+
+| Type | Description |
+|------|-------------|
+| [`RenameKeys<T, M>`](/api/keys/rename-keys) | Rename object keys |
+| [`PrefixKeys<T, P>`](/api/keys/prefix-keys) | Add prefix to all keys |
+| [`SuffixKeys<T, S>`](/api/keys/suffix-keys) | Add suffix to all keys |
+| [`KeysByValueType<T, V>`](/api/keys/keys-by-value-type) | Get keys by value type |
+
+### [Numeric Types](#numeric-types-1)
+
+| Type | Description |
+|------|-------------|
+| [`Inc<N>`](/api/numeric/inc) | Increment number type |
+| [`Dec<N>`](/api/numeric/dec) | Decrement number type |
+| [`Add<A, B>`](/api/numeric/add) | Add two number types |
+| [`Subtract<A, B>`](/api/numeric/subtract) | Subtract two number types |
+| [`Range<From, To>`](/api/numeric/range) | Create number range union |
+
+### [Path Utilities](#path-utilities-1)
+
+| Type | Description |
+|------|-------------|
+| [`ValidPath<T, P>`](/api/path/valid-path) | Check if path exists in type |
+| [`ArrayPaths<T>`](/api/path/array-paths) | Get all paths with array indices |
+| [`LeafPaths<T>`](/api/path/leaf-paths) | Get paths to leaf nodes |
+| [`PathLength<P>`](/api/path/path-length) | Get path segment count |
+
+### [Record Types](#record-types-1)
+
+| Type | Description |
+|------|-------------|
+| [`DeepNullable<T>`](/api/record/deep-nullable) | Make all properties nullable |
+| [`DeepOptional<T>`](/api/record/deep-optional) | Make all properties optional |
+| [`Immutable<T>`](/api/record/immutable) | Make all properties readonly |
+| [`Mutable<T>`](/api/record/mutable) | Remove readonly from all properties |
+
+### [Template Literals](#template-literals-1)
+
+| Type | Description |
+|------|-------------|
+| [`ReplaceAll<S, From, To>`](/api/template/replace-all) | Replace all occurrences |
+| [`Trim<S>`](/api/template/trim) | Trim whitespace |
+| [`StringLength<S>`](/api/template/string-length) | Get string length |
+| [`Repeat<S, N>`](/api/template/repeat) | Repeat string N times |
 
 ### [Type Guards](#type-guards-1)
 

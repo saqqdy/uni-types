@@ -155,6 +155,14 @@ type DataKeys = NonFunctionKeys<Obj> // 'name'
 - [Core Operations](./core) - Learn about PickRequired, PickPartial, etc.
 - [Tuple Operations](./tuple) - Manipulate tuple types
 - [Deep Operations](./deep) - Transform nested objects
+- [Brand Types](./brand) - Create nominal types
+- [Conditional Types](./conditional) - Type-level logic
+- [Function Types](./functions) - Function type utilities
+- [Key Utilities](./keys) - Manipulate object keys
+- [Numeric Types](./numeric) - Compile-time arithmetic
+- [Path Utilities](./path) - Type-safe nested paths
+- [Record Types](./record) - Record manipulation
+- [Template Literals](./template) - String manipulation
 - [Type Guards](./guards) - Check types at compile time
 - [Type Inference](./infer) - Extract types from structures
 - [Utility Types](./utils) - Various utility types

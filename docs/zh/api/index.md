@@ -34,6 +34,79 @@ uni-types 所有类型工具的完整 API 参考。
 | [`DeepRequired<T>`](/zh/api/deep/deep-required) | 递归将所有属性变为必需 |
 | [`DeepReadonly<T>`](/zh/api/deep/deep-readonly) | 递归将所有属性变为只读 |
 | [`DeepMutable<T>`](/zh/api/deep/deep-mutable) | 递归移除所有 readonly |
+| [`DeepOmit<T, P>`](/zh/api/deep/deep-omit) | 移除嵌套路径处的属性 |
+| [`DeepPick<T, P>`](/zh/api/deep/deep-pick) | 选择嵌套路径处的属性 |
+
+### [品牌类型](#品牌类型-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`Brand<T, B>`](/zh/api/brand/brand) | 创建品牌名义类型 |
+| [`Unbrand<T>`](/zh/api/brand/unbrand) | 从品牌类型提取底层类型 |
+
+### [条件类型](#条件类型-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`If<C, T, F>`](/zh/api/conditional/if) | 类型级别的 if-then-else |
+| [`Not<B>`](/zh/api/conditional/not) | 布尔类型的逻辑非 |
+| [`And<A, B>`](/zh/api/conditional/and) | 布尔类型的逻辑与 |
+| [`Or<A, B>`](/zh/api/conditional/or) | 布尔类型的逻辑或 |
+
+### [函数类型](#函数类型-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`Parameters<T>`](/zh/api/functions/parameters) | 获取函数参数作为元组 |
+| [`ReturnType<T>`](/zh/api/functions/return-type) | 获取函数返回类型 |
+| [`NthParameter<T, N>`](/zh/api/functions/nth-parameter) | 获取第 N 个参数类型 |
+| [`AsyncReturnType<T>`](/zh/api/functions/async-return-type) | 解包 Promise 返回类型 |
+
+### [键工具](#键工具-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`RenameKeys<T, M>`](/zh/api/keys/rename-keys) | 重命名对象键 |
+| [`PrefixKeys<T, P>`](/zh/api/keys/prefix-keys) | 为所有键添加前缀 |
+| [`SuffixKeys<T, S>`](/zh/api/keys/suffix-keys) | 为所有键添加后缀 |
+| [`KeysByValueType<T, V>`](/zh/api/keys/keys-by-value-type) | 按值类型获取键 |
+
+### [数字类型](#数字类型-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`Inc<N>`](/zh/api/numeric/inc) | 数字类型自增 |
+| [`Dec<N>`](/zh/api/numeric/dec) | 数字类型自减 |
+| [`Add<A, B>`](/zh/api/numeric/add) | 两数相加 |
+| [`Subtract<A, B>`](/zh/api/numeric/subtract) | 两数相减 |
+| [`Range<From, To>`](/zh/api/numeric/range) | 创建数字范围联合 |
+
+### [路径工具](#路径工具-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`ValidPath<T, P>`](/zh/api/path/valid-path) | 检查路径是否存在 |
+| [`ArrayPaths<T>`](/zh/api/path/array-paths) | 获取包含数组索引的所有路径 |
+| [`LeafPaths<T>`](/zh/api/path/leaf-paths) | 获取叶子节点路径 |
+| [`PathLength<P>`](/zh/api/path/path-length) | 获取路径段数 |
+
+### [记录类型](#记录类型-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`DeepNullable<T>`](/zh/api/record/deep-nullable) | 使所有属性可空 |
+| [`DeepOptional<T>`](/zh/api/record/deep-optional) | 使所有属性可选 |
+| [`Immutable<T>`](/zh/api/record/immutable) | 使所有属性只读 |
+| [`Mutable<T>`](/zh/api/record/mutable) | 移除所有属性的只读 |
+
+### [模板字面量](#模板字面量-1)
+
+| 类型 | 描述 |
+|------|------|
+| [`ReplaceAll<S, From, To>`](/zh/api/template/replace-all) | 替换所有匹配 |
+| [`Trim<S>`](/zh/api/template/trim) | 修剪空白字符 |
+| [`StringLength<S>`](/zh/api/template/string-length) | 获取字符串长度 |
+| [`Repeat<S, N>`](/zh/api/template/repeat) | 重复字符串 N 次 |
 
 ### [类型判断](#类型判断-1)
 

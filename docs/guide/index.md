@@ -1,6 +1,6 @@
 # Introduction
 
-**uni-types** is a comprehensive TypeScript type utility library that provides 50+ type helpers for safer, cleaner TypeScript development.
+**uni-types** is a comprehensive TypeScript type utility library that provides 128+ type helpers for safer, cleaner TypeScript development.
 
 ## Why uni-types?
 
@@ -11,10 +11,13 @@ TypeScript's built-in utility types (`Partial`, `Required`, `Pick`, `Omit`, etc.
 - **Type guards** - Check types at compile time
 - **Type inference** - Extract types from complex structures
 - **String transformations** - CamelCase, SnakeCase conversions
+- **Brand types** - Nominal typing for type safety
+- **Numeric operations** - Compile-time arithmetic
+- **Path utilities** - Type-safe nested property access
 
 ## Features
 
-- 🎯 **50+ utility types** covering common use cases
+- 🎯 **128+ utility types** covering common use cases
 - 🔒 **Fully type-safe** with complete TypeScript definitions
 - 🚀 **Zero runtime overhead** - pure type-level utilities
 - 📦 **Tree-shakable** - import only what you need

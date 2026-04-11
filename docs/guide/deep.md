@@ -147,3 +147,57 @@ Works with readonly arrays:
 type ReadonlyArray = readonly string[]
 type MutableArray = DeepMutable<ReadonlyArray> // string[]
 ```
+
+## DeepOmit
+
+Remove properties at nested paths.
+
+```typescript
+import type { DeepOmit } from 'uni-types'
+
+interface User {
+  profile: {
+    name: string
+    email: string
+    settings: {
+      theme: string
+      lang: string
+    }
+  }
+}
+
+type WithoutSettings = DeepOmit<User, 'profile.settings'>
+// { profile: { name: string; email: string } }
+```
+
+## DeepPick
+
+Keep only properties at specified paths.
+
+```typescript
+import type { DeepPick } from 'uni-types'
+
+interface User {
+  profile: {
+    name: string
+    email: string
+    settings: {
+      theme: string
+    }
+  }
+}
+
+type JustName = DeepPick<User, 'profile.name'>
+// { profile: { name: string } }
+```
+
+### Multiple Paths
+
+For union paths, use `DeepPickPaths`:
+
+```typescript
+import type { DeepPickPaths } from 'uni-types'
+
+type NameAndEmail = DeepPickPaths<User, 'profile.name' | 'profile.email'>
+// { profile: { name: string; email: string } }
+```
