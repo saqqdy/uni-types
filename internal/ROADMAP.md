@@ -4,7 +4,7 @@ This document outlines the development roadmap for `uni-types`.
 
 ## Version History
 
-- [x] [1.0.0](#100) - Initial stable release
+- [x] [1.0.0](#100) - Initial stable release (2024-04-11)
 - [ ] [1.1.0](#110) - Enhanced type utilities (Planned)
 
 ---
@@ -16,13 +16,36 @@ This document outlines the development roadmap for `uni-types`.
 - [x] Tuple operations (Head, Last, Tail, Init, Reverse, Flatten, TupleLength, IsEmptyTuple)
 - [x] Deep operations (DeepPartial, DeepRequired, DeepReadonly, DeepMutable)
 - [x] Type guards (IsArray, IsTuple, IsEqual, IsAny, IsNever, IsUnknown)
-- [x] Type inference (Awaited, ArrayElement, ValueOf, FunctionKeys, NonFunctionKeys, FirstParameter)
+- [x] Type inference (Awaited, ArrayElement, ValueOf, FunctionKeys, NonFunctionKeys, FirstParameter, FunctionOnly, DataOnly)
 - [x] Utility types (Merge, NonNullable, Exclusive, NoNullish, Nullable, Optional, Maybe, LoosePartial)
 - [x] Key types (RequiredKeys, OptionalKeys, WritableKeys, ReadonlyKeys)
 - [x] Path types (Paths, PathValue, SplitPath)
 - [x] Literal types (Literal, LiteralString, LiteralNumber, LiteralBoolean)
 - [x] String case conversion (CamelCase, SnakeCase, CamelCaseKeys, SnakeCaseKeys)
 - [x] Advanced types (AtLeastOne, StrictExtract, StrictExclude, UnionToIntersection, UnionToTuple)
+
+### Improvements
+- [x] Fixed DeepPartial/DeepRequired/DeepReadonly to properly handle arrays, Maps, Sets, and built-in types
+- [x] Fixed SnakeCase to correctly handle consecutive uppercase letters (e.g., `XMLParser` → `xml_parser`)
+- [x] All code comments converted to English
+
+### Documentation
+- [x] VitePress documentation site with bilingual support (English + Chinese)
+- [x] 69 English documentation files
+- [x] 69 Chinese documentation files (fully synchronized)
+- [x] TypeScript blue theme styling
+- [x] API reference for all 50+ types
+- [x] Guide pages for all categories
+
+### Testing
+- [x] 91 type tests with vitest
+- [x] Full type coverage validation
+- [x] Edge case tests (never, null, undefined, primitive types, empty objects)
+
+### Developer Experience
+- [x] ESLint configuration with TypeScript support
+- [x] Updated .gitignore for VitePress artifacts
+- [x] Vite 8.x compatibility for vitest
 
 ---
 
@@ -59,7 +82,8 @@ DeepPick<User, 'profile.name' | 'profile.settings.theme'>
 ```
 
 **Priority**: High  
-**Effort**: Medium
+**Effort**: Medium  
+**Status**: Not started
 
 ---
 
@@ -80,7 +104,8 @@ RenameKeys<{ oldName: string }, { oldName: 'newName' }>
 ```
 
 **Priority**: Medium  
-**Effort**: Low
+**Effort**: Low  
+**Status**: Not started
 
 ---
 
@@ -109,7 +134,8 @@ Assert<string | number, string>  // string
 ```
 
 **Priority**: Medium  
-**Effort**: Low
+**Effort**: Low  
+**Status**: Not started
 
 ---
 
@@ -139,7 +165,8 @@ LeafPaths<Users>   // `users.${number}.name`
 ```
 
 **Priority**: High  
-**Effort**: Medium
+**Effort**: Medium  
+**Status**: Not started
 
 ---
 
@@ -171,7 +198,8 @@ const orderId: OrderId = 'order-456' as OrderId
 ```
 
 **Priority**: Medium  
-**Effort**: Low
+**Effort**: Low  
+**Status**: Not started
 
 ---
 
@@ -206,7 +234,8 @@ NthParameter<Fn, 1>  // number
 ```
 
 **Priority**: Medium  
-**Effort**: Low
+**Effort**: Low  
+**Status**: Not started
 
 ---
 
@@ -237,7 +266,8 @@ CapitalizeAll<'hello world'>  // 'Hello World'
 ```
 
 **Priority**: Low  
-**Effort**: Low
+**Effort**: Low  
+**Status**: Not started
 
 ---
 
@@ -270,7 +300,8 @@ Immutable<{ a: { b: string[] } }>   // { readonly a: { readonly b: readonly stri
 ```
 
 **Priority**: Medium  
-**Effort**: Medium
+**Effort**: Medium  
+**Status**: Not started
 
 ---
 
@@ -301,19 +332,22 @@ Range<1, 5>  // 1 | 2 | 3 | 4 | 5
 ```
 
 **Priority**: Low  
-**Effort**: Medium
+**Effort**: Medium  
+**Status**: Not started
 
 ---
 
 ### 10. Testing Improvements
 
-- [ ] Add edge case tests for deeply nested types
+- [ ] Add edge case tests for deeply nested types (5+ levels)
 - [ ] Add combination tests (e.g., `DeepPartial<DeepReadonly<T>>`)
 - [ ] Add performance benchmarks for complex types
 - [ ] Add visual regression tests for type errors
+- [ ] Increase test coverage to 150+ tests
 
 **Priority**: Medium  
-**Effort**: Medium
+**Effort**: Medium  
+**Status**: Not started
 
 ---
 
@@ -323,10 +357,12 @@ Range<1, 5>  // 1 | 2 | 3 | 4 | 5
 - [ ] Add comparison with similar libraries (utility-types, type-fest)
 - [ ] Add TypeScript playground links for examples
 - [ ] Add troubleshooting guide for common type errors
+- [ ] Add interactive type playground component
 - [ ] Add video tutorials
 
 **Priority**: Medium  
-**Effort**: Medium
+**Effort**: Medium  
+**Status**: Not started
 
 ---
 
@@ -338,7 +374,8 @@ Range<1, 5>  // 1 | 2 | 3 | 4 | 5
 - [ ] Add runtime type guards (optional, as separate package)
 
 **Priority**: Low  
-**Effort**: High
+**Effort**: High  
+**Status**: Not started
 
 ---
 
@@ -362,9 +399,18 @@ Range<1, 5>  // 1 | 2 | 3 | 4 | 5
 
 ---
 
+## Progress Summary
+
+| Version | Types Count | Docs Files | Tests | Status |
+|---------|-------------|------------|-------|--------|
+| 1.0.0   | 50+         | 138        | 91    | Released |
+| 1.1.0   | 70+ (planned)| 150+ (planned)| 150+ (planned)| Planned |
+
+---
+
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to contribute to the roadmap.
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines on how to contribute to the roadmap.
 
 ## Feedback
 
