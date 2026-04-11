@@ -2,9 +2,7 @@
 
 # uni-types
 
-Universal TypeScript type utilities - A comprehensive collection of type helpers for TypeScript development
-
-English | [简体中文](./README_CN.md)
+通用 TypeScript 类型工具库 - 为 TypeScript 开发提供全面的类型助手集合
 
 [![NPM version][npm-image]][npm-url]
 ![typescript][typescript-url]
@@ -14,25 +12,27 @@ English | [简体中文](./README_CN.md)
 
 </div>
 
-## Installation
+[English](./README.md) | 简体中文
+
+## 安装
 
 ```bash
-# use pnpm
+# 使用 pnpm
 $ pnpm add uni-types
 
-# use yarn
+# 使用 yarn
 $ yarn add uni-types
 
-# use npm
+# 使用 npm
 $ npm install uni-types
 ```
 
-## Usage
+## 使用
 
 ```typescript
 import type { PickRequired, DeepPartial, IsArray } from 'uni-types'
 
-// Use in your TypeScript projects
+// 在你的 TypeScript 项目中使用
 interface User {
   name?: string
   age?: number
@@ -43,16 +43,16 @@ type RequiredNameUser = PickRequired<User, 'name'>
 // { name: string; age?: number; email: string }
 ```
 
-## API Reference
+## API 参考
 
-### Core Operations
+### 核心操作
 
-| Type | Description |
-|------|-------------|
-| `PickRequired<T, K>` | Make specified properties required |
-| `OmitRequired<T, K>` | Make properties except specified ones required |
-| `PickPartial<T, K>` | Make specified properties optional |
-| `OmitPartial<T, K>` | Make properties except specified ones optional |
+| 类型 | 描述 |
+|------|------|
+| `PickRequired<T, K>` | 将指定属性变为必需 |
+| `OmitRequired<T, K>` | 将指定属性之外变为必需 |
+| `PickPartial<T, K>` | 将指定属性变为可选 |
+| `OmitPartial<T, K>` | 将指定属性之外变为可选 |
 
 ```typescript
 interface User {
@@ -67,18 +67,18 @@ PickPartial<User, 'email'>   // { name?: string; age?: number; email?: string }
 OmitPartial<User, 'email'>   // { name: string; age: number; email?: string }
 ```
 
-### Tuple Operations
+### 元组操作
 
-| Type | Description |
-|------|-------------|
-| `Head<T>` | Get first element of tuple |
-| `Last<T>` | Get last element of tuple |
-| `Tail<T>` | Get all elements except first |
-| `Init<T>` | Get all elements except last |
-| `Reverse<T>` | Reverse a tuple |
-| `Flatten<T>` | Flatten nested tuples |
-| `TupleLength<T>` | Get tuple length |
-| `IsEmptyTuple<T>` | Check if tuple is empty |
+| 类型 | 描述 |
+|------|------|
+| `Head<T>` | 获取元组第一个元素 |
+| `Last<T>` | 获取元组最后一个元素 |
+| `Tail<T>` | 获取除第一个外的所有元素 |
+| `Init<T>` | 获取除最后一个外的所有元素 |
+| `Reverse<T>` | 反转元组 |
+| `Flatten<T>` | 展平嵌套元组 |
+| `TupleLength<T>` | 获取元组长度 |
+| `IsEmptyTuple<T>` | 判断元组是否为空 |
 
 ```typescript
 Head<[1, 2, 3]>       // 1
@@ -91,14 +91,14 @@ TupleLength<[1, 2, 3]> // 3
 IsEmptyTuple<[]>       // true
 ```
 
-### Deep Operations
+### 深度操作
 
-| Type | Description |
-|------|-------------|
-| `DeepPartial<T>` | Make all nested properties optional |
-| `DeepRequired<T>` | Make all nested properties required |
-| `DeepReadonly<T>` | Make all nested properties readonly |
-| `DeepMutable<T>` | Make all nested properties mutable |
+| 类型 | 描述 |
+|------|------|
+| `DeepPartial<T>` | 将所有嵌套属性变为可选 |
+| `DeepRequired<T>` | 将所有嵌套属性变为必需 |
+| `DeepReadonly<T>` | 将所有嵌套属性变为只读 |
+| `DeepMutable<T>` | 将所有嵌套属性变为可变 |
 
 ```typescript
 interface Nested {
@@ -111,16 +111,16 @@ DeepReadonly<Nested>  // { readonly a: { readonly b: { readonly c: string } } }
 DeepMutable<{ readonly a: { readonly b: string } }>  // { a: { b: string } }
 ```
 
-### Type Guards
+### 类型判断
 
-| Type | Description |
-|------|-------------|
-| `IsArray<T>` | Check if type is an array |
-| `IsTuple<T>` | Check if type is a tuple |
-| `IsEqual<X, Y>` | Check if two types are equal |
-| `IsAny<T>` | Check if type is `any` |
-| `IsNever<T>` | Check if type is `never` |
-| `IsUnknown<T>` | Check if type is `unknown` |
+| 类型 | 描述 |
+|------|------|
+| `IsArray<T>` | 判断类型是否为数组 |
+| `IsTuple<T>` | 判断类型是否为元组 |
+| `IsEqual<X, Y>` | 判断两个类型是否相等 |
+| `IsAny<T>` | 判断类型是否为 `any` |
+| `IsNever<T>` | 判断类型是否为 `never` |
+| `IsUnknown<T>` | 判断类型是否为 `unknown` |
 
 ```typescript
 IsArray<string[]>    // true
@@ -131,16 +131,16 @@ IsEqual<string, string>    // true
 IsEqual<string, number>    // false
 ```
 
-### Type Inference
+### 类型推导
 
-| Type | Description |
-|------|-------------|
-| `Awaited<T>` | Unwrap Promise type recursively |
-| `ArrayElement<T>` | Get array element type |
-| `ValueOf<T>` | Get object value types |
-| `FunctionKeys<T>` | Get keys of function properties |
-| `NonFunctionKeys<T>` | Get keys of non-function properties |
-| `FirstParameter<T>` | Get first parameter type of function |
+| 类型 | 描述 |
+|------|------|
+| `Awaited<T>` | 递归解包 Promise 类型 |
+| `ArrayElement<T>` | 获取数组元素类型 |
+| `ValueOf<T>` | 获取对象值类型 |
+| `FunctionKeys<T>` | 获取函数属性的键 |
+| `NonFunctionKeys<T>` | 获取非函数属性的键 |
+| `FirstParameter<T>` | 获取函数第一个参数类型 |
 
 ```typescript
 Awaited<Promise<string>>           // string
@@ -151,18 +151,18 @@ FunctionKeys<{ name: string; onClick: () => void }>  // 'onClick'
 NonFunctionKeys<{ name: string; onClick: () => void }>  // 'name'
 ```
 
-### Utility Types
+### 实用类型
 
-| Type | Description |
-|------|-------------|
-| `Merge<T, U>` | Merge two types (U overrides T) |
-| `NonNullable<T>` | Exclude `null` and `undefined` |
-| `Exclusive<T, K>` | Create mutually exclusive properties |
-| `NoNullish<T>` | Remove null/undefined from all properties |
-| `Nullable<T>` | Add `null` to type |
-| `Optional<T>` | Add `undefined` to type |
-| `Maybe<T>` | Add `null` and `undefined` to type |
-| `LoosePartial<T>` | Make all properties optional |
+| 类型 | 描述 |
+|------|------|
+| `Merge<T, U>` | 合并两个类型（后者覆盖前者） |
+| `NonNullable<T>` | 排除 `null` 和 `undefined` |
+| `Exclusive<T, K>` | 创建互斥属性 |
+| `NoNullish<T>` | 移除所有属性的 null/undefined |
+| `Nullable<T>` | 添加 `null` 到类型 |
+| `Optional<T>` | 添加 `undefined` 到类型 |
+| `Maybe<T>` | 添加 `null` 和 `undefined` 到类型 |
+| `LoosePartial<T>` | 将所有属性变为可选 |
 
 ```typescript
 Merge<{ a: string; b: number }, { b: boolean; c: string }>
@@ -174,14 +174,14 @@ Optional<string>   // string | undefined
 Maybe<string>      // string | null | undefined
 ```
 
-### Key Types
+### 键类型
 
-| Type | Description |
-|------|-------------|
-| `RequiredKeys<T>` | Get all required property keys |
-| `OptionalKeys<T>` | Get all optional property keys |
-| `WritableKeys<T>` | Get all writable (non-readonly) keys |
-| `ReadonlyKeys<T>` | Get all readonly keys |
+| 类型 | 描述 |
+|------|------|
+| `RequiredKeys<T>` | 获取所有必需属性的键 |
+| `OptionalKeys<T>` | 获取所有可选属性的键 |
+| `WritableKeys<T>` | 获取所有可写（非只读）属性的键 |
+| `ReadonlyKeys<T>` | 获取所有只读属性的键 |
 
 ```typescript
 interface User {
@@ -196,13 +196,13 @@ WritableKeys<User>   // 'name' | 'age'
 ReadonlyKeys<User>   // 'id'
 ```
 
-### Path Types
+### 路径类型
 
-| Type | Description |
-|------|-------------|
-| `Paths<T>` | Get all nested property paths |
-| `PathValue<T, P>` | Get value type at path |
-| `SplitPath<S>` | Split path string into array |
+| 类型 | 描述 |
+|------|------|
+| `Paths<T>` | 获取所有嵌套属性路径 |
+| `PathValue<T, P>` | 获取路径处的值类型 |
+| `SplitPath<S>` | 将路径字符串分割为数组 |
 
 ```typescript
 interface Obj {
@@ -214,14 +214,14 @@ PathValue<Obj, 'a.b'>         // { c: string }
 SplitPath<'a.b.c'>            // ['a', 'b', 'c']
 ```
 
-### Literal Types
+### 字面量类型
 
-| Type | Description |
-|------|-------------|
-| `Literal` | All literal types union |
-| `LiteralString<T>` | Exact string literal |
-| `LiteralNumber<T>` | Exact number literal |
-| `LiteralBoolean<T>` | Exact boolean literal |
+| 类型 | 描述 |
+|------|------|
+| `Literal` | 所有字面量类型联合 |
+| `LiteralString<T>` | 精确字符串字面量 |
+| `LiteralNumber<T>` | 精确数字字面量 |
+| `LiteralBoolean<T>` | 精确布尔字面量 |
 
 ```typescript
 Literal  // string | number | boolean | undefined | null | void | bigint
@@ -230,14 +230,14 @@ LiteralNumber<42>       // 42
 LiteralBoolean<true>    // true
 ```
 
-### String Case Conversion
+### 字符串命名转换
 
-| Type | Description |
-|------|-------------|
-| `CamelCase<S>` | Convert to camelCase |
-| `SnakeCase<S>` | Convert to snake_case |
-| `CamelCaseKeys<T>` | Convert object keys to camelCase |
-| `SnakeCaseKeys<T>` | Convert object keys to snake_case |
+| 类型 | 描述 |
+|------|------|
+| `CamelCase<S>` | 转换为驼峰命名 |
+| `SnakeCase<S>` | 转换为蛇形命名 |
+| `CamelCaseKeys<T>` | 将对象键转换为驼峰命名 |
+| `SnakeCaseKeys<T>` | 将对象键转换为蛇形命名 |
 
 ```typescript
 CamelCase<'hello_world'>    // 'helloWorld'
@@ -247,17 +247,17 @@ SnakeCase<'XMLParser'>      // 'xml_parser'
 CamelCaseKeys<{ hello_world: string }>  // { helloWorld: string }
 ```
 
-### Advanced Types
+### 高级类型
 
-| Type | Description |
-|------|-------------|
-| `FunctionOnly<T>` | Extract only function properties |
-| `DataOnly<T>` | Extract only non-function properties |
-| `AtLeastOne<T>` | Require at least one property |
-| `StrictExtract<T, U>` | Strictly extract matching types |
-| `StrictExclude<T, U>` | Strictly exclude types |
-| `UnionToIntersection<U>` | Convert union to intersection |
-| `UnionToTuple<T>` | Convert union to tuple |
+| 类型 | 描述 |
+|------|------|
+| `FunctionOnly<T>` | 提取函数属性 |
+| `DataOnly<T>` | 提取非函数属性 |
+| `AtLeastOne<T>` | 要求至少有一个属性 |
+| `StrictExtract<T, U>` | 严格提取匹配类型 |
+| `StrictExclude<T, U>` | 严格排除类型 |
+| `UnionToIntersection<U>` | 将联合类型转换为交叉类型 |
+| `UnionToTuple<T>` | 将联合类型转换为元组 |
 
 ```typescript
 interface Obj { name: string; onClick: () => void }
@@ -267,29 +267,29 @@ DataOnly<Obj>      // { name: string }
 UnionToIntersection<{ a: string } | { b: number }>  // { a: string } & { b: number }
 ```
 
-## Development
+## 开发
 
 ```bash
-# Install dependencies
+# 安装依赖
 pnpm install
 
-# Build
+# 构建
 pnpm build
 
-# Test
+# 测试
 pnpm test
 
-# Test with coverage
+# 测试覆盖率
 pnpm test:coverage
 
-# Type check
+# 类型检查
 pnpm typecheck
 
-# Lint
+# 代码检查
 pnpm lint
 ```
 
-## License
+## 许可证
 
 [MIT](LICENSE)
 

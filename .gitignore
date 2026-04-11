@@ -1,25 +1,48 @@
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
 .idea/
-coverage
-node_modules/
-dist/
-es/
-lib/
-docs/
-npm-debug.log
-yarn-error.log
-/test/unit/coverage/
-/test/e2e/reports/
-selenium-debug.log
-
-*.bak
-*.bak.*
-*_bak
-stats.html
-
-# Editor directories and files
-.idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+*.swp
+*.swo
+
+# Logs
+npm-debug.log
+yarn-error.log
+selenium-debug.log
+pnpm-debug.log
+*.log
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+es/
+lib/
+coverage/
+temp/
+
+# Test
+/test/unit/coverage/
+/test/e2e/reports/
+
+# Backup files
+*.bak
+*.bak.*
+*_bak
+
+# Stats
+stats.html
+
+# VitePress docs
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# TypeScript
+*.tsbuildinfo
