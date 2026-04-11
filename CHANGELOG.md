@@ -2,6 +2,111 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-04-11
+
+### Added
+
+#### Conditional Types
+- `If<C, T, F>` - Type-level if-then-else
+- `Not<B>` - Logical NOT for boolean types
+- `And<A, B>` - Logical AND for boolean types
+- `Or<A, B>` - Logical OR for boolean types
+- `Assert<T, U>` - Type constraint assertion
+
+#### Brand Types
+- `Brand<T, B>` - Create branded type for nominal typing
+- `Unbrand<T>` - Extract underlying type from branded type
+- `BrandedString<B>` - String branded type helper
+- `BrandedNumber<B>` - Number branded type helper
+
+#### Deep Path Operations
+- `DeepOmit<T, P>` - Omit properties by path string
+- `DeepPick<T, P>` - Pick properties by path string
+- `DeepPickPaths<T, P>` - Deep pick for union paths
+- `DeepOmitPaths<T, P>` - Deep omit for union paths
+
+#### Enhanced Path Types
+- `ValidPath<T, P>` - Check if path exists in type
+- `ArrayPaths<T>` - Get paths including array indices
+- `LeafPaths<T>` - Get paths to primitive values only
+- `PathLength<P>` - Get number of path segments
+- `ParentPath<P>` - Get parent path
+- `PathLeaf<P>` - Get last segment of path
+
+#### Key Utilities
+- `Keys<T>` - Get all keys as literal union
+- `RenameKeys<T, M>` - Rename keys based on mapping
+- `PrefixKeys<T, P>` - Add prefix to all keys
+- `SuffixKeys<T, S>` - Add suffix to all keys
+- `PascalCaseKeys<T>` - Convert keys to PascalCase
+- `KeysByValueType<T, V>` - Get keys by value type
+- `FilterKeys<T, P>` - Get keys matching pattern
+
+#### Function Utilities
+- `Parameters<T>` - Get function parameters as tuple
+- `ReturnType<T>` - Get function return type
+- `NthParameter<T, N>` - Get Nth parameter type
+- `AsyncReturnType<T>` - Extract async function return type
+- `ThisParameterType<T>` - Get this parameter type
+- `OmitThisParameter<T>` - Omit this parameter from function
+- `IsFunction<T>` - Check if type is a function
+- `IsAsyncFunction<T>` - Check if type is an async function
+- `OptionalParameters<T>` - Make function parameters optional
+- `AppendParameter<T, P>` - Append parameter to function
+- `PrependParameter<T, P>` - Prepend parameter to function
+
+#### Template Literal Utilities
+- `ReplaceAll<S, From, To>` - Replace all occurrences
+- `Replace<S, From, To>` - Replace first occurrence
+- `Trim<S>` - Trim whitespace from both ends
+- `TrimLeft<S>` - Trim whitespace from left
+- `TrimRight<S>` - Trim whitespace from right
+- `StringToArray<S>` - Convert string to array of characters
+- `CapitalizeAll<S>` - Capitalize all words
+- `UncapitalizeAll<S>` - Uncapitalize all words
+- `StartsWith<S, P>` - Check if string starts with prefix
+- `EndsWith<S, P>` - Check if string ends with suffix
+- `StringLength<S>` - Get string length at type level
+- `Repeat<S, N>` - Repeat string N times
+- `PadStart<S, N, P>` - Pad string on the left
+- `PadEnd<S, N, P>` - Pad string on the right
+
+#### Record Utilities
+- `DeepNullable<T>` - Make all properties nullable
+- `DeepOptional<T>` - Make all properties optional
+- `Immutable<T>` - Make all properties readonly
+- `Mutable<T>` - Make all properties mutable
+- `DeepNonNullable<T>` - Remove null/undefined from all properties
+- `Exact<T, Shape>` - Ensure exact shape match
+- `Required<T>` - Make all properties required
+- `DeepRequiredProperties<T>` - Deep required with null/undefined handling
+- `HasKeys<T, K>` - Check if object has specified keys
+- `HasExactKeys<T, K>` - Check if object has exactly specified keys
+
+#### Numeric Utilities
+- `Inc<N>` - Increment number type
+- `Dec<N>` - Decrement number type
+- `Add<A, B>` - Add two number types
+- `Subtract<A, B>` - Subtract two number types
+- `GreaterThan<A, B>` - Check if A > B
+- `LessThan<A, B>` - Check if A < B
+- `Max<A, B>` - Maximum of two numbers
+- `Min<A, B>` - Minimum of two numbers
+- `IsEven<N>` - Check if number is even
+- `IsOdd<N>` - Check if number is odd
+- `Neg<N>` - Negate a number
+
+### Testing
+- Added 71 new type tests
+- Total 162 tests passing
+- Full type coverage validation
+
+### Documentation
+- Updated README with v1.1.0 features
+- Updated ROADMAP.md with release status
+
+---
+
 ## [1.0.0] - 2024-04-11
 
 ### Added

@@ -4,9 +4,9 @@ on:
   push:
     branches: [master]
     paths:
-      - 'docs/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - "docs/**"
+      - package.json
+      - pnpm-lock.yaml
   workflow_dispatch:
 
 permissions:

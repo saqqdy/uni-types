@@ -1,46 +1,82 @@
-<div style="text-align: center;" align="center">
+<div align="center">
 
 # uni-types
 
-Universal TypeScript type utilities - A comprehensive collection of type helpers for TypeScript development
+**Universal TypeScript Type Utilities**
 
-English | [简体中文](./README_CN.md)
+A comprehensive collection of type helpers for TypeScript development
 
 [![NPM version][npm-image]][npm-url]
-![typescript][typescript-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![npm download][download-image]][download-url]
+[![NPM downloads][download-image]][download-url]
+![TypeScript][typescript-url]
+[![Codecov][codecov-image]][codecov-url]
 [![License][license-image]][license-url]
 
+[**Documentation**](https://saqqdy.github.io/uni-types/) · [**中文文档**](./README_CN.md)
+
 </div>
+
+## Features
+
+- 🎯 **100+ Type Utilities** - Comprehensive type helpers for every use case
+- 🔒 **Type Safe** - Full TypeScript support with strict type checking
+- 📦 **Zero Dependencies** - Lightweight and tree-shakeable
+- 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
+- 🌍 **Bilingual Docs** - Documentation in English and Chinese
 
 ## Installation
 
 ```bash
-# use pnpm
-$ pnpm add uni-types
+# pnpm
+pnpm add uni-types
 
-# use yarn
-$ yarn add uni-types
+# yarn
+yarn add uni-types
 
-# use npm
-$ npm install uni-types
+# npm
+npm install uni-types
 ```
 
-## Usage
+## Quick Start
 
 ```typescript
-import type { PickRequired, DeepPartial, IsArray } from 'uni-types'
+import type {
+  PickRequired,
+  DeepPartial,
+  IsArray,
+  Brand,
+  If,
+  Paths
+} from 'uni-types'
 
-// Use in your TypeScript projects
+// Core: Make specific properties required
 interface User {
   name?: string
   age?: number
   email: string
 }
 
-type RequiredNameUser = PickRequired<User, 'name'>
-// { name: string; age?: number; email: string }
+type RequiredUser = PickRequired<User, 'name' | 'age'>
+// { name: string; age: number; email: string }
+
+// Deep: Make all nested properties optional
+interface Config {
+  database: {
+    host: string
+    port: number
+  }
+}
+
+type PartialConfig = DeepPartial<Config>
+// { database?: { host?: string; port?: number } }
+
+// Brand: Create nominal types
+type UserId = Brand<string, 'UserId'>
+type OrderId = Brand<string, 'OrderId'>
+// UserId and OrderId are not interchangeable!
+
+// Conditional: Type-level logic
+type Result = If<true, 'success', 'error'> // 'success'
 ```
 
 ## API Reference
@@ -53,19 +89,6 @@ type RequiredNameUser = PickRequired<User, 'name'>
 | `OmitRequired<T, K>` | Make properties except specified ones required |
 | `PickPartial<T, K>` | Make specified properties optional |
 | `OmitPartial<T, K>` | Make properties except specified ones optional |
-
-```typescript
-interface User {
-  name?: string
-  age?: number
-  email: string
-}
-
-PickRequired<User, 'name'>   // { name: string; age?: number; email: string }
-OmitRequired<User, 'name'>   // { name?: string; age: number; email: string }
-PickPartial<User, 'email'>   // { name?: string; age?: number; email?: string }
-OmitPartial<User, 'email'>   // { name: string; age: number; email?: string }
-```
 
 ### Tuple Operations
 
@@ -80,17 +103,6 @@ OmitPartial<User, 'email'>   // { name: string; age: number; email?: string }
 | `TupleLength<T>` | Get tuple length |
 | `IsEmptyTuple<T>` | Check if tuple is empty |
 
-```typescript
-Head<[1, 2, 3]>       // 1
-Last<[1, 2, 3]>       // 3
-Tail<[1, 2, 3]>       // [2, 3]
-Init<[1, 2, 3]>       // [1, 2]
-Reverse<[1, 2, 3]>    // [3, 2, 1]
-Flatten<[1, [2, [3]]]> // [1, 2, 3]
-TupleLength<[1, 2, 3]> // 3
-IsEmptyTuple<[]>       // true
-```
-
 ### Deep Operations
 
 | Type | Description |
@@ -99,17 +111,8 @@ IsEmptyTuple<[]>       // true
 | `DeepRequired<T>` | Make all nested properties required |
 | `DeepReadonly<T>` | Make all nested properties readonly |
 | `DeepMutable<T>` | Make all nested properties mutable |
-
-```typescript
-interface Nested {
-  a: { b: { c: string } }
-}
-
-DeepPartial<Nested>  // { a?: { b?: { c?: string } } }
-DeepRequired<{ a?: { b?: string } }>  // { a: { b: string } }
-DeepReadonly<Nested>  // { readonly a: { readonly b: { readonly c: string } } }
-DeepMutable<{ readonly a: { readonly b: string } }>  // { a: { b: string } }
-```
+| `DeepOmit<T, P>` | Omit properties by path |
+| `DeepPick<T, P>` | Pick properties by path |
 
 ### Type Guards
 
@@ -121,80 +124,62 @@ DeepMutable<{ readonly a: { readonly b: string } }>  // { a: { b: string } }
 | `IsAny<T>` | Check if type is `any` |
 | `IsNever<T>` | Check if type is `never` |
 | `IsUnknown<T>` | Check if type is `unknown` |
+| `IsFunction<T>` | Check if type is a function |
+| `IsAsyncFunction<T>` | Check if type is an async function |
 
-```typescript
-IsArray<string[]>    // true
-IsArray<string>      // false
-IsTuple<[string, number]>  // true
-IsTuple<string[]>    // false
-IsEqual<string, string>    // true
-IsEqual<string, number>    // false
-```
-
-### Type Inference
+### Conditional Types *(v1.1.0)*
 
 | Type | Description |
 |------|-------------|
-| `Awaited<T>` | Unwrap Promise type recursively |
-| `ArrayElement<T>` | Get array element type |
-| `ValueOf<T>` | Get object value types |
-| `FunctionKeys<T>` | Get keys of function properties |
-| `NonFunctionKeys<T>` | Get keys of non-function properties |
-| `FirstParameter<T>` | Get first parameter type of function |
+| `If<C, T, F>` | Type-level if-then-else |
+| `Not<B>` | Logical NOT for boolean types |
+| `And<A, B>` | Logical AND for boolean types |
+| `Or<A, B>` | Logical OR for boolean types |
+| `Assert<T, U>` | Type constraint assertion |
 
-```typescript
-Awaited<Promise<string>>           // string
-Awaited<Promise<Promise<number>>>  // number
-ArrayElement<string[]>             // string
-ValueOf<{ a: string; b: number }>  // string | number
-FunctionKeys<{ name: string; onClick: () => void }>  // 'onClick'
-NonFunctionKeys<{ name: string; onClick: () => void }>  // 'name'
-```
-
-### Utility Types
+### Brand Types *(v1.1.0)*
 
 | Type | Description |
 |------|-------------|
-| `Merge<T, U>` | Merge two types (U overrides T) |
-| `NonNullable<T>` | Exclude `null` and `undefined` |
-| `Exclusive<T, K>` | Create mutually exclusive properties |
-| `NoNullish<T>` | Remove null/undefined from all properties |
-| `Nullable<T>` | Add `null` to type |
-| `Optional<T>` | Add `undefined` to type |
-| `Maybe<T>` | Add `null` and `undefined` to type |
-| `LoosePartial<T>` | Make all properties optional |
+| `Brand<T, B>` | Create a branded type for nominal typing |
+| `Unbrand<T>` | Extract underlying type from branded type |
 
-```typescript
-Merge<{ a: string; b: number }, { b: boolean; c: string }>
-// { a: string; b: boolean; c: string }
-
-NonNullable<string | null | undefined>  // string
-Nullable<string>   // string | null
-Optional<string>   // string | undefined
-Maybe<string>      // string | null | undefined
-```
-
-### Key Types
+### Function Utilities *(v1.1.0)*
 
 | Type | Description |
 |------|-------------|
-| `RequiredKeys<T>` | Get all required property keys |
-| `OptionalKeys<T>` | Get all optional property keys |
-| `WritableKeys<T>` | Get all writable (non-readonly) keys |
-| `ReadonlyKeys<T>` | Get all readonly keys |
+| `Parameters<T>` | Get function parameters as tuple |
+| `ReturnType<T>` | Get function return type |
+| `NthParameter<T, N>` | Get Nth parameter type |
+| `AsyncReturnType<T>` | Extract async function return type |
+| `ThisParameterType<T>` | Get `this` parameter type |
+| `OmitThisParameter<T>` | Omit `this` parameter from function |
 
-```typescript
-interface User {
-  name: string
-  age?: number
-  readonly id: number
-}
+### Template Literal Utilities *(v1.1.0)*
 
-RequiredKeys<User>   // 'name'
-OptionalKeys<User>   // 'age'
-WritableKeys<User>   // 'name' | 'age'
-ReadonlyKeys<User>   // 'id'
-```
+| Type | Description |
+|------|-------------|
+| `ReplaceAll<S, From, To>` | Replace all occurrences |
+| `Replace<S, From, To>` | Replace first occurrence |
+| `Trim<S>` | Trim whitespace |
+| `StringToArray<S>` | Convert string to array |
+| `CapitalizeAll<S>` | Capitalize all words |
+| `StartsWith<S, P>` | Check if string starts with prefix |
+| `EndsWith<S, P>` | Check if string ends with suffix |
+| `StringLength<S>` | Get string length |
+
+### Numeric Utilities *(v1.1.0)*
+
+| Type | Description |
+|------|-------------|
+| `Inc<N>` | Increment number |
+| `Dec<N>` | Decrement number |
+| `Add<A, B>` | Add two numbers |
+| `Subtract<A, B>` | Subtract two numbers |
+| `GreaterThan<A, B>` | Check if A > B |
+| `LessThan<A, B>` | Check if A < B |
+| `Max<A, B>` | Maximum of two numbers |
+| `Min<A, B>` | Minimum of two numbers |
 
 ### Path Types
 
@@ -202,69 +187,53 @@ ReadonlyKeys<User>   // 'id'
 |------|-------------|
 | `Paths<T>` | Get all nested property paths |
 | `PathValue<T, P>` | Get value type at path |
-| `SplitPath<S>` | Split path string into array |
+| `ValidPath<T, P>` | Check if path is valid |
+| `ArrayPaths<T>` | Get paths including array indices |
+| `LeafPaths<T>` | Get paths to primitive values |
 
-```typescript
-interface Obj {
-  a: { b: { c: string } }
-}
-
-Paths<Obj>                    // 'a' | 'a.b' | 'a.b.c'
-PathValue<Obj, 'a.b'>         // { c: string }
-SplitPath<'a.b.c'>            // ['a', 'b', 'c']
-```
-
-### Literal Types
+### Key Utilities *(v1.1.0)*
 
 | Type | Description |
 |------|-------------|
-| `Literal` | All literal types union |
-| `LiteralString<T>` | Exact string literal |
-| `LiteralNumber<T>` | Exact number literal |
-| `LiteralBoolean<T>` | Exact boolean literal |
+| `Keys<T>` | Get all keys |
+| `RenameKeys<T, M>` | Rename keys based on mapping |
+| `PrefixKeys<T, P>` | Add prefix to all keys |
+| `SuffixKeys<T, S>` | Add suffix to all keys |
+| `KeysByValueType<T, V>` | Get keys by value type |
 
-```typescript
-Literal  // string | number | boolean | undefined | null | void | bigint
-LiteralString<'hello'>  // 'hello'
-LiteralNumber<42>       // 42
-LiteralBoolean<true>    // true
-```
-
-### String Case Conversion
+### Record Utilities *(v1.1.0)*
 
 | Type | Description |
 |------|-------------|
-| `CamelCase<S>` | Convert to camelCase |
-| `SnakeCase<S>` | Convert to snake_case |
-| `CamelCaseKeys<T>` | Convert object keys to camelCase |
-| `SnakeCaseKeys<T>` | Convert object keys to snake_case |
+| `DeepNullable<T>` | Make all properties nullable |
+| `DeepOptional<T>` | Make all properties optional |
+| `Immutable<T>` | Make all properties readonly |
+| `Mutable<T>` | Make all properties mutable |
+| `DeepNonNullable<T>` | Remove null/undefined from all properties |
+| `Exact<T, Shape>` | Ensure exact shape match |
+
+## Examples
 
 ```typescript
-CamelCase<'hello_world'>    // 'helloWorld'
-CamelCase<'foo-bar-baz'>    // 'fooBarBaz'
-SnakeCase<'helloWorld'>     // 'hello_world'
-SnakeCase<'XMLParser'>      // 'xml_parser'
-CamelCaseKeys<{ hello_world: string }>  // { helloWorld: string }
-```
+import type {
+  SnakeCase,
+  CamelCaseKeys,
+  UnionToIntersection,
+  AtLeastOne
+} from 'uni-types'
 
-### Advanced Types
+// String case conversion
+SnakeCase<'XMLParser'>  // 'xml_parser'
+CamelCaseKeys<{ user_name: string, user_age: number }>
+// { userName: string, userAge: number }
 
-| Type | Description |
-|------|-------------|
-| `FunctionOnly<T>` | Extract only function properties |
-| `DataOnly<T>` | Extract only non-function properties |
-| `AtLeastOne<T>` | Require at least one property |
-| `StrictExtract<T, U>` | Strictly extract matching types |
-| `StrictExclude<T, U>` | Strictly exclude types |
-| `UnionToIntersection<U>` | Convert union to intersection |
-| `UnionToTuple<T>` | Convert union to tuple |
+// Union to intersection
+UnionToIntersection<{ a: string } | { b: number }>
+// { a: string } & { b: number }
 
-```typescript
-interface Obj { name: string; onClick: () => void }
-FunctionOnly<Obj>  // { onClick: () => void }
-DataOnly<Obj>      // { name: string }
-
-UnionToIntersection<{ a: string } | { b: number }>  // { a: string } & { b: number }
+// Require at least one property
+type Options = AtLeastOne<{ a?: string; b?: number; c?: boolean }>
+// Must have at least one of a, b, or c
 ```
 
 ## Development
@@ -273,32 +242,33 @@ UnionToIntersection<{ a: string } | { b: number }>  // { a: string } & { b: numb
 # Install dependencies
 pnpm install
 
-# Build
-pnpm build
-
-# Test
+# Run tests
 pnpm test
 
-# Test with coverage
-pnpm test:coverage
+# Build
+pnpm build
 
 # Type check
 pnpm typecheck
 
-# Lint
-pnpm lint
+# Start docs dev server
+pnpm docs:dev
 ```
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.md) for details.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © [saqqdy](https://github.com/saqqdy)
 
 [npm-image]: https://img.shields.io/npm/v/uni-types.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/uni-types
-[typescript-url]: https://badgen.net/badge/icon/typescript?icon=typescript&label
+[typescript-url]: https://img.shields.io/badge/TypeScript-5.x-3178c6?style=flat-square&logo=typescript&logoColor=white
 [codecov-image]: https://img.shields.io/codecov/c/github/saqqdy/uni-types.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/saqqdy/uni-types?branch=master
+[codecov-url]: https://codecov.io/github/saqqdy/uni-types
 [download-image]: https://img.shields.io/npm/dm/uni-types.svg?style=flat-square
 [download-url]: https://npmjs.org/package/uni-types
-[license-image]: https://img.shields.io/badge/License-MIT-blue.svg
+[license-image]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE

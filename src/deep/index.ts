@@ -1,3 +1,5 @@
+export * from './path'
+
 type BuiltIn = Date | ((...args: unknown[]) => unknown) | Map<unknown, unknown> | Set<unknown> | RegExp
 
 /**

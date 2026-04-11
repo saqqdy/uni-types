@@ -1,46 +1,82 @@
-<div style="text-align: center;" align="center">
+<div align="center">
 
 # uni-types
 
-通用 TypeScript 类型工具库 - 为 TypeScript 开发提供全面的类型助手集合
+**通用 TypeScript 类型工具库**
+
+为 TypeScript 开发提供全面的类型助手集合
 
 [![NPM version][npm-image]][npm-url]
-![typescript][typescript-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![npm download][download-image]][download-url]
+[![NPM downloads][download-image]][download-url]
+![TypeScript][typescript-url]
+[![Codecov][codecov-image]][codecov-url]
 [![License][license-image]][license-url]
+
+[**在线文档**](https://saqqdy.github.io/uni-types/zh/) · [**English**](./README.md)
 
 </div>
 
-[English](./README.md) | 简体中文
+## 特性
+
+- 🎯 **100+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
+- 📦 **零依赖** - 轻量级，支持 tree-shaking
+- 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
+- 🌍 **双语文档** - 提供中英文文档支持
 
 ## 安装
 
 ```bash
-# 使用 pnpm
-$ pnpm add uni-types
+# pnpm
+pnpm add uni-types
 
-# 使用 yarn
-$ yarn add uni-types
+# yarn
+yarn add uni-types
 
-# 使用 npm
-$ npm install uni-types
+# npm
+npm install uni-types
 ```
 
-## 使用
+## 快速开始
 
 ```typescript
-import type { PickRequired, DeepPartial, IsArray } from 'uni-types'
+import type {
+  PickRequired,
+  DeepPartial,
+  IsArray,
+  Brand,
+  If,
+  Paths
+} from 'uni-types'
 
-// 在你的 TypeScript 项目中使用
+// 核心：将指定属性变为必需
 interface User {
   name?: string
   age?: number
   email: string
 }
 
-type RequiredNameUser = PickRequired<User, 'name'>
-// { name: string; age?: number; email: string }
+type RequiredUser = PickRequired<User, 'name' | 'age'>
+// { name: string; age: number; email: string }
+
+// 深度：将所有嵌套属性变为可选
+interface Config {
+  database: {
+    host: string
+    port: number
+  }
+}
+
+type PartialConfig = DeepPartial<Config>
+// { database?: { host?: string; port?: number } }
+
+// 品牌：创建名义类型
+type UserId = Brand<string, 'UserId'>
+type OrderId = Brand<string, 'OrderId'>
+// UserId 和 OrderId 不可互换！
+
+// 条件：类型级别逻辑
+type Result = If<true, 'success', 'error'> // 'success'
 ```
 
 ## API 参考
@@ -53,19 +89,6 @@ type RequiredNameUser = PickRequired<User, 'name'>
 | `OmitRequired<T, K>` | 将指定属性之外变为必需 |
 | `PickPartial<T, K>` | 将指定属性变为可选 |
 | `OmitPartial<T, K>` | 将指定属性之外变为可选 |
-
-```typescript
-interface User {
-  name?: string
-  age?: number
-  email: string
-}
-
-PickRequired<User, 'name'>   // { name: string; age?: number; email: string }
-OmitRequired<User, 'name'>   // { name?: string; age: number; email: string }
-PickPartial<User, 'email'>   // { name?: string; age?: number; email?: string }
-OmitPartial<User, 'email'>   // { name: string; age: number; email?: string }
-```
 
 ### 元组操作
 
@@ -80,17 +103,6 @@ OmitPartial<User, 'email'>   // { name: string; age: number; email?: string }
 | `TupleLength<T>` | 获取元组长度 |
 | `IsEmptyTuple<T>` | 判断元组是否为空 |
 
-```typescript
-Head<[1, 2, 3]>       // 1
-Last<[1, 2, 3]>       // 3
-Tail<[1, 2, 3]>       // [2, 3]
-Init<[1, 2, 3]>       // [1, 2]
-Reverse<[1, 2, 3]>    // [3, 2, 1]
-Flatten<[1, [2, [3]]]> // [1, 2, 3]
-TupleLength<[1, 2, 3]> // 3
-IsEmptyTuple<[]>       // true
-```
-
 ### 深度操作
 
 | 类型 | 描述 |
@@ -99,17 +111,8 @@ IsEmptyTuple<[]>       // true
 | `DeepRequired<T>` | 将所有嵌套属性变为必需 |
 | `DeepReadonly<T>` | 将所有嵌套属性变为只读 |
 | `DeepMutable<T>` | 将所有嵌套属性变为可变 |
-
-```typescript
-interface Nested {
-  a: { b: { c: string } }
-}
-
-DeepPartial<Nested>  // { a?: { b?: { c?: string } } }
-DeepRequired<{ a?: { b?: string } }>  // { a: { b: string } }
-DeepReadonly<Nested>  // { readonly a: { readonly b: { readonly c: string } } }
-DeepMutable<{ readonly a: { readonly b: string } }>  // { a: { b: string } }
-```
+| `DeepOmit<T, P>` | 按路径移除属性 |
+| `DeepPick<T, P>` | 按路径选取属性 |
 
 ### 类型判断
 
@@ -121,80 +124,62 @@ DeepMutable<{ readonly a: { readonly b: string } }>  // { a: { b: string } }
 | `IsAny<T>` | 判断类型是否为 `any` |
 | `IsNever<T>` | 判断类型是否为 `never` |
 | `IsUnknown<T>` | 判断类型是否为 `unknown` |
+| `IsFunction<T>` | 判断类型是否为函数 |
+| `IsAsyncFunction<T>` | 判断类型是否为异步函数 |
 
-```typescript
-IsArray<string[]>    // true
-IsArray<string>      // false
-IsTuple<[string, number]>  // true
-IsTuple<string[]>    // false
-IsEqual<string, string>    // true
-IsEqual<string, number>    // false
-```
-
-### 类型推导
+### 条件类型 *(v1.1.0)*
 
 | 类型 | 描述 |
 |------|------|
-| `Awaited<T>` | 递归解包 Promise 类型 |
-| `ArrayElement<T>` | 获取数组元素类型 |
-| `ValueOf<T>` | 获取对象值类型 |
-| `FunctionKeys<T>` | 获取函数属性的键 |
-| `NonFunctionKeys<T>` | 获取非函数属性的键 |
-| `FirstParameter<T>` | 获取函数第一个参数类型 |
+| `If<C, T, F>` | 类型级别的 if-then-else |
+| `Not<B>` | 布尔类型的逻辑非 |
+| `And<A, B>` | 布尔类型的逻辑与 |
+| `Or<A, B>` | 布尔类型的逻辑或 |
+| `Assert<T, U>` | 类型约束断言 |
 
-```typescript
-Awaited<Promise<string>>           // string
-Awaited<Promise<Promise<number>>>  // number
-ArrayElement<string[]>             // string
-ValueOf<{ a: string; b: number }>  // string | number
-FunctionKeys<{ name: string; onClick: () => void }>  // 'onClick'
-NonFunctionKeys<{ name: string; onClick: () => void }>  // 'name'
-```
-
-### 实用类型
+### 品牌类型 *(v1.1.0)*
 
 | 类型 | 描述 |
 |------|------|
-| `Merge<T, U>` | 合并两个类型（后者覆盖前者） |
-| `NonNullable<T>` | 排除 `null` 和 `undefined` |
-| `Exclusive<T, K>` | 创建互斥属性 |
-| `NoNullish<T>` | 移除所有属性的 null/undefined |
-| `Nullable<T>` | 添加 `null` 到类型 |
-| `Optional<T>` | 添加 `undefined` 到类型 |
-| `Maybe<T>` | 添加 `null` 和 `undefined` 到类型 |
-| `LoosePartial<T>` | 将所有属性变为可选 |
+| `Brand<T, B>` | 创建品牌类型，用于名义类型 |
+| `Unbrand<T>` | 从品牌类型中提取底层类型 |
 
-```typescript
-Merge<{ a: string; b: number }, { b: boolean; c: string }>
-// { a: string; b: boolean; c: string }
-
-NonNullable<string | null | undefined>  // string
-Nullable<string>   // string | null
-Optional<string>   // string | undefined
-Maybe<string>      // string | null | undefined
-```
-
-### 键类型
+### 函数工具 *(v1.1.0)*
 
 | 类型 | 描述 |
 |------|------|
-| `RequiredKeys<T>` | 获取所有必需属性的键 |
-| `OptionalKeys<T>` | 获取所有可选属性的键 |
-| `WritableKeys<T>` | 获取所有可写（非只读）属性的键 |
-| `ReadonlyKeys<T>` | 获取所有只读属性的键 |
+| `Parameters<T>` | 获取函数参数为元组 |
+| `ReturnType<T>` | 获取函数返回类型 |
+| `NthParameter<T, N>` | 获取第 N 个参数类型 |
+| `AsyncReturnType<T>` | 提取异步函数返回类型 |
+| `ThisParameterType<T>` | 获取 `this` 参数类型 |
+| `OmitThisParameter<T>` | 从函数中移除 `this` 参数 |
 
-```typescript
-interface User {
-  name: string
-  age?: number
-  readonly id: number
-}
+### 模板字面量工具 *(v1.1.0)*
 
-RequiredKeys<User>   // 'name'
-OptionalKeys<User>   // 'age'
-WritableKeys<User>   // 'name' | 'age'
-ReadonlyKeys<User>   // 'id'
-```
+| 类型 | 描述 |
+|------|------|
+| `ReplaceAll<S, From, To>` | 替换所有匹配项 |
+| `Replace<S, From, To>` | 替换第一个匹配项 |
+| `Trim<S>` | 去除空白字符 |
+| `StringToArray<S>` | 将字符串转为数组 |
+| `CapitalizeAll<S>` | 每个单词首字母大写 |
+| `StartsWith<S, P>` | 判断是否以指定前缀开头 |
+| `EndsWith<S, P>` | 判断是否以指定后缀结尾 |
+| `StringLength<S>` | 获取字符串长度 |
+
+### 数字工具 *(v1.1.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Inc<N>` | 数字加一 |
+| `Dec<N>` | 数字减一 |
+| `Add<A, B>` | 两数相加 |
+| `Subtract<A, B>` | 两数相减 |
+| `GreaterThan<A, B>` | 判断 A > B |
+| `LessThan<A, B>` | 判断 A < B |
+| `Max<A, B>` | 两数最大值 |
+| `Min<A, B>` | 两数最小值 |
 
 ### 路径类型
 
@@ -202,69 +187,53 @@ ReadonlyKeys<User>   // 'id'
 |------|------|
 | `Paths<T>` | 获取所有嵌套属性路径 |
 | `PathValue<T, P>` | 获取路径处的值类型 |
-| `SplitPath<S>` | 将路径字符串分割为数组 |
+| `ValidPath<T, P>` | 判断路径是否有效 |
+| `ArrayPaths<T>` | 获取包含数组索引的路径 |
+| `LeafPaths<T>` | 获取到原始值的路径 |
 
-```typescript
-interface Obj {
-  a: { b: { c: string } }
-}
-
-Paths<Obj>                    // 'a' | 'a.b' | 'a.b.c'
-PathValue<Obj, 'a.b'>         // { c: string }
-SplitPath<'a.b.c'>            // ['a', 'b', 'c']
-```
-
-### 字面量类型
+### 键工具 *(v1.1.0)*
 
 | 类型 | 描述 |
 |------|------|
-| `Literal` | 所有字面量类型联合 |
-| `LiteralString<T>` | 精确字符串字面量 |
-| `LiteralNumber<T>` | 精确数字字面量 |
-| `LiteralBoolean<T>` | 精确布尔字面量 |
+| `Keys<T>` | 获取所有键 |
+| `RenameKeys<T, M>` | 根据映射重命名键 |
+| `PrefixKeys<T, P>` | 为所有键添加前缀 |
+| `SuffixKeys<T, S>` | 为所有键添加后缀 |
+| `KeysByValueType<T, V>` | 按值类型获取键 |
 
-```typescript
-Literal  // string | number | boolean | undefined | null | void | bigint
-LiteralString<'hello'>  // 'hello'
-LiteralNumber<42>       // 42
-LiteralBoolean<true>    // true
-```
-
-### 字符串命名转换
+### 记录工具 *(v1.1.0)*
 
 | 类型 | 描述 |
 |------|------|
-| `CamelCase<S>` | 转换为驼峰命名 |
-| `SnakeCase<S>` | 转换为蛇形命名 |
-| `CamelCaseKeys<T>` | 将对象键转换为驼峰命名 |
-| `SnakeCaseKeys<T>` | 将对象键转换为蛇形命名 |
+| `DeepNullable<T>` | 将所有属性变为可空 |
+| `DeepOptional<T>` | 将所有属性变为可选 |
+| `Immutable<T>` | 将所有属性变为只读 |
+| `Mutable<T>` | 将所有属性变为可变 |
+| `DeepNonNullable<T>` | 移除所有属性的 null/undefined |
+| `Exact<T, Shape>` | 确保精确匹配形状 |
+
+## 示例
 
 ```typescript
-CamelCase<'hello_world'>    // 'helloWorld'
-CamelCase<'foo-bar-baz'>    // 'fooBarBaz'
-SnakeCase<'helloWorld'>     // 'hello_world'
-SnakeCase<'XMLParser'>      // 'xml_parser'
-CamelCaseKeys<{ hello_world: string }>  // { helloWorld: string }
-```
+import type {
+  SnakeCase,
+  CamelCaseKeys,
+  UnionToIntersection,
+  AtLeastOne
+} from 'uni-types'
 
-### 高级类型
+// 字符串命名转换
+SnakeCase<'XMLParser'>  // 'xml_parser'
+CamelCaseKeys<{ user_name: string, user_age: number }>
+// { userName: string, userAge: number }
 
-| 类型 | 描述 |
-|------|------|
-| `FunctionOnly<T>` | 提取函数属性 |
-| `DataOnly<T>` | 提取非函数属性 |
-| `AtLeastOne<T>` | 要求至少有一个属性 |
-| `StrictExtract<T, U>` | 严格提取匹配类型 |
-| `StrictExclude<T, U>` | 严格排除类型 |
-| `UnionToIntersection<U>` | 将联合类型转换为交叉类型 |
-| `UnionToTuple<T>` | 将联合类型转换为元组 |
+// 联合转交叉
+UnionToIntersection<{ a: string } | { b: number }>
+// { a: string } & { b: number }
 
-```typescript
-interface Obj { name: string; onClick: () => void }
-FunctionOnly<Obj>  // { onClick: () => void }
-DataOnly<Obj>      // { name: string }
-
-UnionToIntersection<{ a: string } | { b: number }>  // { a: string } & { b: number }
+// 至少需要一个属性
+type Options = AtLeastOne<{ a?: string; b?: number; c?: boolean }>
+// 必须有 a、b、c 中的至少一个
 ```
 
 ## 开发
@@ -273,32 +242,33 @@ UnionToIntersection<{ a: string } | { b: number }>  // { a: string } & { b: numb
 # 安装依赖
 pnpm install
 
-# 构建
-pnpm build
-
-# 测试
+# 运行测试
 pnpm test
 
-# 测试覆盖率
-pnpm test:coverage
+# 构建
+pnpm build
 
 # 类型检查
 pnpm typecheck
 
-# 代码检查
-pnpm lint
+# 启动文档开发服务器
+pnpm docs:dev
 ```
+
+## 贡献
+
+欢迎贡献！请阅读我们的 [贡献指南](./CONTRIBUTING.md) 了解详情。
 
 ## 许可证
 
-[MIT](LICENSE)
+[MIT](LICENSE) © [saqqdy](https://github.com/saqqdy)
 
 [npm-image]: https://img.shields.io/npm/v/uni-types.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/uni-types
-[typescript-url]: https://badgen.net/badge/icon/typescript?icon=typescript&label
+[typescript-url]: https://img.shields.io/badge/TypeScript-5.x-3178c6?style=flat-square&logo=typescript&logoColor=white
 [codecov-image]: https://img.shields.io/codecov/c/github/saqqdy/uni-types.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/saqqdy/uni-types?branch=master
+[codecov-url]: https://codecov.io/github/saqqdy/uni-types
 [download-image]: https://img.shields.io/npm/dm/uni-types.svg?style=flat-square
 [download-url]: https://npmjs.org/package/uni-types
-[license-image]: https://img.shields.io/badge/License-MIT-blue.svg
+[license-image]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE

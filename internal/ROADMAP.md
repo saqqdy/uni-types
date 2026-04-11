@@ -5,7 +5,8 @@ This document outlines the development roadmap for `uni-types`.
 ## Version History
 
 - [x] [1.0.0](#100) - Initial stable release (2024-04-11)
-- [ ] [1.1.0](#110) - Enhanced type utilities (Planned)
+- [x] [1.1.0](#110) - Enhanced type utilities (2026-04-11)
+- [ ] [1.2.0](#120) - Schema validation & ecosystem integration (Planned)
 
 ---
 
@@ -49,9 +50,11 @@ This document outlines the development roadmap for `uni-types`.
 
 ---
 
-## [1.1.0] - Planned
+## [1.1.0] - 2026-04-11
 
-### 1. Deep Path Operations
+### New Features
+
+#### 1. Deep Path Operations ✓
 
 Deep operations based on path strings for precise nested property manipulation.
 
@@ -62,349 +65,163 @@ export type DeepOmit<T, P extends string> = ...
 // Deep pick by path
 export type DeepPick<T, P extends string> = ...
 
-// Examples
-interface User {
-  profile: {
-    name: string
-    email: string
-    settings: {
-      theme: string
-      lang: string
-    }
-  }
-}
-
-DeepOmit<User, 'profile.settings'> 
-// { profile: { name: string; email: string } }
-
-DeepPick<User, 'profile.name' | 'profile.settings.theme'>
-// { profile: { name: string; settings: { theme: string } } }
+// Deep pick/omit for union paths
+export type DeepPickPaths<T, P extends string> = ...
+export type DeepOmitPaths<T, P extends string> = ...
 ```
 
-**Priority**: High  
-**Effort**: Medium  
-**Status**: Not started
-
----
-
-### 2. Object Key Utilities
-
-Additional key-related type utilities.
-
-```ts
-// Get all keys as literal union
-export type Keys<T> = keyof T
-
-// Rename object keys
-export type RenameKeys<T, M extends Record<string, string>> = ...
-
-// Example
-RenameKeys<{ oldName: string }, { oldName: 'newName' }>
-// { newName: string }
-```
-
-**Priority**: Medium  
-**Effort**: Low  
-**Status**: Not started
-
----
-
-### 3. Conditional Type Utilities
+#### 2. Conditional Type Utilities ✓
 
 Conditional type helpers for cleaner type logic.
 
 ```ts
-// If-then-else at type level
 export type If<C extends boolean, T, F> = C extends true ? T : F
-
-// Type constraint assertion
-export type Assert<T, U extends T> = T extends U ? T : never
-
-// Not operator for boolean types
 export type Not<B extends boolean> = B extends true ? false : true
-
-// And/Or operators
 export type And<A extends boolean, B extends boolean> = A extends true ? B : false
 export type Or<A extends boolean, B extends boolean> = A extends true ? true : B
-
-// Examples
-If<true, string, number>    // string
-If<false, string, number>   // number
-Assert<string | number, string>  // string
+export type Assert<T, U extends T> = T extends U ? T : never
 ```
 
-**Priority**: Medium  
-**Effort**: Low  
-**Status**: Not started
-
----
-
-### 4. Enhanced Path Types
+#### 3. Enhanced Path Types ✓
 
 More powerful path utilities with validation and array support.
 
 ```ts
-// Validate if path exists in type
 export type ValidPath<T, P extends string> = ...
-
-// Get paths including array indices
 export type ArrayPaths<T> = ...
-
-// Get leaf node paths only (paths to primitive values)
 export type LeafPaths<T> = ...
-
-// Examples
-ValidPath<{ a: { b: string } }, 'a.b'>  // true
-ValidPath<{ a: { b: string } }, 'a.c'>  // false
-
-interface Users {
-  users: { name: string }[]
-}
-ArrayPaths<Users>  // 'users' | `users.${number}` | `users.${number}.name`
-LeafPaths<Users>   // `users.${number}.name`
+export type PathLength<P extends string> = ...
+export type ParentPath<P extends string> = ...
+export type PathLeaf<P extends string> = ...
 ```
 
-**Priority**: High  
-**Effort**: Medium  
-**Status**: Not started
-
----
-
-### 5. Brand/Opaque Types
+#### 4. Brand/Opaque Types ✓
 
 Type-safe branded types for nominal typing.
 
 ```ts
-// Brand a type for nominal typing
-export type Brand<T, B> = T & { __brand: B }
-
-// Unbrand a branded type
+export type Brand<T, B extends string> = T & { __brand: B }
 export type Unbrand<T> = T extends Brand<infer U, infer _> ? U : T
-
-// Common branded types
-export type UserId = Brand<string, 'UserId'>
-export type OrderId = Brand<string, 'OrderId'>
-export type Email = Brand<string, 'Email'>
-
-// Example
-type UserId = Brand<string, 'UserId'>
-type OrderId = Brand<string, 'OrderId'>
-
-const userId: UserId = 'user-123' as UserId
-const orderId: OrderId = 'order-456' as OrderId
-
-// These won't mix - type safety!
-// const wrong: OrderId = userId  // Error!
+export type BrandedString<B extends string> = Brand<string, B>
+export type BrandedNumber<B extends string> = Brand<number, B>
 ```
 
-**Priority**: Medium  
-**Effort**: Low  
-**Status**: Not started
+#### 5. Object Key Utilities ✓
 
----
+Additional key-related type utilities.
 
-### 6. Function Utilities
+```ts
+export type Keys<T> = keyof T
+export type RenameKeys<T, M extends Record<string, string>> = ...
+export type PrefixKeys<T, P extends string> = ...
+export type SuffixKeys<T, S extends string> = ...
+export type PascalCaseKeys<T> = ...
+export type KeysByValueType<T, V> = ...
+export type FilterKeys<T, P extends string> = ...
+```
+
+#### 6. Function Utilities ✓
 
 Advanced function type utilities.
 
 ```ts
-// Curry a function type
-export type Curry<F> = ...
-
-// Get function parameters as tuple
 export type Parameters<T> = T extends (...args: infer P) => any ? P : never
-
-// Get function return type
 export type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any
-
-// Get all parameter types
-export type AllParameters<T> = ...
-
-// Get Nth parameter type
 export type NthParameter<T, N extends number> = ...
-
-// Extract async function return type
-export type AsyncReturnType<T> = T extends (...args: any[]) => Promise<infer R> ? R : never
-
-// Example
-type Fn = (a: string, b: number) => boolean
-Parameters<Fn>    // [string, number]
-ReturnType<Fn>    // boolean
-NthParameter<Fn, 1>  // number
+export type AsyncReturnType<T> = ...
+export type ThisParameterType<T> = ...
+export type OmitThisParameter<T> = ...
+export type IsFunction<T> = ...
+export type IsAsyncFunction<T> = ...
+export type OptionalParameters<T> = ...
+export type AppendParameter<T, P> = ...
+export type PrependParameter<T, P> = ...
 ```
 
-**Priority**: Medium  
-**Effort**: Low  
-**Status**: Not started
-
----
-
-### 7. Template Literal Utilities
+#### 7. Template Literal Utilities ✓
 
 String manipulation types using template literals.
 
 ```ts
-// Replace all occurrences
-export type ReplaceAll<S extends string, From extends string, To extends string> = ...
-
-// Trim whitespace
-export type Trim<S extends string> = ...
-export type TrimLeft<S extends string> = ...
-export type TrimRight<S extends string> = ...
-
-// String to array
-export type StringToArray<S extends string> = ...
-
-// Capitalize all words
-export type CapitalizeAll<S extends string> = ...
-
-// Examples
-ReplaceAll<'hello world world', 'world', 'there'>  // 'hello there there'
-Trim<'  hello  '>    // 'hello'
-StringToArray<'abc'> // ['a', 'b', 'c']
-CapitalizeAll<'hello world'>  // 'Hello World'
+export type ReplaceAll<S, From, To> = ...
+export type Replace<S, From, To> = ...
+export type Trim<S> = ...
+export type TrimLeft<S> = ...
+export type TrimRight<S> = ...
+export type StringToArray<S> = ...
+export type CapitalizeAll<S> = ...
+export type UncapitalizeAll<S> = ...
+export type StartsWith<S, P> = ...
+export type EndsWith<S, P> = ...
+export type StringLength<S> = ...
+export type Repeat<S, N> = ...
+export type PadStart<S, N, P> = ...
+export type PadEnd<S, N, P> = ...
 ```
 
-**Priority**: Low  
-**Effort**: Low  
-**Status**: Not started
-
----
-
-### 8. Record Utilities
+#### 8. Record Utilities ✓
 
 Object/Record manipulation types.
 
 ```ts
-// Make all properties nullable
 export type DeepNullable<T> = ...
-
-// Make all properties optional
 export type DeepOptional<T> = ...
-
-// Immutable object (deep readonly alternative)
 export type Immutable<T> = ...
-
-// Mutable object (deep mutable alternative)
 export type Mutable<T> = ...
-
-// Required deeply
 export type DeepNonNullable<T> = ...
-
-// Object with exactly these keys
 export type Exact<T, Shape> = ...
-
-// Examples
-DeepNullable<{ a: { b: string } }>  // { a: { b: string | null } }
-Immutable<{ a: { b: string[] } }>   // { readonly a: { readonly b: readonly string[] } }
+export type Required<T> = ...
+export type DeepRequiredProperties<T> = ...
+export type HasKeys<T, K> = ...
+export type HasExactKeys<T, K> = ...
 ```
 
-**Priority**: Medium  
-**Effort**: Medium  
-**Status**: Not started
-
----
-
-### 9. Numeric Utilities
+#### 9. Numeric Utilities ✓
 
 Numeric type operations.
 
 ```ts
-// Increment number type
 export type Inc<N extends number> = ...
-
-// Decrement number type
 export type Dec<N extends number> = ...
-
-// Add two number types
 export type Add<A extends number, B extends number> = ...
-
-// Subtract two number types
 export type Subtract<A extends number, B extends number> = ...
-
-// Range of numbers
-export type Range<From extends number, To extends number> = ...
-
-// Examples
-Inc<5>       // 6
-Add<3, 4>    // 7
-Range<1, 5>  // 1 | 2 | 3 | 4 | 5
+export type GreaterThan<A, B> = ...
+export type LessThan<A, B> = ...
+export type Max<A, B> = ...
+export type Min<A, B> = ...
+export type IsEven<N> = ...
+export type IsOdd<N> = ...
+export type Neg<N> = ...
 ```
 
-**Priority**: Low  
-**Effort**: Medium  
-**Status**: Not started
+### Testing
+
+- [x] 71 new type tests added
+- [x] All tests passing (162 total)
+- [x] Full type coverage validation
 
 ---
 
-### 10. Testing Improvements
-
-- [ ] Add edge case tests for deeply nested types (5+ levels)
-- [ ] Add combination tests (e.g., `DeepPartial<DeepReadonly<T>>`)
-- [ ] Add performance benchmarks for complex types
-- [ ] Add visual regression tests for type errors
-- [ ] Increase test coverage to 150+ tests
-
-**Priority**: Medium  
-**Effort**: Medium  
-**Status**: Not started
-
----
-
-### 11. Documentation Enhancements
-
-- [ ] Add "When to Use" guide for each category
-- [ ] Add comparison with similar libraries (utility-types, type-fest)
-- [ ] Add TypeScript playground links for examples
-- [ ] Add troubleshooting guide for common type errors
-- [ ] Add interactive type playground component
-- [ ] Add video tutorials
-
-**Priority**: Medium  
-**Effort**: Medium  
-**Status**: Not started
-
----
-
-### 12. Developer Experience
-
-- [ ] Export internal helper types for advanced users
-- [ ] Add ESLint plugin for type-related best practices
-- [ ] Add VS Code snippets extension
-- [ ] Add runtime type guards (optional, as separate package)
-
-**Priority**: Low  
-**Effort**: High  
-**Status**: Not started
-
----
-
-## Future Considerations (1.2.0+)
+## [1.2.0] - Planned
 
 ### Schema Validation Integration
+
 - Integration with Zod/Yup for runtime validation
 - Type guards with runtime checks
 - Schema-to-type conversion
 
 ### Performance Optimization
+
 - Lazy type evaluation for complex types
 - Type caching strategies
 - Compilation time optimization
 
 ### Ecosystem Integration
+
 - React prop types utilities
 - Vue component prop utilities
 - tRPC integration helpers
 - Prisma type utilities
-
----
-
-## Progress Summary
-
-| Version | Types Count | Docs Files | Tests | Status |
-|---------|-------------|------------|-------|--------|
-| 1.0.0   | 50+         | 138        | 91    | Released |
-| 1.1.0   | 70+ (planned)| 150+ (planned)| 150+ (planned)| Planned |
 
 ---
 
