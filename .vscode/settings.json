@@ -1,26 +1,17 @@
 {
 	"cSpell.words": [
 		"Codacy",
-		"convertable",
 		"corejs",
 		"esbuild",
 		"filesize",
 		"iife",
-		"instanceof",
 		"lcov",
-		"uni-types",
-		"onwarn",
-		"PKCS",
-		"pnpm",
-		"reinstaller",
-		"Retryable",
+		"publint",
+		"rolldown",
 		"saqqdy",
-		"subarray",
-		"tscjs",
-		"tsnd",
+		"tsdown",
 		"typedoc",
-		"unpub",
-		"unpublish",
-		"unitypes"
+		"uni-types",
+		"vitest"
 	]
 }
