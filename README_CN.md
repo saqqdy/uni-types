@@ -212,6 +212,51 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `DeepNonNullable<T>` | 移除所有属性的 null/undefined |
 | `Exact<T, Shape>` | 确保精确匹配形状 |
 
+### Schema 验证 *(v1.2.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `RuntimeGuard<T>` | 定义运行时类型守卫函数 |
+| `GuardedType<G>` | 从类型守卫提取类型 |
+| `HasRuntimeCheck<T>` | 判断类型是否有运行时检查 |
+| `ZodOutput<T>` | 从 Zod schema 提取输出类型 |
+| `ZodInput<T>` | 从 Zod schema 提取输入类型 |
+| `ZodShape<T>` | 从 ZodObject 提取形状 |
+| `ZodRequiredKeys<T>` | 获取 Zod schema 必需键 |
+| `ZodOptionalKeys<T>` | 获取 Zod schema 可选键 |
+| `YupOutput<T>` | 从 Yup schema 提取输出类型 |
+| `YupInput<T>` | 从 Yup schema 提取输入类型 |
+
+### 生态系统集成 *(v1.2.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ComponentProps<T>` | 从 React 组件提取 props |
+| `PropsWithChildren<P>` | 向 props 添加 children |
+| `RequiredProps<P>` | 获取必需的 prop 键 |
+| `OptionalProps<P>` | 获取可选的 prop 键 |
+| `VuePropType<T>` | Vue prop 类型定义 |
+| `VueEmitType<T>` | Vue emit 函数类型 |
+| `PrismaCreateInput<T>` | Prisma 模型创建输入类型 |
+| `PrismaUpdateInput<T>` | Prisma 模型更新输入类型 |
+| `PrismaWhereInput<T>` | Prisma 查询 where 输入类型 |
+| `TRPCProcedureInput<T>` | 从 tRPC 过程提取输入类型 |
+| `TRPCProcedureOutput<T>` | 从 tRPC 过程提取输出类型 |
+
+### 性能优化 *(v1.2.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Simplify<T>` | 展平交叉类型 |
+| `DeepSimplify<T>` | 递归简化嵌套类型 |
+| `Compact<T>` | 移除 never 和 undefined 属性 |
+| `StripNever<T>` | 移除 never 属性 |
+| `StripUndefined<T>` | 移除 undefined 属性 |
+| `MergeAll<T>` | 合并多个对象类型 |
+| `Lazy<T>` | 延迟类型求值 |
+| `Cached<T>` | 缓存类型计算 |
+| `Memoized<T>` | 记忆化类型计算 |
+
 ## 示例
 
 ```typescript

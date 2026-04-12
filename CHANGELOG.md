@@ -2,6 +2,143 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-04-12
+
+### Added
+
+#### Schema Validation
+- `RuntimeGuard<T>` - Define type guard function for runtime type checking
+- `GuardedType<G>` - Extract the guarded type from a type guard function
+- `HasRuntimeCheck<T>` - Check if a type has runtime check available
+- `AssertionFunction<T>` - Assertion function type
+- `CompositeGuard<T>` - Composite type guard for objects
+- `NegateGuard<T>` - Negate a type guard
+- `CombinedGuard<T, U>` - Combine multiple type guards (AND)
+- `UnionGuard<T, U>` - Union type guard (OR)
+
+#### Zod Integration
+- `ZodOutput<T>` - Extract output type from Zod schema
+- `ZodInput<T>` - Extract input type from Zod schema
+- `IsZodSchema<T>` - Check if type is a Zod schema
+- `ZodShape<T>` - Extract shape from ZodObject
+- `ZodUnwrapOptional<T>` - Unwrap ZodOptional type
+- `ZodUnwrapNullable<T>` - Unwrap ZodNullable type
+- `IsZodOptional<T>` - Check if Zod schema is optional
+- `IsZodNullable<T>` - Check if Zod schema is nullable
+- `ZodArrayElement<T>` - Get element type from ZodArray
+- `ZodRequiredKeys<T>` - Get required keys from ZodObject
+- `ZodOptionalKeys<T>` - Get optional keys from ZodObject
+- `ZodPick<T, K>` - Pick properties from ZodObject at type level
+- `ZodOmit<T, K>` - Omit properties from ZodObject at type level
+- `ZodDeepPartialInput<T>` - Deep partial input for Zod schemas
+
+#### Yup Integration
+- `YupOutput<T>` - Extract output type from Yup schema
+- `YupInput<T>` - Extract input type from Yup schema
+- `IsYupSchema<T>` - Check if type is a Yup schema
+- `YupFields<T>` - Get Yup schema fields from object schema
+- `YupRequiredKeys<T>` - Get required keys from Yup schema
+- `YupOptionalKeys<T>` - Get optional keys from Yup schema
+
+#### Ecosystem Integration - React
+- `ComponentProps<T>` - Extract props from React component or intrinsic element
+- `ComponentPropsWithRef<T>` - Get props with ref included
+- `PropsWithChildren<P>` - Add children to props
+- `PropsWithoutChildren<P>` - Remove children from props
+- `ExtractPropTypes<T>` - Extract prop types from component
+- `RequiredProps<P>` - Get required prop keys
+- `OptionalProps<P>` - Get optional prop keys
+- `MergeDefaultProps<P, D>` - Merge props with default props
+- `PropsWithStyle<P>` - Props with style property
+- `PropsWithClassName<P>` - Props with className property
+- `EventHandler<E>`, `MouseEventHandler`, `KeyboardEventHandler`, etc. - Event handler types
+
+#### Ecosystem Integration - Vue
+- `VuePropType<T>` - Vue prop type definition
+- `VuePropConstructor<T>` - Vue prop constructor types
+- `ExtractVueProps<T>` - Extract props from Vue component options
+- `NormalizeVueProps<T>` - Normalize Vue props to TypeScript types
+- `VueEmitType<T>` - Vue emit function type
+- `VueModelProps<K, T>` - Vue model props for v-model
+- `VueSlot<T>` - Vue slot type
+- `VueSlots<T>` - Vue slots type
+- `VuePropsToType<T>` - Convert Vue props options to TypeScript type
+
+#### Ecosystem Integration - Prisma
+- `PrismaModel<T>` - Prisma model type helper
+- `PrismaCreateInput<T>` - Prisma create input type
+- `PrismaUpdateInput<T>` - Prisma update input type
+- `PrismaUniqueWhere<T, K>` - Prisma unique where input
+- `PrismaWhereInput<T>` - Prisma where input type
+- `PrismaOrderByInput<T>` - Prisma order by input
+- `PrismaSelect<T, K>` - Prisma select type
+- `PrismaInclude<T, K>` - Prisma include type
+- `PrismaScalarFields<T>` - Extract scalar fields from model
+- `PrismaRelationFields<T>` - Extract relation fields from model
+- `PrismaFindManyArgs<T>`, `PrismaCreateArgs<T>`, `PrismaUpdateArgs<T>`, etc. - Typed query args
+
+#### Ecosystem Integration - tRPC
+- `TRPCRouterShape<T>` - tRPC router shape
+- `TRPCProcedureInput<T>` - Extract input from tRPC procedure
+- `TRPCProcedureOutput<T>` - Extract output from tRPC procedure
+- `TRPCProcedureType` - tRPC procedure type (query/mutation/subscription)
+- `TRPCExtractProcedureType<T>` - Extract procedure type
+- `TRPCContext<T>` - tRPC context type
+- `TRPCMiddleware<T>` - tRPC middleware type
+- `TRPCQueries<T>`, `TRPCMutations<T>`, `TRPCSubscriptions<T>` - Get procedure keys by type
+
+#### Performance Optimization
+- `Simplify<T>` - Flatten intersection types
+- `DeepSimplify<T>` - Recursively simplify nested types
+- `FlattenType<T>` - Remove extra intersections
+- `ReduceIntersection<T>` - Simplify intersection types
+- `ReduceUnion<T>` - Remove duplicate union members
+- `Compact<T>` - Remove never and undefined from objects
+- `StripNever<T>` - Strip never properties from object
+- `StripUndefined<T>` - Strip undefined properties from object
+- `StripNull<T>` - Strip null properties from object
+- `MergeAll<T>` - Merge all object types in array
+- `PickNonNullable<T>` - Pick only non-nullable properties
+- `PickNullable<T>` - Pick only nullable properties
+- `TypeEq<A, B>` - Type equivalence check (optimized)
+- `ExactType<T, Shape>` - Ensure exact shape match
+- `Normalize<T>` - Remove optional markers
+- `Optionalize<T>` - Make all properties optional
+
+#### Lazy Type Evaluation
+- `Lazy<T>` - Lazy type wrapper
+- `ForceEvaluate<T>` - Force evaluate a lazy type
+- `Deferred<T>` - Prevents immediate expansion
+- `Thunk<T>` - Zero-argument function returning a type
+- `LazyKey<T, K>` - Lazy property access
+- `LazyConditional<C, T, F>` - Lazy conditional evaluation
+- `LazyArrayElement<T>` - Lazy array element
+- `LazyAwaited<T>` - Lazy promise unwrap
+- `LazyReturnType<T>` - Lazy function return
+- `LazyParameters<T>` - Lazy function parameters
+- `LazyMap<T, F>` - Lazy map over array type
+
+#### Type Caching
+- `Cached<T>` - Cached type
+- `CachedValue<T>` - Extract cached value
+- `Memoized<T>` - Memoized type computation
+- `TypeIdentity<T>` - Prevent structural typing
+- `BrandCache<T, B>` - Brand cache for memoization
+- `CachedIntersection<A, B>` - Cached intersection
+- `CachedUnion<A, B>` - Cached union
+- `CachedKeyOf<T>` - Cached keyof
+- `CachedProperty<T, K>` - Cached property access
+- `TypeCache<T>` - Type cache structure
+- `FlushCache<T>` - Force re-computation
+
+### Documentation
+- Added Schema Validation guide (English & Chinese)
+- Added Ecosystem Integration guide (English & Chinese)
+- Added Performance Optimization guide (English & Chinese)
+- Added API reference pages for all new types
+
+---
+
 ## [1.1.0] - 2026-04-11
 
 ### Added

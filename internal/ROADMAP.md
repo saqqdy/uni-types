@@ -6,7 +6,7 @@ This document outlines the development roadmap for `uni-types`.
 
 - [x] [1.0.0](#100) - Initial stable release (2024-04-11)
 - [x] [1.1.0](#110) - Enhanced type utilities (2026-04-11)
-- [ ] [1.2.0](#120) - Schema validation & ecosystem integration (Planned)
+- [x] [1.2.0](#120) - Schema validation & ecosystem integration (2026-04-12)
 
 ---
 
@@ -215,26 +215,121 @@ export type Min<A, B> = ...
 
 ---
 
-## [1.2.0] - Planned
+## [1.2.0] - 2026-04-12
 
-### Schema Validation Integration
+### New Features
 
-- Integration with Zod/Yup for runtime validation
-- Type guards with runtime checks
-- Schema-to-type conversion
+#### 1. Schema Validation Integration ✓
 
-### Performance Optimization
+Types for working with schema validation libraries.
 
-- Lazy type evaluation for complex types
-- Type caching strategies
-- Compilation time optimization
+```ts
+// Runtime type checking
+export type RuntimeGuard<T> = (value: unknown) => value is T
+export type GuardedType<G> = G extends (value: unknown) => value is infer T ? T : never
+export type HasRuntimeCheck<T> = ...
+export type AssertionFunction<T> = (value: unknown) => asserts value is T
 
-### Ecosystem Integration
+// Zod integration
+export type ZodOutput<T> = ...
+export type ZodInput<T> = ...
+export type IsZodSchema<T> = ...
+export type ZodShape<T> = ...
+export type ZodRequiredKeys<T> = ...
+export type ZodOptionalKeys<T> = ...
 
-- React prop types utilities
-- Vue component prop utilities
-- tRPC integration helpers
-- Prisma type utilities
+// Yup integration
+export type YupOutput<T> = ...
+export type YupInput<T> = ...
+export type IsYupSchema<T> = ...
+export type YupRequiredKeys<T> = ...
+export type YupOptionalKeys<T> = ...
+```
+
+#### 2. Ecosystem Integration ✓
+
+Types for popular frameworks and libraries.
+
+```ts
+// React props utilities
+export type ComponentProps<T> = ...
+export type PropsWithChildren<P> = ...
+export type PropsWithoutChildren<P> = ...
+export type RequiredProps<P> = ...
+export type OptionalProps<P> = ...
+export type MergeDefaultProps<P, D> = ...
+
+// Vue props utilities
+export type VuePropType<T> = ...
+export type VueEmitType<T> = ...
+export type VueModelProps<K, T> = ...
+export type VueSlots<T> = ...
+
+// tRPC utilities
+export type TRPCProcedureInput<T> = ...
+export type TRPCProcedureOutput<T> = ...
+export type TRPCRouterShape<T> = ...
+
+// Prisma utilities
+export type PrismaCreateInput<T> = ...
+export type PrismaUpdateInput<T> = ...
+export type PrismaWhereInput<T> = ...
+export type PrismaScalarFields<T> = ...
+export type PrismaRelationFields<T> = ...
+```
+
+#### 3. Performance Optimization ✓
+
+Types for optimizing TypeScript compilation.
+
+```ts
+// Lazy type evaluation
+export type Lazy<T> = () => T
+export type ForceEvaluate<T> = ...
+export type Deferred<T> = ...
+export type Thunk<T> = ...
+
+// Type caching
+export type Cached<T> = ...
+export type CachedValue<T> = ...
+export type Memoized<T> = ...
+
+// Type optimization
+export type Simplify<T> = ...
+export type DeepSimplify<T> = ...
+export type Compact<T> = ...
+export type StripNever<T> = ...
+export type MergeAll<T> = ...
+export type TypeEq<A, B> = ...
+```
+
+### Dependencies ✓
+
+- Added optional peerDependencies for Zod, Yup, React, Vue, tRPC, and Prisma
+
+### Testing ✓
+
+- [x] 47 new type tests added
+- [x] All tests passing (209 total)
+- [x] Full type coverage validation
+
+### Code Quality ✓
+
+- [x] All lint checks passing
+- [x] Build successful
+
+### Documentation ✓
+
+- [x] Schema Validation guide (English & Chinese)
+- [x] Ecosystem Integration guide (English & Chinese)
+- [x] Performance Optimization guide (English & Chinese)
+- [x] API reference pages for Schema types (RuntimeGuard, GuardedType, ZodOutput, etc.)
+- [x] API reference pages for Ecosystem types (ComponentProps, PropsWithChildren, PrismaCreateInput, etc.)
+- [x] API reference pages for Performance types (Simplify, DeepSimplify, etc.)
+- [x] Updated README.md with v1.2.0 features
+- [x] Updated README_CN.md with v1.2.0 features
+- [x] Updated CHANGELOG.md with v1.2.0 release notes
+- [x] VitePress config already includes all new sections
 
 ---
 

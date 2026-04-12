@@ -212,6 +212,51 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `DeepNonNullable<T>` | Remove null/undefined from all properties |
 | `Exact<T, Shape>` | Ensure exact shape match |
 
+### Schema Validation *(v1.2.0)*
+
+| Type | Description |
+|------|-------------|
+| `RuntimeGuard<T>` | Define type guard function for runtime checking |
+| `GuardedType<G>` | Extract type from type guard function |
+| `HasRuntimeCheck<T>` | Check if type has runtime check available |
+| `ZodOutput<T>` | Extract output type from Zod schema |
+| `ZodInput<T>` | Extract input type from Zod schema |
+| `ZodShape<T>` | Extract shape from ZodObject schema |
+| `ZodRequiredKeys<T>` | Get required keys from Zod schema |
+| `ZodOptionalKeys<T>` | Get optional keys from Zod schema |
+| `YupOutput<T>` | Extract output type from Yup schema |
+| `YupInput<T>` | Extract input type from Yup schema |
+
+### Ecosystem Integration *(v1.2.0)*
+
+| Type | Description |
+|------|-------------|
+| `ComponentProps<T>` | Extract props from React component |
+| `PropsWithChildren<P>` | Add children to props type |
+| `RequiredProps<P>` | Get required prop keys |
+| `OptionalProps<P>` | Get optional prop keys |
+| `VuePropType<T>` | Vue prop type definition |
+| `VueEmitType<T>` | Vue emit function type |
+| `PrismaCreateInput<T>` | Create input type for Prisma models |
+| `PrismaUpdateInput<T>` | Update input type for Prisma models |
+| `PrismaWhereInput<T>` | Where input type for Prisma queries |
+| `TRPCProcedureInput<T>` | Extract input from tRPC procedure |
+| `TRPCProcedureOutput<T>` | Extract output from tRPC procedure |
+
+### Performance Optimization *(v1.2.0)*
+
+| Type | Description |
+|------|-------------|
+| `Simplify<T>` | Flatten intersection types |
+| `DeepSimplify<T>` | Recursively simplify nested types |
+| `Compact<T>` | Remove never and undefined properties |
+| `StripNever<T>` | Remove never properties |
+| `StripUndefined<T>` | Remove undefined properties |
+| `MergeAll<T>` | Merge multiple object types |
+| `Lazy<T>` | Defer type evaluation |
+| `Cached<T>` | Cache type computation |
+| `Memoized<T>` | Memoize type computation |
+
 ## Examples
 
 ```typescript
