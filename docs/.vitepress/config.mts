@@ -168,6 +168,32 @@ export default defineConfig({
 						{
 							collapsed: false,
 							items: [
+								{ link: '/api/schema/runtime-guard', text: 'RuntimeGuard' },
+								{ link: '/api/schema/guarded-type', text: 'GuardedType' },
+								{ link: '/api/schema/zod-output', text: 'ZodOutput' },
+							],
+							text: 'Schema Validation',
+						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/api/ecosystem/component-props', text: 'ComponentProps' },
+								{ link: '/api/ecosystem/props-with-children', text: 'PropsWithChildren' },
+								{ link: '/api/ecosystem/prisma-create-input', text: 'PrismaCreateInput' },
+							],
+							text: 'Ecosystem',
+						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/api/perf/simplify', text: 'Simplify' },
+								{ link: '/api/perf/deep-simplify', text: 'DeepSimplify' },
+							],
+							text: 'Performance',
+						},
+						{
+							collapsed: false,
+							items: [
 								{ link: '/api/guards/is-array', text: 'IsArray' },
 								{ link: '/api/guards/is-tuple', text: 'IsTuple' },
 								{ link: '/api/guards/is-equal', text: 'IsEqual' },
@@ -208,45 +234,6 @@ export default defineConfig({
 						{
 							collapsed: true,
 							items: [
-								{ link: '/api/utils/required-keys', text: 'RequiredKeys' },
-								{ link: '/api/utils/optional-keys', text: 'OptionalKeys' },
-								{ link: '/api/utils/writable-keys', text: 'WritableKeys' },
-								{ link: '/api/utils/readonly-keys', text: 'ReadonlyKeys' },
-							],
-							text: 'Key Types',
-						},
-						{
-							collapsed: true,
-							items: [
-								{ link: '/api/utils/paths', text: 'Paths' },
-								{ link: '/api/utils/path-value', text: 'PathValue' },
-								{ link: '/api/utils/split-path', text: 'SplitPath' },
-							],
-							text: 'Path Types',
-						},
-						{
-							collapsed: true,
-							items: [
-								{ link: '/api/utils/literal', text: 'Literal' },
-								{ link: '/api/utils/literal-string', text: 'LiteralString' },
-								{ link: '/api/utils/literal-number', text: 'LiteralNumber' },
-								{ link: '/api/utils/literal-boolean', text: 'LiteralBoolean' },
-							],
-							text: 'Literal Types',
-						},
-						{
-							collapsed: true,
-							items: [
-								{ link: '/api/utils/camel-case', text: 'CamelCase' },
-								{ link: '/api/utils/snake-case', text: 'SnakeCase' },
-								{ link: '/api/utils/camel-case-keys', text: 'CamelCaseKeys' },
-								{ link: '/api/utils/snake-case-keys', text: 'SnakeCaseKeys' },
-							],
-							text: 'String Case',
-						},
-						{
-							collapsed: true,
-							items: [
 								{ link: '/api/utils/at-least-one', text: 'AtLeastOne' },
 								{ link: '/api/utils/strict-extract', text: 'StrictExtract' },
 								{ link: '/api/utils/strict-exclude', text: 'StrictExclude' },
@@ -278,6 +265,9 @@ export default defineConfig({
 								{ link: '/guide/path', text: 'Path Utilities' },
 								{ link: '/guide/record', text: 'Record Types' },
 								{ link: '/guide/template', text: 'Template Literals' },
+								{ link: '/guide/schema', text: 'Schema Validation' },
+								{ link: '/guide/ecosystem', text: 'Ecosystem' },
+								{ link: '/guide/perf', text: 'Performance' },
 								{ link: '/guide/guards', text: 'Type Guards' },
 								{ link: '/guide/infer', text: 'Type Inference' },
 								{ link: '/guide/utils', text: 'Utility Types' },
@@ -450,6 +440,32 @@ export default defineConfig({
 						{
 							collapsed: false,
 							items: [
+								{ link: '/zh/api/schema/runtime-guard', text: 'RuntimeGuard' },
+								{ link: '/zh/api/schema/guarded-type', text: 'GuardedType' },
+								{ link: '/zh/api/schema/zod-output', text: 'ZodOutput' },
+							],
+							text: 'Schema 验证',
+						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/zh/api/ecosystem/component-props', text: 'ComponentProps' },
+								{ link: '/zh/api/ecosystem/props-with-children', text: 'PropsWithChildren' },
+								{ link: '/zh/api/ecosystem/prisma-create-input', text: 'PrismaCreateInput' },
+							],
+							text: '生态系统',
+						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/zh/api/perf/simplify', text: 'Simplify' },
+								{ link: '/zh/api/perf/deep-simplify', text: 'DeepSimplify' },
+							],
+							text: '性能优化',
+						},
+						{
+							collapsed: false,
+							items: [
 								{ link: '/zh/api/guards/is-array', text: 'IsArray' },
 								{ link: '/zh/api/guards/is-tuple', text: 'IsTuple' },
 								{ link: '/zh/api/guards/is-equal', text: 'IsEqual' },
@@ -490,45 +506,6 @@ export default defineConfig({
 						{
 							collapsed: true,
 							items: [
-								{ link: '/zh/api/utils/required-keys', text: 'RequiredKeys' },
-								{ link: '/zh/api/utils/optional-keys', text: 'OptionalKeys' },
-								{ link: '/zh/api/utils/writable-keys', text: 'WritableKeys' },
-								{ link: '/zh/api/utils/readonly-keys', text: 'ReadonlyKeys' },
-							],
-							text: '键类型',
-						},
-						{
-							collapsed: true,
-							items: [
-								{ link: '/zh/api/utils/paths', text: 'Paths' },
-								{ link: '/zh/api/utils/path-value', text: 'PathValue' },
-								{ link: '/zh/api/utils/split-path', text: 'SplitPath' },
-							],
-							text: '路径类型',
-						},
-						{
-							collapsed: true,
-							items: [
-								{ link: '/zh/api/utils/literal', text: 'Literal' },
-								{ link: '/zh/api/utils/literal-string', text: 'LiteralString' },
-								{ link: '/zh/api/utils/literal-number', text: 'LiteralNumber' },
-								{ link: '/zh/api/utils/literal-boolean', text: 'LiteralBoolean' },
-							],
-							text: '字面量类型',
-						},
-						{
-							collapsed: true,
-							items: [
-								{ link: '/zh/api/utils/camel-case', text: 'CamelCase' },
-								{ link: '/zh/api/utils/snake-case', text: 'SnakeCase' },
-								{ link: '/zh/api/utils/camel-case-keys', text: 'CamelCaseKeys' },
-								{ link: '/zh/api/utils/snake-case-keys', text: 'SnakeCaseKeys' },
-							],
-							text: '字符串命名',
-						},
-						{
-							collapsed: true,
-							items: [
 								{ link: '/zh/api/utils/at-least-one', text: 'AtLeastOne' },
 								{ link: '/zh/api/utils/strict-extract', text: 'StrictExtract' },
 								{ link: '/zh/api/utils/strict-exclude', text: 'StrictExclude' },
@@ -560,6 +537,9 @@ export default defineConfig({
 								{ link: '/zh/guide/path', text: '路径工具' },
 								{ link: '/zh/guide/record', text: '记录类型' },
 								{ link: '/zh/guide/template', text: '模板字面量' },
+								{ link: '/zh/guide/schema', text: 'Schema 验证' },
+								{ link: '/zh/guide/ecosystem', text: '生态系统' },
+								{ link: '/zh/guide/perf', text: '性能优化' },
 								{ link: '/zh/guide/guards', text: '类型判断' },
 								{ link: '/zh/guide/infer', text: '类型推导' },
 								{ link: '/zh/guide/utils', text: '实用类型' },
