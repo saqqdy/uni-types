@@ -34,6 +34,7 @@ export default defineConfig({
 				nav: [
 					{ activeMatch: '/guide/', link: '/guide/', text: 'Guide' },
 					{ activeMatch: '/api/', link: '/api/', text: 'API' },
+					{ link: '/playground', text: 'Playground' },
 					{
 						items: [
 							{ link: 'https://github.com/saqqdy/uni-types', text: 'GitHub' },
@@ -306,6 +307,7 @@ export default defineConfig({
 				nav: [
 					{ activeMatch: '/zh/guide/', link: '/zh/guide/', text: '指南' },
 					{ activeMatch: '/zh/api/', link: '/zh/api/', text: 'API' },
+					{ link: '/zh/playground', text: '演练场' },
 					{
 						items: [
 							{ link: 'https://github.com/saqqdy/uni-types', text: 'GitHub' },
