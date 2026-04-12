@@ -1,5 +1,7 @@
 # Inc
 
+**Since 1.1.0**
+
 Increment a number type by 1.
 
 ## Signature

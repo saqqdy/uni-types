@@ -1,5 +1,7 @@
 # CamelCase
 
+**Since 1.0.0**
+
 Convert a string to camelCase.
 
 ## Signature

@@ -1,5 +1,7 @@
 # Awaited
 
+**Since 1.0.0**
+
 Recursively unwrap Promise types.
 
 ## Signature

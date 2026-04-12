@@ -1,5 +1,7 @@
 # PathLength
 
+**Since 1.1.0**
+
 Get the number of segments in a path.
 
 ## Signature

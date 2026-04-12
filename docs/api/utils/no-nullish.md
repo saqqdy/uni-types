@@ -1,5 +1,7 @@
 # NoNullish
 
+**Since 1.0.0**
+
 Remove null/undefined from all properties.
 
 ## Signature

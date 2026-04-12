@@ -1,5 +1,7 @@
 # RequiredKeys
 
+**Since 1.0.0**
+
 Get keys of required properties.
 
 ## Signature

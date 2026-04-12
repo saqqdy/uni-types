@@ -1,5 +1,7 @@
 # Unbrand
 
+**Since 1.1.0**
+
 Extract the underlying type from a branded type.
 
 ## Signature

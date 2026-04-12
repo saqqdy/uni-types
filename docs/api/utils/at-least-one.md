@@ -1,5 +1,7 @@
 # AtLeastOne
 
+**Since 1.0.0**
+
 Require at least one property.
 
 ## Signature

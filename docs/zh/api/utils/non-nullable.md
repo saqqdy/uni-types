@@ -1,5 +1,7 @@
 # NonNullable
 
+**自 1.0.0 起**
+
 从类型中排除 `null` 和 `undefined`。
 
 ## 签名

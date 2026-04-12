@@ -1,5 +1,7 @@
 # CamelCaseKeys
 
+**Since 1.0.0**
+
 Convert object keys to camelCase.
 
 ## Signature

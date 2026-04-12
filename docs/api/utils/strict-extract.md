@@ -1,5 +1,7 @@
 # StrictExtract
 
+**Since 1.0.0**
+
 Strictly extract matching types.
 
 ## Signature

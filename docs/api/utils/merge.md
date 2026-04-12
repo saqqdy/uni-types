@@ -1,5 +1,7 @@
 # Merge
 
+**Since 1.0.0**
+
 Merge two types (second overrides first).
 
 ## Signature

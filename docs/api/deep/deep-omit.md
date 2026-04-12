@@ -1,5 +1,7 @@
 # DeepOmit
 
+**Since 1.1.0**
+
 Remove properties at nested paths.
 
 ## Signature

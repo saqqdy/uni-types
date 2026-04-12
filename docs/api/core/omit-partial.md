@@ -1,5 +1,7 @@
 # OmitPartial
 
+**Since 1.0.0**
+
 Make all properties optional except specified ones.
 
 ## Signature

@@ -1,5 +1,7 @@
 # PropsWithChildren
 
+**Since 1.2.0**
+
 Add children prop to a props type.
 
 ## Signature

@@ -1,5 +1,7 @@
 # FunctionKeys
 
+**Since 1.0.0**
+
 Get keys of function properties.
 
 ## Signature

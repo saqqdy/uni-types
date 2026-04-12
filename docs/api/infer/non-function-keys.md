@@ -1,5 +1,7 @@
 # NonFunctionKeys
 
+**Since 1.0.0**
+
 Get keys of non-function properties.
 
 ## Signature

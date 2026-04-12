@@ -1,5 +1,7 @@
 # IsEqual
 
+**Since 1.0.0**
+
 Check if two types are exactly equal.
 
 ## Signature

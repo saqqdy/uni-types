@@ -1,5 +1,7 @@
 # RuntimeGuard
 
+**Since 1.2.0**
+
 Define a type guard function for runtime type checking.
 
 ## Signature

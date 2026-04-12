@@ -1,5 +1,7 @@
 # ReadonlyKeys
 
+**Since 1.0.0**
+
 Get readonly property keys.
 
 ## Signature

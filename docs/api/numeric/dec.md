@@ -1,5 +1,7 @@
 # Dec
 
+**Since 1.1.0**
+
 Decrement a number type by 1.
 
 ## Signature

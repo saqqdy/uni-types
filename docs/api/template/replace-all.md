@@ -1,5 +1,7 @@
 # ReplaceAll
 
+**Since 1.1.0**
+
 Replace all occurrences of a substring.
 
 ## Signature

@@ -1,5 +1,7 @@
 # PathValue
 
+**Since 1.0.0**
+
 Get the value type at a given path.
 
 ## Signature

@@ -1,5 +1,7 @@
 # IsTuple
 
+**Since 1.0.0**
+
 Check if a type is a tuple.
 
 ## Signature

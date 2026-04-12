@@ -1,5 +1,7 @@
 # StringLength
 
+**Since 1.1.0**
+
 Get the length of a string at type level.
 
 ## Signature

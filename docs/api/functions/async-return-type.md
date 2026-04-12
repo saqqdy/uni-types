@@ -1,5 +1,7 @@
 # AsyncReturnType
 
+**Since 1.1.0**
+
 Extract async function return type (unwraps Promise).
 
 ## Signature

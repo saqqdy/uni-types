@@ -1,5 +1,7 @@
 # Flatten
 
+**Since 1.0.0**
+
 Flatten nested tuples.
 
 ## Signature

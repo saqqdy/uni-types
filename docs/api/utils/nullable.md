@@ -1,5 +1,7 @@
 # Nullable
 
+**Since 1.0.0**
+
 Add null to a type.
 
 ## Signature

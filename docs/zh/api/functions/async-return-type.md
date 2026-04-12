@@ -1,5 +1,7 @@
 # AsyncReturnType
 
+**自 1.1.0 起**
+
 提取异步函数返回类型（解包 Promise）。
 
 ## 签名

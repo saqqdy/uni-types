@@ -1,5 +1,7 @@
 # FunctionOnly
 
+**Since 1.0.0**
+
 Extract only function properties from an object.
 
 ## Signature

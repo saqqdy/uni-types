@@ -1,5 +1,7 @@
 # Brand
 
+**Since 1.1.0**
+
 Create a branded type for nominal typing.
 
 ## Signature

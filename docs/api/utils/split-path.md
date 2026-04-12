@@ -1,5 +1,7 @@
 # SplitPath
 
+**Since 1.0.0**
+
 Split path into array.
 
 ## Signature

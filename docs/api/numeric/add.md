@@ -1,5 +1,7 @@
 # Add
 
+**Since 1.1.0**
+
 Add two number types.
 
 ## Signature

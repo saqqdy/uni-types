@@ -1,5 +1,7 @@
 # DeepRequired
 
+**Since 1.0.0**
+
 Make all nested properties required recursively.
 
 ## Signature

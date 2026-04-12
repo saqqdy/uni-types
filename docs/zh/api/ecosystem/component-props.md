@@ -1,5 +1,7 @@
 # ComponentProps
 
+**自 1.2.0 起**
+
 从 React 组件或内置元素中提取 props。
 
 ## 签名

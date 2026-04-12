@@ -1,5 +1,7 @@
 # DeepOptional
 
+**Since 1.1.0**
+
 Make all properties optional recursively.
 
 ## Signature

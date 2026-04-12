@@ -1,5 +1,7 @@
 # If
 
+**Since 1.1.0**
+
 If-then-else at the type level.
 
 ## Signature

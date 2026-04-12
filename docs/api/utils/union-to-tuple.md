@@ -1,5 +1,7 @@
 # UnionToTuple
 
+**Since 1.0.0**
+
 Convert union to tuple.
 
 ## Signature

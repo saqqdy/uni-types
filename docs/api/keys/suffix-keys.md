@@ -1,5 +1,7 @@
 # SuffixKeys
 
+**Since 1.1.0**
+
 Suffix all keys with a string.
 
 ## Signature

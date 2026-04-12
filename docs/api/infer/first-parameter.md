@@ -1,5 +1,7 @@
 # FirstParameter
 
+**Since 1.0.0**
+
 Get the first parameter type of a function.
 
 ## Signature

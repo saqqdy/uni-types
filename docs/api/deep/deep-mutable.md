@@ -1,5 +1,7 @@
 # DeepMutable
 
+**Since 1.0.0**
+
 Make all nested properties mutable (remove readonly) recursively.
 
 ## Signature

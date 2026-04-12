@@ -1,5 +1,7 @@
 # Literal
 
+**Since 1.0.0**
+
 All literal types union.
 
 ## Signature

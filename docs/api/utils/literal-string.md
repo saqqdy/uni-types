@@ -1,5 +1,7 @@
 # LiteralString
 
+**Since 1.0.0**
+
 Exact string literal.
 
 ## Signature

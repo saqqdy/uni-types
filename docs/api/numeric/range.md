@@ -1,5 +1,7 @@
 # Range
 
+**Since 1.1.0**
+
 Create a union of numbers in a range (inclusive).
 
 ## Signature

@@ -1,5 +1,7 @@
 # Parameters
 
+**Since 1.1.0**
+
 Get function parameters as a tuple type.
 
 ## Signature

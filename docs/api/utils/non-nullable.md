@@ -1,5 +1,7 @@
 # NonNullable
 
+**Since 1.0.0**
+
 Exclude `null` and `undefined` from a type.
 
 ## Signature

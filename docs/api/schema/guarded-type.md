@@ -1,5 +1,7 @@
 # GuardedType
 
+**Since 1.2.0**
+
 Extract the guarded type from a type guard function.
 
 ## Signature

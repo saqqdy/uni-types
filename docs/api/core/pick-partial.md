@@ -1,5 +1,7 @@
 # PickPartial
 
+**Since 1.0.0**
+
 Make specified properties optional.
 
 ## Signature

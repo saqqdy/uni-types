@@ -1,5 +1,7 @@
 # IsArray
 
+**Since 1.0.0**
+
 Check if a type is an array.
 
 ## Signature

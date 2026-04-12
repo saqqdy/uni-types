@@ -1,5 +1,7 @@
 # Immutable
 
+**Since 1.1.0**
+
 Make all properties deeply readonly.
 
 ## Signature

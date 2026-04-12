@@ -1,5 +1,7 @@
 # ArrayElement
 
+**Since 1.0.0**
+
 Get the element type of an array.
 
 ## Signature

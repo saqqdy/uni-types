@@ -1,5 +1,7 @@
 # Subtract
 
+**Since 1.1.0**
+
 Subtract two number types.
 
 ## Signature

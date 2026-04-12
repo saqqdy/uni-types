@@ -1,5 +1,7 @@
 # Tail
 
+**Since 1.0.0**
+
 Get all elements except the first.
 
 ## Signature

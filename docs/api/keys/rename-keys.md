@@ -1,5 +1,7 @@
 # RenameKeys
 
+**Since 1.1.0**
+
 Rename object keys based on a mapping.
 
 ## Signature

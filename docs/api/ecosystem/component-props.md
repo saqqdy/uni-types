@@ -1,5 +1,7 @@
 # ComponentProps
 
+**Since 1.2.0**
+
 Extract props from a React component or intrinsic element.
 
 ## Signature

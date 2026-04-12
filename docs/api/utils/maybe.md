@@ -1,5 +1,7 @@
 # Maybe
 
+**Since 1.0.0**
+
 Add null/undefined to a type.
 
 ## Signature

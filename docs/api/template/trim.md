@@ -1,5 +1,7 @@
 # Trim
 
+**Since 1.1.0**
+
 Trim whitespace from both ends of a string.
 
 ## Signature

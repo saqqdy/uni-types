@@ -1,5 +1,7 @@
 # ZodOutput
 
+**自 1.2.0 起**
+
 从 Zod schema 中提取输出类型。
 
 ## 签名

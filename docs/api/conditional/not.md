@@ -1,5 +1,7 @@
 # Not
 
+**Since 1.1.0**
+
 Logical NOT operator for boolean types.
 
 ## Signature

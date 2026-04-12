@@ -1,5 +1,7 @@
 # DeepReadonly
 
+**Since 1.0.0**
+
 Make all nested properties readonly recursively.
 
 ## Signature

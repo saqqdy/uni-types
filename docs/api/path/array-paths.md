@@ -1,5 +1,7 @@
 # ArrayPaths
 
+**Since 1.1.0**
+
 Get all paths including array indices.
 
 ## Signature

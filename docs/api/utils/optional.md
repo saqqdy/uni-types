@@ -1,5 +1,7 @@
 # Optional
 
+**Since 1.0.0**
+
 Add undefined to a type.
 
 ## Signature

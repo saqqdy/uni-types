@@ -1,5 +1,7 @@
 # Reverse
 
+**Since 1.0.0**
+
 Reverse a tuple.
 
 ## Signature

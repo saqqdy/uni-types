@@ -1,5 +1,7 @@
 # IsEmptyTuple
 
+**Since 1.0.0**
+
 Check if a tuple is empty.
 
 ## Signature

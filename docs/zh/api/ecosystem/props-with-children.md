@@ -1,5 +1,7 @@
 # PropsWithChildren
 
+**自 1.2.0 起**
+
 向 props 类型添加 children 属性。
 
 ## 签名

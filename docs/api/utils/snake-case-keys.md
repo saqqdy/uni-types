@@ -1,5 +1,7 @@
 # SnakeCaseKeys
 
+**Since 1.0.0**
+
 Convert object keys to snake_case.
 
 ## Signature

@@ -1,5 +1,7 @@
 # OptionalKeys
 
+**Since 1.0.0**
+
 Get keys of optional properties.
 
 ## Signature

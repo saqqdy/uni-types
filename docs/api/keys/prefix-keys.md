@@ -1,5 +1,7 @@
 # PrefixKeys
 
+**Since 1.1.0**
+
 Prefix all keys with a string.
 
 ## Signature

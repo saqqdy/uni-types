@@ -1,5 +1,7 @@
 # DeepSimplify
 
+**Since 1.2.0**
+
 Recursively simplify nested intersection types.
 
 ## Signature

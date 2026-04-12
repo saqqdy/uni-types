@@ -1,5 +1,7 @@
 # DeepPartial
 
+**Since 1.0.0**
+
 Make all nested properties optional recursively.
 
 ## Signature

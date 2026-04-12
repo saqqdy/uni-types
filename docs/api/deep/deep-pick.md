@@ -1,5 +1,7 @@
 # DeepPick
 
+**Since 1.1.0**
+
 Keep only properties at specified paths.
 
 ## Signature

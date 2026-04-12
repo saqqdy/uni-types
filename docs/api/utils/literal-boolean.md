@@ -1,5 +1,7 @@
 # LiteralBoolean
 
+**Since 1.0.0**
+
 Exact boolean literal.
 
 ## Signature

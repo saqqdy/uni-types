@@ -1,5 +1,7 @@
 # Or
 
+**Since 1.1.0**
+
 Logical OR operator for boolean types.
 
 ## Signature

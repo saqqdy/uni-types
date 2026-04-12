@@ -1,5 +1,7 @@
 # DataOnly
 
+**Since 1.0.0**
+
 Extract only non-function properties from an object.
 
 ## Signature

@@ -1,5 +1,7 @@
 # DeepNullable
 
+**Since 1.1.0**
+
 Make all properties nullable recursively.
 
 ## Signature

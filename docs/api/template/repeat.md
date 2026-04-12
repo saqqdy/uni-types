@@ -1,5 +1,7 @@
 # Repeat
 
+**Since 1.1.0**
+
 Repeat a string N times.
 
 ## Signature

@@ -1,5 +1,7 @@
 # LiteralNumber
 
+**Since 1.0.0**
+
 Exact number literal.
 
 ## Signature

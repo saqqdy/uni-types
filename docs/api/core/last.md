@@ -1,5 +1,7 @@
 # Last
 
+**Since 1.0.0**
+
 Get the last element of a tuple.
 
 ## Signature

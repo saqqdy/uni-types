@@ -1,5 +1,7 @@
 # OmitRequired
 
+**Since 1.0.0**
+
 Make all properties required except specified ones.
 
 ## Signature

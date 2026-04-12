@@ -1,5 +1,7 @@
 # NoNullish
 
+**自 1.0.0 起**
+
 从所有属性中移除 null/undefined。
 
 ## 签名

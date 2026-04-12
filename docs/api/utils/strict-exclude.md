@@ -1,5 +1,7 @@
 # StrictExclude
 
+**Since 1.0.0**
+
 Strictly exclude types.
 
 ## Signature

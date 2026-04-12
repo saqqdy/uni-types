@@ -1,5 +1,7 @@
 # PrismaCreateInput
 
+**自 1.2.0 起**
+
 为 Prisma 模型创建输入类型。
 
 ## 签名

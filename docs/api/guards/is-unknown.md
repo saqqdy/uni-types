@@ -1,5 +1,7 @@
 # IsUnknown
 
+**Since 1.0.0**
+
 Check if a type is `unknown`.
 
 ## Signature

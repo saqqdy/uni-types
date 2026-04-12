@@ -1,5 +1,7 @@
 # UnionToIntersection
 
+**自 1.0.0 起**
+
 将联合类型转换为交叉类型。
 
 ## 签名

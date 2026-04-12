@@ -1,5 +1,7 @@
 # Mutable
 
+**Since 1.1.0**
+
 Remove readonly from all properties recursively.
 
 ## Signature

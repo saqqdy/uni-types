@@ -1,5 +1,7 @@
 # Optional
 
+**自 1.0.0 起**
+
 向类型添加 undefined。
 
 ## 签名

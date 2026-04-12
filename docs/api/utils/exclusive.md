@@ -1,5 +1,7 @@
 # Exclusive
 
+**Since 1.0.0**
+
 Create mutually exclusive properties.
 
 ## Signature

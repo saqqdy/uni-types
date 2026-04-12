@@ -1,5 +1,7 @@
 # KeysByValueType
 
+**Since 1.1.0**
+
 Get keys by value type.
 
 ## Signature

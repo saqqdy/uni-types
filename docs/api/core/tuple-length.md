@@ -1,5 +1,7 @@
 # TupleLength
 
+**Since 1.0.0**
+
 Get the length of a tuple.
 
 ## Signature

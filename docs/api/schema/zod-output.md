@@ -1,5 +1,7 @@
 # ZodOutput
 
+**Since 1.2.0**
+
 Extract the output type from a Zod schema.
 
 ## Signature

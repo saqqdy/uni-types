@@ -1,5 +1,7 @@
 # PrismaCreateInput
 
+**Since 1.2.0**
+
 Create input type for Prisma models.
 
 ## Signature

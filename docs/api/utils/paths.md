@@ -1,5 +1,7 @@
 # Paths
 
+**Since 1.0.0**
+
 Get all possible paths to nested properties.
 
 ## Signature

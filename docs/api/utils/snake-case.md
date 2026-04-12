@@ -1,5 +1,7 @@
 # SnakeCase
 
+**Since 1.0.0**
+
 Convert a string to snake_case.
 
 ## Signature

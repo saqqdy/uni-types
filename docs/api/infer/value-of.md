@@ -1,5 +1,7 @@
 # ValueOf
 
+**Since 1.0.0**
+
 Get the union of object value types.
 
 ## Signature

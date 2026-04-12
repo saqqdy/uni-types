@@ -1,5 +1,7 @@
 # LeafPaths
 
+**Since 1.1.0**
+
 Get paths to leaf nodes only (primitive values).
 
 ## Signature

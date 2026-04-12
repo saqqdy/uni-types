@@ -1,5 +1,7 @@
 # Simplify
 
+**Since 1.2.0**
+
 Flatten intersection types into a single object type.
 
 ## Signature

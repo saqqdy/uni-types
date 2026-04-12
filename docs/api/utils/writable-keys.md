@@ -1,5 +1,7 @@
 # WritableKeys
 
+**Since 1.0.0**
+
 Get writable property keys.
 
 ## Signature

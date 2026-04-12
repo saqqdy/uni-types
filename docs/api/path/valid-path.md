@@ -1,5 +1,7 @@
 # ValidPath
 
+**Since 1.1.0**
+
 Check if a path exists in a type.
 
 ## Signature
