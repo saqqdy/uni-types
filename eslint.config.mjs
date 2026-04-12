@@ -4,6 +4,7 @@ export default eslintConfig({
 	type: 'lib',
 	ignores: ['examples/**', 'docs/**', 'tests/**'],
 	markdown: false,
+	react: false,
 	stylistic: {
 		indent: 'tab',
 	},
