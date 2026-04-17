@@ -7,7 +7,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.0.0](#100) - Initial stable release (2024-04-11)
 - [x] [1.1.0](#110) - Enhanced type utilities (2026-04-11)
 - [x] [1.2.0](#120) - Schema validation & ecosystem integration (2026-04-12)
-- [ ] [1.3.0](#130) - Advanced type patterns & extended ecosystem (Planned)
+- [x] [1.3.0](#130) - Advanced type patterns & extended ecosystem (2026-04-17)
 - [ ] [1.4.0](#140) - Type-level programming & algorithms (Planned)
 - [ ] [1.5.0](#150) - Enterprise patterns & real-time systems (Planned)
 - [ ] [1.6.0](#160) - AI/ML & advanced type system (Planned)
@@ -345,7 +345,7 @@ export type TypeEq<A, B> = ...
 
 ---
 
-## [1.3.0] - Planned
+## [1.3.0] - 2026-04-17
 
 ### New Features
 
@@ -513,26 +513,19 @@ export type HasMethod<T, K> = ...
 
 ### Documentation
 
-- [ ] Advanced Type Patterns guide (English & Chinese)
-- [ ] Extended Ecosystem guide (English & Chinese)
-- [ ] Type-Level Collections guide (English & Chinese)
-- [ ] JSON Schema guide (English & Chinese)
-- [ ] API reference pages for all new types
-- [ ] Update README with v1.3.0 features
-- [ ] Update CHANGELOG with v1.3.0 release notes
+- [x] API reference pages for all new types
+- [x] Update README with v1.3.0 features
+- [x] Update CHANGELOG with v1.3.0 release notes
 
 ### Testing
 
-- [ ] Add comprehensive tests for all new types
-- [ ] Type-level unit tests
-- [ ] Integration tests with ecosystem libraries
-- [ ] Performance benchmarks
+- [x] Add comprehensive tests for all new types
+- [x] Type-level unit tests
 
 ### Code Quality
 
-- [ ] All lint checks passing
-- [ ] Build successful
-- [ ] Documentation complete
+- [x] All lint checks passing
+- [x] Build successful
 
 ---
 

@@ -2,6 +2,252 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2026-04-17
+
+### Added
+
+#### Advanced Type Patterns
+- `Match<T, Patterns>` - Type-level pattern matching
+- `Case<P>` - Case helper for pattern matching
+- `Default<R>` - Default case for pattern matching
+- `Recurse<T, Limit>` - Type-level recursion with depth limit
+- `Depth<T>` - Get the maximum depth of a nested type
+- `Iterate<T, F, N>` - Type-level iteration
+- `Reduce<T, F, Initial>` - Type-level reduce
+- `ForEach<T, F>` - Type-level for-each
+- `TypeFilter<T, P>` - Type-level filter for tuples
+- `TypeFind<T, P>` - Type-level find
+- `TypeIncludes<T, E>` - Check if tuple includes element
+- `TypeEvery<T, P>` - Check if all elements match
+- `TypeSome<T, P>` - Check if any element matches
+
+#### Type-Level Collections
+- `TypeSet<T>` - Type-level Set representation
+- `SetAdd<S, T>` - Add element to type set
+- `SetRemove<S, T>` - Remove element from type set
+- `SetHas<S, T>` - Check if element exists in set
+- `SetUnion<A, B>` - Union of two sets
+- `SetIntersection<A, B>` - Intersection of two sets
+- `SetDifference<A, B>` - Difference of two sets
+- `SetSymmetricDifference<A, B>` - Symmetric difference
+- `SetIsEmpty<S>` - Check if set is empty
+- `SetIsSubset<A, B>` - Check if A is subset of B
+- `TupleToSet<T>` - Convert tuple to set
+- `SetToTuple<S>` - Convert set to tuple
+- `TypeMap<K, V>` - Type-level Map representation
+- `MapGet<M, K>` - Get value from map
+- `MapSet<M, K, V>` - Set value in map
+- `MapDelete<M, K>` - Delete key from map
+- `MapHas<M, K>` - Check if key exists
+- `MapKeys<M>` - Get all keys from map
+- `MapValues<M>` - Get all values from map
+- `MapEntries<M>` - Get map entries
+- `MapMerge<A, B>` - Merge two maps
+- `MapUpdate<M, K, F>` - Update value in map
+- `ListFilter<T, P>` - Filter list by predicate
+- `ListMap<T, F>` - Map over list elements
+- `ListFind<T, P>` - Find element in list
+- `ListFindIndex<T, P>` - Find index of element
+- `ListIncludes<T, E>` - Check if list includes element
+- `ListReverse<T>` - Reverse a list
+- `ListConcat<A, B>` - Concatenate two lists
+- `ListFlatten<T>` - Flatten nested list (one level)
+- `ListFlattenDeep<T>` - Deep flatten nested list
+- `ListTake<T, N>` - Take first N elements
+- `ListDrop<T, N>` - Drop first N elements
+- `ListLength<T>` - Get length of list
+- `ListZip<A, B>` - Zip two lists together
+- `ListSplitAt<T, N>` - Split list at index
+- `ListUnique<T>` - Get unique elements
+- `ListChunk<T, N>` - Chunk list into sublists
+
+#### Type Assertions & Constraints
+- `AssertEqual<T, Expected>` - Assert types are equal
+- `AssertExtends<T, U>` - Assert T extends U
+- `AssertKeyof<T, K>` - Assert K is a key of T
+- `AssertNotNil<T>` - Assert type is not never
+- `AssertIsNever<T>` - Assert type is never
+- `AssertAssignable<T, U>` - Assert bidirectional assignability
+- `RequireKeys<T, K>` - Require specific keys
+- `RequireAtLeastOne<T, K>` - Require at least one key
+- `RequireExactlyOne<T, K>` - Require exactly one key
+- `RequireAllOrNone<T, K>` - Require all or none keys
+- `RequireAtMostOne<T, K>` - Require at most one key
+- `OptionalKeys<T, K>` - Make specific keys optional
+- `ExcludeNeverKeys<T>` - Exclude never keys
+- `AllowKeysByPredicate<T, P>` - Only allow keys satisfying predicate
+- `RequireKeyOfType<T, K, V>` - Require key to be of specific type
+- `HasProperty<T, K>` - Ensure object has property
+- `HasProperties<T, K>` - Ensure object has multiple properties
+- `HasMethod<T, K, F>` - Ensure object has method
+- `RequireNotNullish<T>` - Ensure type is not null/undefined
+- `RequireArray<T>` - Ensure type is array
+- `RequireTuple<T>` - Ensure type is tuple
+- `RequireFunction<T>` - Ensure type is function
+- `RequireObject<T>` - Ensure type is object
+- `RequireStringLiteral<T>` - Ensure type is string literal
+- `RequireNumberLiteral<T>` - Ensure type is number literal
+- `ExhaustiveCheck<T, Cases>` - Force exhaustive checking
+
+#### String Advanced Operations
+- `Split<S, D>` - Split string by delimiter
+- `Join<T, S>` - Join string array with separator
+- `Chunk<S, N>` - Chunk string into segments
+- `KebabCase<S>` - Convert to kebab-case
+- `PascalCase<S>` - Convert to PascalCase
+- `ConstantCase<S>` - Convert to CONSTANT_CASE
+- `DotCase<S>` - Convert to dot.case
+- `PathCase<S>` - Convert to path/case
+- `HeaderCase<S>` - Convert to Header-Case
+- `TrainCase<S>` - Convert to Train-Case
+- `IsEmail<S>` - Check if string is email
+- `IsUUID<S>` - Check if string is UUID
+- `IsURL<S>` - Check if string is URL
+- `IsNumeric<S>` - Check if string is numeric
+- `IsHexColor<S>` - Check if string is hex color
+- `IsEmptyString<S>` - Check if string is empty
+- `IsWhitespace<S>` - Check if string is whitespace
+- `TakeFirst<S, N>` - Take first N characters
+- `TakeLast<S, N>` - Take last N characters
+- `DropFirst<S, N>` - Drop first N characters
+- `DropLast<S, N>` - Drop last N characters
+- `ReverseString<S>` - Reverse string
+- `ReplaceVowels<S, R>` - Replace vowels
+- `RemoveSpaces<S>` - Remove all spaces
+- `Between<S, Start, End>` - Get substring between markers
+- `Truncate<S, N, Suffix>` - Truncate string
+
+#### Promise & Async Utilities
+- `PromiseValue<T>` - Extract value from Promise (deep)
+- `PromiseResult<T>` - Get resolved value (single level)
+- `ExtractPromise<T>` - Extract from nested promises
+- `IsPromise<T>` - Check if type is Promise
+- `UnwrapPromise<T>` - Unwrap or return original
+- `WrapPromise<T>` - Wrap in Promise
+- `PromiseSettledResult<T>` - Result of Promise.allSettled
+- `PromiseFulfilledResult<T>` - Fulfilled result
+- `PromiseRejectedResult` - Rejected result
+- `ExtractFulfilled<T>` - Extract fulfilled values
+- `ExtractRejected<T>` - Extract rejected reasons
+- `AsyncReturnType<T>` - Return type of async function
+- `AsyncParameters<T>` - Parameters of async function
+- `MakeAsync<T>` - Make function async
+- `EnsureAsync<T>` - Ensure function is async
+- `SyncReturnType<T>` - Non-Promise return type
+- `PromiseAll<T>` - Await all promises
+- `PromiseRecord<T>` - Await promise record
+- `PromiseWithTimeout<T, Ms>` - Promise with timeout
+- `Deferred<T>` - Deferred promise type
+- `PromiseExecutor<T>` - Promise executor
+- `RetryOptions<T>` - Retry options type
+- `AsyncGeneratorType<T>` - Async generator
+- `AsyncResult<T, E>` - Async result type (Rust-style)
+- `AsyncSuccess<T>` - Success result
+- `AsyncFailure<E>` - Failure result
+
+#### Object Advanced Operations
+- `ObjectMap<T, F>` - Map over object values
+- `ObjectFilter<T, P>` - Filter object properties
+- `ObjectPickByType<T, U>` - Pick by value type
+- `ObjectOmitByType<T, U>` - Omit by value type
+- `ObjectInvert<T>` - Invert object (swap keys/values)
+- `ObjectEntries<T>` - Get object entries
+- `ObjectFromEntries<E>` - Create object from entries
+- `ObjectPick<T, P>` - Pick nested property
+- `ObjectOmit<T, P>` - Omit nested property
+- `DeepMerge<A, B>` - Deep merge objects
+- `DeepAssign<T, U>` - Deep assign objects
+- `DeepDefaults<T, D>` - Apply deep defaults
+- `MergeAll<T>` - Merge multiple objects
+- `IsEmptyObject<T>` - Check if object is empty
+- `IsRecord<T>` - Check if object is record type
+- `KeysOfType<T, U>` - Get keys of specific type
+- `KeysByValue<T, V>` - Get keys by value shape
+- `ObjectPath<T, P>` - Get value at path
+- `ObjectSetPath<T, P, V>` - Set value at path
+- `PathExists<T, P>` - Check if path exists
+- `ObjectEquals<A, B>` - Check object equality
+- `ObjectDiff<A, B>` - Get object difference
+- `IntersectKeys<A, B>` - Intersection keys
+- `UnionKeys<A, B>` - Union keys
+
+#### JSON Schema Generation
+- `JsonSchemaType<T>` - Map TS types to JSON Schema types
+- `JsonSchemaDefinition<T>` - JSON Schema definition
+- `JsonSchemaProperties<T>` - Schema properties
+- `JsonSchema<T>` - Full JSON Schema type
+- `JsonSchemaTuple<T>` - Schema for tuple validation
+- `JsonSchemaUnion<T>` - Schema for union types
+- `JsonSchemaWithConstraints<T, C>` - Schema with constraints
+- `OpenAPISchema<T>` - OpenAPI 3.0 Schema
+- `OpenAPIResponse<T>` - OpenAPI Response
+- `OpenAPIRequestBody<T>` - OpenAPI Request Body
+- `OpenAPIParameter<Name, T, In>` - OpenAPI Parameter
+- `OpenAPIOperation<Method, Response, Request, Params>` - OpenAPI Operation
+- `OpenAPIPathItem<T>` - OpenAPI Path Item
+- `OpenAPIDocument<Title, Version, Paths>` - OpenAPI Document
+- `InferFromSchema<S>` - Infer type from JSON Schema
+- `SchemaMerge<A, B>` - Merge JSON schemas
+- `SchemaNullable<S>` - Make schema nullable
+- `SchemaWithEnum<S, E>` - Schema with enum
+
+#### Extended Ecosystem Integration
+
+##### Next.js
+- `NextPageProps<T>` - Next.js page props
+- `ServerComponentProps<T>` - Server component props
+- `ClientComponentProps<T>` - Client component props
+- `AppRouterParams<T>` - App Router params
+- `RouteHandlerProps<T>` - Route handler props
+- `NextApiContext<T>` - API route context
+- `NextMetadata<T>` - Page metadata
+- `NextLinkProps<T>` - Link component props
+- `NextImageProps<T>` - Image optimization props
+- `NextServerAction<T>` - Server action type
+- `GenerateStaticParams<T>` - Static params generator
+
+##### Nuxt
+- `NuxtPageMeta<T>` - Page meta type
+- `NuxtComposable<T>` - Composable type
+- `NuxtPlugin<T>` - Plugin definition
+- `NuxtAppContext<T>` - App context
+- `NuxtFetchResult<T>` - useFetch result
+- `NuxtStateRef<T>` - useState reference
+- `NuxtRouteLocation<P>` - Route location
+- `NuxtLayoutProps<T>` - Layout props
+- `NuxtMiddleware<T>` - Middleware definition
+
+##### SolidJS
+- `SolidComponentProps<T>` - Component props
+- `SolidSignal<T>` - Signal type
+- `SolidStore<T>` - Reactive store
+- `SolidResource<T>` - Resource type
+- `SolidContext<T>` - Context type
+- `SolidMemo<T>` - Memo type
+- `SolidPortalProps<T>` - Portal props
+- `SolidForProps<T, F>` - For loop props
+- `SolidShowProps<T>` - Show conditional props
+- `SolidSwitchProps` - Switch props
+- `SolidMatchProps<T>` - Match case props
+
+##### Svelte
+- `SvelteProps<T>` - Component props
+- `SvelteStore<T>` - Store type
+- `SvelteReadableStore<T>` - Readable store
+- `SvelteWritableStore<T>` - Writable store
+- `SvelteDerivedStore<T, Sources>` - Derived store
+- `SvelteActionReturn<T>` - Action return
+- `SvelteAction<Element, Parameters>` - Action function
+- `SvelteEventDispatcher<T>` - Event dispatcher
+- `SvelteSlotProps<T>` - Slot props
+- `SvelteComponent<T>` - Legacy component
+- `Svelte5Component<T>` - Svelte 5 component
+- `SvelteTransition<T>` - Transition function
+- `SvelteAnimation<T>` - Animation function
+
+### Testing
+- Added comprehensive tests for all new types (47 new tests)
+
 ## [1.2.0] - 2026-04-12
 
 ### Added

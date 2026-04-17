@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **100+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **250+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -256,6 +256,117 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `Lazy<T>` | 延迟类型求值 |
 | `Cached<T>` | 缓存类型计算 |
 | `Memoized<T>` | 记忆化类型计算 |
+
+### 高级类型模式 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Match<T, Patterns>` | 类型级模式匹配 |
+| `Recurse<T, Limit>` | 带深度限制的类型级递归 |
+| `Depth<T>` | 获取嵌套类型的最大深度 |
+| `TypeFilter<T, P>` | 按谓词过滤元组 |
+| `TypeFind<T, P>` | 查找第一个匹配元素 |
+| `TypeIncludes<T, E>` | 检查元组是否包含元素 |
+| `TypeEvery<T, P>` | 检查是否所有元素匹配 |
+| `TypeSome<T, P>` | 检查是否有元素匹配 |
+
+### 类型级集合 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `TypeSet<T>` | 类型级 Set 表示 |
+| `SetAdd<S, T>` | 向类型集合添加元素 |
+| `SetRemove<S, T>` | 从类型集合移除元素 |
+| `SetUnion<A, B>` | 两个类型集合的并集 |
+| `SetIntersection<A, B>` | 两个类型集合的交集 |
+| `SetDifference<A, B>` | 两个类型集合的差集 |
+| `TypeMap<K, V>` | 类型级 Map 表示 |
+| `MapGet<M, K>` | 从类型映射获取值 |
+| `MapSet<M, K, V>` | 设置类型映射的值 |
+| `ListFilter<T, P>` | 过滤列表元素 |
+| `ListReverse<T>` | 反转列表 |
+| `ListConcat<A, B>` | 连接两个列表 |
+| `ListTake<T, N>` | 获取前 N 个元素 |
+| `ListChunk<T, N>` | 将列表分块 |
+
+### 类型断言与约束 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `AssertEqual<T, Expected>` | 断言类型相等 |
+| `AssertExtends<T, U>` | 断言 T 继承 U |
+| `RequireKeys<T, K>` | 要求特定键 |
+| `RequireAtLeastOne<T, K>` | 至少要求一个键 |
+| `RequireExactlyOne<T, K>` | 恰好要求一个键 |
+| `RequireAllOrNone<T, K>` | 要求全部或无 |
+| `HasProperty<T, K>` | 确保对象有属性 |
+| `RequireArray<T>` | 确保类型是数组 |
+| `RequireFunction<T>` | 确保类型是函数 |
+
+### 字符串操作 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Split<S, D>` | 按分隔符分割字符串 |
+| `Join<T, S>` | 用分隔符连接字符串数组 |
+| `KebabCase<S>` | 转换为 kebab-case |
+| `PascalCase<S>` | 转换为 PascalCase |
+| `ConstantCase<S>` | 转换为 CONSTANT_CASE |
+| `IsEmail<S>` | 检查是否为邮箱 |
+| `IsUUID<S>` | 检查是否为 UUID |
+| `IsURL<S>` | 检查是否为 URL |
+| `ReverseString<S>` | 反转字符串 |
+
+### Promise 与异步工具 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `PromiseValue<T>` | 从 Promise 提取值（深度） |
+| `IsPromise<T>` | 检查类型是否为 Promise |
+| `UnwrapPromise<T>` | 解包或返回原类型 |
+| `AsyncReturnType<T>` | 异步函数返回类型 |
+| `MakeAsync<T>` | 使函数异步化 |
+| `PromiseAll<T>` | 等待所有 Promise |
+| `AsyncResult<T, E>` | Rust 风格 Result 类型 |
+| `Deferred<T>` | 延迟 Promise 类型 |
+
+### 对象操作 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ObjectMap<T, F>` | 映射对象值 |
+| `ObjectFilter<T, P>` | 过滤对象属性 |
+| `ObjectPickByType<T, U>` | 按值类型选取 |
+| `ObjectInvert<T>` | 反转对象（交换键值） |
+| `DeepMerge<A, B>` | 深度合并对象 |
+| `ObjectPath<T, P>` | 获取路径处的值 |
+| `PathExists<T, P>` | 检查路径是否存在 |
+| `KeysOfType<T, U>` | 获取特定类型的键 |
+
+### JSON Schema *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `JsonSchemaType<T>` | 将 TS 类型映射到 JSON Schema 类型 |
+| `JsonSchema<T>` | 完整 JSON Schema 类型 |
+| `OpenAPISchema<T>` | OpenAPI 3.0 Schema |
+| `OpenAPIResponse<T>` | OpenAPI 响应 |
+| `OpenAPIRequestBody<T>` | OpenAPI 请求体 |
+| `OpenAPIParameter<Name, T, In>` | OpenAPI 参数 |
+| `OpenAPIDocument<Title, Version, Paths>` | OpenAPI 文档 |
+
+### 扩展生态 *(v1.3.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `NextPageProps<T>` | Next.js 页面 props |
+| `ServerComponentProps<T>` | Next.js 服务端组件 props |
+| `NuxtPageMeta<T>` | Nuxt 页面元信息 |
+| `NuxtComposable<T>` | Nuxt composable 类型 |
+| `SolidSignal<T>` | SolidJS signal 类型 |
+| `SolidResource<T>` | SolidJS resource 类型 |
+| `SvelteStore<T>` | Svelte store 类型 |
+| `SvelteAction<Element, Params>` | Svelte action 类型 |
 
 ## 示例
 

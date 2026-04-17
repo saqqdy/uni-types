@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **100+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **250+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -256,6 +256,117 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `Lazy<T>` | Defer type evaluation |
 | `Cached<T>` | Cache type computation |
 | `Memoized<T>` | Memoize type computation |
+
+### Advanced Type Patterns *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `Match<T, Patterns>` | Type-level pattern matching |
+| `Recurse<T, Limit>` | Type-level recursion with depth limit |
+| `Depth<T>` | Get maximum depth of nested type |
+| `TypeFilter<T, P>` | Filter tuple by predicate |
+| `TypeFind<T, P>` | Find first matching element |
+| `TypeIncludes<T, E>` | Check if tuple includes element |
+| `TypeEvery<T, P>` | Check if all elements match |
+| `TypeSome<T, P>` | Check if any element matches |
+
+### Type-Level Collections *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `TypeSet<T>` | Type-level Set representation |
+| `SetAdd<S, T>` | Add element to type set |
+| `SetRemove<S, T>` | Remove element from type set |
+| `SetUnion<A, B>` | Union of two type sets |
+| `SetIntersection<A, B>` | Intersection of two type sets |
+| `SetDifference<A, B>` | Difference of two type sets |
+| `TypeMap<K, V>` | Type-level Map representation |
+| `MapGet<M, K>` | Get value from type map |
+| `MapSet<M, K, V>` | Set value in type map |
+| `ListFilter<T, P>` | Filter list elements |
+| `ListReverse<T>` | Reverse a list |
+| `ListConcat<A, B>` | Concatenate two lists |
+| `ListTake<T, N>` | Take first N elements |
+| `ListChunk<T, N>` | Chunk list into sublists |
+
+### Type Assertions & Constraints *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `AssertEqual<T, Expected>` | Assert types are equal |
+| `AssertExtends<T, U>` | Assert T extends U |
+| `RequireKeys<T, K>` | Require specific keys |
+| `RequireAtLeastOne<T, K>` | Require at least one key |
+| `RequireExactlyOne<T, K>` | Require exactly one key |
+| `RequireAllOrNone<T, K>` | Require all or none keys |
+| `HasProperty<T, K>` | Ensure object has property |
+| `RequireArray<T>` | Ensure type is array |
+| `RequireFunction<T>` | Ensure type is function |
+
+### String Operations *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `Split<S, D>` | Split string by delimiter |
+| `Join<T, S>` | Join string array with separator |
+| `KebabCase<S>` | Convert to kebab-case |
+| `PascalCase<S>` | Convert to PascalCase |
+| `ConstantCase<S>` | Convert to CONSTANT_CASE |
+| `IsEmail<S>` | Check if string is email |
+| `IsUUID<S>` | Check if string is UUID |
+| `IsURL<S>` | Check if string is URL |
+| `ReverseString<S>` | Reverse a string |
+
+### Promise & Async Utilities *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `PromiseValue<T>` | Extract value from Promise (deep) |
+| `IsPromise<T>` | Check if type is Promise |
+| `UnwrapPromise<T>` | Unwrap or return original |
+| `AsyncReturnType<T>` | Return type of async function |
+| `MakeAsync<T>` | Make function async |
+| `PromiseAll<T>` | Await all promises |
+| `AsyncResult<T, E>` | Rust-style Result type |
+| `Deferred<T>` | Deferred promise type |
+
+### Object Operations *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `ObjectMap<T, F>` | Map over object values |
+| `ObjectFilter<T, P>` | Filter object properties |
+| `ObjectPickByType<T, U>` | Pick by value type |
+| `ObjectInvert<T>` | Invert object (swap keys/values) |
+| `DeepMerge<A, B>` | Deep merge objects |
+| `ObjectPath<T, P>` | Get value at path |
+| `PathExists<T, P>` | Check if path exists |
+| `KeysOfType<T, U>` | Get keys of specific type |
+
+### JSON Schema *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `JsonSchemaType<T>` | Map TS types to JSON Schema types |
+| `JsonSchema<T>` | Full JSON Schema type |
+| `OpenAPISchema<T>` | OpenAPI 3.0 Schema |
+| `OpenAPIResponse<T>` | OpenAPI Response |
+| `OpenAPIRequestBody<T>` | OpenAPI Request Body |
+| `OpenAPIParameter<Name, T, In>` | OpenAPI Parameter |
+| `OpenAPIDocument<Title, Version, Paths>` | OpenAPI Document |
+
+### Extended Ecosystem *(v1.3.0)*
+
+| Type | Description |
+|------|-------------|
+| `NextPageProps<T>` | Next.js page props |
+| `ServerComponentProps<T>` | Next.js server component props |
+| `NuxtPageMeta<T>` | Nuxt page meta |
+| `NuxtComposable<T>` | Nuxt composable type |
+| `SolidSignal<T>` | SolidJS signal type |
+| `SolidResource<T>` | SolidJS resource type |
+| `SvelteStore<T>` | Svelte store type |
+| `SvelteAction<Element, Params>` | Svelte action type |
 
 ## Examples
 
