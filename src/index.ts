@@ -1,3 +1,81 @@
+// Type-level algorithms (v1.4.0)
+export type {
+	Find,
+	FindIndex,
+	Includes,
+	IndexOf,
+	LongestCommonPrefix,
+	Reverse,
+	Unique,
+	Flatten,
+	FlattenDeep,
+} from './algorithms'
+
+// Type-level parsers (v1.4.0)
+export * from './parsers'
+
+// Type-level state machines (v1.4.0)
+export * from './statemachine'
+
+// Type-level data structures (v1.4.0)
+export * from './datastructures'
+
+// Type-level HTTP & API (v1.4.0)
+export * from './http'
+
+// Type-level database (v1.4.0)
+export * from './database'
+
+// Type-level concurrency (v1.4.0)
+export * from './concurrency'
+
+// Type-level interop (v1.4.0)
+export * from './interop'
+
+// Type-level testing (v1.4.0)
+export * from './testing'
+
+// Assert utilities (v1.3.0)
+export * from './assert'
+
+// Async utilities (v1.3.0)
+export * from './async'
+
+// Collection utilities (v1.3.0) - avoid duplicates
+export type {
+	TypeSet,
+	SetAdd,
+	SetRemove,
+	SetHas,
+	SetUnion,
+	SetIntersection,
+	SetDifference,
+	SetIsEmpty,
+	SetIsSubset,
+	TypeMap,
+	MapGet,
+	MapSet,
+	MapDelete,
+	MapHas,
+	MapKeys,
+	MapValues,
+	ListFilter,
+	ListFind,
+	ListIncludes,
+	ListReverse,
+	ListConcat,
+	ListLength,
+} from './collection'
+
+// Object utilities (v1.3.0)
+export * from './object'
+
+// Pattern matching (v1.3.0)
+export * from './pattern'
+
+// String utilities (v1.3.0)
+export * from './string'
+
 // Brand types (v1.1.0)
 export * from './brand'
 
