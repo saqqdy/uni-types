@@ -31,7 +31,7 @@ export type TaskStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cance
  * type MyTask = Task<string>
  * ```
  */
-export type Task<T> = {
+export interface Task<T> {
 	id: string
 	status: TaskStatus
 	result?: T
@@ -49,7 +49,7 @@ export type Task<T> = {
  * type Result = TaskResult<string>
  * ```
  */
-export type TaskResult<T> = {
+export interface TaskResult<T> {
 	success: boolean
 	data?: T
 	error?: Error
@@ -63,7 +63,7 @@ export type TaskResult<T> = {
  * type Error = TaskError<{ code: 'TIMEOUT' }>
  * ```
  */
-export type TaskError<T extends { message: string; code?: string }> = {
+export interface TaskError<T extends { message: string, code?: string }> {
 	taskId: string
 	message: T['message']
 	code: T extends { code: infer C } ? C : 'UNKNOWN'
@@ -108,7 +108,7 @@ export type TaskPriority = 'high' | 'normal' | 'low'
  * type MyPipeline = Pipeline<string, number, boolean>
  * ```
  */
-export type Pipeline<Input, Output, Stages extends PipelineStage<any, any, any>[] = []> = {
+export interface Pipeline<Input, Output, Stages extends PipelineStage<any, any, any>[] = []> {
 	input: Input
 	output: Output
 	stages: Stages
@@ -122,11 +122,11 @@ export type Pipeline<Input, Output, Stages extends PipelineStage<any, any, any>[
  * type Stage = PipelineStage<'parse', string, object>
  * ```
  */
-export type PipelineStage<
+export interface PipelineStage<
 	Name extends string,
 	Input,
 	Output,
-> = {
+> {
 	name: Name
 	input: Input
 	output: Output
@@ -141,7 +141,7 @@ export type PipelineStage<
  * type Result = PipelineRun<string>
  * ```
  */
-export type PipelineRun<T> = {
+export interface PipelineRun<T> {
 	success: boolean
 	result?: T
 	stageResults: StageResult[]
@@ -156,7 +156,7 @@ export type PipelineRun<T> = {
  * type Result = StageResult<'parse', object>
  * ```
  */
-export type StageResult<Name extends string = string, Output = unknown> = {
+export interface StageResult<Name extends string = string, Output = unknown> {
 	stage: Name
 	success: boolean
 	output?: Output
@@ -189,7 +189,7 @@ export type AddStage<
  * type MyScheduler = Scheduler<{ maxConcurrent: 5 }>
  * ```
  */
-export type Scheduler<T extends { maxConcurrent?: number; queueSize?: number } = {}> = {
+export interface Scheduler<T extends { maxConcurrent?: number, queueSize?: number } = object> {
 	options: T
 	queue: ScheduledJob[]
 	running: ScheduledJob[]
@@ -203,7 +203,7 @@ export type Scheduler<T extends { maxConcurrent?: number; queueSize?: number } =
  * type Job = ScheduledJob<string>
  * ```
  */
-export type ScheduledJob<T = unknown> = {
+export interface ScheduledJob<T = unknown> {
 	id: string
 	task: T
 	priority: TaskPriority
@@ -219,7 +219,7 @@ export type ScheduledJob<T = unknown> = {
  * type Queue = PriorityQueue<ScheduledJob>
  * ```
  */
-export type PriorityQueue<Job extends { priority: TaskPriority }> = {
+export interface PriorityQueue<Job extends { priority: TaskPriority }> {
 	high: Job[]
 	normal: Job[]
 	low: Job[]
@@ -253,7 +253,7 @@ export type ScheduleOptions<
  * type MyWorker = Worker<string, number>
  * ```
  */
-export type Worker<Input, Output> = {
+export interface Worker<Input, Output> {
 	id: string
 	status: 'idle' | 'busy' | 'stopped'
 	task?: WorkerTask<Input, Output>
@@ -267,7 +267,7 @@ export type Worker<Input, Output> = {
  * type Task = WorkerTask<string, number>
  * ```
  */
-export type WorkerTask<Input, Output> = {
+export interface WorkerTask<Input, Output> {
 	input: Input
 	output?: Output
 	error?: Error
@@ -282,11 +282,11 @@ export type WorkerTask<Input, Output> = {
  * type Pool = WorkerPool<string, number, { size: 4 }>
  * ```
  */
-export type WorkerPool<
+export interface WorkerPool<
 	Input,
 	Output,
-	Options extends { size?: number; maxTasksPerWorker?: number } = {},
-> = {
+	Options extends { size?: number, maxTasksPerWorker?: number } = object,
+> {
 	workers: Worker<Input, Output>[]
 	options: Options
 	queue: Input[]
@@ -320,12 +320,12 @@ export type WorkerOptions<
  * type Limiter = RateLimiter<{ maxRequests: 100; windowMs: 60000 }>
  * ```
  */
-export type RateLimiter<
+export interface RateLimiter<
 	Options extends {
 		maxRequests: number
 		windowMs: number
 	},
-> = {
+> {
 	options: Options
 	requests: number[]
 	remaining: number
@@ -355,12 +355,12 @@ export type ThrottleOptions<
  * type State = Throttle<{ limit: 10; period: 1000 }>
  * ```
  */
-export type Throttle<
+export interface Throttle<
 	Config extends {
 		limit: number
 		period: number
 	},
-> = {
+> {
 	config: Config
 	count: number
 	lastReset: number
@@ -375,7 +375,7 @@ export type Throttle<
  * type Options = DebounceOptions<{ delay: 500 }>
  * ```
  */
-export type DebounceOptions<T extends { delay: number; leading?: boolean; trailing?: boolean }> = T
+export type DebounceOptions<T extends { delay: number, leading?: boolean, trailing?: boolean }> = T
 
 /**
  * Debounce state
@@ -385,11 +385,11 @@ export type DebounceOptions<T extends { delay: number; leading?: boolean; traili
  * type State = Debounce<{ delay: 500 }>
  * ```
  */
-export type Debounce<
+export interface Debounce<
 	Config extends {
 		delay: number
 	},
-> = {
+> {
 	config: Config
 	pendingCall?: unknown
 	lastCall?: number
@@ -408,11 +408,11 @@ export type Debounce<
  * type Sem = Semaphore<{ permits: 3 }>
  * ```
  */
-export type Semaphore<
+export interface Semaphore<
 	Options extends {
 		permits: number
 	},
-> = {
+> {
 	permits: Options['permits']
 	available: number
 	waitQueue: unknown[]
@@ -426,7 +426,7 @@ export type Semaphore<
  * type Mutex = MutexState
  * ```
  */
-export type MutexState = {
+export interface MutexState {
 	locked: boolean
 	owner?: string
 	waitQueue: unknown[]
@@ -440,7 +440,7 @@ export type MutexState = {
  * type Lock = LockAcquisition<'resource-1'>
  * ```
  */
-export type LockAcquisition<Resource extends string> = {
+export interface LockAcquisition<Resource extends string> {
 	resource: Resource
 	acquiredAt: number
 	owner: string
@@ -455,12 +455,12 @@ export type LockAcquisition<Resource extends string> = {
  * type Bulk = Bulkhead<{ maxConcurrent: 10 }>
  * ```
  */
-export type Bulkhead<
+export interface Bulkhead<
 	Options extends {
 		maxConcurrent: number
 		maxWaitQueue?: number
 	},
-> = {
+> {
 	options: Options
 	active: number
 	waitQueue: unknown[]

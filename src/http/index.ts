@@ -20,16 +20,16 @@
  * type Method = HTTPMethod  // 'GET' | 'POST' | ...
  * ```
  */
-export type HTTPMethod =
-	| 'GET'
-	| 'POST'
-	| 'PUT'
-	| 'DELETE'
-	| 'PATCH'
-	| 'HEAD'
-	| 'OPTIONS'
-	| 'CONNECT'
-	| 'TRACE'
+export type HTTPMethod
+	= | 'GET'
+		| 'POST'
+		| 'PUT'
+		| 'DELETE'
+		| 'PATCH'
+		| 'HEAD'
+		| 'OPTIONS'
+		| 'CONNECT'
+		| 'TRACE'
 
 /**
  * HTTP status codes
@@ -39,54 +39,54 @@ export type HTTPMethod =
  * type Status = HTTPStatus  // 200 | 201 | 400 | ...
  * ```
  */
-export type HTTPStatus =
+export type HTTPStatus
 	// Success
-	| 200
-	| 201
-	| 202
-	| 204
-	| 206
+	= | 200
+		| 201
+		| 202
+		| 204
+		| 206
 	// Redirect
-	| 301
-	| 302
-	| 303
-	| 304
-	| 307
-	| 308
+		| 301
+		| 302
+		| 303
+		| 304
+		| 307
+		| 308
 	// Client Error
-	| 400
-	| 401
-	| 403
-	| 404
-	| 405
-	| 406
-	| 408
-	| 409
-	| 410
-	| 412
-	| 413
-	| 414
-	| 415
-	| 416
-	| 417
-	| 418
-	| 422
-	| 425
-	| 426
-	| 428
-	| 429
-	| 431
-	| 451
+		| 400
+		| 401
+		| 403
+		| 404
+		| 405
+		| 406
+		| 408
+		| 409
+		| 410
+		| 412
+		| 413
+		| 414
+		| 415
+		| 416
+		| 417
+		| 418
+		| 422
+		| 425
+		| 426
+		| 428
+		| 429
+		| 431
+		| 451
 	// Server Error
-	| 500
-	| 501
-	| 502
-	| 503
-	| 504
-	| 505
-	| 506
-	| 507
-	| 511
+		| 500
+		| 501
+		| 502
+		| 503
+		| 504
+		| 505
+		| 506
+		| 507
+		| 511
 
 /**
  * HTTP status categories
@@ -112,7 +112,7 @@ export type HTTPStatusCategory<S extends HTTPStatus> = S extends 200 | 201 | 202
  * type Headers = HTTPHeaders<{ 'Content-Type': 'application/json' }>
  * ```
  */
-export type HTTPHeaders<T extends Record<string, string> = {}> = T & {
+export type HTTPHeaders<T extends Record<string, string> = Record<string, never>> = T & {
 	/**
 	 * Content-Type header
 	 */
@@ -139,19 +139,19 @@ export type HTTPHeaders<T extends Record<string, string> = {}> = T & {
  * type JsonContentType = ContentType  // 'application/json'
  * ```
  */
-export type ContentType =
-	| 'application/json'
-	| 'application/xml'
-	| 'application/x-www-form-urlencoded'
-	| 'multipart/form-data'
-	| 'text/html'
-	| 'text/plain'
-	| 'text/css'
-	| 'text/javascript'
-	| 'image/jpeg'
-	| 'image/png'
-	| 'image/gif'
-	| 'image/svg+xml'
+export type ContentType
+	= | 'application/json'
+		| 'application/xml'
+		| 'application/x-www-form-urlencoded'
+		| 'multipart/form-data'
+		| 'text/html'
+		| 'text/plain'
+		| 'text/css'
+		| 'text/javascript'
+		| 'image/jpeg'
+		| 'image/png'
+		| 'image/gif'
+		| 'image/svg+xml'
 
 // ============================================================================
 // Route Types
@@ -165,12 +165,12 @@ export type ContentType =
  * type UserRoute = Route<'/users/:id', 'GET', User>
  * ```
  */
-export type Route<
+export interface Route<
 	Path extends string,
 	Method extends HTTPMethod,
 	Response,
 	Request = never,
-> = {
+> {
 	path: Path
 	method: Method
 	response: Response
@@ -189,7 +189,7 @@ export type RouteParams<Path extends string> = ExtractParams<Path>
 
 type ExtractParams<
 	Path extends string,
-	Acc extends Record<string, string> = {},
+	Acc extends Record<string, string> = Record<string, never>,
 > = Path extends `/:${infer Param}/${infer Rest}`
 	? ExtractParams<Rest, Acc & { [K in Param]: string }>
 	: Path extends `/:${infer Param}`
@@ -220,7 +220,7 @@ export type RouteQuery<Q extends Record<string, any>> = {
  * ```
  */
 export type Router<
-	Routes extends Record<string, Record<HTTPMethod, { response: any; request?: any }>>,
+	Routes extends Record<string, Record<HTTPMethod, { response: any, request?: any }>>,
 > = Routes
 
 // ============================================================================
@@ -257,7 +257,7 @@ export type APIEndpoint<
  * type Request = APIRequest<{ body: CreateUserInput }>
  * ```
  */
-export type APIRequest<T extends { body?: any; headers?: HTTPHeaders; params?: Record<string, string>; query?: Record<string, string> }> = T
+export type APIRequest<T extends { body?: any, headers?: HTTPHeaders, params?: Record<string, string>, query?: Record<string, string> }> = T
 
 /**
  * API response type
@@ -267,7 +267,7 @@ export type APIRequest<T extends { body?: any; headers?: HTTPHeaders; params?: R
  * type Response = APIResponse<{ data: User; status: 200 }>
  * ```
  */
-export type APIResponse<T extends { data: any; status?: HTTPStatus; headers?: HTTPHeaders }> = T
+export type APIResponse<T extends { data: any, status?: HTTPStatus, headers?: HTTPHeaders }> = T
 
 /**
  * API error type
@@ -297,7 +297,7 @@ export type APIError<
  * type AuthMiddleware = Middleware<{ user: User }>
  * ```
  */
-export type Middleware<C extends Record<string, any> = {}> = (
+export type Middleware<C extends Record<string, any> = object> = (
 	ctx: Context<C>,
 	next: () => Promise<void>,
 ) => Promise<void>
@@ -310,7 +310,7 @@ export type Middleware<C extends Record<string, any> = {}> = (
  * type Ctx = Context<{ user: User }>
  * ```
  */
-export type Context<C extends Record<string, any> = {}> = {
+export interface Context<C extends Record<string, any> = object> {
 	request: {
 		method: HTTPMethod
 		path: string
@@ -354,7 +354,7 @@ type ExtractContextFromMiddleware<M extends Middleware<any>[] = []> = M extends 
 	...infer Rest extends Middleware<any>[],
 ]
 	? C & ExtractContextFromMiddleware<Rest>
-	: {}
+	: Record<string, never>
 
 // ============================================================================
 // Request/Response Utilities
@@ -398,7 +398,7 @@ export type ParseResponse<R extends { data?: any }> = R['data']
  * type UserEndpoints = RESTCollection<User, CreateUserInput>
  * ```
  */
-export type RESTCollection<Resource, CreateInput = Partial<Resource>, UpdateInput = Partial<Resource>> = {
+export interface RESTCollection<Resource, CreateInput = Partial<Resource>, UpdateInput = Partial<Resource>> {
 	list: Route<'/', 'GET', Resource[]>
 	create: Route<'/', 'POST', Resource, CreateInput>
 	show: Route<'/:id', 'GET', Resource>
@@ -414,7 +414,7 @@ export type RESTCollection<Resource, CreateInput = Partial<Resource>, UpdateInpu
  * type UserResource = RESTResource<User>
  * ```
  */
-export type RESTResource<Resource> = {
+export interface RESTResource<Resource> {
 	show: Route<'/:id', 'GET', Resource>
 	update: Route<'/:id', 'PUT', Resource>
 	delete: Route<'/:id', 'DELETE', void>

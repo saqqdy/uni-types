@@ -20,7 +20,7 @@
  * type MyTree = TreeNode<string, { left?: TreeNode<string>; right?: TreeNode<string> }>
  * ```
  */
-export type TreeNode<T, Children extends Record<string, TreeNode<T, any> | undefined> = {}> = {
+export type TreeNode<T, Children extends Record<string, TreeNode<T, any> | undefined> = object> = {
 	value: T
 } & Children
 
@@ -32,7 +32,7 @@ export type TreeNode<T, Children extends Record<string, TreeNode<T, any> | undef
  * type BinTree = BinaryTreeNode<number>
  * ```
  */
-export type BinaryTreeNode<T> = {
+export interface BinaryTreeNode<T> {
 	value: T
 	left?: BinaryTreeNode<T>
 	right?: BinaryTreeNode<T>
@@ -46,7 +46,7 @@ export type BinaryTreeNode<T> = {
  * type Tree = GenericTree<string>
  * ```
  */
-export type GenericTree<T> = {
+export interface GenericTree<T> {
 	value: T
 	children?: GenericTree<T>[]
 }
@@ -83,7 +83,7 @@ export type TreePath<T, V, Path extends string[] = []> = T extends { value: infe
  * TreeDepth<{ value: 1; left: { value: 2 } }>  // 2
  * ```
  */
-export type TreeDepth<T, Acc extends 0[] = [0]> = T extends { left: infer L; right: infer R }
+export type TreeDepth<T, Acc extends 0[] = [0]> = T extends { left: infer L, right: infer R }
 	? L extends TreeNode<any>
 		? R extends TreeNode<any>
 			? TreeDepth<L, [...Acc, 0]> extends infer LD
@@ -109,9 +109,9 @@ export type TreeDepth<T, Acc extends 0[] = [0]> = T extends { left: infer L; rig
  * TreeLeaves<{ value: 1; left: { value: 2 }; right: { value: 3 } }>  // [2, 3]
  * ```
  */
-export type TreeLeaves<T> = T extends { left?: never; right?: never; value: infer V }
+export type TreeLeaves<T> = T extends { left?: never, right?: never, value: infer V }
 	? [V]
-	: T extends { left: infer L; right: infer R }
+	: T extends { left: infer L, right: infer R }
 		? L extends TreeNode<any>
 			? R extends TreeNode<any>
 				? [...TreeLeaves<L>, ...TreeLeaves<R>]
@@ -131,7 +131,7 @@ export type TreeLeaves<T> = T extends { left?: never; right?: never; value: infe
  * TreeFlatten<{ value: 1; left: { value: 2 }; right: { value: 3 } }>  // [1, 2, 3]
  * ```
  */
-export type TreeFlatten<T> = T extends { value: infer V; left: infer L; right: infer R }
+export type TreeFlatten<T> = T extends { value: infer V, left: infer L, right: infer R }
 	? L extends TreeNode<any>
 		? R extends TreeNode<any>
 			? [V, ...TreeFlatten<L>, ...TreeFlatten<R>]
@@ -155,7 +155,7 @@ export type TreeFlatten<T> = T extends { value: infer V; left: infer L; right: i
  * type Node = GraphNode<string, ['a', 'b']>
  * ```
  */
-export type GraphNode<T extends string, Edges extends string[]> = {
+export interface GraphNode<T extends string, Edges extends string[]> {
 	id: T
 	edges: Edges
 }
@@ -244,7 +244,7 @@ type GraphHasCycleImpl<
  * type Node = ListNode<string>
  * ```
  */
-export type ListNode<T> = {
+export interface ListNode<T> {
 	value: T
 	next?: ListNode<T>
 }
@@ -292,7 +292,7 @@ export type ListTail<L extends ListNode<any>> = L extends { next: infer N }
  * ```
  */
 export type ListLength<L extends ListNode<any> | undefined, Acc extends 0[] = []> = L extends {
-	next: infer N,
+	next: infer N
 }
 	? N extends ListNode<any>
 		? ListLength<N, [...Acc, 0]>
@@ -313,10 +313,10 @@ export type ListLength<L extends ListNode<any> | undefined, Acc extends 0[] = []
 export type ListReverse<
 	L extends ListNode<any> | undefined,
 	Acc extends ListNode<any> | undefined = undefined,
-> = L extends { value: infer V; next: infer N }
+> = L extends { value: infer V, next: infer N }
 	? N extends ListNode<any>
-		? ListReverse<N, { value: V; next: Acc }>
-		: { value: V; next: Acc }
+		? ListReverse<N, { value: V, next: Acc }>
+		: { value: V, next: Acc }
 	: Acc
 
 // ============================================================================
@@ -352,8 +352,8 @@ export type Push<S extends unknown[], V> = [...S, V]
  * ```
  */
 export type Pop<S extends unknown[]> = S extends [...infer Rest, infer Last]
-	? { stack: Rest; value: Last }
-	: { stack: S; value: never }
+	? { stack: Rest, value: Last }
+	: { stack: S, value: never }
 
 /**
  * Peek top of stack
@@ -394,8 +394,8 @@ export type Enqueue<Q extends unknown[], V> = [...Q, V]
  * ```
  */
 export type Dequeue<Q extends unknown[]> = Q extends [infer First, ...infer Rest]
-	? { queue: Rest; value: First }
-	: { queue: Q; value: never }
+	? { queue: Rest, value: First }
+	: { queue: Q, value: never }
 
 /**
  * Front of queue

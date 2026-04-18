@@ -227,7 +227,7 @@ export type ConvertFrom<T, Format extends 'type-fest' | 'ts-toolbelt' | 'utility
  * type Map = ConversionMap<{ a: string }>
  * ```
  */
-export type ConversionMap<T> = {
+export interface ConversionMap<T> {
 	'type-fest': ToTypeFest<T>
 	'ts-toolbelt': ToTsToolbelt<T>
 	'utility-types': ToUtilityTypes<T>
@@ -315,7 +315,7 @@ export type IncompatibleKeys<T, U> = Exclude<keyof T, keyof U> | Exclude<keyof U
  * type Report = CompatibilityReport<{ a: string }, { a: number }>
  * ```
  */
-export type CompatibilityReport<T, U> = {
+export interface CompatibilityReport<T, U> {
 	compatible: IsCompatible<T, U>
 	compatibleKeys: CompatibleKeys<T, U>
 	incompatibleKeys: IncompatibleKeys<T, U>
@@ -340,12 +340,12 @@ export type CompatibilityReport<T, U> = {
  */
 export type UtilityMap<
 	Utility extends
-		| 'DeepPartial'
-		| 'DeepRequired'
-		| 'DeepReadonly'
-		| 'DeepMutable'
-		| 'PickRequired'
-		| 'OmitRequired',
+	| 'DeepPartial'
+	| 'DeepRequired'
+	| 'DeepReadonly'
+	| 'DeepMutable'
+	| 'PickRequired'
+	| 'OmitRequired',
 	Library extends 'type-fest' | 'ts-toolbelt' | 'utility-types',
 > = Utility extends 'DeepPartial'
 	? Library extends 'type-fest'

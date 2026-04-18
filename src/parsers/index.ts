@@ -55,7 +55,7 @@ export type ParseJSON<S extends string> = S extends `"${infer Content}"`
 				: S extends 'null'
 					? null
 					: S extends `{}`
-						? {}
+						? Record<string, never>
 						: S extends `[]`
 							? []
 							: S extends `{${string}}`
@@ -117,17 +117,17 @@ export type ParseURL<S extends string> = S extends `${infer Protocol}://${infer 
 type ParseURLRest<Protocol extends string, Rest extends string> = Rest extends `${infer Host}/${infer Path}`
 	? ParseURLPath<Protocol, Host, Path>
 	: Rest extends `${infer Host}?${infer Search}`
-		? { protocol: Protocol; host: Host; pathname: '/'; search: `?${Search}`; hash: '' }
+		? { protocol: Protocol, host: Host, pathname: '/', search: `?${Search}`, hash: '' }
 		: Rest extends `${infer Host}#${infer Hash}`
-			? { protocol: Protocol; host: Host; pathname: '/'; search: ''; hash: `#${Hash}` }
-			: { protocol: Protocol; host: Rest; pathname: '/'; search: ''; hash: '' }
+			? { protocol: Protocol, host: Host, pathname: '/', search: '', hash: `#${Hash}` }
+			: { protocol: Protocol, host: Rest, pathname: '/', search: '', hash: '' }
 
-type ParseURLPath<Protocol extends string, Host extends string, Path extends string> =
-	Path extends `${infer Pathname}?${infer Search}`
-		? { protocol: Protocol; host: Host; pathname: `/${Pathname}`; search: `?${Search}`; hash: '' }
+type ParseURLPath<Protocol extends string, Host extends string, Path extends string>
+	= Path extends `${infer Pathname}?${infer Search}`
+		? { protocol: Protocol, host: Host, pathname: `/${Pathname}`, search: `?${Search}`, hash: '' }
 		: Path extends `${infer Pathname}#${infer Hash}`
-			? { protocol: Protocol; host: Host; pathname: `/${Pathname}`; search: ''; hash: `#${Hash}` }
-			: { protocol: Protocol; host: Host; pathname: `/${Path}`; search: ''; hash: '' }
+			? { protocol: Protocol, host: Host, pathname: `/${Pathname}`, search: '', hash: `#${Hash}` }
+			: { protocol: Protocol, host: Host, pathname: `/${Path}`, search: '', hash: '' }
 
 /**
  * Parse query string into object
@@ -137,13 +137,13 @@ type ParseURLPath<Protocol extends string, Host extends string, Path extends str
  * QueryParams<'?a=1&b=2'>  // { a: '1'; b: '2' }
  * ```
  */
-export type QueryParams<S extends string> = S extends `?${infer Rest}` ? ParseQueryPairs<Rest> : {}
+export type QueryParams<S extends string> = S extends `?${infer Rest}` ? ParseQueryPairs<Rest> : Record<string, never>
 
 type ParseQueryPairs<S extends string> = S extends `${infer K}=${infer V}&${infer Rest}`
 	? { [P in K]: V } & ParseQueryPairs<Rest>
 	: S extends `${infer K}=${infer V}`
 		? { [P in K]: V }
-		: {}
+		: Record<string, never>
 
 /**
  * Extract path params from route pattern
@@ -158,16 +158,16 @@ export type PathParams<Pattern extends string, Path extends string> = ExtractPat
 type ExtractPathParams<Pattern extends string, Path extends string> = Pattern extends `/:${infer Param}/${infer RestPattern}`
 	? Path extends `/${infer Value}/${infer RestPath}`
 		? { [P in Param]: Value } & ExtractPathParams<RestPattern, RestPath>
-		: {}
+		: Record<string, never>
 	: Pattern extends `/:${infer Param}`
 		? Path extends `/${infer Value}`
 			? { [P in Param]: Value }
-			: {}
+			: Record<string, never>
 		: Pattern extends `/${infer Literal}/${infer RestPattern}`
 			? Path extends `/${Literal}/${infer RestPath}`
 				? ExtractPathParams<RestPattern, RestPath>
-				: {}
-			: {}
+				: Record<string, never>
+			: Record<string, never>
 
 // ============================================================================
 // CSV Parser
@@ -208,7 +208,7 @@ type ParseCSVRows<S extends string, Headers extends string[]> = S extends `${inf
 
 type CSVRecord<Values extends string[], Headers extends string[]> = Values['length'] extends Headers['length']
 	? RecordFromTuples<Headers, Values>
-	: {}
+	: Record<string, never>
 
 type RecordFromTuples<Keys extends string[], Values extends string[]> = Keys extends [
 	infer K extends string,
@@ -216,5 +216,5 @@ type RecordFromTuples<Keys extends string[], Values extends string[]> = Keys ext
 ]
 	? Values extends [infer V extends string, ...infer VR extends string[]]
 		? { [P in K]: V } & RecordFromTuples<KR, VR>
-		: {}
-	: {}
+		: Record<string, never>
+	: Record<string, never>

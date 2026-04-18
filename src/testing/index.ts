@@ -120,7 +120,7 @@ export type ExpectUnknown<T> = unknown extends T ? (T extends unknown ? true : f
  * type Test = TypeTest<'StringTest', ExpectEqual<string, string>>
  * ```
  */
-export type TypeTest<Name extends string, Test extends boolean> = {
+export interface TypeTest<Name extends string, Test extends boolean> {
 	name: Name
 	result: Test extends true ? 'pass' : 'fail'
 }
@@ -133,7 +133,7 @@ export type TypeTest<Name extends string, Test extends boolean> = {
  * type Suite = TypeTestSuite<[TypeTest<'Test1', true>, TypeTest<'Test2', true>]>
  * ```
  */
-export type TypeTestSuite<Tests extends TypeTest<string, boolean>[] = []> = {
+export interface TypeTestSuite<Tests extends TypeTest<string, boolean>[] = []> {
 	tests: Tests
 	allPassed: AllTestsPassed<Tests>
 	failedTests: FailedTests<Tests>
@@ -199,7 +199,7 @@ export type SkipTest<Name extends string> = TypeTest<Name, true> & { skipped: tr
  * type Coverage = TypeCoverage<{ a: string; b?: number }>
  * ```
  */
-export type TypeCoverage<T> = {
+export interface TypeCoverage<T> {
 	total: TotalKeys<T>
 	covered: CoveredKeys<T>
 	percentage: CoveragePercentage<T>
@@ -247,7 +247,7 @@ export type UncoveredTypes<T> = {
  * type Complexity = TypeComplexity<{ a: { b: { c: string } } }>
  * ```
  */
-export type TypeComplexity<T, Depth extends 0[] = []> = {
+export interface TypeComplexity<T, Depth extends 0[] = []> {
 	depth: Depth['length']
 	nested: NestedTypes<T>
 	recursionRisk: Depth['length'] extends 10 | 11 | 12 | 13 | 14 | 15 ? true : false
@@ -257,8 +257,8 @@ type NestedTypes<T> = T extends object
 	? T extends unknown[]
 		? 1
 		: { [K in keyof T]: NestedTypes<T[K]> }[keyof T] extends number
-			? MaxNested<T>
-			: 0
+				? MaxNested<T>
+				: 0
 	: 0
 
 type MaxNested<T, Acc extends 0[] = []> = T extends object
@@ -285,13 +285,13 @@ type MaxNested<T, Acc extends 0[] = []> = T extends object
  * type Info = InspectType<{ a: string }>
  * ```
  */
-export type InspectType<T> = {
+export interface InspectType<T> {
 	type: TypeCategory<T>
 	keys: keyof T extends never ? never : keyof T
 	isNullable: null extends T ? true : false
 	isOptional: undefined extends T ? true : false
 	isArray: T extends unknown[] ? true : false
-	isObject: T extends object ? (T extends unknown[] | Function ? false : true) : false
+	isObject: T extends object ? (T extends unknown[] | ((...args: any[]) => any) ? false : true) : false
 }
 
 /**
@@ -330,7 +330,7 @@ export type TypeCategory<T> = T extends string
  * type Info = TypeInfo<{ a: string }>
  * ```
  */
-export type TypeInfo<T> = {
+export interface TypeInfo<T> {
 	category: TypeCategory<T>
 	nullable: null extends T ? true : false
 	optional: undefined extends T ? true : false

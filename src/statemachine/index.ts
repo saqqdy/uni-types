@@ -25,13 +25,13 @@
  * }>
  * ```
  */
-export type StateMachine<
+export interface StateMachine<
 	Config extends {
 		states: Record<string, any>
 		initial: keyof Config['states']
 		transitions: Record<string, Record<keyof Config['states'], keyof Config['states']>>
 	},
-> = {
+> {
 	states: Config['states']
 	current: Config['initial']
 	transitions: Config['transitions']
@@ -45,7 +45,7 @@ export type StateMachine<
  * type Loading = State<'loading', { progress: number }>
  * ```
  */
-export type State<S extends string, Data = {}> = { state: S; data: Data }
+export interface State<S extends string, Data = object> { state: S, data: Data }
 
 /**
  * Define a transition
@@ -55,7 +55,7 @@ export type State<S extends string, Data = {}> = { state: S; data: Data }
  * type NextTransition = Transition<'next', 'red', 'green'>
  * ```
  */
-export type Transition<Event extends string, From extends string, To extends string> = {
+export interface Transition<Event extends string, From extends string, To extends string> {
 	event: Event
 	from: From
 	to: To
@@ -176,8 +176,8 @@ export type IsTerminal<
  * }>
  * ```
  */
-export type BuildStateMachine<Config extends MachineConfig> = {
-	states: { [K in Config['states'][number]]: {} }
+export interface BuildStateMachine<Config extends MachineConfig> {
+	states: { [K in Config['states'][number]]: object }
 	current: Config['initial']
 	transitions: Config['transitions']
 }

@@ -43,7 +43,7 @@ export type SQLType<T> = T extends string
  * type Col = SQLColumn<string, { nullable: false; unique: true }>
  * ```
  */
-export type SQLColumn<T, Options extends ColumnOptions = {}> = {
+export interface SQLColumn<T, Options extends ColumnOptions = object> {
 	type: SQLType<T>
 	nullable: Options extends { nullable: infer N } ? N : true
 	primaryKey: Options extends { primaryKey: true } ? true : false
@@ -66,7 +66,7 @@ export interface ColumnOptions {
  * type UserTable = CreateTable<{ id: number; name: string }>
  * ```
  */
-export type CreateTable<T extends Record<string, any>> = {
+export interface CreateTable<T extends Record<string, any>> {
 	table: string
 	columns: { [K in keyof T]: SQLColumn<T[K]> }
 }
@@ -83,7 +83,7 @@ export type CreateTable<T extends Record<string, any>> = {
  * type Query = SelectQuery<User, ['id', 'name']>
  * ```
  */
-export type SelectQuery<T extends Record<string, any>, Fields extends (keyof T)[] = (keyof T)[]> = {
+export interface SelectQuery<T extends Record<string, any>, Fields extends (keyof T)[] = (keyof T)[]> {
 	table: string
 	fields: Fields extends [] ? '*' : Fields[number]
 	where?: WhereClause<T>
@@ -131,10 +131,10 @@ export type OrderClause<T extends Record<string, any>> = {
  * type Query = InsertQuery<User, { name: string }>
  * ```
  */
-export type InsertQuery<
+export interface InsertQuery<
 	T extends Record<string, any>,
 	Data extends Partial<T>,
-> = {
+> {
 	table: string
 	values: Data
 	returning?: (keyof T)[]
@@ -148,11 +148,11 @@ export type InsertQuery<
  * type Query = UpdateQuery<User, { name: string }, { id: number }>
  * ```
  */
-export type UpdateQuery<
+export interface UpdateQuery<
 	T extends Record<string, any>,
 	Data extends Partial<T>,
 	Where extends WhereClause<T>,
-> = {
+> {
 	table: string
 	values: Data
 	where: Where
@@ -167,7 +167,7 @@ export type UpdateQuery<
  * type Query = DeleteQuery<User, { id: number }>
  * ```
  */
-export type DeleteQuery<T extends Record<string, any>, Where extends WhereClause<T>> = {
+export interface DeleteQuery<T extends Record<string, any>, Where extends WhereClause<T>> {
 	table: string
 	where: Where
 	returning?: (keyof T)[]
@@ -181,18 +181,18 @@ export type DeleteQuery<T extends Record<string, any>, Where extends WhereClause
  * type Query = JoinQuery<User, Post, 'id', 'userId'>
  * ```
  */
-export type JoinQuery<
+export interface JoinQuery<
 	T extends Record<string, any>,
 	U extends Record<string, any>,
 	TKey extends keyof T,
 	UKey extends keyof U,
 	Type extends 'INNER' | 'LEFT' | 'RIGHT' | 'FULL' = 'INNER',
-> = {
+> {
 	table: T
 	join: {
 		table: U
 		type: Type
-		on: { left: TKey; right: UKey }
+		on: { left: TKey, right: UKey }
 	}
 	fields?: (keyof T | keyof U)[]
 }
@@ -209,11 +209,11 @@ export type JoinQuery<
  * type Builder = QueryBuilder<User>
  * ```
  */
-export type QueryBuilder<
+export interface QueryBuilder<
 	T extends Record<string, any>,
-	State extends QueryState = { type: 'select'; fields: keyof T },
-> = {
-	select: <F extends (keyof T)[]>() => QueryBuilder<T, { type: 'select'; fields: F[number] }>
+	State extends QueryState = { type: 'select', fields: keyof T },
+> {
+	select: <F extends (keyof T)[]>() => QueryBuilder<T, { type: 'select', fields: F[number] }>
 	where: <W extends WhereClause<T>>() => QueryBuilder<T, State & { where: W }>
 	orderBy: <O extends OrderClause<T>>() => QueryBuilder<T, State & { orderBy: O }>
 	limit: (n: number) => QueryBuilder<T, State & { limit: number }>
@@ -251,15 +251,15 @@ type BuildQuery<T extends Record<string, any>, S extends QueryState> = S extends
  * type Builder = WhereBuilder<User>
  * ```
  */
-export type WhereBuilder<
+export interface WhereBuilder<
 	T extends Record<string, any>,
-	Conditions extends WhereClause<T> = {},
-> = {
-	eq: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: '='; value: T[K] } }>
-	lt: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: '<'; value: T[K] } }>
-	gt: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: '>'; value: T[K] } }>
-	like: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: 'LIKE'; value: T[K] } }>
-	in: <K extends keyof T>(key: K, values: T[K][]) => WhereBuilder<T, Conditions & { [P in K]: { operator: 'IN'; value: T[K][] } }>
+	Conditions extends WhereClause<T> = object,
+> {
+	eq: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: '=', value: T[K] } }>
+	lt: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: '<', value: T[K] } }>
+	gt: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: '>', value: T[K] } }>
+	like: <K extends keyof T>(key: K, value: T[K]) => WhereBuilder<T, Conditions & { [P in K]: { operator: 'LIKE', value: T[K] } }>
+	in: <K extends keyof T>(key: K, values: T[K][]) => WhereBuilder<T, Conditions & { [P in K]: { operator: 'IN', value: T[K][] } }>
 	and: <C extends WhereClause<T>[]>() => WhereBuilder<T, Conditions & { AND: C }>
 	or: <C extends WhereClause<T>[]>() => WhereBuilder<T, Conditions & { OR: C }>
 	build: Conditions
@@ -280,13 +280,13 @@ export type WhereBuilder<
  * }>
  * ```
  */
-export type Migration<
+export interface Migration<
 	T extends {
 		name: string
 		up: any
 		down: any
 	},
-> = {
+> {
 	name: T['name']
 	up: MigrationUp<T['up']>
 	down: MigrationDown<T['down']>
@@ -301,9 +301,9 @@ export type Migration<
  * ```
  */
 export type MigrationUp<T> = T extends CreateTable<any>
-	? { action: 'CREATE'; table: T }
+	? { action: 'CREATE', table: T }
 	: T extends string
-		? { action: 'RAW'; sql: T }
+		? { action: 'RAW', sql: T }
 		: T
 
 /**
@@ -314,7 +314,7 @@ export type MigrationUp<T> = T extends CreateTable<any>
  * type Action = MigrationDown<'DROP TABLE users'>
  * ```
  */
-export type MigrationDown<T> = T extends string ? { action: 'RAW'; sql: T } : T
+export type MigrationDown<T> = T extends string ? { action: 'RAW', sql: T } : T
 
 /**
  * Migration history type
@@ -324,7 +324,7 @@ export type MigrationDown<T> = T extends string ? { action: 'RAW'; sql: T } : T
  * type History = MigrationHistory<['create_users', 'add_email_column']>
  * ```
  */
-export type MigrationHistory<Applied extends string[] = []> = {
+export interface MigrationHistory<Applied extends string[] = []> {
 	applied: Applied
 	pending: string[]
 }
@@ -341,10 +341,10 @@ export type MigrationHistory<Applied extends string[] = []> = {
  * type UserEmailIndex = Index<User, 'email'>
  * ```
  */
-export type Index<
+export interface Index<
 	T extends Record<string, any>,
 	K extends keyof T,
-> = {
+> {
 	table: string
 	name: `${string}_${K & string}_idx`
 	column: K
@@ -371,10 +371,10 @@ export type UniqueIndex<
  * type UserCompositeIndex = CompositeIndex<User, ['email', 'status']>
  * ```
  */
-export type CompositeIndex<
+export interface CompositeIndex<
 	T extends Record<string, any>,
 	Keys extends (keyof T)[],
-> = {
+> {
 	table: string
 	name: string
 	columns: Keys
@@ -411,7 +411,7 @@ export type DatabaseConfig<
  * type Tx = Transaction<User[]>
  * ```
  */
-export type Transaction<R> = {
+export interface Transaction<R> {
 	isolationLevel?: 'READ UNCOMMITTED' | 'READ COMMITTED' | 'REPEATABLE READ' | 'SERIALIZABLE'
 	callback: () => Promise<R>
 }
