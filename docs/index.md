@@ -6,7 +6,7 @@ titleTemplate: Universal TypeScript Type Utilities
 hero:
   name: uni-types
   text: TypeScript Type Utilities
-  tagline: A comprehensive collection of type helpers for TypeScript development - 50+ utility types for safer, cleaner code
+  tagline: A comprehensive collection of 400+ type utilities for TypeScript development - safer, cleaner, more expressive code
   image:
     src: /logo.svg
     alt: uni-types
@@ -24,7 +24,7 @@ hero:
 features:
   - icon: 🎯
     title: Comprehensive
-    details: 50+ utility types covering core operations, deep transformations, type guards, inference, and more.
+    details: 400+ utility types covering core operations, deep transformations, type guards, algorithms, parsers, state machines, and more.
   - icon: 🔒
     title: Type Safe
     details: Full TypeScript support with complete type definitions. Catch errors at compile time.
@@ -34,18 +34,27 @@ features:
   - icon: 📦
     title: Tree-shakable
     details: Import only the types you need. Works perfectly with bundlers.
+  - icon: 🧮
+    title: Type-Level Algorithms
+    details: Sort, QuickSort, MergeSort, GCD, LCM, Factorial, Fibonacci, and more implemented at type level.
   - icon: 🔄
     title: Deep Operations
-    details: DeepPartial, DeepRequired, DeepReadonly, DeepMutable for nested object transformations.
+    details: DeepPartial, DeepRequired, DeepReadonly, DeepMutable, DeepOmit, DeepPick for nested objects.
   - icon: 🛠️
     title: Type Guards
     details: IsArray, IsTuple, IsEqual, IsAny, IsNever, IsUnknown for type checking.
+  - icon: 🗃️
+    title: Data Structures
+    details: Tree, Graph, LinkedList, Stack, Queue types for modeling complex data.
+  - icon: 🔌
+    title: Schema Integration
+    details: Built-in support for Zod and Yup schema type extraction and manipulation.
 ---
 
 ## Quick Example
 
 ```typescript
-import type { PickRequired, DeepPartial, IsArray } from 'uni-types'
+import type { PickRequired, DeepPartial, Sort, IsArray } from 'uni-types'
 
 // Make specific properties required
 interface User {
@@ -67,6 +76,9 @@ interface Config {
 
 type PartialConfig = DeepPartial<Config>
 // { database?: { host?: string; port?: number } }
+
+// Type-level sorting algorithm
+type Sorted = Sort<[3, 1, 4, 1, 5]> // [1, 1, 3, 4, 5]
 
 // Type guards for conditional logic
 type Check = IsArray<string[]> // true
