@@ -910,4 +910,17 @@ export default defineConfig({
 	},
 
 	title: 'uni-types',
+
+	vite: {
+		build: {
+			chunkSizeWarningLimit: 1000,
+			rollupOptions: {
+				output: {
+					manualChunks: {
+						'vitepress-core': ['vitepress'],
+					},
+				},
+			},
+		},
+	},
 })
