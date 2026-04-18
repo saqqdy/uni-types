@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref, shallowRef, defineAsyncComponent } from 'vue'
 
-// Lazy load Monaco Editor only on client side
-const VueMonacoEditor = defineAsyncComponent(() =>
-  import('@guolao/vue-monaco-editor').then(m => m.VueMonacoEditor)
-)
-
 const props = defineProps<{
   initialCode?: string
   title?: string
 }>()
+
+// Lazy load Monaco Editor only on client side
+const VueMonacoEditor = defineAsyncComponent(() =>
+  import('@guolao/vue-monaco-editor').then(m => m.VueMonacoEditor)
+)
 
 const code = ref(props.initialCode || defaultCode)
 const editorRef = shallowRef()
@@ -363,63 +363,63 @@ function loadExample(example: typeof examples[0]) {
 </script>
 
 <template>
-  <div class="playground-container">
-    <div class="playground-header">
-      <h2>{{ title || 'TypeScript Playground' }}</h2>
-      <p class="playground-desc">
-        Edit the code below and see real-time type checking. Hover over types to see their definitions.
-      </p>
-    </div>
+	<div class="playground-container">
+		<div class="playground-header">
+			<h2>{{ title || 'TypeScript Playground' }}</h2>
+			<p class="playground-desc">
+				Edit the code below and see real-time type checking. Hover over types to see their definitions.
+			</p>
+		</div>
 
-    <div class="examples-bar">
-      <span class="examples-label">Examples:</span>
-      <button
-        v-for="example in examples"
-        :key="example.name"
-        class="example-btn"
-        @click="loadExample(example)"
-      >
-        {{ example.name }}
-      </button>
-    </div>
+		<div class="examples-bar">
+			<span class="examples-label">Examples:</span>
+			<button
+				v-for="example in examples"
+				:key="example.name"
+				class="example-btn"
+				@click="loadExample(example)"
+			>
+				{{ example.name }}
+			</button>
+		</div>
 
-    <div class="editor-wrapper">
-      <ClientOnly>
-        <VueMonacoEditor
-          v-model:value="code"
-          language="typescript"
-          :options="options"
-          @mount="handleMount"
-          class="monaco-editor"
-        />
-        <template #fallback>
-          <div class="loading-placeholder">
-            <div class="loading-spinner"></div>
-            <p>Loading TypeScript editor...</p>
-          </div>
-        </template>
-      </ClientOnly>
-    </div>
+		<div class="editor-wrapper">
+			<ClientOnly>
+				<VueMonacoEditor
+					v-model:value="code"
+					language="typescript"
+					:options="options"
+					@mount="handleMount"
+					class="monaco-editor"
+				/>
+				<template #fallback>
+					<div class="loading-placeholder">
+						<div class="loading-spinner"></div>
+						<p>Loading TypeScript editor...</p>
+					</div>
+				</template>
+			</ClientOnly>
+		</div>
 
-    <div class="playground-footer">
-      <div class="tips">
-        <strong>💡 Tips:</strong>
-        <ul>
-          <li>Hover over type names to see their definitions</li>
-          <li>Check the Problems panel for type errors</li>
-          <li>Click examples above to load different code samples</li>
-        </ul>
-      </div>
-      <a
-        href="https://www.typescriptlang.org/play"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="ts-playground-link"
-      >
-        Open in TypeScript Playground ↗
-      </a>
-    </div>
-  </div>
+		<div class="playground-footer">
+			<div class="tips">
+				<strong>💡 Tips:</strong>
+				<ul>
+					<li>Hover over type names to see their definitions</li>
+					<li>Check the Problems panel for type errors</li>
+					<li>Click examples above to load different code samples</li>
+				</ul>
+			</div>
+			<a
+				href="https://www.typescriptlang.org/play"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="ts-playground-link"
+			>
+				Open in TypeScript Playground ↗
+			</a>
+		</div>
+	</div>
 </template>
 
 <style scoped>

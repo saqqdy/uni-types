@@ -2,7 +2,7 @@ import eslintConfig from '@eslint-sets/eslint-config'
 
 export default eslintConfig({
 	type: 'lib',
-	ignores: ['examples/**', 'docs/**', 'tests/**'],
+	ignores: ['examples/**', 'tests/**'],
 	markdown: false,
 	react: false,
 	stylistic: {

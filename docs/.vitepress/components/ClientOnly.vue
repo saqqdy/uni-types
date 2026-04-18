@@ -9,6 +9,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <slot v-if="mounted" />
-  <slot v-else name="fallback" />
+	<slot v-if="mounted" />
+	<slot v-else name="fallback" />
 </template>
