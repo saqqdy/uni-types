@@ -3,7 +3,7 @@
  *
  * This module provides type-level implementations of:
  * - Tree: Tree, TreeNode, TreePath, TreeLeaves
- * - Graph: Graph, GraphNode, GraphEdge
+ * - Graph: Graph, GraphNode, GraphEdge, GraphPath
  * - LinkedList: LinkedList, ListNode
  * - Stack & Queue: Stack, Queue, Push, Pop
  */
@@ -11,6 +11,16 @@
 // ============================================================================
 // Tree Structures
 // ============================================================================
+
+/**
+ * Tree type (alias for TreeNode)
+ *
+ * @example
+ * ```ts
+ * type MyTree = Tree<string>
+ * ```
+ */
+export type Tree<T> = TreeNode<T>
 
 /**
  * Tree node structure
@@ -231,6 +241,59 @@ type GraphHasCycleImpl<
 				: false
 			: false
 	: false
+
+/**
+ * Graph edge representation
+ *
+ * @example
+ * ```ts
+ * GraphEdge<'a', 'b'>  // { from: 'a'; to: 'b' }
+ * ```
+ */
+export interface GraphEdge<From extends string, To extends string> {
+	from: From
+	to: To
+}
+
+/**
+ * Graph path (list of nodes from start to end)
+ *
+ * @example
+ * ```ts
+ * GraphPath<{ a: ['b']; b: ['c']; c: [] }, 'a', 'c'>  // ['a', 'b', 'c']
+ * ```
+ */
+export type GraphPath<
+	Adjacency extends Record<string, string[]>,
+	From extends string,
+	To extends string,
+	Visited extends string[] = [],
+> = From extends To
+	? [From]
+	: From extends Visited[number]
+		? never
+		: Adjacency[From] extends infer Edges
+			? Edges extends string[]
+				? FindPath<Edges, Adjacency, To, [...Visited, From]> extends infer Path
+					? Path extends string[]
+						? [From, ...Path]
+						: never
+					: never
+				: never
+			: never
+
+type FindPath<
+	Edges extends string[],
+	Adjacency extends Record<string, string[]>,
+	To extends string,
+	Visited extends string[],
+> = Edges extends [infer First extends string, ...infer Rest extends string[]]
+	? GraphPath<Adjacency, First, To, Visited> extends infer Path
+		? Path extends string[]
+			? Path
+			: FindPath<Rest, Adjacency, To, Visited>
+		: FindPath<Rest, Adjacency, To, Visited>
+	: never
 
 // ============================================================================
 // Linked List

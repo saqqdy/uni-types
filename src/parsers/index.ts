@@ -218,3 +218,164 @@ type RecordFromTuples<Keys extends string[], Values extends string[]> = Keys ext
 		? { [P in K]: V } & RecordFromTuples<KR, VR>
 		: Record<string, never>
 	: Record<string, never>
+
+/**
+ * Stringify records to CSV format
+ *
+ * @example
+ * ```ts
+ * StringifyCSV<[{ name: 'John'; age: '30' }, { name: 'Jane'; age: '25' }]>
+ * // 'name,age\nJohn,30\nJane,25'
+ * ```
+ */
+export type StringifyCSV<Records extends Record<string, string>[]> = Records extends [
+	infer First extends Record<string, string>,
+	...infer Rest extends Record<string, string>[],
+]
+	? Rest extends []
+		? `${StringifyCSVHeader<First>}\n${StringifyCSVRow<First>}`
+		: `${StringifyCSVHeader<First>}\n${StringifyCSVRows<Records>}`
+	: ''
+
+type StringifyCSVHeader<R extends Record<string, string>> = JoinKeys<keyof R>
+
+type JoinKeys<K, Acc extends string = ''> = K extends [infer First, ...infer Rest]
+	? First extends string
+		? Acc extends ''
+			? JoinKeys<Rest, First>
+			: JoinKeys<Rest, `${Acc},${First}`>
+		: JoinKeys<Rest, Acc>
+	: K extends string
+		? K
+		: Acc
+
+type StringifyCSVRows<Records extends Record<string, string>[]> = Records extends [
+	infer First extends Record<string, string>,
+	...infer Rest extends Record<string, string>[],
+]
+	? Rest extends []
+		? StringifyCSVRow<First>
+		: `${StringifyCSVRow<First>}\n${StringifyCSVRows<Rest>}`
+	: ''
+
+type StringifyCSVRow<R extends Record<string, string>, Keys extends string = Extract<keyof R, string>> = Keys extends `${infer K},${infer Rest}`
+	? K extends keyof R
+		? Rest extends keyof R
+			? `${R[K]},${StringifyCSVRow<R, Rest>}`
+			: `${R[K]},${Rest}`
+		: StringifyCSVRow<R, Rest>
+	: Keys extends keyof R
+		? R[Keys]
+		: ''
+
+// ============================================================================
+// Expression Parser
+// ============================================================================
+
+/**
+ * Parse simple arithmetic expression string to type
+ * Supports: +, -, *, /, parentheses, numbers
+ *
+ * @example
+ * ```ts
+ * ParseExpression<'1 + 2'>  // { left: 1; op: '+'; right: 2 }
+ * ParseExpression<'3 * 4 + 2'>  // { left: { left: 3; op: '*'; right: 4 }; op: '+'; right: 2 }
+ * ```
+ */
+export type ParseExpression<S extends string> = ParseAddSub<Trim<S>>
+
+type Trim<S extends string> = S extends ` ${infer Rest}`
+	? Trim<Rest>
+	: S extends `${infer Rest} `
+		? Trim<Rest>
+		: S
+
+type ParseAddSub<S extends string> = ParseAddSubImpl<S, '', ''>
+
+type ParseAddSubImpl<
+	S extends string,
+	Buffer extends string,
+	LeftBuffer extends string,
+> = S extends `${infer C}${infer Rest}`
+	? C extends '+' | '-'
+		? LeftBuffer extends ''
+			? ParseAddSubImpl<Rest, '', Buffer>
+			: {
+					left: ParseMulDiv<LeftBuffer>
+					op: C
+					right: ParseAddSub<Rest>
+				}
+		: ParseAddSubImpl<Rest, Buffer, `${LeftBuffer}${C}`>
+	: ParseMulDiv<LeftBuffer>
+
+type ParseMulDiv<S extends string> = ParseMulDivImpl<S, '', ''>
+
+type ParseMulDivImpl<
+	S extends string,
+	Buffer extends string,
+	LeftBuffer extends string,
+> = S extends `${infer C}${infer Rest}`
+	? C extends '*' | '/'
+		? LeftBuffer extends ''
+			? ParseMulDivImpl<Rest, '', Buffer>
+			: {
+					left: ParseAtom<LeftBuffer>
+					op: C
+					right: ParseMulDiv<Rest>
+				}
+		: ParseMulDivImpl<Rest, Buffer, `${LeftBuffer}${C}`>
+	: ParseAtom<LeftBuffer>
+
+type ParseAtom<S extends string> = S extends `(${infer Inner})`
+	? ParseExpression<Inner>
+	: S extends `${infer N extends number}`
+		? N
+		: S
+
+/**
+ * Evaluate parsed expression to result
+ *
+ * @example
+ * ```ts
+ * EvaluateExpression<{ left: 1; op: '+'; right: 2 }>  // 3
+ * EvaluateExpression<{ left: { left: 3; op: '*'; right: 4 }; op: '+'; right: 2 }>  // 14
+ * ```
+ */
+export type EvaluateExpression<E> = E extends { left: infer L, op: infer Op, right: infer R }
+	? Op extends '+'
+		? Add<EvaluateExpression<L>, EvaluateExpression<R>>
+		: Op extends '-'
+			? Subtract<EvaluateExpression<L>, EvaluateExpression<R>>
+			: Op extends '*'
+				? Multiply<EvaluateExpression<L>, EvaluateExpression<R>>
+				: Op extends '/'
+					? Divide<EvaluateExpression<L>, EvaluateExpression<R>>
+					: never
+	: E extends number
+		? E
+		: never
+
+// Numeric helpers for expression evaluation
+type BuildTuple<N extends number, Acc extends 0[] = []> = Acc['length'] extends N ? Acc : BuildTuple<N, [...Acc, 0]>
+type Increment<N extends number> = [...BuildTuple<N>, 0]['length'] & number
+type Decrement<N extends number> = BuildTuple<N> extends [0, ...infer Rest] ? Rest['length'] : 0
+type Add<A extends number, B extends number> = B extends 0 ? A : Add<Increment<A>, Decrement<B>>
+type Subtract<A extends number, B extends number> = B extends 0
+	? A
+	: A extends 0
+		? never
+		: Subtract<Decrement<A>, Decrement<B>>
+type Multiply<A extends number, B extends number> = B extends 0 ? 0 : MultiplyImpl<A, B, 0>
+type MultiplyImpl<A extends number, B extends number, Acc extends number> = B extends 0
+	? Acc
+	: MultiplyImpl<A, Decrement<B>, Add<Acc, A>>
+type Divide<A extends number, B extends number> = B extends 0 ? never : DivideImpl<A, B, 0>
+type DivideImpl<A extends number, B extends number, Acc extends number> = A extends 0
+	? Acc
+	: Subtract<A, B> extends infer R extends number
+		? R extends never
+			? Acc
+			: R extends 0
+				? Increment<Acc>
+				: DivideImpl<R, B, Increment<Acc>>
+		: never
