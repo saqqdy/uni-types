@@ -2,6 +2,270 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2026-04-18
+
+### Added
+
+#### Type-Level Algorithms
+- `Sort<T, Order>` - Sort tuple of numbers (asc/desc)
+- `QuickSort<T>` - QuickSort implementation at type level
+- `MergeSort<T>` - MergeSort implementation at type level
+- `Find<T, P>` - Find first element matching predicate
+- `FindIndex<T, P>` - Find index of first matching element
+- `Includes<T, U>` - Check if tuple includes element
+- `IndexOf<T, U>` - Get index of element in tuple
+- `GCD<A, B>` - Greatest Common Divisor
+- `LCM<A, B>` - Least Common Multiple
+- `Factorial<N>` - Factorial of a number
+- `Fibonacci<N>` - Fibonacci number at position N
+- `IsPrime<N>` - Check if number is prime
+- `LongestCommonPrefix<T>` - Longest common prefix of strings
+- `LevenshteinDistance<A, B>` - Edit distance between strings
+- `Reverse<T>` - Reverse a tuple
+- `Unique<T>` - Remove duplicates from tuple
+- `Flatten<T>` - Flatten nested tuple (one level)
+- `FlattenDeep<T>` - Flatten nested tuple (deep)
+
+#### Type-Level Parsers
+- `ParseJSON<S>` - Parse JSON string to type
+- `StringifyJSON<T>` - Stringify type to JSON string
+- `IsValidJSON<S>` - Check if string is valid JSON
+- `ParseURL<S>` - Parse URL string into components
+- `QueryParams<S>` - Parse query string into object
+- `PathParams<Pattern, Path>` - Extract path params from route
+- `ParseCSV<S>` - Parse CSV string to records
+- `StringifyCSV<T>` - Stringify records to CSV format
+- `ParseExpression<S>` - Parse arithmetic expression string
+- `EvaluateExpression<T>` - Evaluate parsed expression
+
+#### Type-Level State Machines
+- `StateMachine<T, Config>` - State machine type
+- `State<S, Data>` - State definition
+- `Transition<E, From, To>` - Transition definition
+- `BuildStateMachine<Config>` - Build state machine from config
+- `CurrentState<T>` - Get current state
+- `NextState<T, E>` - Get next state after event
+- `ValidTransitions<T>` - Get valid transitions
+- `StateHistory<T>` - State history type
+- `CanTransition<T, E>` - Check if transition is valid
+- `IsTerminal<T>` - Check if state is terminal
+- `SendEvent<T, E>` - Send event to state machine
+
+#### Type-Level Data Structures
+- `Tree<T>` - Tree type (alias for TreeNode)
+- `TreeNode<T>` - Tree node with children
+- `BinaryTreeNode<T>` - Binary tree node
+- `GenericTree<T>` - Generic tree with children array
+- `TreePath<T, V>` - Get path to value in tree
+- `TreeDepth<T>` - Get maximum depth of tree
+- `TreeLeaves<T>` - Get all leaf values
+- `TreeFlatten<T>` - Flatten tree to array (pre-order)
+- `Graph<Adjacency>` - Graph type (adjacency list)
+- `GraphNode<T, Edges>` - Graph node type
+- `GraphEdge<From, To>` - Graph edge representation
+- `GraphNodes<G>` - Get all nodes in graph
+- `GraphEdges<G, N>` - Get edges from node
+- `GraphPath<A, From, To>` - Find path between nodes
+- `GraphHasCycle<A>` - Check if graph has cycle
+- `LinkedList<T>` - Linked list type
+- `ListNode<T>` - Linked list node
+- `ListHead<T>` - Get head of linked list
+- `ListTail<T>` - Get tail of linked list
+- `ListLength<T>` - Get length of linked list
+- `ListReverse<T>` - Reverse linked list
+- `Stack<T>` - Stack type (LIFO)
+- `Queue<T>` - Queue type (FIFO)
+- `Push<S, V>` - Push value onto stack
+- `Pop<S>` - Pop value from stack
+- `Peek<S>` - Peek top of stack
+- `Enqueue<Q, V>` - Enqueue value (add to back)
+- `Dequeue<Q>` - Dequeue value (remove from front)
+- `Front<Q>` - Get front of queue
+- `IsEmptyStack<S>` - Check if stack is empty
+- `IsEmptyQueue<Q>` - Check if queue is empty
+- `StackSize<S>` - Get stack size
+- `QueueSize<Q>` - Get queue size
+
+#### Type-Level HTTP & API
+- `HTTPMethod` - HTTP methods union type
+- `HTTPStatus` - HTTP status codes union type
+- `HTTPHeaders<T>` - HTTP headers type
+- `ContentType` - Content-Type header values
+- `HTTPStatusCategory<S>` - Categorize HTTP status
+- `Route<P, M, H, C>` - Route definition
+- `RouteParams<P>` - Extract params from route path
+- `RouteQuery<Q>` - Route query type
+- `Router<T>` - Router type
+- `RESTResource<T>` - REST resource type
+- `RESTCollection<T, C, U>` - REST collection type
+- `CRUDOperation` - CRUD operations
+- `APIEndpoint<T>` - API endpoint type
+- `APIRequest<T>` - API request type
+- `APIResponse<T>` - API response type
+- `APIError<T>` - API error type
+- `Middleware<C>` - Middleware function type
+- `MiddlewareChain<M>` - Middleware chain type
+- `Context<C>` - Request context type
+- `ComposeMiddleware<M>` - Compose middleware chain
+- `ParseResponse<R>` - Parse response data type
+- `RequestOptions<T>` - Request options type
+
+#### Type-Level Database
+- `SQLType<T>` - TypeScript to SQL type mapping
+- `SQLColumn<T, Options>` - SQL column definition
+- `ColumnOptions` - Column options interface
+- `CreateTable<T>` - CREATE TABLE definition
+- `SelectQuery<T, Fields>` - SELECT query type
+- `InsertQuery<T>` - INSERT query type
+- `UpdateQuery<T, Where>` - UPDATE query type
+- `DeleteQuery<T, Where>` - DELETE query type
+- `WhereClause<T>` - WHERE clause type
+- `JoinQuery<T, U>` - JOIN query type
+- `Migration<T>` - Migration definition
+- `MigrationUp<T>` - Up migration
+- `MigrationDown<T>` - Down migration
+- `MigrationHistory<T>` - Migration history
+- `QueryBuilder<T>` - Query builder type
+- `WhereBuilder<T>` - WHERE builder type
+- `OrderClause<T>` - ORDER BY clause type
+- `Index<T>` - Index definition
+- `UniqueIndex<T>` - Unique index definition
+- `CompositeIndex<T, Keys>` - Composite index definition
+- `Transaction<R>` - Transaction type
+- `DatabaseConfig<T>` - Database configuration
+- `QueryState` - Query state interface
+
+#### Type-Level Concurrency
+- `Task<T>` - Task type
+- `TaskResult<T>` - Task result type
+- `TaskError<T>` - Task error type
+- `TaskStatus` - Task status union type
+- `TaskPriority` - Task priority type
+- `TaskOptions<T>` - Task options type
+- `Pipeline<I, O, Stages>` - Pipeline type
+- `PipelineStage<N, I, O>` - Pipeline stage type
+- `PipelineRun<T>` - Pipeline run result
+- `StageResult<N, O>` - Stage result type
+- `AddStage<P, S>` - Add stage to pipeline
+- `Scheduler<T>` - Scheduler type
+- `ScheduledJob<T>` - Scheduled job type
+- `ScheduleOptions<T>` - Schedule options type
+- `Worker<I, O>` - Worker type
+- `WorkerPool<I, O>` - Worker pool type
+- `WorkerTask<I, O>` - Worker task type
+- `WorkerOptions<T>` - Worker options type
+- `RateLimiter<T>` - Rate limiter type
+- `Throttle<T>` - Throttle type
+- `ThrottleOptions<T>` - Throttle options
+- `Debounce<T>` - Debounce type
+- `DebounceOptions<T>` - Debounce options
+- `Bulkhead<T>` - Bulkhead type
+- `MutexState` - Mutex state type
+- `Semaphore<T>` - Semaphore type
+- `LockAcquisition<R>` - Lock acquisition type
+- `PriorityQueue<T>` - Priority queue type
+
+#### Type-Level Interop
+- `ToTypeFest<T>` - Convert to type-fest format
+- `FromTypeFest<T>` - Convert from type-fest format
+- `ToTsToolbelt<T>` - Convert to ts-toolbelt format
+- `FromTsToolbelt<T>` - Convert from ts-toolbelt format
+- `ToUtilityTypes<T>` - Convert to utility-types format
+- `FromUtilityTypes<T>` - Convert from utility-types format
+- `ConvertTo<T, Format>` - Convert type to format
+- `ConvertFrom<T, Format>` - Convert type from format
+- `IsCompatible<T, U>` - Check type compatibility
+- `CompatibleWith<T, Libs>` - Check library compatibility
+- `CompatibleKeys<T, U>` - Get compatible keys
+- `IncompatibleKeys<T, U>` - Get incompatible keys
+- `CompatibleMerge<T, U>` - Merge compatible types
+- `CompatibleIntersection<T, U>` - Compatible intersection
+- `CompatibilityReport<T, U>` - Compatibility report
+- `LibraryFeatures<L>` - Get library features
+- `ConversionMap<T>` - Type conversion mapping
+- `ToolbeltDeepPartial<T>` - ts-toolbelt DeepPartial
+- `ToolbeltUnionExclude<T, U>` - ts-toolbelt Exclude
+- `ToolbeltUnionPick<T, U>` - ts-toolbelt Extract
+- `TypeFestCamelCase<S>` - type-fest CamelCase
+- `TypeFestSnakeCase<S>` - type-fest SnakeCase
+- `UtilityDeepPartial<T>` - utility-types DeepPartial
+- `UtilityDeepReadonly<T>` - utility-types DeepReadonly
+- `UtilityMap<T, K, V>` - utility-types Map
+
+#### Type-Level Testing
+- `ExpectTrue<T>` - Expect type to be true
+- `ExpectFalse<T>` - Expect type to be false
+- `ExpectEqual<T, U>` - Expect types to be equal
+- `ExpectExtends<T, U>` - Expect T extends U
+- `ExpectNotExtends<T, U>` - Expect T does not extend U
+- `ExpectAny<T>` - Expect type to be any
+- `ExpectNever<T>` - Expect type to be never
+- `ExpectUnknown<T>` - Expect type to be unknown
+- `IsUnion<T>` - Check if type is union
+- `IsIntersection<T>` - Check if type is intersection
+- `AssertType<T, Expected>` - Assert type with expected
+- `TypeTest<Name, Test>` - Type test definition
+- `TypeTestSuite<T>` - Test suite type
+- `TypeTestResult` - Test result type
+- `RunTypeTest<T>` - Run type test
+- `SkipTest<Name>` - Skip test marker
+- `TypeCoverage<T>` - Type coverage analysis
+- `TypeComplexity<T>` - Type complexity analysis
+- `UncoveredTypes<T>` - Get uncovered types
+- `TypeInfo<T>` - Type information
+- `InspectType<T>` - Inspect type details
+- `TypeCategory<T>` - Categorize type
+- `DebugType<T>` - Debug type helper
+- `ExpandType<T>` - Expand type for display
+- `PrettyType<T>` - Pretty print type
+- `MarkType<T, Tag>` - Mark type with tag
+
+#### Object Operations
+- `ObjectMap<T, F>` - Map over object values
+- `ObjectFilter<T, P>` - Filter object properties
+- `ObjectPickByType<T, U>` - Pick by value type
+- `ObjectInvert<T>` - Invert object (swap keys/values)
+- `DeepMerge<A, B>` - Deep merge objects
+- `ObjectPath<T, P>` - Get value at path
+- `PathExists<T, P>` - Check if path exists
+- `KeysOfType<T, U>` - Get keys of specific type
+- `MergeAllObjects<T>` - Merge multiple objects
+
+#### String Operations
+- `Split<S, D>` - Split string by delimiter
+- `Join<T, S>` - Join string array with separator
+- `KebabCase<S>` - Convert to kebab-case
+- `PascalCase<S>` - Convert to PascalCase
+- `ConstantCase<S>` - Convert to CONSTANT_CASE
+- `IsEmail<S>` - Check if string is email
+- `IsUUID<S>` - Check if string is UUID
+- `IsURL<S>` - Check if string is URL
+- `ReverseString<S>` - Reverse a string
+
+#### Promise & Async Utilities
+- `PromiseValue<T>` - Extract value from Promise (deep)
+- `IsPromise<T>` - Check if type is Promise
+- `UnwrapPromise<T>` - Unwrap or return original
+- `AsyncReturnType<T>` - Return type of async function
+- `MakeAsync<T>` - Make function async
+- `PromiseAll<T>` - Await all promises
+- `AsyncResult<T, E>` - Rust-style Result type
+- `Deferred<T>` - Deferred promise type
+
+### Documentation
+- Added 11 new guide pages (English & Chinese)
+- Updated VitePress configuration
+- Added API reference for all new types
+
+### Testing
+- Added comprehensive tests for all new types
+- Total 314 tests passing
+
+### Code Quality
+- Fixed all lint errors (ts/no-empty-object-type, ts/no-unsafe-function-type)
+- All lint checks passing
+- Build successful
+
 ## [1.3.0] - 2026-04-17
 
 ### Added

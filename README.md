@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **250+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **400+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -367,6 +367,166 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `SolidResource<T>` | SolidJS resource type |
 | `SvelteStore<T>` | Svelte store type |
 | `SvelteAction<Element, Params>` | Svelte action type |
+
+### Type-Level Algorithms *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `Sort<T, Order>` | Sort tuple of numbers |
+| `QuickSort<T>` | QuickSort implementation |
+| `MergeSort<T>` | MergeSort implementation |
+| `Find<T, P>` | Find first matching element |
+| `FindIndex<T, P>` | Find index of matching element |
+| `Includes<T, U>` | Check if tuple includes element |
+| `IndexOf<T, U>` | Get index of element |
+| `GCD<A, B>` | Greatest Common Divisor |
+| `LCM<A, B>` | Least Common Multiple |
+| `Factorial<N>` | Factorial of number |
+| `Fibonacci<N>` | Fibonacci number |
+| `IsPrime<N>` | Check if number is prime |
+| `LongestCommonPrefix<T>` | Longest common prefix of strings |
+| `LevenshteinDistance<A, B>` | Edit distance between strings |
+| `Reverse<T>` | Reverse a tuple |
+| `Unique<T>` | Remove duplicates from tuple |
+| `Flatten<T>` | Flatten nested tuples |
+
+### Type-Level Parsers *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `ParseJSON<S>` | Parse JSON string to type |
+| `StringifyJSON<T>` | Stringify type to JSON |
+| `IsValidJSON<S>` | Check if string is valid JSON |
+| `ParseURL<S>` | Parse URL string |
+| `QueryParams<S>` | Parse query string |
+| `PathParams<Pattern, Path>` | Extract path params |
+| `ParseCSV<S>` | Parse CSV string |
+| `StringifyCSV<T>` | Stringify records to CSV |
+| `ParseExpression<S>` | Parse arithmetic expression |
+| `EvaluateExpression<T>` | Evaluate parsed expression |
+
+### Type-Level State Machines *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `StateMachine<T>` | State machine definition |
+| `State<S, Data>` | State definition |
+| `Transition<E, From, To>` | Transition definition |
+| `CurrentState<T>` | Get current state |
+| `NextState<T, E>` | Get next state after event |
+| `ValidTransitions<T>` | Get valid transitions |
+| `StateHistory<T>` | State history type |
+| `CanTransition<T, E>` | Check if transition is valid |
+| `IsTerminal<T>` | Check if state is terminal |
+
+### Type-Level Data Structures *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `Tree<T>` | Tree type |
+| `TreeNode<T>` | Tree node type |
+| `TreePath<T, V>` | Path to value in tree |
+| `TreeDepth<T>` | Maximum depth of tree |
+| `TreeLeaves<T>` | All leaf values |
+| `TreeFlatten<T>` | Flatten tree to array |
+| `Graph<Adjacency>` | Graph type (adjacency list) |
+| `GraphNode<T, Edges>` | Graph node type |
+| `GraphEdge<From, To>` | Graph edge type |
+| `GraphPath<A, From, To>` | Path between nodes |
+| `GraphHasCycle<A>` | Check for cycles |
+| `LinkedList<T>` | Linked list type |
+| `ListNode<T>` | List node type |
+| `ListHead<T>` | Head of list |
+| `ListTail<T>` | Tail of list |
+| `Stack<T>` | Stack type (LIFO) |
+| `Queue<T>` | Queue type (FIFO) |
+| `Push<S, V>` | Push onto stack |
+| `Pop<S>` | Pop from stack |
+
+### Type-Level HTTP & API *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `HTTPMethod` | HTTP methods |
+| `HTTPStatus` | HTTP status codes |
+| `HTTPHeaders<T>` | HTTP headers type |
+| `Route<P, M, H>` | Route definition |
+| `RouteParams<P>` | Extract route params |
+| `RouteQuery<Q>` | Route query type |
+| `Router<T>` | Router type |
+| `APIEndpoint<T>` | API endpoint type |
+| `APIRequest<T>` | API request type |
+| `APIResponse<T>` | API response type |
+| `APIError<T>` | API error type |
+| `Middleware<C>` | Middleware type |
+| `Context<C>` | Request context |
+| `ComposeMiddleware<M>` | Compose middleware chain |
+
+### Type-Level Database *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `SQLType<T>` | TypeScript to SQL type mapping |
+| `CreateTable<T>` | CREATE TABLE type |
+| `SelectQuery<T, F>` | SELECT query type |
+| `WhereClause<T>` | WHERE clause type |
+| `JoinQuery<T, U>` | JOIN query type |
+| `Migration<T>` | Migration type |
+| `MigrationUp<T>` | Up migration |
+| `MigrationDown<T>` | Down migration |
+| `QueryBuilder<T>` | Query builder type |
+| `WhereBuilder<T>` | WHERE builder type |
+| `Index<T>` | Index type |
+| `UniqueIndex<T>` | Unique index type |
+| `CompositeIndex<T, K>` | Composite index type |
+
+### Type-Level Concurrency *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `Task<T>` | Task type |
+| `TaskResult<T>` | Task result type |
+| `TaskError<T>` | Task error type |
+| `TaskStatus` | Task status type |
+| `Pipeline<I, O, S>` | Pipeline type |
+| `PipelineStage<N, I, O>` | Pipeline stage type |
+| `Scheduler<T>` | Scheduler type |
+| `Worker<I, O>` | Worker type |
+| `WorkerPool<I, O>` | Worker pool type |
+| `RateLimiter<T>` | Rate limiter type |
+| `Throttle<T>` | Throttle type |
+| `Debounce<T>` | Debounce type |
+
+### Type-Level Interop *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `ToTypeFest<T>` | Convert to type-fest format |
+| `FromTypeFest<T>` | Convert from type-fest format |
+| `ToTsToolbelt<T>` | Convert to ts-toolbelt format |
+| `FromTsToolbelt<T>` | Convert from ts-toolbelt format |
+| `ToUtilityTypes<T>` | Convert to utility-types format |
+| `FromUtilityTypes<T>` | Convert from utility-types format |
+| `ConvertTo<T, Format>` | Convert to format |
+| `ConvertFrom<T, Format>` | Convert from format |
+| `IsCompatible<T, U>` | Check type compatibility |
+| `CompatibleWith<T, Libs>` | Check library compatibility |
+
+### Type-Level Testing *(v1.4.0)*
+
+| Type | Description |
+|------|-------------|
+| `ExpectTrue<T>` | Expect type to be true |
+| `ExpectFalse<T>` | Expect type to be false |
+| `ExpectEqual<T, U>` | Expect types to be equal |
+| `ExpectExtends<T, U>` | Expect T extends U |
+| `TypeTest<Name, Test>` | Type test definition |
+| `TypeTestSuite<T>` | Test suite type |
+| `TypeTestResult` | Test result type |
+| `TypeCoverage<T>` | Type coverage analysis |
+| `TypeComplexity<T>` | Type complexity analysis |
+| `TypeInfo<T>` | Type information |
+| `InspectType<T>` | Inspect type details |
 
 ## Examples
 

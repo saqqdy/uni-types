@@ -8,7 +8,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.1.0](#110) - Enhanced type utilities (2026-04-11)
 - [x] [1.2.0](#120) - Schema validation & ecosystem integration (2026-04-12)
 - [x] [1.3.0](#130) - Advanced type patterns & extended ecosystem (2026-04-17)
-- [ ] [1.4.0](#140) - Type-level programming & algorithms (Planned)
+- [x] [1.4.0](#140) - Type-level programming & algorithms (2026-04-18)
 - [ ] [1.5.0](#150) - Enterprise patterns & real-time systems (Planned)
 - [ ] [1.6.0](#160) - AI/ML & advanced type system (Planned)
 - [ ] [1.7.0](#170) - Metaprogramming & advanced utilities (Planned)
@@ -529,7 +529,7 @@ export type HasMethod<T, K> = ...
 
 ---
 
-## [1.4.0] - Planned
+## [1.4.0] - 2026-04-18
 
 ### New Features
 
@@ -780,33 +780,33 @@ export type TypeComplexity<T> = ...
 
 ### Documentation
 
-- [ ] Type-Level Algorithms guide (English & Chinese)
-- [ ] Type-Level Parsers guide (English & Chinese)
-- [ ] State Machines guide (English & Chinese)
-- [ ] Data Structures guide (English & Chinese)
-- [ ] HTTP & API guide (English & Chinese)
-- [ ] Database Types guide (English & Chinese)
-- [ ] Concurrency Patterns guide (English & Chinese)
-- [ ] Interop guide (English & Chinese)
-- [ ] Type-Level Testing guide (English & Chinese)
-- [ ] API reference pages for all new types
-- [ ] Update README with v1.4.0 features
-- [ ] Update CHANGELOG with v1.4.0 release notes
+- [x] Type-Level Algorithms guide (English & Chinese)
+- [x] Type-Level Parsers guide (English & Chinese)
+- [x] State Machines guide (English & Chinese)
+- [x] Data Structures guide (English & Chinese)
+- [x] HTTP & API guide (English & Chinese)
+- [x] Database Types guide (English & Chinese)
+- [x] Concurrency Patterns guide (English & Chinese)
+- [x] Interop guide (English & Chinese)
+- [x] Type-Level Testing guide (English & Chinese)
+- [x] API reference pages for all new types
+- [x] Update README with v1.4.0 features
+- [x] Update CHANGELOG with v1.4.0 release notes
 
 ### Testing
 
-- [ ] Comprehensive tests for all new types
-- [ ] Type-level algorithm tests
-- [ ] Parser tests with edge cases
-- [ ] State machine transition tests
-- [ ] Data structure operation tests
+- [x] Comprehensive tests for all new types
+- [x] Type-level algorithm tests
+- [x] Parser tests with edge cases
+- [x] State machine transition tests
+- [x] Data structure operation tests
 - [ ] Performance benchmarks for complex types
 
 ### Code Quality
 
-- [ ] All lint checks passing
-- [ ] Build successful
-- [ ] Documentation complete
+- [x] All lint checks passing
+- [x] Build successful
+- [x] Documentation complete
 - [ ] Type complexity analysis
 
 ---

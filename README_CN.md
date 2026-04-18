@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **250+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **400+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -367,6 +367,166 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `SolidResource<T>` | SolidJS resource 类型 |
 | `SvelteStore<T>` | Svelte store 类型 |
 | `SvelteAction<Element, Params>` | Svelte action 类型 |
+
+### 类型级算法 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Sort<T, Order>` | 数字元组排序 |
+| `QuickSort<T>` | 快速排序实现 |
+| `MergeSort<T>` | 归并排序实现 |
+| `Find<T, P>` | 查找第一个匹配元素 |
+| `FindIndex<T, P>` | 查找匹配元素索引 |
+| `Includes<T, U>` | 检查元组是否包含元素 |
+| `IndexOf<T, U>` | 获取元素索引 |
+| `GCD<A, B>` | 最大公约数 |
+| `LCM<A, B>` | 最小公倍数 |
+| `Factorial<N>` | 阶乘 |
+| `Fibonacci<N>` | 斐波那契数 |
+| `IsPrime<N>` | 判断是否为质数 |
+| `LongestCommonPrefix<T>` | 字符串最长公共前缀 |
+| `LevenshteinDistance<A, B>` | 字符串编辑距离 |
+| `Reverse<T>` | 反转元组 |
+| `Unique<T>` | 移除重复元素 |
+| `Flatten<T>` | 展平嵌套元组 |
+
+### 类型级解析器 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ParseJSON<S>` | 解析 JSON 字符串为类型 |
+| `StringifyJSON<T>` | 类型转 JSON 字符串 |
+| `IsValidJSON<S>` | 检查是否为有效 JSON |
+| `ParseURL<S>` | 解析 URL 字符串 |
+| `QueryParams<S>` | 解析查询字符串 |
+| `PathParams<Pattern, Path>` | 提取路径参数 |
+| `ParseCSV<S>` | 解析 CSV 字符串 |
+| `StringifyCSV<T>` | 记录转 CSV 格式 |
+| `ParseExpression<S>` | 解析算术表达式 |
+| `EvaluateExpression<T>` | 计算解析后的表达式 |
+
+### 类型级状态机 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `StateMachine<T>` | 状态机定义 |
+| `State<S, Data>` | 状态定义 |
+| `Transition<E, From, To>` | 转换定义 |
+| `CurrentState<T>` | 获取当前状态 |
+| `NextState<T, E>` | 事件后获取下一状态 |
+| `ValidTransitions<T>` | 获取有效转换 |
+| `StateHistory<T>` | 状态历史类型 |
+| `CanTransition<T, E>` | 检查转换是否有效 |
+| `IsTerminal<T>` | 检查是否为终止状态 |
+
+### 类型级数据结构 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Tree<T>` | 树类型 |
+| `TreeNode<T>` | 树节点类型 |
+| `TreePath<T, V>` | 树中到值的路径 |
+| `TreeDepth<T>` | 树的最大深度 |
+| `TreeLeaves<T>` | 所有叶子值 |
+| `TreeFlatten<T>` | 树转数组（前序遍历） |
+| `Graph<Adjacency>` | 图类型（邻接表） |
+| `GraphNode<T, Edges>` | 图节点类型 |
+| `GraphEdge<From, To>` | 图边类型 |
+| `GraphPath<A, From, To>` | 节点间路径 |
+| `GraphHasCycle<A>` | 检查是否有环 |
+| `LinkedList<T>` | 链表类型 |
+| `ListNode<T>` | 链表节点类型 |
+| `ListHead<T>` | 链表头部 |
+| `ListTail<T>` | 链表尾部 |
+| `Stack<T>` | 栈类型（LIFO） |
+| `Queue<T>` | 队列类型（FIFO） |
+| `Push<S, V>` | 入栈 |
+| `Pop<S>` | 出栈 |
+
+### 类型级 HTTP 与 API *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `HTTPMethod` | HTTP 方法 |
+| `HTTPStatus` | HTTP 状态码 |
+| `HTTPHeaders<T>` | HTTP 头类型 |
+| `Route<P, M, H>` | 路由定义 |
+| `RouteParams<P>` | 提取路由参数 |
+| `RouteQuery<Q>` | 路由查询类型 |
+| `Router<T>` | 路由器类型 |
+| `APIEndpoint<T>` | API 端点类型 |
+| `APIRequest<T>` | API 请求类型 |
+| `APIResponse<T>` | API 响应类型 |
+| `APIError<T>` | API 错误类型 |
+| `Middleware<C>` | 中间件类型 |
+| `Context<C>` | 请求上下文 |
+| `ComposeMiddleware<M>` | 组合中间件链 |
+
+### 类型级数据库 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `SQLType<T>` | TypeScript 到 SQL 类型映射 |
+| `CreateTable<T>` | CREATE TABLE 类型 |
+| `SelectQuery<T, F>` | SELECT 查询类型 |
+| `WhereClause<T>` | WHERE 条件类型 |
+| `JoinQuery<T, U>` | JOIN 查询类型 |
+| `Migration<T>` | 迁移类型 |
+| `MigrationUp<T>` | 升级迁移 |
+| `MigrationDown<T>` | 降级迁移 |
+| `QueryBuilder<T>` | 查询构建器类型 |
+| `WhereBuilder<T>` | WHERE 构建器类型 |
+| `Index<T>` | 索引类型 |
+| `UniqueIndex<T>` | 唯一索引类型 |
+| `CompositeIndex<T, K>` | 组合索引类型 |
+
+### 类型级并发 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Task<T>` | 任务类型 |
+| `TaskResult<T>` | 任务结果类型 |
+| `TaskError<T>` | 任务错误类型 |
+| `TaskStatus` | 任务状态类型 |
+| `Pipeline<I, O, S>` | 管道类型 |
+| `PipelineStage<N, I, O>` | 管道阶段类型 |
+| `Scheduler<T>` | 调度器类型 |
+| `Worker<I, O>` | 工作器类型 |
+| `WorkerPool<I, O>` | 工作池类型 |
+| `RateLimiter<T>` | 限流器类型 |
+| `Throttle<T>` | 节流类型 |
+| `Debounce<T>` | 防抖类型 |
+
+### 类型级互操作 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ToTypeFest<T>` | 转换为 type-fest 格式 |
+| `FromTypeFest<T>` | 从 type-fest 格式转换 |
+| `ToTsToolbelt<T>` | 转换为 ts-toolbelt 格式 |
+| `FromTsToolbelt<T>` | 从 ts-toolbelt 格式转换 |
+| `ToUtilityTypes<T>` | 转换为 utility-types 格式 |
+| `FromUtilityTypes<T>` | 从 utility-types 格式转换 |
+| `ConvertTo<T, Format>` | 转换为指定格式 |
+| `ConvertFrom<T, Format>` | 从指定格式转换 |
+| `IsCompatible<T, U>` | 检查类型兼容性 |
+| `CompatibleWith<T, Libs>` | 检查库兼容性 |
+
+### 类型级测试 *(v1.4.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ExpectTrue<T>` | 期望类型为 true |
+| `ExpectFalse<T>` | 期望类型为 false |
+| `ExpectEqual<T, U>` | 期望类型相等 |
+| `ExpectExtends<T, U>` | 期望 T 继承 U |
+| `TypeTest<Name, Test>` | 类型测试定义 |
+| `TypeTestSuite<T>` | 测试套件类型 |
+| `TypeTestResult` | 测试结果类型 |
+| `TypeCoverage<T>` | 类型覆盖分析 |
+| `TypeComplexity<T>` | 类型复杂度分析 |
+| `TypeInfo<T>` | 类型信息 |
+| `InspectType<T>` | 检查类型详情 |
 
 ## 示例
 
