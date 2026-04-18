@@ -180,3 +180,228 @@ uni-types 所有类型工具的完整 API 参考。
 | [`StrictExclude<T, U>`](/zh/api/utils/strict-exclude) | 严格排除类型 |
 | [`UnionToIntersection<U>`](/zh/api/utils/union-to-intersection) | 联合转交叉 |
 | [`UnionToTuple<T>`](/zh/api/utils/union-to-tuple) | 联合转元组 |
+
+### [算法](#算法-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Sort<T, Order>`](/zh/api/algorithms/sort) | 数字元组排序 |
+| [`QuickSort<T>`](/zh/api/algorithms/quicksort) | 快速排序实现 |
+| [`MergeSort<T>`](/zh/api/algorithms/mergesort) | 归并排序实现 |
+| [`GCD<A, B>`](/zh/api/algorithms/gcd) | 最大公约数 |
+| [`LCM<A, B>`](/zh/api/algorithms/lcm) | 最小公倍数 |
+| [`Factorial<N>`](/zh/api/algorithms/factorial) | 阶乘 |
+| [`Fibonacci<N>`](/zh/api/algorithms/fibonacci) | 斐波那契数 |
+| [`IsPrime<N>`](/zh/api/algorithms/isprime) | 判断是否为质数 |
+| [`Find<T, P>`](/zh/api/algorithms/find) | 查找第一个匹配元素 |
+| [`FindIndex<T, P>`](/zh/api/algorithms/findindex) | 查找第一个匹配索引 |
+| [`Includes<T, U>`](/zh/api/algorithms/includes) | 检查元组是否包含元素 |
+| [`IndexOf<T, U>`](/zh/api/algorithms/indexof) | 获取元素索引 |
+| [`LongestCommonPrefix<T>`](/zh/api/algorithms/longestcommonprefix) | 查找最长公共前缀 |
+| [`Reverse<T>`](/zh/api/algorithms/reverse) | 反转元组 |
+| [`Unique<T>`](/zh/api/algorithms/unique) | 移除重复元素 |
+| [`Flatten<T>`](/zh/api/algorithms/flatten) | 展平嵌套元组 |
+| [`FlattenDeep<T>`](/zh/api/algorithms/flattendeep) | 深度展平嵌套元组 |
+| [`LevenshteinDistance<A, B>`](/zh/api/algorithms/levenshteindistance) | 字符串编辑距离 |
+
+### [解析器](#解析器-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`ParseJSON<S>`](/zh/api/parsers/parsejson) | 解析 JSON 字符串为类型 |
+| [`StringifyJSON<T>`](/zh/api/parsers/stringifyjson) | 类型转 JSON 字符串 |
+| [`IsValidJSON<S>`](/zh/api/parsers/isvalidjson) | 检查是否为有效 JSON |
+| [`ParseURL<S>`](/zh/api/parsers/parseurl) | 解析 URL 字符串 |
+| [`QueryParams<S>`](/zh/api/parsers/queryparams) | 解析查询字符串 |
+| [`ParseCSV<S>`](/zh/api/parsers/parsecsv) | 解析 CSV 字符串 |
+
+### [状态机](#状态机-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`StateMachine<T>`](/zh/api/statemachine/statemachine) | 状态机定义 |
+| [`State<S, Data>`](/zh/api/statemachine/state) | 状态定义 |
+| [`Transition<E, From, To>`](/zh/api/statemachine/transition) | 转换定义 |
+
+### [数据结构](#数据结构-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Tree<T>`](/zh/api/datastructures/tree) | 树类型 |
+| [`TreeNode<T>`](/zh/api/datastructures/treenode) | 树节点类型 |
+| [`Graph<A>`](/zh/api/datastructures/graph) | 图类型（邻接表） |
+| [`LinkedList<T>`](/zh/api/datastructures/linkedlist) | 链表类型 |
+| [`Stack<T>`](/zh/api/datastructures/stack) | 栈类型（LIFO） |
+| [`Queue<T>`](/zh/api/datastructures/queue) | 队列类型（FIFO） |
+
+### [HTTP & API](#http-api-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`HTTPMethod`](/zh/api/http/httpmethod) | HTTP 方法联合 |
+| [`HTTPStatus`](/zh/api/http/httpstatus) | HTTP 状态码 |
+| [`Route<P, M, H>`](/zh/api/http/route) | 路由定义 |
+| [`Middleware<C>`](/zh/api/http/middleware) | 中间件函数 |
+
+### [数据库](#数据库-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`SQLType<T>`](/zh/api/database/sqltype) | TS 到 SQL 类型映射 |
+| [`QueryBuilder<T>`](/zh/api/database/querybuilder) | 查询构建器 |
+| [`Migration<T>`](/zh/api/database/migration) | 迁移定义 |
+
+### [并发](#并发-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Task<T>`](/zh/api/concurrency/task) | 任务类型 |
+| [`Pipeline<I, O>`](/zh/api/concurrency/pipeline) | 管道类型 |
+| [`Scheduler<T>`](/zh/api/concurrency/scheduler) | 调度器类型 |
+| [`WorkerPool<I, O>`](/zh/api/concurrency/workerpool) | 工作池类型 |
+
+### [互操作](#互操作-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`ToTypeFest<T>`](/zh/api/interop/totypefest) | 转换为 type-fest |
+| [`ToTsToolbelt<T>`](/zh/api/interop/totoolbelt) | 转换为 ts-toolbelt |
+| [`IsCompatible<T, U>`](/zh/api/interop/iscompatible) | 检查类型兼容性 |
+
+### [测试](#测试-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`ExpectTrue<T>`](/zh/api/testing/expecttrue) | 期望类型为 true |
+| [`ExpectEqual<T, U>`](/zh/api/testing/expectequal) | 期望类型相等 |
+| [`TypeCoverage<T>`](/zh/api/testing/typecoverage) | 类型覆盖分析 |
+| [`TypeComplexity<T>`](/zh/api/testing/typecomplexity) | 类型复杂度分析 |
+
+### [断言](#断言-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`AssertEqual<T, Expected>`](/zh/api/assert/assertequal) | 断言类型相等 |
+| [`AssertExtends<T, U>`](/zh/api/assert/assertextends) | 断言 T 继承 U |
+| [`AssertKeyof<T, K>`](/zh/api/assert/assertkeyof) | 断言 K 是 T 的键 |
+| [`AssertNotNil<T>`](/zh/api/assert/assertnotnil) | 断言类型不是 never |
+| [`RequireKeys<T, K>`](/zh/api/assert/requirekeys) | 要求特定键 |
+| [`MakeOptional<T, K>`](/zh/api/assert/makeoptional) | 使特定键可选 |
+| [`RequireAtLeastOne<T, K>`](/zh/api/assert/requireatleastone) | 要求至少一个键 |
+| [`RequireExactlyOne<T, K>`](/zh/api/assert/requireexactlyone) | 要求恰好一个键 |
+| [`AssertHasProperty<T, K>`](/zh/api/assert/asserthasproperty) | 确保对象有属性 |
+| [`RequireNotNullish<T>`](/zh/api/assert/requirenotnullish) | 确保类型非空 |
+| [`RequireArray<T>`](/zh/api/assert/requirearray) | 确保类型为数组 |
+| [`RequireFunction<T>`](/zh/api/assert/requirefunction) | 确保类型为函数 |
+
+### [异步](#异步-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`PromiseValue<T>`](/zh/api/async/promisevalue) | 递归提取 Promise 值 |
+| [`PromiseResult<T>`](/zh/api/async/promiseresult) | 获取 Promise 解析值 |
+| [`IsPromise<T>`](/zh/api/async/ispromise) | 检查是否为 Promise |
+| [`UnwrapPromise<T>`](/zh/api/async/unwrappromise) | 解包 Promise |
+| [`WrapPromise<T>`](/zh/api/async/wrappromise) | 包装为 Promise |
+| [`PromiseSettledResult<T>`](/zh/api/async/promisesettledresult) | Promise 结算结果 |
+
+### [集合](#集合-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`TypeSet<T>`](/zh/api/collection/typeset) | 类型级别集合 |
+| [`SetAdd<S, T>`](/zh/api/collection/setadd) | 向集合添加元素 |
+| [`SetRemove<S, T>`](/zh/api/collection/setremove) | 从集合移除元素 |
+| [`SetHas<S, T>`](/zh/api/collection/sethas) | 检查元素是否在集合中 |
+| [`SetUnion<A, B>`](/zh/api/collection/setunion) | 集合并集 |
+| [`SetIntersection<A, B>`](/zh/api/collection/setintersection) | 集合交集 |
+| [`SetDifference<A, B>`](/zh/api/collection/setdifference) | 集合差集 |
+| [`SetIsEmpty<S>`](/zh/api/collection/setisempty) | 检查集合是否为空 |
+| [`SetIsSubset<A, B>`](/zh/api/collection/setissubset) | 检查 A 是否为 B 子集 |
+| [`TypeMap<K, V>`](/zh/api/collection/typemap) | 类型级别映射 |
+| [`MapGet<M, K>`](/zh/api/collection/mapget) | 获取映射值 |
+| [`MapSet<M, K, V>`](/zh/api/collection/mapset) | 设置映射值 |
+| [`MapHas<M, K>`](/zh/api/collection/maphas) | 检查键是否在映射中 |
+| [`MapDelete<M, K>`](/zh/api/collection/mapdelete) | 删除映射键 |
+| [`MapKeys<M>`](/zh/api/collection/mapkeys) | 获取映射键 |
+| [`MapValues<M>`](/zh/api/collection/mapvalues) | 获取映射值 |
+| [`ListLength<T>`](/zh/api/collection/listlength) | 获取列表长度 |
+| [`ListReverse<T>`](/zh/api/collection/listreverse) | 反转列表 |
+| [`ListConcat<A, B>`](/zh/api/collection/listconcat) | 连接列表 |
+| [`ListFilter<T, P>`](/zh/api/collection/listfilter) | 过滤列表元素 |
+| [`ListFind<T, P>`](/zh/api/collection/listfind) | 在列表中查找元素 |
+| [`ListIncludes<T, U>`](/zh/api/collection/listincludes) | 检查列表是否包含 |
+
+### [对象](#对象-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`ObjectMap<T, F>`](/zh/api/object/objectmap) | 映射对象值 |
+| [`ObjectFilter<T, P>`](/zh/api/object/objectfilter) | 过滤对象属性 |
+| [`ObjectPickByType<T, U>`](/zh/api/object/objectpickbytype) | 按值类型选取 |
+| [`ObjectOmitByType<T, U>`](/zh/api/object/objectomitbytype) | 按值类型省略 |
+| [`ObjectInvert<T>`](/zh/api/object/objectinvert) | 反转键值 |
+| [`DeepMerge<T, U>`](/zh/api/object/deepmerge) | 深度合并对象 |
+| [`DeepAssign<T, U>`](/zh/api/object/deepassign) | 深度赋值属性 |
+| [`DeepDefaults<T, U>`](/zh/api/object/deepdefaults) | 深度默认值 |
+| [`HasProperty<T, K>`](/zh/api/object/hasproperty) | 检查是否有属性 |
+| [`HasProperties<T, K>`](/zh/api/object/hasproperties) | 检查是否有多个属性 |
+| [`HasMethod<T, K>`](/zh/api/object/hasmethod) | 检查是否有方法 |
+
+### [模式匹配](#模式匹配-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Match<T, Patterns>`](/zh/api/pattern/match) | 模式匹配 |
+| [`Case<P>`](/zh/api/pattern/case) | 匹配用例 |
+| [`Default<R>`](/zh/api/pattern/default) | 默认用例 |
+| [`TypeFilter<T, P>`](/zh/api/pattern/typefilter) | 按谓词过滤元组 |
+| [`TypeFind<T, P>`](/zh/api/pattern/typefind) | 按谓词查找元素 |
+| [`TypeIncludes<T, P>`](/zh/api/pattern/typeincludes) | 检查类型是否在元组中 |
+
+### [字符串](#字符串-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Split<S, D>`](/zh/api/string/split) | 按分隔符拆分字符串 |
+| [`Join<T, S>`](/zh/api/string/join) | 用分隔符连接字符串 |
+| [`KebabCase<S>`](/zh/api/string/kebab-case) | 转换为 kebab-case |
+| [`PascalCase<S>`](/zh/api/string/pascal-case) | 转换为 PascalCase |
+| [`IsEmail<T>`](/zh/api/string/isemail) | 检查是否为邮箱格式 |
+| [`IsUUID<T>`](/zh/api/string/isuuid) | 检查是否为 UUID 格式 |
+| [`IsURL<T>`](/zh/api/string/isurl) | 检查是否为 URL 格式 |
+| [`Chunk<S, N>`](/zh/api/string/chunk) | 将字符串分块 |
+
+### [性能优化](#性能优化-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Simplify<T>`](/zh/api/perf/simplify) | 简化复杂类型 |
+| [`DeepSimplify<T>`](/zh/api/perf/deep-simplify) | 深度简化类型 |
+| [`Cached<T>`](/zh/api/perf/cached) | 缓存类型计算 |
+| [`CachedValue<T>`](/zh/api/perf/cachedvalue) | 提取缓存值 |
+| [`Memoized<T>`](/zh/api/perf/memoized) | 记忆化类型 |
+| [`Lazy<T>`](/zh/api/perf/lazy) | 延迟类型包装 |
+| [`ForceEvaluate<T>`](/zh/api/perf/forceevaluate) | 强制求值延迟类型 |
+| [`Deferred<T>`](/zh/api/perf/deferred) | 延迟类型展开 |
+| [`FlattenType<T>`](/zh/api/perf/flattentype) | 展平交叉类型 |
+| [`StripNever<T>`](/zh/api/perf/stripnever) | 移除 never 属性 |
+| [`StripUndefined<T>`](/zh/api/perf/stripundefined) | 移除 undefined 属性 |
+| [`Compact<T>`](/zh/api/perf/compact) | 移除 never 和 undefined |
+
+### [Schema](#schema-1)
+
+| 类型 | 描述 |
+|------|-------------|
+| [`RuntimeGuard<T>`](/zh/api/schema/runtime-guard) | 运行时类型守卫 |
+| [`GuardedType<G>`](/zh/api/schema/guarded-type) | 提取守卫类型 |
+| [`HasRuntimeCheck<T>`](/zh/api/schema/hasruntimecheck) | 检查是否有运行时检查 |
+| [`CompositeGuard<T>`](/zh/api/collection/compositeguard) | 组合对象守卫 |
+| [`ZodOutput<T>`](/zh/api/schema/zod-output) | 提取 Zod 输出类型 |
+| [`ZodInput<T>`](/zh/api/schema/zod-input) | 提取 Zod 输入类型 |
+| [`IsZodSchema<T>`](/zh/api/schema/iszodschema) | 检查是否为 Zod schema |
+| [`ZodShape<T>`](/zh/api/schema/zodshape) | 提取 Zod shape |
+| [`ZodArrayElement<T>`](/zh/api/schema/zodarrayelement) | 获取 Zod 数组元素 |
+| [`YupOutput<T>`](/zh/api/schema/yup-output) | 提取 Yup 输出类型 |
+| [`YupInput<T>`](/zh/api/schema/yup-input) | 提取 Yup 输入类型 |
+| [`IsYupSchema<T>`](/zh/api/schema/isyupschema) | 检查是否为 Yup schema |
