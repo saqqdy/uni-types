@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **500+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **600+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -703,6 +703,184 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `BPMNTask<T>` | BPMN task |
 | `BPMNGateway<T>` | BPMN gateway |
 | `BPMNEvent<T>` | BPMN event |
+
+### AI/ML Types *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Tensor<Shape, DType>` | Tensor with shape and data type |
+| `TensorShape` | Tensor shape type |
+| `TensorDType` | Tensor data types (float32, int32, etc.) |
+| `Model<Input, Output>` | Model type |
+| `ModelConfig<T>` | Model configuration |
+| `Layer<T>` | Neural network layer |
+| `LayerType` | Layer types (dense, conv2d, lstm, etc.) |
+| `Optimizer` | Optimizer types (adam, sgd, rmsprop) |
+| `LossFunction` | Loss functions (mse, crossentropy) |
+| `MLMetric` | ML metrics (accuracy, precision, recall) |
+| `Dataset<T>` | Dataset type |
+| `DataLoader<T>` | Data loader type |
+| `Batch<T>` | Batch type |
+| `InferenceResult<T>` | Inference result |
+| `Prediction<T>` | Prediction result |
+
+### Functional Programming *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Functor<T>` | Functor type |
+| `Monad<T>` | Monad type |
+| `Applicative<T>` | Applicative type |
+| `Maybe<T>` | Maybe monad (Some/None) |
+| `Either<L, R>` | Either monad (Left/Right) |
+| `IO<T>` | IO monad |
+| `Reader<R, T>` | Reader monad |
+| `Writer<W, T>` | Writer monad |
+| `State<S, T>` | State monad |
+| `Result<T, E>` | Result type (Ok/Err) |
+| `Lens<S, A>` | Lens for deep access |
+| `Semigroup<T>` | Semigroup type |
+| `Monoid<T>` | Monoid type |
+| `Compose` | Function composition |
+| `Pipe` | Pipeline composition |
+| `Curry` | Curried function |
+
+### Type-Level Compiler *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `ASTNode<T>` | AST node type |
+| `ASTNodeType` | AST node types |
+| `Token<T>` | Token type |
+| `TokenType` | Token types (keyword, identifier, etc.) |
+| `Parser<T>` | Parser type |
+| `ParserResult<T>` | Parser result |
+| `CodeGenerator<T>` | Code generator |
+| `GeneratedCode` | Generated code type |
+| `Transformer<T>` | AST transformer |
+| `Formatter` | Code formatter |
+
+### Distributed Systems *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Consensus<T>` | Consensus protocol |
+| `ConsensusState` | Consensus states (leader, follower, candidate) |
+| `Replica<T>` | Replica type |
+| `ReplicationStrategy` | Replication strategies (sync, async) |
+| `Partition<T>` | Partition type |
+| `PartitionStrategy` | Partition strategies (hash, range) |
+| `ConsistencyLevel` | Consistency levels (strong, eventual) |
+| `DistributedLock<T>` | Distributed lock |
+| `TwoPhaseCommit<T>` | Two-phase commit protocol |
+| `TransactionState` | Transaction states |
+| `FailureDetector<T>` | Failure detector |
+| `Heartbeat<T>` | Heartbeat type |
+
+### Security Types *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Authentication<T>` | Authentication configuration |
+| `AuthType` | Auth types (bearer, jwt, oauth2) |
+| `AuthStatus` | Auth status (authenticated, failed) |
+| `Session<T>` | Session type |
+| `Encryption<T>` | Encryption configuration |
+| `EncryptionAlgorithm` | Encryption algorithms |
+| `Hash<T>` | Hash type |
+| `HashAlgorithm` | Hash algorithms (sha256, blake3) |
+| `Signature<T>` | Signature type |
+| `SignatureAlgorithm` | Signature algorithms |
+| `JWT<T>` | JWT token type |
+| `OAuthToken` | OAuth token |
+| `CSRFToken` | CSRF token |
+
+### Internationalization *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Locale` | Locale configuration |
+| `LocaleCode` | Locale codes (en-US, zh-CN, etc.) |
+| `LanguageCode` | Language codes |
+| `CountryCode` | Country codes |
+| `Translation<T>` | Translation mapping |
+| `PluralForm` | Plural forms (one, many, etc.) |
+| `Currency` | Currency types (USD, EUR, CNY) |
+| `TimeZone` | Time zone types |
+| `DateFormat` | Date format configuration |
+| `NumberFormat` | Number format configuration |
+| `Direction` | Text direction (ltr, rtl) |
+
+### Testing Framework *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `TestSuite<T>` | Test suite type |
+| `TestCase<T>` | Test case type |
+| `TestResultType` | Test result (passed, failed, skipped) |
+| `Assertion<T>` | Assertion type |
+| `Mock<T>` | Mock type |
+| `Spy<T>` | Spy type |
+| `Fixture<T>` | Fixture type |
+| `Coverage` | Coverage configuration |
+| `CoverageReport<T>` | Coverage report |
+| `Snapshot<T>` | Snapshot type |
+| `Benchmark<T>` | Benchmark type |
+| `BenchmarkResult<T>` | Benchmark result |
+
+### Plugin System *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Plugin<T>` | Plugin type |
+| `PluginLifecycle` | Plugin lifecycle events |
+| `Hook<T>` | Hook type |
+| `HookResult<T>` | Hook result |
+| `Extension<T>` | Extension type |
+| `ExtensionPoint<T>` | Extension point |
+| `Middleware<T>` | Middleware type |
+| `MiddlewarePipeline<T>` | Middleware pipeline |
+| `Module<T>` | Module type |
+| `Registry<T>` | Registry type |
+
+### Type Inference *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Infer<T>` | Extract type from wrapper |
+| `InferReturn<T>` | Extract return type |
+| `InferArgs<T>` | Extract function arguments |
+| `ExtractFunction<T>` | Extract function type |
+| `ExtractClass<T>` | Extract class type |
+| `Reconstruct<T>` | Reconstruct type |
+| `Narrow<T>` | Narrow type with predicate |
+| `Widen<T>` | Widen literal to primitive |
+| `IsAny<T>` | Check if type is any |
+| `IsNever<T>` | Check if type is never |
+| `IsUnknown<T>` | Check if type is unknown |
+| `IsFunction<T>` | Check if type is function |
+| `IsArray<T>` | Check if type is array |
+| `IsUnion<T>` | Check if type is union |
+| `Equals<X, Y>` | Check type equality |
+| `TypeName<T>` | Get type name |
+| `TypeCategory` | Type category |
+
+### Performance Monitoring *(v1.6.0)*
+
+| Type | Description |
+|------|-------------|
+| `Performance` | Performance monitoring |
+| `PerformanceMetric<T>` | Performance metric |
+| `Timing` | Timing operations |
+| `TimingResult` | Timing result |
+| `MemoryUsage` | Memory usage type |
+| `MemoryMetric<T>` | Memory metric |
+| `CPUUsage` | CPU usage type |
+| `Profiler` | Profiler type |
+| `ProfileResult<T>` | Profile result |
+| `TraceSpan<T>` | Tracing span |
+| `PerformanceTrace<T>` | Performance trace |
+| `PerformanceAlert` | Performance alert |
 
 ## Examples
 

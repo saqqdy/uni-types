@@ -10,7 +10,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.3.0](#130) - Advanced type patterns & extended ecosystem (2026-04-17)
 - [x] [1.4.0](#140) - Type-level programming & algorithms (2026-04-18)
 - [x] [1.5.0](#150) - Enterprise patterns & real-time systems (2026-04-19)
-- [ ] [1.6.0](#160) - AI/ML & advanced type system (Planned)
+- [x] [1.6.0](#160) - AI/ML & advanced type system (2026-04-19)
 - [ ] [1.7.0](#170) - Metaprogramming & advanced utilities (Planned)
 - [ ] [1.8.0](#180) - Type inference engine & developer tools (Planned)
 - [ ] [1.9.0](#190) - Advanced domain-specific types (Planned)
@@ -1204,7 +1204,7 @@ export type BPMNEvent<T> = ...
 
 ---
 
-## [1.6.0] - Planned
+## [1.6.0] - 2026-04-19
 
 ### New Features
 

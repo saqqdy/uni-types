@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **500+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **600+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -703,6 +703,184 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `BPMNTask<T>` | BPMN 任务 |
 | `BPMNGateway<T>` | BPMN 网关 |
 | `BPMNEvent<T>` | BPMN 事件 |
+
+### AI/ML 类型 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Tensor<Shape, DType>` | 具有形状和数据类型的张量 |
+| `TensorShape` | 张量形状类型 |
+| `TensorDType` | 张量数据类型 (float32, int32 等) |
+| `Model<Input, Output>` | 模型类型 |
+| `ModelConfig<T>` | 模型配置 |
+| `Layer<T>` | 神经网络层 |
+| `LayerType` | 层类型 (dense, conv2d, lstm 等) |
+| `Optimizer` | 优化器 (adam, sgd, rmsprop) |
+| `LossFunction` | 损失函数 (mse, crossentropy) |
+| `MLMetric` | ML 指标 (accuracy, precision, recall) |
+| `Dataset<T>` | 数据集类型 |
+| `DataLoader<T>` | 数据加载器类型 |
+| `Batch<T>` | 批次类型 |
+| `InferenceResult<T>` | 推理结果 |
+| `Prediction<T>` | 预测结果 |
+
+### 函数式编程 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Functor<T>` | Functor 类型 |
+| `Monad<T>` | Monad 类型 |
+| `Applicative<T>` | Applicative 类型 |
+| `Maybe<T>` | Maybe 单子 (Some/None) |
+| `Either<L, R>` | Either 单子 (Left/Right) |
+| `IO<T>` | IO 单子 |
+| `Reader<R, T>` | Reader 单子 |
+| `Writer<W, T>` | Writer 单子 |
+| `State<S, T>` | State 单子 |
+| `Result<T, E>` | Result 类型 (Ok/Err) |
+| `Lens<S, A>` | 用于深层访问的 Lens |
+| `Semigroup<T>` | Semigroup 类型 |
+| `Monoid<T>` | Monoid 类型 |
+| `Compose` | 函数组合 |
+| `Pipe` | 管道组合 |
+| `Curry` | 柯里化函数 |
+
+### 类型级编译器 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ASTNode<T>` | AST 节点类型 |
+| `ASTNodeType` | AST 节点类型 |
+| `Token<T>` | 词法单元类型 |
+| `TokenType` | 词法类型 (keyword, identifier 等) |
+| `Parser<T>` | 解析器类型 |
+| `ParserResult<T>` | 解析器结果 |
+| `CodeGenerator<T>` | 代码生成器 |
+| `GeneratedCode` | 生成的代码类型 |
+| `Transformer<T>` | AST 转换器 |
+| `Formatter` | 代码格式化器 |
+
+### 分布式系统 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Consensus<T>` | 共识协议 |
+| `ConsensusState` | 共识状态 (leader, follower, candidate) |
+| `Replica<T>` | 副本类型 |
+| `ReplicationStrategy` | 复制策略 (sync, async) |
+| `Partition<T>` | 分区类型 |
+| `PartitionStrategy` | 分区策略 (hash, range) |
+| `ConsistencyLevel` | 一致性级别 (strong, eventual) |
+| `DistributedLock<T>` | 分布式锁 |
+| `TwoPhaseCommit<T>` | 两阶段提交协议 |
+| `TransactionState` | 事务状态 |
+| `FailureDetector<T>` | 故障检测器 |
+| `Heartbeat<T>` | 心跳类型 |
+
+### 安全类型 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Authentication<T>` | 身份验证配置 |
+| `AuthType` | 认证类型 (bearer, jwt, oauth2) |
+| `AuthStatus` | 认证状态 (authenticated, failed) |
+| `Session<T>` | 会话类型 |
+| `Encryption<T>` | 加密配置 |
+| `EncryptionAlgorithm` | 加密算法 |
+| `Hash<T>` | 哈希类型 |
+| `HashAlgorithm` | 哈希算法 (sha256, blake3) |
+| `Signature<T>` | 签名类型 |
+| `SignatureAlgorithm` | 签名算法 |
+| `JWT<T>` | JWT 令牌类型 |
+| `OAuthToken` | OAuth 令牌 |
+| `CSRFToken` | CSRF 令牌 |
+
+### 国际化 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Locale` | 语言环境配置 |
+| `LocaleCode` | 语言环境代码 (en-US, zh-CN 等) |
+| `LanguageCode` | 语言代码 |
+| `CountryCode` | 国家代码 |
+| `Translation<T>` | 翻译映射 |
+| `PluralForm` | 复数形式 (one, many 等) |
+| `Currency` | 货币类型 (USD, EUR, CNY) |
+| `TimeZone` | 时区类型 |
+| `DateFormat` | 日期格式配置 |
+| `NumberFormat` | 数字格式配置 |
+| `Direction` | 文本方向 (ltr, rtl) |
+
+### 测试框架 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `TestSuite<T>` | 测试套件类型 |
+| `TestCase<T>` | 测试用例类型 |
+| `TestResultType` | 测试结果 (passed, failed, skipped) |
+| `Assertion<T>` | 断言类型 |
+| `Mock<T>` | Mock 类型 |
+| `Spy<T>` | Spy 类型 |
+| `Fixture<T>` | Fixture 类型 |
+| `Coverage` | 覆盖率配置 |
+| `CoverageReport<T>` | 覆盖率报告 |
+| `Snapshot<T>` | 快照类型 |
+| `Benchmark<T>` | 基准测试类型 |
+| `BenchmarkResult<T>` | 基准测试结果 |
+
+### 插件系统 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Plugin<T>` | 插件类型 |
+| `PluginLifecycle` | 插件生命周期事件 |
+| `Hook<T>` | 钩子类型 |
+| `HookResult<T>` | 钩子结果 |
+| `Extension<T>` | 扩展类型 |
+| `ExtensionPoint<T>` | 扩展点 |
+| `Middleware<T>` | 中间件类型 |
+| `MiddlewarePipeline<T>` | 中间件管道 |
+| `Module<T>` | 模块类型 |
+| `Registry<T>` | 注册表类型 |
+
+### 类型推断 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Infer<T>` | 从包装类型提取类型 |
+| `InferReturn<T>` | 提取返回类型 |
+| `InferArgs<T>` | 提取函数参数 |
+| `ExtractFunction<T>` | 提取函数类型 |
+| `ExtractClass<T>` | 提取类类型 |
+| `Reconstruct<T>` | 重建类型 |
+| `Narrow<T>` | 使用谓词缩小类型 |
+| `Widen<T>` | 将字面量扩大为原始类型 |
+| `IsAny<T>` | 检查类型是否为 any |
+| `IsNever<T>` | 检查类型是否为 never |
+| `IsUnknown<T>` | 检查类型是否为 unknown |
+| `IsFunction<T>` | 检查类型是否为函数 |
+| `IsArray<T>` | 检查类型是否为数组 |
+| `IsUnion<T>` | 检查类型是否为联合类型 |
+| `Equals<X, Y>` | 检查类型相等 |
+| `TypeName<T>` | 获取类型名称 |
+| `TypeCategory` | 类型类别 |
+
+### 性能监控 *(v1.6.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Performance` | 性能监控 |
+| `PerformanceMetric<T>` | 性能指标 |
+| `Timing` | 计时操作 |
+| `TimingResult` | 计时结果 |
+| `MemoryUsage` | 内存使用类型 |
+| `MemoryMetric<T>` | 内存指标 |
+| `CPUUsage` | CPU 使用类型 |
+| `Profiler` | 分析器类型 |
+| `ProfileResult<T>` | 分析结果 |
+| `TraceSpan<T>` | 追踪跨度 |
+| `PerformanceTrace<T>` | 性能追踪 |
+| `PerformanceAlert` | 性能告警 |
 
 ## 示例
 
