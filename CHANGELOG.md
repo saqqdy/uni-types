@@ -2,6 +2,341 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2026-04-19
+
+### Added
+
+#### Authorization & Permissions
+- `Permission<T>` - Permission definition type
+- `PermissionSet<T>` - Set or array of permissions
+- `PermissionGrant<T>` - Permission grant record
+- `PermissionDeny<T>` - Permission deny record
+- `PermissionCondition<T>` - Condition for permission evaluation
+- `ConditionOperator` - Condition operators (eq, ne, gt, gte, lt, lte, in, notIn, etc.)
+- `PermissionCheckResult` - Result of permission check
+- `Role<T>` - Role definition type
+- `RoleSet<T>` - Set or array of roles
+- `RolePermission<R, P>` - Role-permission mapping
+- `RoleHierarchy<T>` - Role hierarchy definition
+- `Policy` - Policy definition for ABAC
+- `PolicyRule<T>` - Policy rule type
+- `PolicyEffect` - Policy effect (allow/deny)
+- `PolicyCondition<T>` - Policy condition type
+- `PolicyContext<T>` - Policy evaluation context
+- `PolicyResult` - Policy evaluation result
+- `AccessControl<T>` - Access control interface
+- `ACL` - Access Control List type
+- `ACLEntry` - ACL entry type
+- `Resource<T>` - Resource type for authorization
+- `Action` - Action type (create, read, update, delete, etc.)
+- `RBAC<R, P>` - Role-Based Access Control interface
+- `RBACConfig<R, P>` - RBAC configuration
+- `ABAC<T>` - Attribute-Based Access Control interface
+- `Attribute<T>` - Attribute definition
+- `AttributeValue<T>` - Attribute value with source
+- `ABACConfig` - ABAC configuration
+- `AuthorizationProvider<T>` - Authorization provider interface
+- `AuthorizationOptions` - Authorization options
+
+#### Caching Strategies
+- `Cache<T>` - Cache interface
+- `CacheEntry<T>` - Cache entry type
+- `CacheKey` - Cache key type
+- `CacheKeyBuilder` - Cache key builder function
+- `CacheValue<T>` - Cache value type
+- `CacheOptions` - Cache options (TTL, tags, priority)
+- `CacheStats` - Cache statistics (hits, misses, evictions)
+- `HitRate` - Hit rate type
+- `MissRate` - Miss rate type
+- `CacheStrategy` - Cache strategy types (lru, lfu, fifo, ttl, arc, etc.)
+- `LRUCache<T>` - LRU Cache interface
+- `LFUCache<T>` - LFU Cache interface
+- `TTLCache<T>` - TTL Cache interface
+- `FIFOCache<T>` - FIFO Cache interface
+- `ARCCache<T>` - Adaptive Replacement Cache interface
+- `CacheInvalidation<T>` - Cache invalidation interface
+- `InvalidationRule<T>` - Invalidation rule definition
+- `InvalidationStrategy` - Invalidation strategy types
+- `InvalidationEvent<T>` - Invalidation event type
+- `DistributedCache<T>` - Distributed cache interface
+- `CacheCluster` - Cache cluster configuration
+- `CacheNode` - Cache node type
+- `ConsistentHash` - Consistent hashing interface
+- `CacheDecoratorOptions` - Cache decorator options
+- `CacheAside<T>` - Cache-aside pattern
+- `ReadThroughCache<T>` - Read-through cache pattern
+- `WriteThroughCache<T>` - Write-through cache pattern
+- `WriteBehindCache<T>` - Write-behind cache pattern
+- `CacheSerializer<T>` - Cache serializer interface
+- `CacheCompressionOptions` - Cache compression options
+
+#### Configuration Management
+- `Config<T>` - Configuration type
+- `ConfigField<T>` - Configuration field definition
+- `ConfigFieldType` - Configuration field types
+- `ConfigFileFormat` - Configuration file formats
+- `ConfigLoader<T>` - Configuration loader interface
+- `ConfigLoaderOptions` - Configuration loader options
+- `ConfigPriority` - Configuration priority levels
+- `ConfigSchema<T>` - Configuration schema definition
+- `ConfigValidationResult<T>` - Configuration validation result
+- `ConfigValidator<T>` - Configuration validator interface
+- `ConfigValue<T>` - Configuration value wrapper
+- `ConfigError` - Configuration error type
+- `ConfigWarning` - Configuration warning type
+- `EnvConfig` - Environment configuration type
+- `EnvMapping` - Environment variable mapping
+- `EnvVar` - Environment variable definition
+- `ParseEnvResult<T>` - Environment parsing result
+- `FeatureFlag` - Feature flag type
+- `FeatureFlagConfig` - Feature flag configuration
+- `FeatureFlags<T>` - Feature flags collection
+- `FeatureFlagVariant<T>` - Feature flag variant
+- `FeatureTargeting` - Feature targeting rules
+- `TargetingOperator` - Targeting operators
+- `RemoteConfigProvider<T>` - Remote configuration provider
+- `Secret` - Secret value type
+- `SecretConfig` - Secret configuration
+- `SecretOptions` - Secret options
+- `SecretProvider` - Secret provider interface
+
+#### Event-Driven Architecture
+- `BaseEvent<T>` - Base event type
+- `EventTimestamp` - Event timestamp type
+- `EventVersion` - Event version type
+- `EventBus<T>` - Event bus interface
+- `EventBusConfig` - Event bus configuration
+- `EventBusHandler<T>` - Event handler type
+- `EventBusMiddleware<T>` - Event bus middleware
+- `EventStream<T>` - Event stream type
+- `AggregateEvents<E>` - Aggregate events type
+- `PublishOptions` - Event publish options
+- `Command<T>` - Command type for CQRS
+- `CommandBus<T>` - Command bus interface
+- `CommandHandler<T, R>` - Command handler type
+- `CommandResult<T>` - Command result type
+- `Query<T>` - Query type for CQRS
+- `QueryBus<T>` - Query bus interface
+- `QueryHandler<T, R>` - Query handler type
+- `QueryResult<T>` - Query result type
+- `Saga<T>` - Saga orchestrator type
+- `SagaStep<T>` - Saga step definition
+- `SagaResult<T>` - Saga result type
+- `SagaStatus` - Saga status type
+- `SagaCompensation<T>` - Saga compensation type
+- `MessageQueue<T>` - Message queue interface
+- `QueueProducer<T>` - Queue producer interface
+- `QueueConsumer<T>` - Queue consumer interface
+- `QueueMessage<T>` - Queue message type
+- `DeadLetterQueue<T>` - Dead letter queue type
+- `EventStore<T>` - Event store interface
+
+#### GraphQL Integration
+- `GraphQLSchema` - GraphQL schema type
+- `GraphQLType` - GraphQL type wrapper
+- `GraphQLScalar<T>` - GraphQL scalar type
+- `GraphQLEnum<T>` - GraphQL enum type
+- `GraphQLInput<T>` - GraphQL input type
+- `GraphQLInterface<T>` - GraphQL interface type
+- `GraphQLUnion<T>` - GraphQL union type
+- `GraphQLObject<T>` - GraphQL object type
+- `GraphQLField<T, A, R>` - GraphQL field type
+- `GraphQLArgument<T>` - GraphQL argument type
+- `GraphQLResolveInfo` - GraphQL resolve info
+- `GraphQLContext<T>` - GraphQL context type
+- `GraphQLResolver<T, A, R>` - GraphQL resolver type
+- `GraphQLSubscription<T>` - GraphQL subscription type
+- `GraphQLMutation<T>` - GraphQL mutation type
+- `GraphQLQuery<T>` - GraphQL query type
+- `GraphQLDirective<T>` - GraphQL directive type
+- `GraphQLResult<T>` - GraphQL result wrapper
+- `GraphQLError` - GraphQL error type
+- `GraphQLExecutionResult<T>` - GraphQL execution result
+- `GraphQLVariables` - GraphQL variables type
+- `GraphQLOperation<T>` - GraphQL operation type
+- `GraphQLFragment<T>` - GraphQL fragment type
+
+#### Logging & Observability
+- `Logger<T>` - Logger interface
+- `LogLevel` - Log level types (trace, debug, info, warn, error, fatal)
+- `LogEntry<T>` - Log entry type
+- `LogContext<T>` - Log context type
+- `LoggerConfig<T>` - Logger configuration
+- `LogTransport` - Log transport type
+- `Metric<T>` - Metric type
+- `MetricType` - Metric types (counter, gauge, histogram, summary)
+- `Counter<T>` - Counter metric interface
+- `Gauge<T>` - Gauge metric interface
+- `Histogram` - Histogram metric interface
+- `Summary` - Summary metric interface
+- `MetricsRegistry` - Metrics registry interface
+- `Span` - Tracing span type
+- `SpanKind` - Span kind types
+- `SpanStatus` - Span status types
+- `SpanEvent` - Span event type
+- `SpanLink` - Span link type
+- `SpanOptions` - Span options
+- `Trace<T>` - Trace type
+- `TraceStatus` - Trace status types
+- `TraceContext` - Trace context type
+- `Tracer` - Tracer interface
+- `Monitor` - Monitor type
+- `MonitorStatus` - Monitor status types
+- `MonitorResult<T>` - Monitor result type
+- `Alert<T>` - Alert type
+- `AlertSeverity` - Alert severity types
+- `AlertStatus` - Alert status types
+- `AlertRule<T>` - Alert rule definition
+- `AlertConfig` - Alert configuration
+- `AlertReceiver` - Alert receiver type
+- `AlertRoute` - Alert routing type
+- `InhibitRule` - Alert inhibition rule
+- `HealthIndicator<T>` - Health indicator interface
+- `HealthCheckResult<T>` - Health check result type
+- `LivenessCheck` - Liveness check type
+- `ReadinessCheck` - Readiness check type
+
+#### Microservices Architecture
+- `Microservice<T>` - Microservice type
+- `ServiceConfig<T>` - Service configuration
+- `ServiceRegistry<T>` - Service registry interface
+- `ServiceInstance` - Service instance type
+- `InstanceStatus` - Instance status types
+- `ServiceDiscovery<T>` - Service discovery interface
+- `ServiceClient<T>` - Service client interface
+- `ServiceRequest<T>` - Service request type
+- `ServiceResponse<T>` - Service response type
+- `ServiceError` - Service error type
+- `HealthCheck` - Health check interface
+- `HealthReport` - Health report type
+- `HealthStatus` - Health status types
+- `CircuitBreaker<T>` - Circuit breaker interface
+- `CircuitBreakerConfig` - Circuit breaker configuration
+- `CircuitBreakerState` - Circuit breaker states
+- `CircuitBreakerStats` - Circuit breaker statistics
+- `RateLimit` - Rate limit type
+- `RetryPolicy` - Retry policy type
+- `LoadBalancer<T>` - Load balancer interface
+- `LoadBalancerStrategy` - Load balancing strategies
+- `APIGateway<T>` - API Gateway type
+- `GatewayConfig` - Gateway configuration
+- `GatewayRoute` - Gateway route type
+- `GatewayMiddleware` - Gateway middleware type
+- `CORSConfig` - CORS configuration
+- `AuthConfig` - Authentication configuration
+
+#### Validation Rules
+- `ValidationRule<T>` - Validation rule type
+- `Validator<T>` - Validator function type
+- `ValidatorResult<T>` - Validator result type
+- `ValidationError` - Validation error type
+- `ValidationOptions` - Validation options
+- `ValidationContext<T>` - Validation context type
+- `CustomValidator<T>` - Custom validator type
+- `OrValidator<T>` - OR validator composition
+- `NotValidator<T>` - NOT validator composition
+- `StringFieldValidator<T>` - String field validator
+- `NumberFieldValidator<T>` - Number field validator
+- `BooleanFieldValidator<T>` - Boolean field validator
+- `DateFieldValidator<T>` - Date field validator
+- `ArrayFieldValidator<T>` - Array field validator
+- `ObjectFieldValidator<T>` - Object field validator
+- `SchemaBuilder<T>` - Schema builder interface
+- `MinLength` - Minimum length constraint
+- `MaxLength` - Maximum length constraint
+- `MinValue` - Minimum value constraint
+- `MaxValue` - Maximum value constraint
+- `Pattern` - Regex pattern constraint
+- `EmailConstraint` - Email validation constraint
+- `URLConstraint` - URL validation constraint
+- `UUIDConstraint` - UUID validation constraint
+- `Sanitizer<T>` - Sanitizer function type
+- `SanitizationRule<T>` - Sanitization rule type
+- `SanitizeResult<T>` - Sanitization result type
+- `StringSanitizer` - String sanitizer type
+- `NumberSanitizer` - Number sanitizer type
+
+#### WebSocket & Real-Time
+- `WebSocketConfig` - WebSocket configuration
+- `WebSocketOptions` - WebSocket options
+- `WebSocketState` - WebSocket state types
+- `WebSocketMessage<T>` - WebSocket message type
+- `WebSocketEvent<T>` - WebSocket event type
+- `WebSocketHandler<T>` - WebSocket handler type
+- `EventHandler<T>` - Event handler type
+- `EventEmitter<T>` - Event emitter interface
+- `EventMap` - Event map type
+- `EventListenerOptions` - Event listener options
+- `EventPayload<T>` - Event payload type
+- `TypedEventTarget<T>` - Typed EventTarget interface
+- `PubSub<T>` - Pub/Sub interface
+- `Publisher<T>` - Publisher interface
+- `Subscriber<T>` - Subscriber interface
+- `SubscriptionOptions` - Subscription options
+- `RealTimeChannel<T>` - Real-time channel type
+- `RealTimeClient<T>` - Real-time client type
+- `RealTimeMessage<T>` - Real-time message type
+- `RealTimeSubscription<T>` - Real-time subscription type
+- `Stream<T>` - Stream interface
+- `StreamReader<T>` - Stream reader interface
+- `StreamWriter<T>` - Stream writer interface
+- `StreamChunk<T>` - Stream chunk type
+- `ReadableStreamLike<T>` - Readable stream type
+- `WritableStreamLike<T>` - Writable stream type
+- `TransformStreamLike<T>` - Transform stream type
+
+#### Workflow Engine
+- `Workflow<T>` - Workflow definition type
+- `WorkflowDefinition<T>` - Workflow definition interface
+- `WorkflowInstance<T>` - Workflow instance type
+- `WorkflowStatus` - Workflow status types
+- `WorkflowStep<T>` - Workflow step type
+- `StepType` - Step types (task, decision, parallel, etc.)
+- `StepResult<T>` - Step result type
+- `StepStatus` - Step status types
+- `WorkflowTransition<T>` - Workflow transition type
+- `TransitionCondition<T>` - Transition condition type
+- `TransitionAction<T>` - Transition action type
+- `WorkflowTimeout` - Workflow timeout configuration
+- `WorkflowExecution<T>` - Workflow execution type
+- `ExecutionStatus` - Execution status types
+- `ExecutionStep<T>` - Execution step type
+- `ExecutionContext<T>` - Execution context type
+- `ExecutionResult<T>` - Execution result type
+- `WorkflowHistory<T>` - Workflow history type
+- `HistoryEntry<T>` - History entry type
+- `HistoryEvent<T>` - History event type
+- `HistoryEventType` - History event types
+- `WorkflowError` - Workflow error type
+- `WorkflowErrorHandler<T>` - Error handler interface
+- `ErrorHandlerResult` - Error handler result
+- `ErrorHandlingStrategy` - Error handling strategies
+- `RetryPolicy` - Retry policy type
+- `BPMNProcess<T>` - BPMN process type
+- `BPMNProcessType` - BPMN process types
+- `BPMNTask<T>` - BPMN task type
+- `BPMNTaskType` - BPMN task types
+- `BPMNGateway<T>` - BPMN gateway type
+- `BPMNGatewayType` - BPMN gateway types
+- `BPMNGatewayCondition<T>` - BPMN gateway condition
+- `BPMNEvent<T>` - BPMN event type
+- `BPMNEventType` - BPMN event types
+- `BPMNEventTrigger` - BPMN event triggers
+- `WorkflowEngine<T>` - Workflow engine interface
+- `WorkflowEngineConfig` - Workflow engine configuration
+- `WorkflowPersistence` - Workflow persistence interface
+- `WorkflowExecutor` - Workflow executor interface
+
+### Documentation
+- Added 10 new guide pages (English & Chinese) for v1.5.0 modules
+- Updated VitePress configuration with new sections
+- Added API reference for all new types
+
+### Code Quality
+- All lint checks passing
+- Build successful
+- Type checking successful
+
 ## [1.4.0] - 2026-04-18
 
 ### Added

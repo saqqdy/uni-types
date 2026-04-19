@@ -18,7 +18,7 @@ Try `uni-types` directly in your browser with real-time type checking!
 - 📦 **Pre-loaded Types** - All uni-types are available for import
 - 🎨 **Syntax Highlighting** - Full TypeScript syntax support
 
-## Available Types (400+)
+## Available Types (500+)
 
 All types from `uni-types` are available for import:
 
@@ -303,6 +303,111 @@ import type {
 } from 'uni-types'
 ```
 
+### Authorization & Permissions *(v1.5.0)*
+
+```typescript
+import type {
+  Permission, PermissionSet, Role, RoleSet,
+  Policy, PolicyRule, PolicyEffect,
+  RBAC, ABAC, ACL, AccessControl,
+  Resource, Action, AuthorizationProvider
+} from 'uni-types'
+```
+
+### Caching Strategies *(v1.5.0)*
+
+```typescript
+import type {
+  Cache, CacheEntry, CacheOptions, CacheStats,
+  LRUCache, LFUCache, TTLCache, FIFOCache, ARCCache,
+  DistributedCache, CacheAside, ReadThroughCache,
+  WriteThroughCache, WriteBehindCache
+} from 'uni-types'
+```
+
+### Configuration Management *(v1.5.0)*
+
+```typescript
+import type {
+  Config, ConfigField, ConfigLoader, ConfigSchema,
+  EnvConfig, FeatureFlag, FeatureFlagConfig,
+  RemoteConfigProvider, Secret, SecretProvider
+} from 'uni-types'
+```
+
+### Event-Driven Architecture *(v1.5.0)*
+
+```typescript
+import type {
+  EventBus, EventStream, Command, CommandBus,
+  Query, QueryBus, Saga, SagaStep,
+  MessageQueue, EventStore, DeadLetterQueue
+} from 'uni-types'
+```
+
+### GraphQL Integration *(v1.5.0)*
+
+```typescript
+import type {
+  GraphQLSchema, GraphQLType, GraphQLScalar,
+  GraphQLEnum, GraphQLInput, GraphQLObject,
+  GraphQLField, GraphQLResolver, GraphQLContext,
+  GraphQLResult, GraphQLError
+} from 'uni-types'
+```
+
+### Logging & Observability *(v1.5.0)*
+
+```typescript
+import type {
+  Logger, LogLevel, LogEntry, Metric, Counter, Gauge,
+  Histogram, Tracer, Span, Trace, Monitor, Alert,
+  HealthIndicator, HealthCheckResult
+} from 'uni-types'
+```
+
+### Microservices Architecture *(v1.5.0)*
+
+```typescript
+import type {
+  Microservice, ServiceConfig, ServiceRegistry,
+  ServiceInstance, CircuitBreaker, LoadBalancer,
+  APIGateway, HealthReport, RateLimit
+} from 'uni-types'
+```
+
+### Validation Rules *(v1.5.0)*
+
+```typescript
+import type {
+  ValidationRule, Validator, ValidatorResult, ValidationError,
+  StringFieldValidator, NumberFieldValidator,
+  MinLength, MaxLength, MinValue, MaxValue,
+  Pattern, Sanitizer
+} from 'uni-types'
+```
+
+### WebSocket & Real-Time *(v1.5.0)*
+
+```typescript
+import type {
+  WebSocketConfig, WebSocketMessage, EventEmitter,
+  PubSub, Publisher, Subscriber, RealTimeChannel,
+  Stream, StreamReader, StreamWriter
+} from 'uni-types'
+```
+
+### Workflow Engine *(v1.5.0)*
+
+```typescript
+import type {
+  Workflow, WorkflowInstance, WorkflowStep,
+  WorkflowTransition, WorkflowExecution, WorkflowHistory,
+  WorkflowEngine, RetryPolicy, BPMNProcess, BPMNTask,
+  BPMNGateway, BPMNEvent
+} from 'uni-types'
+```
+
 ## Example Code
 
 Here's a comprehensive example showcasing various features:
@@ -311,7 +416,10 @@ Here's a comprehensive example showcasing various features:
 import type {
   PickRequired, DeepPartial, DeepReadonly, Sort, GCD, Factorial,
   IsArray, IsTuple, IsEqual, ObjectPickByType, Split, Join,
-  CamelCase, SnakeCase, Paths, PathValue, AssertEqual
+  CamelCase, SnakeCase, Paths, PathValue, AssertEqual,
+  Microservice, ServiceConfig, CircuitBreaker, Cache,
+  LRUCache, EventBus, Saga, Logger, LogLevel,
+  Workflow, WorkflowStep, RBAC, Permission, Role
 } from 'uni-types'
 
 // Core operations - make properties required
@@ -371,6 +479,35 @@ type TestAssertion2 = AssertEqual<string, number> // never
 
 // Verify factorial
 type VerifyFactorial = AssertEqual<Factorial<5>, 120>
+
+// v1.5.0 - Microservice architecture
+const orderService: Microservice = {
+  name: 'order-service',
+  version: '1.0.0',
+  config: {
+    name: 'order-service',
+    version: '1.0.0',
+    port: 3000,
+    host: '0.0.0.0',
+    env: 'production'
+  },
+  start: async () => { /* start server */ },
+  stop: async () => { /* graceful shutdown */ },
+  health: async () => ({ status: 'healthy', timestamp: new Date(), service: 'order-service', version: '1.0.0', uptime: 0, checks: {} })
+}
+
+// v1.5.0 - RBAC authorization
+interface AppPermission extends Permission<'orders:read' | 'orders:write' | 'users:admin'> {
+  resource: 'orders' | 'users'
+  action: 'create' | 'read' | 'update' | 'delete'
+}
+
+// v1.5.0 - Logger configuration
+const loggerConfig: LoggerConfig = {
+  level: 'info',
+  format: 'json',
+  transports: [{ type: 'console' }]
+}
 ```
 
 ## External Resources

@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **400+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **500+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -527,6 +527,182 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `TypeComplexity<T>` | Type complexity analysis |
 | `TypeInfo<T>` | Type information |
 | `InspectType<T>` | Inspect type details |
+
+### Authorization & Permissions *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `Permission<T>` | Permission definition |
+| `PermissionSet<T>` | Set of permissions |
+| `Role<T>` | Role definition |
+| `RoleSet<T>` | Set of roles |
+| `Policy` | Policy for ABAC |
+| `PolicyRule<T>` | Policy rule |
+| `PolicyEffect` | Allow or deny |
+| `RBAC<R, P>` | Role-Based Access Control |
+| `ABAC<T>` | Attribute-Based Access Control |
+| `ACL` | Access Control List |
+| `AccessControl<T>` | Access control interface |
+| `Resource<T>` | Resource for authorization |
+| `Action` | Action type (create, read, update, delete, etc.) |
+| `AuthorizationProvider<T>` | Authorization provider |
+
+### Caching Strategies *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `Cache<T>` | Cache interface |
+| `CacheEntry<T>` | Cache entry |
+| `CacheOptions` | Cache options (TTL, tags) |
+| `CacheStats` | Cache statistics |
+| `LRUCache<T>` | LRU Cache |
+| `LFUCache<T>` | LFU Cache |
+| `TTLCache<T>` | TTL Cache |
+| `FIFOCache<T>` | FIFO Cache |
+| `ARCCache<T>` | Adaptive Replacement Cache |
+| `DistributedCache<T>` | Distributed cache |
+| `CacheAside<T>` | Cache-aside pattern |
+| `ReadThroughCache<T>` | Read-through pattern |
+| `WriteThroughCache<T>` | Write-through pattern |
+| `WriteBehindCache<T>` | Write-behind pattern |
+
+### Configuration Management *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `Config<T>` | Configuration type |
+| `ConfigField<T>` | Config field definition |
+| `ConfigLoader<T>` | Config loader interface |
+| `ConfigSchema<T>` | Config schema |
+| `EnvConfig` | Environment config |
+| `EnvMapping` | Env var mapping |
+| `FeatureFlag` | Feature flag |
+| `FeatureFlagConfig` | Feature flag config |
+| `FeatureFlags<T>` | Feature flags collection |
+| `RemoteConfigProvider<T>` | Remote config provider |
+| `Secret` | Secret value |
+| `SecretProvider` | Secret provider |
+
+### Event-Driven Architecture *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `EventBus<T>` | Event bus interface |
+| `EventStream<T>` | Event stream |
+| `Command<T>` | Command for CQRS |
+| `CommandBus<T>` | Command bus |
+| `CommandHandler<T, R>` | Command handler |
+| `Query<T>` | Query for CQRS |
+| `QueryBus<T>` | Query bus |
+| `QueryHandler<T, R>` | Query handler |
+| `Saga<T>` | Saga orchestrator |
+| `SagaStep<T>` | Saga step |
+| `MessageQueue<T>` | Message queue |
+| `EventStore<T>` | Event store |
+| `DeadLetterQueue<T>` | Dead letter queue |
+
+### GraphQL Integration *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `GraphQLSchema` | GraphQL schema |
+| `GraphQLType` | GraphQL type wrapper |
+| `GraphQLScalar<T>` | Scalar type |
+| `GraphQLEnum<T>` | Enum type |
+| `GraphQLInput<T>` | Input type |
+| `GraphQLObject<T>` | Object type |
+| `GraphQLField<T, A, R>` | Field type |
+| `GraphQLResolver<T, A, R>` | Resolver type |
+| `GraphQLContext<T>` | Context type |
+| `GraphQLResult<T>` | Result wrapper |
+| `GraphQLError` | Error type |
+
+### Logging & Observability *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `Logger<T>` | Logger interface |
+| `LogLevel` | Log levels |
+| `LogEntry<T>` | Log entry |
+| `Metric<T>` | Metric type |
+| `Counter<T>` | Counter metric |
+| `Gauge<T>` | Gauge metric |
+| `Histogram` | Histogram metric |
+| `Tracer` | Tracer interface |
+| `Span` | Tracing span |
+| `Trace<T>` | Trace type |
+| `Monitor` | Monitor type |
+| `Alert<T>` | Alert type |
+| `HealthIndicator<T>` | Health indicator |
+| `HealthCheckResult<T>` | Health check result |
+
+### Microservices Architecture *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `Microservice<T>` | Microservice type |
+| `ServiceConfig<T>` | Service config |
+| `ServiceRegistry<T>` | Service registry |
+| `ServiceInstance` | Service instance |
+| `ServiceDiscovery<T>` | Service discovery |
+| `CircuitBreaker<T>` | Circuit breaker |
+| `RateLimit` | Rate limiting |
+| `LoadBalancer<T>` | Load balancer |
+| `APIGateway<T>` | API Gateway |
+| `GatewayRoute` | Gateway route |
+| `HealthReport` | Health report |
+
+### Validation Rules *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `ValidationRule<T>` | Validation rule |
+| `Validator<T>` | Validator function |
+| `ValidatorResult<T>` | Validator result |
+| `ValidationError` | Validation error |
+| `StringFieldValidator<T>` | String validator |
+| `NumberFieldValidator<T>` | Number validator |
+| `ArrayFieldValidator<T>` | Array validator |
+| `ObjectFieldValidator<T>` | Object validator |
+| `MinLength` | Min length constraint |
+| `MaxLength` | Max length constraint |
+| `MinValue` | Min value constraint |
+| `MaxValue` | Max value constraint |
+| `Pattern` | Regex pattern |
+| `Sanitizer<T>` | Sanitizer function |
+
+### WebSocket & Real-Time *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `WebSocketConfig` | WebSocket config |
+| `WebSocketMessage<T>` | WebSocket message |
+| `EventEmitter<T>` | Event emitter |
+| `PubSub<T>` | Pub/Sub interface |
+| `Publisher<T>` | Publisher |
+| `Subscriber<T>` | Subscriber |
+| `RealTimeChannel<T>` | Real-time channel |
+| `RealTimeClient<T>` | Real-time client |
+| `Stream<T>` | Stream interface |
+| `StreamReader<T>` | Stream reader |
+| `StreamWriter<T>` | Stream writer |
+
+### Workflow Engine *(v1.5.0)*
+
+| Type | Description |
+|------|-------------|
+| `Workflow<T>` | Workflow definition |
+| `WorkflowInstance<T>` | Workflow instance |
+| `WorkflowStep<T>` | Workflow step |
+| `WorkflowTransition<T>` | Workflow transition |
+| `WorkflowExecution<T>` | Workflow execution |
+| `WorkflowHistory<T>` | Workflow history |
+| `WorkflowEngine<T>` | Workflow engine |
+| `RetryPolicy` | Retry policy |
+| `BPMNProcess<T>` | BPMN process |
+| `BPMNTask<T>` | BPMN task |
+| `BPMNGateway<T>` | BPMN gateway |
+| `BPMNEvent<T>` | BPMN event |
 
 ## Examples
 

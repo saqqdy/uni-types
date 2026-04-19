@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **400+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **500+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -528,6 +528,182 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `TypeInfo<T>` | 类型信息 |
 | `InspectType<T>` | 检查类型详情 |
 
+### 权限与授权 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Permission<T>` | 权限定义 |
+| `PermissionSet<T>` | 权限集合 |
+| `Role<T>` | 角色定义 |
+| `RoleSet<T>` | 角色集合 |
+| `Policy` | ABAC 策略 |
+| `PolicyRule<T>` | 策略规则 |
+| `PolicyEffect` | 允许或拒绝 |
+| `RBAC<R, P>` | 基于角色的访问控制 |
+| `ABAC<T>` | 基于属性的访问控制 |
+| `ACL` | 访问控制列表 |
+| `AccessControl<T>` | 访问控制接口 |
+| `Resource<T>` | 授权资源 |
+| `Action` | 操作类型 (create, read, update, delete 等) |
+| `AuthorizationProvider<T>` | 授权提供者 |
+
+### 缓存策略 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Cache<T>` | 缓存接口 |
+| `CacheEntry<T>` | 缓存条目 |
+| `CacheOptions` | 缓存选项 (TTL, tags) |
+| `CacheStats` | 缓存统计 |
+| `LRUCache<T>` | LRU 缓存 |
+| `LFUCache<T>` | LFU 缓存 |
+| `TTLCache<T>` | TTL 缓存 |
+| `FIFOCache<T>` | FIFO 缓存 |
+| `ARCCache<T>` | 自适应替换缓存 |
+| `DistributedCache<T>` | 分布式缓存 |
+| `CacheAside<T>` | 缓存旁路模式 |
+| `ReadThroughCache<T>` | 读穿透模式 |
+| `WriteThroughCache<T>` | 写穿透模式 |
+| `WriteBehindCache<T>` | 写回模式 |
+
+### 配置管理 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Config<T>` | 配置类型 |
+| `ConfigField<T>` | 配置字段定义 |
+| `ConfigLoader<T>` | 配置加载器接口 |
+| `ConfigSchema<T>` | 配置 Schema |
+| `EnvConfig` | 环境配置 |
+| `EnvMapping` | 环境变量映射 |
+| `FeatureFlag` | 功能开关 |
+| `FeatureFlagConfig` | 功能开关配置 |
+| `FeatureFlags<T>` | 功能开关集合 |
+| `RemoteConfigProvider<T>` | 远程配置提供者 |
+| `Secret` | 密钥值 |
+| `SecretProvider` | 密钥提供者 |
+
+### 事件驱动架构 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `EventBus<T>` | 事件总线接口 |
+| `EventStream<T>` | 事件流 |
+| `Command<T>` | CQRS 命令 |
+| `CommandBus<T>` | 命令总线 |
+| `CommandHandler<T, R>` | 命令处理器 |
+| `Query<T>` | CQRS 查询 |
+| `QueryBus<T>` | 查询总线 |
+| `QueryHandler<T, R>` | 查询处理器 |
+| `Saga<T>` | Saga 编排器 |
+| `SagaStep<T>` | Saga 步骤 |
+| `MessageQueue<T>` | 消息队列 |
+| `EventStore<T>` | 事件存储 |
+| `DeadLetterQueue<T>` | 死信队列 |
+
+### GraphQL 集成 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `GraphQLSchema` | GraphQL Schema |
+| `GraphQLType` | GraphQL 类型包装器 |
+| `GraphQLScalar<T>` | 标量类型 |
+| `GraphQLEnum<T>` | 枚举类型 |
+| `GraphQLInput<T>` | 输入类型 |
+| `GraphQLObject<T>` | 对象类型 |
+| `GraphQLField<T, A, R>` | 字段类型 |
+| `GraphQLResolver<T, A, R>` | Resolver 类型 |
+| `GraphQLContext<T>` | 上下文类型 |
+| `GraphQLResult<T>` | 结果包装器 |
+| `GraphQLError` | 错误类型 |
+
+### 日志与可观测性 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Logger<T>` | 日志接口 |
+| `LogLevel` | 日志级别 |
+| `LogEntry<T>` | 日志条目 |
+| `Metric<T>` | 指标类型 |
+| `Counter<T>` | 计数器指标 |
+| `Gauge<T>` | 仪表指标 |
+| `Histogram` | 直方图指标 |
+| `Tracer` | 追踪器接口 |
+| `Span` | 追踪 Span |
+| `Trace<T>` | Trace 类型 |
+| `Monitor` | 监控类型 |
+| `Alert<T>` | 告警类型 |
+| `HealthIndicator<T>` | 健康指示器 |
+| `HealthCheckResult<T>` | 健康检查结果 |
+
+### 微服务架构 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Microservice<T>` | 微服务类型 |
+| `ServiceConfig<T>` | 服务配置 |
+| `ServiceRegistry<T>` | 服务注册中心 |
+| `ServiceInstance` | 服务实例 |
+| `ServiceDiscovery<T>` | 服务发现 |
+| `CircuitBreaker<T>` | 熔断器 |
+| `RateLimit` | 限流 |
+| `LoadBalancer<T>` | 负载均衡器 |
+| `APIGateway<T>` | API 网关 |
+| `GatewayRoute` | 网关路由 |
+| `HealthReport` | 健康报告 |
+
+### 验证规则 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ValidationRule<T>` | 验证规则 |
+| `Validator<T>` | 验证函数 |
+| `ValidatorResult<T>` | 验证结果 |
+| `ValidationError` | 验证错误 |
+| `StringFieldValidator<T>` | 字符串验证器 |
+| `NumberFieldValidator<T>` | 数字验证器 |
+| `ArrayFieldValidator<T>` | 数组验证器 |
+| `ObjectFieldValidator<T>` | 对象验证器 |
+| `MinLength` | 最小长度约束 |
+| `MaxLength` | 最大长度约束 |
+| `MinValue` | 最小值约束 |
+| `MaxValue` | 最大值约束 |
+| `Pattern` | 正则模式 |
+| `Sanitizer<T>` | 清洗函数 |
+
+### WebSocket 与实时通信 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `WebSocketConfig` | WebSocket 配置 |
+| `WebSocketMessage<T>` | WebSocket 消息 |
+| `EventEmitter<T>` | 事件发射器 |
+| `PubSub<T>` | Pub/Sub 接口 |
+| `Publisher<T>` | 发布者 |
+| `Subscriber<T>` | 订阅者 |
+| `RealTimeChannel<T>` | 实时通道 |
+| `RealTimeClient<T>` | 实时客户端 |
+| `Stream<T>` | 流接口 |
+| `StreamReader<T>` | 流读取器 |
+| `StreamWriter<T>` | 流写入器 |
+
+### 工作流引擎 *(v1.5.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Workflow<T>` | 工作流定义 |
+| `WorkflowInstance<T>` | 工作流实例 |
+| `WorkflowStep<T>` | 工作流步骤 |
+| `WorkflowTransition<T>` | 工作流转换 |
+| `WorkflowExecution<T>` | 工作流执行 |
+| `WorkflowHistory<T>` | 工作流历史 |
+| `WorkflowEngine<T>` | 工作流引擎 |
+| `RetryPolicy` | 重试策略 |
+| `BPMNProcess<T>` | BPMN 流程 |
+| `BPMNTask<T>` | BPMN 任务 |
+| `BPMNGateway<T>` | BPMN 网关 |
+| `BPMNEvent<T>` | BPMN 事件 |
+
 ## 示例
 
 ```typescript
@@ -535,7 +711,11 @@ import type {
   SnakeCase,
   CamelCaseKeys,
   UnionToIntersection,
-  AtLeastOne
+  AtLeastOne,
+  Microservice,
+  ServiceConfig,
+  EventBus,
+  Workflow
 } from 'uni-types'
 
 // 字符串命名转换
@@ -550,6 +730,34 @@ UnionToIntersection<{ a: string } | { b: number }>
 // 至少需要一个属性
 type Options = AtLeastOne<{ a?: string; b?: number; c?: boolean }>
 // 必须有 a、b、c 中的至少一个
+
+// v1.5.0 - 微服务架构
+const userService: Microservice = {
+  name: 'user-service',
+  version: '1.0.0',
+  config: {
+    name: 'user-service',
+    version: '1.0.0',
+    port: 3000,
+    host: '0.0.0.0',
+    env: 'production'
+  },
+  start: async () => { /* 启动服务器 */ },
+  stop: async () => { /* 优雅关闭 */ },
+  health: async () => ({ status: 'healthy', timestamp: new Date(), service: 'user-service', version: '1.0.0', uptime: 0, checks: {} })
+}
+
+// v1.5.0 - 事件总线
+type AppEvents = EventBus<{
+  userCreated: { id: string; name: string }
+  orderPlaced: { orderId: string; userId: string }
+}>
+
+// v1.5.0 - 工作流
+type OrderWorkflow = Workflow<{
+  orderId: string
+  status: 'pending' | 'processing' | 'completed'
+}>
 ```
 
 ## 开发
