@@ -400,6 +400,96 @@ export default defineConfig({
 							],
 							text: 'String Operations',
 						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/graphql/graphql-schema', text: 'GraphQLSchema' },
+								{ link: '/api/graphql/graphql-query', text: 'GraphQLQuery' },
+								{ link: '/api/graphql/graphql-resolver', text: 'GraphQLResolver' },
+							],
+							text: 'GraphQL',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/websocket/websocket-message', text: 'WebSocketMessage' },
+								{ link: '/api/websocket/stream', text: 'Stream' },
+								{ link: '/api/websocket/pubsub', text: 'PubSub' },
+							],
+							text: 'WebSocket',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/event/eventbus', text: 'EventBus' },
+								{ link: '/api/event/command', text: 'Command' },
+								{ link: '/api/event/saga', text: 'Saga' },
+							],
+							text: 'Event-Driven',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/microservice/microservice', text: 'Microservice' },
+								{ link: '/api/microservice/circuit-breaker', text: 'CircuitBreaker' },
+								{ link: '/api/microservice/api-gateway', text: 'APIGateway' },
+							],
+							text: 'Microservices',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/config/config', text: 'Config' },
+								{ link: '/api/config/environment', text: 'Environment' },
+								{ link: '/api/config/feature-flag', text: 'FeatureFlag' },
+							],
+							text: 'Configuration',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/logging/logger', text: 'Logger' },
+								{ link: '/api/logging/metric', text: 'Metric' },
+								{ link: '/api/logging/trace', text: 'Trace' },
+							],
+							text: 'Logging & Observability',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/cache/cache', text: 'Cache' },
+								{ link: '/api/cache/lru-cache', text: 'LRUCache' },
+								{ link: '/api/cache/distributed-cache', text: 'DistributedCache' },
+							],
+							text: 'Caching',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/validation/validator', text: 'Validator' },
+								{ link: '/api/validation/schema-builder', text: 'SchemaBuilder' },
+								{ link: '/api/validation/validation-rule', text: 'ValidationRule' },
+							],
+							text: 'Validation',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/auth/permission', text: 'Permission' },
+								{ link: '/api/auth/role', text: 'Role' },
+								{ link: '/api/auth/rbac', text: 'RBAC' },
+							],
+							text: 'Authorization',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/api/workflow/workflow', text: 'Workflow' },
+								{ link: '/api/workflow/bpmn-process', text: 'BPMNProcess' },
+								{ link: '/api/workflow/bpmn-task', text: 'BPMNTask' },
+							],
+							text: 'Workflow',
+						},
 					],
 					'/guide/': [
 						{
@@ -444,6 +534,16 @@ export default defineConfig({
 								{ link: '/guide/concurrency', text: 'Concurrency' },
 								{ link: '/guide/interop', text: 'Library Interop' },
 								{ link: '/guide/testing', text: 'Testing' },
+								{ link: '/guide/graphql', text: 'GraphQL' },
+								{ link: '/guide/websocket', text: 'WebSocket' },
+								{ link: '/guide/event', text: 'Event-Driven' },
+								{ link: '/guide/microservice', text: 'Microservices' },
+								{ link: '/guide/config', text: 'Configuration' },
+								{ link: '/guide/logging', text: 'Logging' },
+								{ link: '/guide/cache', text: 'Caching' },
+								{ link: '/guide/validation', text: 'Validation' },
+								{ link: '/guide/auth', text: 'Authorization' },
+								{ link: '/guide/workflow', text: 'Workflow' },
 							],
 							text: 'Categories',
 						},
@@ -845,6 +945,96 @@ export default defineConfig({
 							],
 							text: '字符串操作',
 						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/graphql/graphql-schema', text: 'GraphQLSchema' },
+								{ link: '/zh/api/graphql/graphql-query', text: 'GraphQLQuery' },
+								{ link: '/zh/api/graphql/graphql-resolver', text: 'GraphQLResolver' },
+							],
+							text: 'GraphQL',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/websocket/websocket-message', text: 'WebSocketMessage' },
+								{ link: '/zh/api/websocket/stream', text: 'Stream' },
+								{ link: '/zh/api/websocket/pubsub', text: 'PubSub' },
+							],
+							text: 'WebSocket',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/event/eventbus', text: 'EventBus' },
+								{ link: '/zh/api/event/command', text: 'Command' },
+								{ link: '/zh/api/event/saga', text: 'Saga' },
+							],
+							text: '事件驱动',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/microservice/microservice', text: 'Microservice' },
+								{ link: '/zh/api/microservice/circuit-breaker', text: 'CircuitBreaker' },
+								{ link: '/zh/api/microservice/api-gateway', text: 'APIGateway' },
+							],
+							text: '微服务',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/config/config', text: 'Config' },
+								{ link: '/zh/api/config/environment', text: 'Environment' },
+								{ link: '/zh/api/config/feature-flag', text: 'FeatureFlag' },
+							],
+							text: '配置管理',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/logging/logger', text: 'Logger' },
+								{ link: '/zh/api/logging/metric', text: 'Metric' },
+								{ link: '/zh/api/logging/trace', text: 'Trace' },
+							],
+							text: '日志与可观测性',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/cache/cache', text: 'Cache' },
+								{ link: '/zh/api/cache/lru-cache', text: 'LRUCache' },
+								{ link: '/zh/api/cache/distributed-cache', text: 'DistributedCache' },
+							],
+							text: '缓存',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/validation/validator', text: 'Validator' },
+								{ link: '/zh/api/validation/schema-builder', text: 'SchemaBuilder' },
+								{ link: '/zh/api/validation/validation-rule', text: 'ValidationRule' },
+							],
+							text: '验证',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/auth/permission', text: 'Permission' },
+								{ link: '/zh/api/auth/role', text: 'Role' },
+								{ link: '/zh/api/auth/rbac', text: 'RBAC' },
+							],
+							text: '授权',
+						},
+						{
+							collapsed: true,
+							items: [
+								{ link: '/zh/api/workflow/workflow', text: 'Workflow' },
+								{ link: '/zh/api/workflow/bpmn-process', text: 'BPMNProcess' },
+								{ link: '/zh/api/workflow/bpmn-task', text: 'BPMNTask' },
+							],
+							text: '工作流',
+						},
 					],
 					'/zh/guide/': [
 						{
@@ -889,6 +1079,16 @@ export default defineConfig({
 								{ link: '/zh/guide/concurrency', text: '并发模式' },
 								{ link: '/zh/guide/interop', text: '库互操作' },
 								{ link: '/zh/guide/testing', text: '类型测试' },
+								{ link: '/zh/guide/graphql', text: 'GraphQL' },
+								{ link: '/zh/guide/websocket', text: 'WebSocket' },
+								{ link: '/zh/guide/event', text: '事件驱动' },
+								{ link: '/zh/guide/microservice', text: '微服务' },
+								{ link: '/zh/guide/config', text: '配置管理' },
+								{ link: '/zh/guide/logging', text: '日志' },
+								{ link: '/zh/guide/cache', text: '缓存' },
+								{ link: '/zh/guide/validation', text: '验证' },
+								{ link: '/zh/guide/auth', text: '授权' },
+								{ link: '/zh/guide/workflow', text: '工作流' },
 							],
 							text: '分类',
 						},

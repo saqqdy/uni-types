@@ -6,7 +6,7 @@ titleTemplate: Universal TypeScript Type Utilities
 hero:
   name: uni-types
   text: TypeScript Type Utilities
-  tagline: A comprehensive collection of 400+ type utilities for TypeScript development - safer, cleaner, more expressive code
+  tagline: A comprehensive collection of 600+ type utilities for TypeScript development - enterprise patterns, real-time systems, and more
   image:
     src: /logo.svg
     alt: uni-types
@@ -24,7 +24,7 @@ hero:
 features:
   - icon: 🎯
     title: Comprehensive
-    details: 400+ utility types covering core operations, deep transformations, type guards, algorithms, parsers, state machines, and more.
+    details: 600+ utility types covering core operations, enterprise patterns, real-time systems, microservices, and more.
   - icon: 🔒
     title: Type Safe
     details: Full TypeScript support with complete type definitions. Catch errors at compile time.
@@ -34,54 +34,68 @@ features:
   - icon: 📦
     title: Tree-shakable
     details: Import only the types you need. Works perfectly with bundlers.
-  - icon: 🧮
-    title: Type-Level Algorithms
-    details: Sort, QuickSort, MergeSort, GCD, LCM, Factorial, Fibonacci, and more implemented at type level.
-  - icon: 🔄
-    title: Deep Operations
-    details: DeepPartial, DeepRequired, DeepReadonly, DeepMutable, DeepOmit, DeepPick for nested objects.
-  - icon: 🛠️
-    title: Type Guards
-    details: IsArray, IsTuple, IsEqual, IsAny, IsNever, IsUnknown for type checking.
-  - icon: 🗃️
-    title: Data Structures
-    details: Tree, Graph, LinkedList, Stack, Queue types for modeling complex data.
   - icon: 🔌
-    title: Schema Integration
-    details: Built-in support for Zod and Yup schema type extraction and manipulation.
+    title: GraphQL Integration
+    details: Complete GraphQL schema types, resolvers, queries, mutations, subscriptions, and selection sets.
+  - icon: 📡
+    title: WebSocket & Real-Time
+    details: WebSocket messages, events, streams, Pub/Sub, and real-time channel types.
+  - icon: 🔄
+    title: Event-Driven Architecture
+    details: Event bus, event sourcing, CQRS, saga patterns, and message queue types.
+  - icon: 🏗️
+    title: Microservices
+    details: Service registry, discovery, circuit breaker, load balancer, and API gateway types.
+  - icon: 🛠️
+    title: Authorization & Permissions
+    details: RBAC, ABAC, policies, roles, permissions, and access control types.
+  - icon: 📊
+    title: Workflow Engine
+    details: Workflow definitions, steps, transitions, BPMN process types, and saga orchestration.
+  - icon: 📈
+    title: Logging & Observability
+    details: Logger types, metrics, tracing, spans, alerts, and health check types.
+  - icon: 💾
+    title: Caching Strategies
+    details: LRU, LFU, TTL caches, cache invalidation, and distributed cache types.
 ---
 
 ## Quick Example
 
 ```typescript
-import type { PickRequired, DeepPartial, Sort, IsArray } from 'uni-types'
+import type {
+  PickRequired, DeepPartial, Sort, IsArray,
+  GraphQLQuery, WebSocketMessage, EventBus, Workflow
+} from 'uni-types'
 
-// Make specific properties required
+// Core: Make specific properties required
 interface User {
   name?: string
   age?: number
   email: string
 }
-
 type RequiredUser = PickRequired<User, 'name' | 'age'>
-// { name: string; age: number; email: string }
 
 // Deep partial for nested objects
 interface Config {
-  database: {
-    host: string
-    port: number
-  }
+  database: { host: string; port: number }
 }
-
 type PartialConfig = DeepPartial<Config>
-// { database?: { host?: string; port?: number } }
 
 // Type-level sorting algorithm
 type Sorted = Sort<[3, 1, 4, 1, 5]> // [1, 1, 3, 4, 5]
 
-// Type guards for conditional logic
-type Check = IsArray<string[]> // true
+// GraphQL query type (v1.5.0)
+type GetUserQuery = GraphQLQuery<{ id: string }, { userId: string }>
+
+// WebSocket message type (v1.5.0)
+type ChatMessage = WebSocketMessage<{ text: string; userId: string }>
+
+// Event bus type (v1.5.0)
+type AppEvents = EventBus<{ userCreated: { id: string }; orderPlaced: { orderId: string } }>
+
+// Workflow type (v1.5.0)
+type OrderWorkflow = Workflow<{ orderId: string; status: string }>
 ```
 
 ## Why uni-types?
@@ -92,4 +106,8 @@ Lightweight with no external dependencies. Just pure TypeScript type magic.
 
 ::: info TypeScript 5+
 Built with the latest TypeScript features for the best type inference.
+:::
+
+::: success Enterprise Ready
+600+ types covering microservices, event-driven architecture, workflow engines, and real-time systems.
 :::
