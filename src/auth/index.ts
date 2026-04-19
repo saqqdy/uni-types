@@ -11,7 +11,7 @@
 /**
  * Permission type
  */
-export type Permission<T = string> = {
+export interface Permission<T = string> {
 	name: T
 	description?: string
 	resource?: string
@@ -27,7 +27,7 @@ export type PermissionSet<T = string> = Set<T> | T[]
 /**
  * Permission grant
  */
-export type PermissionGrant<T = string> = {
+export interface PermissionGrant<T = string> {
 	permission: T
 	granted: true
 	grantedBy: string
@@ -39,7 +39,7 @@ export type PermissionGrant<T = string> = {
 /**
  * Permission deny
  */
-export type PermissionDeny<T = string> = {
+export interface PermissionDeny<T = string> {
 	permission: T
 	granted: false
 	deniedBy: string
@@ -50,7 +50,7 @@ export type PermissionDeny<T = string> = {
 /**
  * Permission condition
  */
-export type PermissionCondition<T = unknown> = {
+export interface PermissionCondition<T = unknown> {
 	attribute: string
 	operator: ConditionOperator
 	value: T
@@ -59,27 +59,27 @@ export type PermissionCondition<T = unknown> = {
 /**
  * Condition operator
  */
-export type ConditionOperator =
-	| 'eq'
-	| 'ne'
-	| 'gt'
-	| 'gte'
-	| 'lt'
-	| 'lte'
-	| 'in'
-	| 'notIn'
-	| 'contains'
-	| 'startsWith'
-	| 'endsWith'
-	| 'exists'
-	| 'notExists'
+export type ConditionOperator
+	= | 'eq'
+		| 'ne'
+		| 'gt'
+		| 'gte'
+		| 'lt'
+		| 'lte'
+		| 'in'
+		| 'notIn'
+		| 'contains'
+		| 'startsWith'
+		| 'endsWith'
+		| 'exists'
+		| 'notExists'
 
 /**
  * Permission check result
  */
-export type PermissionCheckResult =
-	| { allowed: true; reason?: string }
-	| { allowed: false; reason: string; missingPermissions?: string[] }
+export type PermissionCheckResult
+	= | { allowed: true, reason?: string }
+		| { allowed: false, reason: string, missingPermissions?: string[] }
 
 // ============================================================================
 // Role Types
@@ -88,7 +88,7 @@ export type PermissionCheckResult =
 /**
  * Role type
  */
-export type Role<T = string> = {
+export interface Role<T = string> {
 	name: T
 	description?: string
 	permissions: PermissionSet
@@ -105,7 +105,7 @@ export type RoleSet<T = string> = Set<T> | T[]
 /**
  * Role permission mapping
  */
-export type RolePermission<R = string, P = string> = {
+export interface RolePermission<R = string, P = string> {
 	role: R
 	permissions: P[]
 	grantedAt?: Date
@@ -115,7 +115,7 @@ export type RolePermission<R = string, P = string> = {
 /**
  * Role hierarchy
  */
-export type RoleHierarchy<T = string> = {
+export interface RoleHierarchy<T = string> {
 	role: T
 	parent?: T
 	children?: T[]
@@ -129,7 +129,7 @@ export type RoleHierarchy<T = string> = {
 /**
  * Policy type
  */
-export type Policy = {
+export interface Policy {
 	id: string
 	name: string
 	description?: string
@@ -146,7 +146,7 @@ export type Policy = {
 /**
  * Policy rule
  */
-export type PolicyRule<T = unknown> = {
+export interface PolicyRule<T = unknown> {
 	effect: PolicyEffect
 	action: Action | Action[]
 	resource: string | string[]
@@ -162,7 +162,7 @@ export type PolicyEffect = 'allow' | 'deny'
 /**
  * Policy condition
  */
-export type PolicyCondition<T = unknown> = {
+export interface PolicyCondition<T = unknown> {
 	key: string
 	operator: ConditionOperator
 	value: T
@@ -172,7 +172,7 @@ export type PolicyCondition<T = unknown> = {
 /**
  * Policy evaluation context
  */
-export type PolicyContext<T = unknown> = {
+export interface PolicyContext<T = unknown> {
 	principal: string
 	action: Action
 	resource: string
@@ -183,7 +183,7 @@ export type PolicyContext<T = unknown> = {
 /**
  * Policy evaluation result
  */
-export type PolicyResult = {
+export interface PolicyResult {
 	effect: PolicyEffect
 	matchedPolicies: string[]
 	deniedBy?: string[]
@@ -197,7 +197,7 @@ export type PolicyResult = {
 /**
  * Access control type
  */
-export type AccessControl<T = unknown> = {
+export interface AccessControl<T = unknown> {
 	check: (context: PolicyContext<T>) => PolicyResult
 	grant: (principal: string, permission: string) => void
 	revoke: (principal: string, permission: string) => void
@@ -207,7 +207,7 @@ export type AccessControl<T = unknown> = {
 /**
  * ACL (Access Control List)
  */
-export type ACL = {
+export interface ACL {
 	entries: ACLEntry[]
 	getEntry: (principal: string, resource: string) => ACLEntry | undefined
 	addEntry: (entry: ACLEntry) => void
@@ -218,7 +218,7 @@ export type ACL = {
 /**
  * ACL entry
  */
-export type ACLEntry = {
+export interface ACLEntry {
 	principal: string
 	resource: string
 	actions: Action[]
@@ -229,7 +229,7 @@ export type ACLEntry = {
 /**
  * Resource type
  */
-export type Resource<T = unknown> = {
+export interface Resource<T = unknown> {
 	type: string
 	id: string
 	attributes?: T
@@ -250,7 +250,7 @@ export type Action = 'create' | 'read' | 'update' | 'delete' | 'list' | 'execute
 /**
  * RBAC (Role-Based Access Control)
  */
-export type RBAC<R extends string = string, P extends string = string> = {
+export interface RBAC<R extends string = string, P extends string = string> {
 	roles: Map<R, Role<R>>
 	rolePermissions: Map<R, P[]>
 	userRoles: Map<string, R[]>
@@ -268,10 +268,10 @@ export type RBAC<R extends string = string, P extends string = string> = {
 /**
  * RBAC configuration
  */
-export type RBACConfig<R = string, P = string> = {
+export interface RBACConfig<R = string, P = string> {
 	roles: Role<R>[]
 	rolePermissions: RolePermission<R, P>[]
-	userRoleAssignments: { userId: string; roles: R[] }[]
+	userRoleAssignments: { userId: string, roles: R[] }[]
 	defaultRole?: R
 	superAdminRole?: R
 }
@@ -283,7 +283,7 @@ export type RBACConfig<R = string, P = string> = {
 /**
  * ABAC (Attribute-Based Access Control)
  */
-export type ABAC<T = unknown> = {
+export interface ABAC<T = unknown> {
 	policies: Policy[]
 
 	addPolicy: (policy: Policy) => void
@@ -296,7 +296,7 @@ export type ABAC<T = unknown> = {
 /**
  * Attribute type
  */
-export type Attribute<T = unknown> = {
+export interface Attribute<T = unknown> {
 	name: string
 	value: T
 	type: 'string' | 'number' | 'boolean' | 'date' | 'list' | 'map'
@@ -306,7 +306,7 @@ export type Attribute<T = unknown> = {
 /**
  * Attribute value
  */
-export type AttributeValue<T = unknown> = {
+export interface AttributeValue<T = unknown> {
 	attribute: string
 	value: T
 	source: 'user' | 'resource' | 'environment' | 'context'
@@ -315,7 +315,7 @@ export type AttributeValue<T = unknown> = {
 /**
  * ABAC configuration
  */
-export type ABACConfig = {
+export interface ABACConfig {
 	policies: Policy[]
 	defaultDecision: PolicyEffect
 	attributeResolvers?: Record<string, (context: PolicyContext) => AttributeValue>
@@ -328,7 +328,7 @@ export type ABACConfig = {
 /**
  * Authorization provider
  */
-export type AuthorizationProvider<T = unknown> = {
+export interface AuthorizationProvider<T = unknown> {
 	initialize: () => Promise<void>
 	checkPermission: (userId: string, permission: string, context?: T) => Promise<PermissionCheckResult>
 	getUserPermissions: (userId: string) => Promise<PermissionSet>
@@ -342,7 +342,7 @@ export type AuthorizationProvider<T = unknown> = {
 /**
  * Authorization options
  */
-export type AuthorizationOptions = {
+export interface AuthorizationOptions {
 	cache: boolean
 	cacheTTL: number
 	throwOnDenied: boolean

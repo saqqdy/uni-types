@@ -11,7 +11,7 @@
 /**
  * Workflow type
  */
-export type Workflow<T = unknown> = {
+export interface Workflow<T = unknown> {
 	id: string
 	name: string
 	description?: string
@@ -25,7 +25,7 @@ export type Workflow<T = unknown> = {
 /**
  * Workflow definition
  */
-export type WorkflowDefinition<T = unknown> = {
+export interface WorkflowDefinition<T = unknown> {
 	steps: WorkflowStep[]
 	transitions: WorkflowTransition[]
 	initialStep: string
@@ -38,7 +38,7 @@ export type WorkflowDefinition<T = unknown> = {
 /**
  * Workflow instance
  */
-export type WorkflowInstance<T = unknown> = {
+export interface WorkflowInstance<T = unknown> {
 	id: string
 	workflowId: string
 	status: WorkflowStatus
@@ -63,7 +63,7 @@ export type WorkflowStatus = 'pending' | 'running' | 'completed' | 'failed' | 'c
 /**
  * Workflow step
  */
-export type WorkflowStep<T = unknown> = {
+export interface WorkflowStep<T = unknown> {
 	id: string
 	name: string
 	description?: string
@@ -84,9 +84,9 @@ export type StepType = 'task' | 'decision' | 'parallel' | 'subworkflow' | 'wait'
 /**
  * Step result
  */
-export type StepResult<T = unknown> =
-	| { success: true; data: T; nextStep?: string }
-	| { success: false; error: Error; retry?: boolean; compensation?: boolean }
+export type StepResult<T = unknown>
+	= | { success: true, data: T, nextStep?: string }
+		| { success: false, error: Error, retry?: boolean, compensation?: boolean }
 
 /**
  * Step status
@@ -100,7 +100,7 @@ export type StepStatus = 'waiting' | 'running' | 'success' | 'failure' | 'skippe
 /**
  * Workflow transition
  */
-export type WorkflowTransition<T = unknown> = {
+export interface WorkflowTransition<T = unknown> {
 	from: string
 	to: string | string[]
 	condition?: TransitionCondition<T>
@@ -121,7 +121,7 @@ export type TransitionAction<T = unknown> = (context: T) => T | Promise<T>
 /**
  * Workflow timeout
  */
-export type WorkflowTimeout = {
+export interface WorkflowTimeout {
 	workflow?: number
 	step?: number
 	action?: number
@@ -134,7 +134,7 @@ export type WorkflowTimeout = {
 /**
  * Workflow execution
  */
-export type WorkflowExecution<T = unknown> = {
+export interface WorkflowExecution<T = unknown> {
 	id: string
 	instanceId: string
 	status: ExecutionStatus
@@ -154,7 +154,7 @@ export type ExecutionStatus = 'pending' | 'running' | 'completed' | 'failed' | '
 /**
  * Execution step
  */
-export type ExecutionStep<T = unknown> = {
+export interface ExecutionStep<T = unknown> {
 	stepId: string
 	status: StepStatus
 	startedAt: Date
@@ -168,7 +168,7 @@ export type ExecutionStep<T = unknown> = {
 /**
  * Execution context
  */
-export type ExecutionContext<T = unknown> = {
+export interface ExecutionContext<T = unknown> {
 	workflowId: string
 	instanceId: string
 	executionId: string
@@ -181,9 +181,9 @@ export type ExecutionContext<T = unknown> = {
 /**
  * Execution result
  */
-export type ExecutionResult<T = unknown> =
-	| { success: true; data: T; completedAt: Date }
-	| { success: false; error: WorkflowError; completedAt: Date }
+export type ExecutionResult<T = unknown>
+	= | { success: true, data: T, completedAt: Date }
+		| { success: false, error: WorkflowError, completedAt: Date }
 
 // ============================================================================
 // History Types
@@ -192,7 +192,7 @@ export type ExecutionResult<T = unknown> =
 /**
  * Workflow history
  */
-export type WorkflowHistory<T = unknown> = {
+export interface WorkflowHistory<T = unknown> {
 	instanceId: string
 	entries: HistoryEntry<T>[]
 	total: number
@@ -201,7 +201,7 @@ export type WorkflowHistory<T = unknown> = {
 /**
  * History entry
  */
-export type HistoryEntry<T = unknown> = {
+export interface HistoryEntry<T = unknown> {
 	id: string
 	timestamp: Date
 	type: HistoryEventType
@@ -218,7 +218,7 @@ export type HistoryEntry<T = unknown> = {
 /**
  * History event
  */
-export type HistoryEvent<T = unknown> = {
+export interface HistoryEvent<T = unknown> {
 	type: HistoryEventType
 	timestamp: Date
 	data: T
@@ -227,21 +227,21 @@ export type HistoryEvent<T = unknown> = {
 /**
  * History event type
  */
-export type HistoryEventType =
-	| 'workflow_started'
-	| 'workflow_completed'
-	| 'workflow_failed'
-	| 'workflow_cancelled'
-	| 'step_started'
-	| 'step_completed'
-	| 'step_failed'
-	| 'step_skipped'
-	| 'transition'
-	| 'compensation_started'
-	| 'compensation_completed'
-	| 'error'
-	| 'retry'
-	| 'timeout'
+export type HistoryEventType
+	= | 'workflow_started'
+		| 'workflow_completed'
+		| 'workflow_failed'
+		| 'workflow_cancelled'
+		| 'step_started'
+		| 'step_completed'
+		| 'step_failed'
+		| 'step_skipped'
+		| 'transition'
+		| 'compensation_started'
+		| 'compensation_completed'
+		| 'error'
+		| 'retry'
+		| 'timeout'
 
 // ============================================================================
 // Error Handling
@@ -250,7 +250,7 @@ export type HistoryEventType =
 /**
  * Workflow error
  */
-export type WorkflowError = {
+export interface WorkflowError {
 	code: string
 	message: string
 	details?: unknown
@@ -262,24 +262,24 @@ export type WorkflowError = {
 /**
  * Workflow error handler
  */
-export type WorkflowErrorHandler<T = unknown> = {
+export interface WorkflowErrorHandler<T = unknown> {
 	onError: (error: WorkflowError, context: ExecutionContext<T>) => ErrorHandlerResult
 }
 
 /**
  * Error handler result
  */
-export type ErrorHandlerResult =
-	| { action: 'retry'; delay?: number }
-	| { action: 'compensate' }
-	| { action: 'continue'; nextStep: string }
-	| { action: 'fail' }
-	| { action: 'ignore' }
+export type ErrorHandlerResult
+	= | { action: 'retry', delay?: number }
+		| { action: 'compensate' }
+		| { action: 'continue', nextStep: string }
+		| { action: 'fail' }
+		| { action: 'ignore' }
 
 /**
  * Retry policy
  */
-export type RetryPolicy = {
+export interface RetryPolicy {
 	maxRetries: number
 	backoff: 'fixed' | 'exponential' | 'linear'
 	initialDelay: number
@@ -311,7 +311,7 @@ export type BPMNProcessType = 'none' | 'message' | 'timer' | 'signal' | 'conditi
 /**
  * BPMN task
  */
-export type BPMNTask<T = unknown> = {
+export interface BPMNTask<T = unknown> {
 	id: string
 	name: string
 	type: BPMNTaskType
@@ -328,20 +328,20 @@ export type BPMNTask<T = unknown> = {
 /**
  * BPMN task type
  */
-export type BPMNTaskType =
-	| 'user'
-	| 'service'
-	| 'script'
-	| 'business-rule'
-	| 'manual'
-	| 'send'
-	| 'receive'
-	| 'abstract'
+export type BPMNTaskType
+	= | 'user'
+		| 'service'
+		| 'script'
+		| 'business-rule'
+		| 'manual'
+		| 'send'
+		| 'receive'
+		| 'abstract'
 
 /**
  * BPMN gateway
  */
-export type BPMNGateway<T = unknown> = {
+export interface BPMNGateway<T = unknown> {
 	id: string
 	name: string
 	type: BPMNGatewayType
@@ -357,7 +357,7 @@ export type BPMNGatewayType = 'exclusive' | 'parallel' | 'inclusive' | 'event-ba
 /**
  * BPMN gateway condition
  */
-export type BPMNGatewayCondition<T = unknown> = {
+export interface BPMNGatewayCondition<T = unknown> {
 	flowId: string
 	condition: (context: T) => boolean
 	expression?: string
@@ -366,7 +366,7 @@ export type BPMNGatewayCondition<T = unknown> = {
 /**
  * BPMN event
  */
-export type BPMNEvent<T = unknown> = {
+export interface BPMNEvent<T = unknown> {
 	id: string
 	name: string
 	type: BPMNEventType
@@ -383,19 +383,19 @@ export type BPMNEventType = 'start' | 'end' | 'intermediate' | 'boundary'
 /**
  * BPMN event trigger
  */
-export type BPMNEventTrigger =
-	| 'none'
-	| 'message'
-	| 'timer'
-	| 'signal'
-	| 'conditional'
-	| 'error'
-	| 'escalation'
-	| 'compensation'
-	| 'link'
-	| 'terminate'
-	| 'multiple'
-	| 'parallel'
+export type BPMNEventTrigger
+	= | 'none'
+		| 'message'
+		| 'timer'
+		| 'signal'
+		| 'conditional'
+		| 'error'
+		| 'escalation'
+		| 'compensation'
+		| 'link'
+		| 'terminate'
+		| 'multiple'
+		| 'parallel'
 
 // ============================================================================
 // Workflow Engine
@@ -404,7 +404,7 @@ export type BPMNEventTrigger =
 /**
  * Workflow engine
  */
-export type WorkflowEngine<T = unknown> = {
+export interface WorkflowEngine<T = unknown> {
 	register: (workflow: Workflow<T>) => void
 	unregister: (workflowId: string) => void
 	start: (workflowId: string, input?: T) => Promise<WorkflowInstance>
@@ -419,7 +419,7 @@ export type WorkflowEngine<T = unknown> = {
 /**
  * Workflow engine configuration
  */
-export type WorkflowEngineConfig = {
+export interface WorkflowEngineConfig {
 	persistence: WorkflowPersistence
 	executor: WorkflowExecutor
 	maxConcurrentWorkflows: number
@@ -430,7 +430,7 @@ export type WorkflowEngineConfig = {
 /**
  * Workflow persistence
  */
-export type WorkflowPersistence = {
+export interface WorkflowPersistence {
 	saveInstance: (instance: WorkflowInstance) => Promise<void>
 	getInstance: (instanceId: string) => Promise<WorkflowInstance | undefined>
 	deleteInstance: (instanceId: string) => Promise<void>
@@ -441,7 +441,7 @@ export type WorkflowPersistence = {
 /**
  * Workflow executor
  */
-export type WorkflowExecutor = {
+export interface WorkflowExecutor {
 	executeStep: <T>(step: WorkflowStep, context: ExecutionContext<T>) => Promise<StepResult>
 	executeParallel: <T>(steps: WorkflowStep[], context: ExecutionContext<T>) => Promise<StepResult[]>
 }

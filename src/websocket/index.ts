@@ -11,7 +11,7 @@
 /**
  * WebSocket message type
  */
-export type WebSocketMessage<T = unknown> = {
+export interface WebSocketMessage<T = unknown> {
 	type: string
 	payload: T
 	timestamp?: number
@@ -21,7 +21,7 @@ export type WebSocketMessage<T = unknown> = {
 /**
  * WebSocket event type
  */
-export type WebSocketEvent<T = unknown> = {
+export interface WebSocketEvent<T = unknown> {
 	event: string
 	data: T
 	timestamp: number
@@ -31,7 +31,7 @@ export type WebSocketEvent<T = unknown> = {
  * WebSocket handler function type
  */
 export type WebSocketHandler<T = unknown> = (
-	message: WebSocketMessage<T>
+	message: WebSocketMessage<T>,
 ) => void | Promise<void>
 
 /**
@@ -42,7 +42,7 @@ export type WebSocketState = 'connecting' | 'connected' | 'disconnecting' | 'dis
 /**
  * WebSocket options
  */
-export type WebSocketOptions = {
+export interface WebSocketOptions {
 	url: string
 	protocols?: string | string[]
 	reconnect?: boolean
@@ -56,7 +56,7 @@ export type WebSocketOptions = {
 export type WebSocketConfig<T = unknown> = WebSocketOptions & {
 	onMessage?: WebSocketHandler<T>
 	onOpen?: () => void
-	onClose?: (event: { code: number; reason: string }) => void
+	onClose?: (event: { code: number, reason: string }) => void
 	onError?: (error: Error) => void
 }
 
@@ -75,7 +75,7 @@ export type EventMap<T = Record<string, unknown>> = {
  * Event handler function type
  */
 export type EventHandler<T, E extends keyof T = keyof T> = (
-	event: T[E]
+	event: T[E],
 ) => void | Promise<void>
 
 /**
@@ -86,7 +86,7 @@ export type EventPayload<T, E extends keyof T = keyof T> = T[E]
 /**
  * Event listener options
  */
-export type EventListenerOptions = {
+export interface EventListenerOptions {
 	once?: boolean
 	capture?: boolean
 	passive?: boolean
@@ -95,27 +95,27 @@ export type EventListenerOptions = {
 /**
  * Event emitter type
  */
-export type EventEmitter<T extends EventMap> = {
-	on<E extends keyof T>(event: E, handler: EventHandler<T, E>): void
-	off<E extends keyof T>(event: E, handler: EventHandler<T, E>): void
-	emit<E extends keyof T>(event: E, payload: T[E]): void
-	once<E extends keyof T>(event: E, handler: EventHandler<T, E>): void
+export interface EventEmitter<T extends EventMap> {
+	on: <E extends keyof T>(event: E, handler: EventHandler<T, E>) => void
+	off: <E extends keyof T>(event: E, handler: EventHandler<T, E>) => void
+	emit: <E extends keyof T>(event: E, payload: T[E]) => void
+	once: <E extends keyof T>(event: E, handler: EventHandler<T, E>) => void
 }
 
 /**
  * Typed event target
  */
-export type TypedEventTarget<T extends EventMap> = {
-	addEventListener<E extends keyof T>(
+export interface TypedEventTarget<T extends EventMap> {
+	addEventListener: <E extends keyof T>(
 		event: E,
 		handler: EventHandler<T, E>,
-		options?: EventListenerOptions
-	): void
-	removeEventListener<E extends keyof T>(
+		options?: EventListenerOptions,
+	) => void
+	removeEventListener: <E extends keyof T>(
 		event: E,
-		handler: EventHandler<T, E>
-	): void
-	dispatchEvent<E extends keyof T>(event: E, payload: T[E]): boolean
+		handler: EventHandler<T, E>,
+	) => void
+	dispatchEvent: <E extends keyof T>(event: E, payload: T[E]) => boolean
 }
 
 // ============================================================================
@@ -125,7 +125,7 @@ export type TypedEventTarget<T extends EventMap> = {
 /**
  * Real-time channel type
  */
-export type RealTimeChannel<T = unknown> = {
+export interface RealTimeChannel<T = unknown> {
 	name: string
 	subscribe: (handler: (message: T) => void) => () => void
 	publish: (message: T) => void
@@ -136,7 +136,7 @@ export type RealTimeChannel<T = unknown> = {
 /**
  * Real-time subscription type
  */
-export type RealTimeSubscription<T = unknown> = {
+export interface RealTimeSubscription<T = unknown> {
 	id: string
 	channel: string
 	handler: (message: T) => void
@@ -147,7 +147,7 @@ export type RealTimeSubscription<T = unknown> = {
 /**
  * Real-time message type
  */
-export type RealTimeMessage<T = unknown> = {
+export interface RealTimeMessage<T = unknown> {
 	channel: string
 	data: T
 	timestamp: number
@@ -157,12 +157,12 @@ export type RealTimeMessage<T = unknown> = {
 /**
  * Real-time client type
  */
-export type RealTimeClient<T extends EventMap = Record<string, unknown>> = {
+export interface RealTimeClient<T extends EventMap = Record<string, unknown>> {
 	connect: () => Promise<void>
 	disconnect: () => Promise<void>
 	subscribe: <E extends keyof T>(
 		channel: E,
-		handler: EventHandler<T, E>
+		handler: EventHandler<T, E>,
 	) => RealTimeSubscription<T[E]>
 	publish: <E extends keyof T>(channel: E, data: T[E]) => void
 	isConnected: boolean
@@ -175,7 +175,7 @@ export type RealTimeClient<T extends EventMap = Record<string, unknown>> = {
 /**
  * Stream type
  */
-export type Stream<T = unknown> = {
+export interface Stream<T = unknown> {
 	[Symbol.asyncIterator]: () => AsyncIterator<T>
 	readable: boolean
 	closed: boolean
@@ -184,7 +184,7 @@ export type Stream<T = unknown> = {
 /**
  * Stream chunk type
  */
-export type StreamChunk<T = unknown> = {
+export interface StreamChunk<T = unknown> {
 	value: T
 	done: boolean
 }
@@ -192,7 +192,7 @@ export type StreamChunk<T = unknown> = {
 /**
  * Stream reader type
  */
-export type StreamReader<T = unknown> = {
+export interface StreamReader<T = unknown> {
 	read: () => Promise<StreamChunk<T>>
 	releaseLock: () => void
 	closed: boolean
@@ -201,7 +201,7 @@ export type StreamReader<T = unknown> = {
 /**
  * Stream writer type
  */
-export type StreamWriter<T = unknown> = {
+export interface StreamWriter<T = unknown> {
 	write: (chunk: T) => Promise<void>
 	close: () => Promise<void>
 	abort: (reason?: unknown) => Promise<void>
@@ -212,7 +212,7 @@ export type StreamWriter<T = unknown> = {
 /**
  * Readable stream type
  */
-export type ReadableStreamLike<T = unknown> = {
+export interface ReadableStreamLike<T = unknown> {
 	getReader: () => StreamReader<T>
 	locked: boolean
 	cancel: (reason?: unknown) => Promise<void>
@@ -224,7 +224,7 @@ export type ReadableStreamLike<T = unknown> = {
 /**
  * Writable stream type
  */
-export type WritableStreamLike<T = unknown> = {
+export interface WritableStreamLike<T = unknown> {
 	getWriter: () => StreamWriter<T>
 	locked: boolean
 	abort: (reason?: unknown) => Promise<void>
@@ -234,7 +234,7 @@ export type WritableStreamLike<T = unknown> = {
 /**
  * Transform stream type
  */
-export type TransformStreamLike<I = unknown, O = unknown> = {
+export interface TransformStreamLike<I = unknown, O = unknown> {
 	readable: ReadableStreamLike<O>
 	writable: WritableStreamLike<I>
 }
@@ -246,7 +246,7 @@ export type TransformStreamLike<I = unknown, O = unknown> = {
 /**
  * Pub/Sub type
  */
-export type PubSub<T = unknown> = {
+export interface PubSub<T = unknown> {
 	publish: (topic: string, message: T) => void
 	subscribe: (topic: string, handler: (message: T) => void) => () => void
 	unsubscribe: (topic: string, handler?: (message: T) => void) => void
@@ -256,14 +256,14 @@ export type PubSub<T = unknown> = {
 /**
  * Publisher type
  */
-export type Publisher<T = unknown> = {
+export interface Publisher<T = unknown> {
 	publish: (topic: string, message: T) => void
 }
 
 /**
  * Subscriber type
  */
-export type Subscriber<T = unknown> = {
+export interface Subscriber<T = unknown> {
 	subscribe: (topic: string, handler: (message: T) => void) => () => void
 	unsubscribe: (topic: string, handler?: (message: T) => void) => void
 }
@@ -271,7 +271,7 @@ export type Subscriber<T = unknown> = {
 /**
  * Subscription options type
  */
-export type SubscriptionOptions<T = unknown> = {
+export interface SubscriptionOptions<T = unknown> {
 	topic: string
 	handler: (message: T) => void
 	once?: boolean

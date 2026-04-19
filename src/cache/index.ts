@@ -11,7 +11,7 @@
 /**
  * Cache type
  */
-export type Cache<T = unknown> = {
+export interface Cache<T = unknown> {
 	get: (key: string) => Promise<T | undefined>
 	set: (key: string, value: T, options?: CacheOptions) => Promise<void>
 	has: (key: string) => Promise<boolean>
@@ -26,7 +26,7 @@ export type Cache<T = unknown> = {
 /**
  * Cache entry
  */
-export type CacheEntry<T = unknown> = {
+export interface CacheEntry<T = unknown> {
 	key: string
 	value: T
 	ttl?: number
@@ -53,7 +53,7 @@ export type CacheValue<T = unknown> = T
 /**
  * Cache options
  */
-export type CacheOptions = {
+export interface CacheOptions {
 	ttl?: number
 	tags?: string[]
 	version?: number
@@ -64,7 +64,7 @@ export type CacheOptions = {
 /**
  * Cache statistics
  */
-export type CacheStats = {
+export interface CacheStats {
 	hits: number
 	misses: number
 	hitRate: number
@@ -148,7 +148,7 @@ export type ARCCache<T = unknown> = Cache<T> & {
 /**
  * Cache invalidation
  */
-export type CacheInvalidation<T = unknown> = {
+export interface CacheInvalidation<T = unknown> {
 	invalidate: (key: string) => Promise<void>
 	invalidateByTag: (tag: string) => Promise<void>
 	invalidateByPattern: (pattern: string | RegExp) => Promise<void>
@@ -159,7 +159,7 @@ export type CacheInvalidation<T = unknown> = {
 /**
  * Invalidation rule
  */
-export type InvalidationRule<T = unknown> = {
+export interface InvalidationRule<T = unknown> {
 	type: 'key' | 'tag' | 'pattern' | 'custom'
 	pattern?: string | RegExp
 	tags?: string[]
@@ -175,7 +175,7 @@ export type InvalidationStrategy = 'time-based' | 'event-based' | 'manual' | 'wr
 /**
  * Invalidation event
  */
-export type InvalidationEvent<T = unknown> = {
+export interface InvalidationEvent<T = unknown> {
 	type: InvalidationStrategy
 	keys: string[]
 	timestamp: Date
@@ -201,7 +201,7 @@ export type DistributedCache<T = unknown> = Cache<T> & {
 /**
  * Cache cluster
  */
-export type CacheCluster = {
+export interface CacheCluster {
 	nodes: CacheNode[]
 	strategy: 'replicated' | 'partitioned' | 'consistent-hashing'
 	replicationFactor: number
@@ -211,7 +211,7 @@ export type CacheCluster = {
 /**
  * Cache node
  */
-export type CacheNode = {
+export interface CacheNode {
 	id: string
 	host: string
 	port: number
@@ -223,7 +223,7 @@ export type CacheNode = {
 /**
  * Consistent hash
  */
-export type ConsistentHash = {
+export interface ConsistentHash {
 	addNode: (node: CacheNode) => void
 	removeNode: (nodeId: string) => void
 	getNode: (key: string) => CacheNode | undefined
@@ -237,7 +237,7 @@ export type ConsistentHash = {
 /**
  * Cache decorator options
  */
-export type CacheDecoratorOptions = {
+export interface CacheDecoratorOptions {
 	key: string | ((...args: unknown[]) => string)
 	ttl?: number
 	tags?: string[]
@@ -248,7 +248,7 @@ export type CacheDecoratorOptions = {
 /**
  * Cache aside pattern
  */
-export type CacheAside<T = unknown> = {
+export interface CacheAside<T = unknown> {
 	get: (key: string, loader: () => Promise<T>) => Promise<T>
 	set: (key: string, value: T) => Promise<void>
 	invalidate: (key: string) => Promise<void>
@@ -257,7 +257,7 @@ export type CacheAside<T = unknown> = {
 /**
  * Read through cache
  */
-export type ReadThroughCache<T = unknown> = {
+export interface ReadThroughCache<T = unknown> {
 	get: (key: string) => Promise<T | undefined>
 	set: (key: string, value: T) => Promise<void>
 	invalidate: (key: string) => Promise<void>
@@ -267,7 +267,7 @@ export type ReadThroughCache<T = unknown> = {
 /**
  * Write through cache
  */
-export type WriteThroughCache<T = unknown> = {
+export interface WriteThroughCache<T = unknown> {
 	set: (key: string, value: T) => Promise<void>
 	get: (key: string) => Promise<T | undefined>
 	delete: (key: string) => Promise<void>
@@ -277,7 +277,7 @@ export type WriteThroughCache<T = unknown> = {
 /**
  * Write behind cache
  */
-export type WriteBehindCache<T = unknown> = {
+export interface WriteBehindCache<T = unknown> {
 	set: (key: string, value: T) => Promise<void>
 	get: (key: string) => Promise<T | undefined>
 	delete: (key: string) => Promise<void>
@@ -294,7 +294,7 @@ export type WriteBehindCache<T = unknown> = {
 /**
  * Cache serializer
  */
-export type CacheSerializer<T = unknown> = {
+export interface CacheSerializer<T = unknown> {
 	serialize: (value: T) => string
 	deserialize: (data: string) => T
 }
@@ -302,7 +302,7 @@ export type CacheSerializer<T = unknown> = {
 /**
  * Cache compression options
  */
-export type CacheCompressionOptions = {
+export interface CacheCompressionOptions {
 	enabled: boolean
 	threshold: number
 	algorithm: 'gzip' | 'deflate' | 'brotli'

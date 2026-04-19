@@ -11,7 +11,7 @@
 /**
  * Microservice type
  */
-export type Microservice<T = unknown> = {
+export interface Microservice<T = unknown> {
 	name: string
 	version: string
 	config: ServiceConfig<T>
@@ -23,7 +23,7 @@ export type Microservice<T = unknown> = {
 /**
  * Service configuration
  */
-export type ServiceConfig<T = unknown> = {
+export interface ServiceConfig<T = unknown> {
 	name: string
 	version: string
 	port: number
@@ -41,7 +41,7 @@ export type ServiceConfig<T = unknown> = {
 /**
  * Service registry type
  */
-export type ServiceRegistry<S = unknown> = {
+export interface ServiceRegistry<S = unknown> {
 	register: (service: S) => Promise<void>
 	deregister: (serviceName: string) => Promise<void>
 	getService: (serviceName: string) => Promise<ServiceInstance | undefined>
@@ -52,7 +52,7 @@ export type ServiceRegistry<S = unknown> = {
 /**
  * Service discovery type
  */
-export type ServiceDiscovery = {
+export interface ServiceDiscovery {
 	discover: (serviceName: string) => Promise<ServiceInstance[]>
 	watch: (serviceName: string, callback: (instances: ServiceInstance[]) => void) => () => void
 	getInstance: (serviceName: string, strategy?: LoadBalancerStrategy) => Promise<ServiceInstance | undefined>
@@ -65,7 +65,7 @@ export type ServiceDiscovery = {
 /**
  * Service client type
  */
-export type ServiceClient<T = unknown> = {
+export interface ServiceClient<T = unknown> {
 	call: <R>(method: string, params: T) => Promise<ServiceResponse<R>>
 	callStream: <R>(method: string, params: T) => AsyncIterable<R>
 	close: () => Promise<void>
@@ -74,7 +74,7 @@ export type ServiceClient<T = unknown> = {
 /**
  * Service request type
  */
-export type ServiceRequest<T = unknown> = {
+export interface ServiceRequest<T = unknown> {
 	id: string
 	service: string
 	method: string
@@ -88,19 +88,19 @@ export type ServiceRequest<T = unknown> = {
 /**
  * Service response type
  */
-export type ServiceResponse<T = unknown> =
-	| {
-			success: true
-			data: T
-			timestamp: number
-			duration: number
-	  }
+export type ServiceResponse<T = unknown>
+	= | {
+		success: true
+		data: T
+		timestamp: number
+		duration: number
+	}
 	| ServiceError
 
 /**
  * Service error type
  */
-export type ServiceError = {
+export interface ServiceError {
 	success: false
 	error: {
 		code: string
@@ -119,7 +119,7 @@ export type ServiceError = {
 /**
  * API Gateway type
  */
-export type APIGateway = {
+export interface APIGateway {
 	routes: GatewayRoute[]
 	start: () => Promise<void>
 	stop: () => Promise<void>
@@ -130,7 +130,7 @@ export type APIGateway = {
 /**
  * Gateway route type
  */
-export type GatewayRoute = {
+export interface GatewayRoute {
 	path: string
 	method: HTTPMethod | HTTPMethod[]
 	service: string
@@ -145,7 +145,7 @@ export type GatewayRoute = {
 /**
  * Gateway configuration
  */
-export type GatewayConfig = {
+export interface GatewayConfig {
 	port: number
 	host: string
 	routes: GatewayRoute[]
@@ -158,13 +158,13 @@ export type GatewayConfig = {
  */
 export type GatewayMiddleware = (
 	request: ServiceRequest,
-	next: () => Promise<ServiceResponse>
+	next: () => Promise<ServiceResponse>,
 ) => Promise<ServiceResponse>
 
 /**
  * Retry policy
  */
-export type RetryPolicy = {
+export interface RetryPolicy {
 	maxRetries: number
 	backoff: 'fixed' | 'exponential' | 'linear'
 	initialDelay: number
@@ -175,7 +175,7 @@ export type RetryPolicy = {
 /**
  * Rate limit configuration
  */
-export type RateLimit = {
+export interface RateLimit {
 	windowMs: number
 	max: number
 	keyGenerator?: (request: ServiceRequest) => string
@@ -185,7 +185,7 @@ export type RateLimit = {
 /**
  * Auth configuration
  */
-export type AuthConfig = {
+export interface AuthConfig {
 	type: 'jwt' | 'apikey' | 'oauth2' | 'basic'
 	required: boolean
 	validate: (token: string) => Promise<boolean>
@@ -194,7 +194,7 @@ export type AuthConfig = {
 /**
  * CORS configuration
  */
-export type CORSConfig = {
+export interface CORSConfig {
 	origin: string | string[] | boolean
 	methods?: HTTPMethod[]
 	allowedHeaders?: string[]
@@ -210,7 +210,7 @@ export type CORSConfig = {
 /**
  * Circuit breaker type
  */
-export type CircuitBreaker<T = unknown> = {
+export interface CircuitBreaker<T = unknown> {
 	execute: (fn: () => Promise<T>) => Promise<T>
 	getState: () => CircuitBreakerState
 	getStats: () => CircuitBreakerStats
@@ -227,7 +227,7 @@ export type CircuitBreakerState = 'closed' | 'open' | 'half-open'
 /**
  * Circuit breaker configuration
  */
-export type CircuitBreakerConfig = {
+export interface CircuitBreakerConfig {
 	failureThreshold: number
 	successThreshold: number
 	timeout: number
@@ -241,7 +241,7 @@ export type CircuitBreakerConfig = {
 /**
  * Circuit breaker stats
  */
-export type CircuitBreakerStats = {
+export interface CircuitBreakerStats {
 	state: CircuitBreakerState
 	failures: number
 	successes: number
@@ -258,7 +258,7 @@ export type CircuitBreakerStats = {
 /**
  * Load balancer type
  */
-export type LoadBalancer = {
+export interface LoadBalancer {
 	select: (instances: ServiceInstance[]) => ServiceInstance | undefined
 	getStrategy: () => LoadBalancerStrategy
 	setStrategy: (strategy: LoadBalancerStrategy) => void
@@ -272,7 +272,7 @@ export type LoadBalancerStrategy = 'round-robin' | 'least-connections' | 'random
 /**
  * Service instance type
  */
-export type ServiceInstance = {
+export interface ServiceInstance {
 	id: string
 	name: string
 	host: string
@@ -297,7 +297,7 @@ export type InstanceStatus = 'healthy' | 'unhealthy' | 'draining' | 'starting' |
 /**
  * Health check type
  */
-export type HealthCheck = {
+export interface HealthCheck {
 	name: string
 	check: () => Promise<HealthCheckResult>
 	interval?: number
@@ -313,7 +313,7 @@ export type HealthStatus = 'healthy' | 'unhealthy' | 'degraded'
 /**
  * Health report type
  */
-export type HealthReport<T = unknown> = {
+export interface HealthReport<T = unknown> {
 	status: HealthStatus
 	timestamp: Date
 	service: string
@@ -326,7 +326,7 @@ export type HealthReport<T = unknown> = {
 /**
  * Health check result
  */
-export type HealthCheckResult = {
+export interface HealthCheckResult {
 	status: HealthStatus
 	message?: string
 	timestamp: Date

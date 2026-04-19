@@ -11,7 +11,7 @@
 /**
  * Logger type
  */
-export type Logger<T = Record<string, unknown>> = {
+export interface Logger<T = Record<string, unknown>> {
 	trace: (message: string, context?: T) => void
 	debug: (message: string, context?: T) => void
 	info: (message: string, context?: T) => void
@@ -29,7 +29,7 @@ export type LogLevel = 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal'
 /**
  * Log entry
  */
-export type LogEntry<T = Record<string, unknown>> = {
+export interface LogEntry<T = Record<string, unknown>> {
 	level: LogLevel
 	message: string
 	timestamp: Date
@@ -60,7 +60,7 @@ export type LogContext<T = Record<string, unknown>> = T & {
 /**
  * Logger configuration
  */
-export type LoggerConfig<T = Record<string, unknown>> = {
+export interface LoggerConfig<T = Record<string, unknown>> {
 	level: LogLevel
 	format: 'json' | 'pretty' | 'simple'
 	transports: LogTransport[]
@@ -71,7 +71,7 @@ export type LoggerConfig<T = Record<string, unknown>> = {
 /**
  * Log transport
  */
-export type LogTransport = {
+export interface LogTransport {
 	type: 'console' | 'file' | 'http' | 'stream'
 	options?: Record<string, unknown>
 }
@@ -83,7 +83,7 @@ export type LogTransport = {
 /**
  * Metric type
  */
-export type Metric<T = number> = {
+export interface Metric<T = number> {
 	name: string
 	value: T
 	timestamp: Date
@@ -100,7 +100,7 @@ export type MetricType = 'counter' | 'gauge' | 'histogram' | 'summary'
 /**
  * Counter metric
  */
-export type Counter<T = number> = {
+export interface Counter<T = number> {
 	inc: (value?: T) => void
 	dec: (value?: T) => void
 	reset: () => void
@@ -110,7 +110,7 @@ export type Counter<T = number> = {
 /**
  * Gauge metric
  */
-export type Gauge<T = number> = {
+export interface Gauge<T = number> {
 	set: (value: T) => void
 	inc: (value?: T) => void
 	dec: (value?: T) => void
@@ -121,7 +121,7 @@ export type Gauge<T = number> = {
 /**
  * Histogram metric
  */
-export type Histogram = {
+export interface Histogram {
 	observe: (value: number) => void
 	reset: () => void
 	getBuckets: () => Record<string, number>
@@ -132,7 +132,7 @@ export type Histogram = {
 /**
  * Summary metric
  */
-export type Summary = {
+export interface Summary {
 	observe: (value: number) => void
 	reset: () => void
 	getQuantiles: () => Record<string, number>
@@ -143,7 +143,7 @@ export type Summary = {
 /**
  * Metrics registry
  */
-export type MetricsRegistry = {
+export interface MetricsRegistry {
 	register: <T extends Metric>(metric: T) => void
 	unregister: (name: string) => void
 	getMetric: (name: string) => Metric | undefined
@@ -158,7 +158,7 @@ export type MetricsRegistry = {
 /**
  * Span type
  */
-export type Span = {
+export interface Span {
 	traceId: string
 	spanId: string
 	parentSpanId?: string
@@ -184,7 +184,7 @@ export type SpanStatus = 'unset' | 'ok' | 'error'
 /**
  * Span event
  */
-export type SpanEvent = {
+export interface SpanEvent {
 	name: string
 	timestamp: Date
 	attributes?: Record<string, unknown>
@@ -193,7 +193,7 @@ export type SpanEvent = {
 /**
  * Trace type
  */
-export type Trace<T = unknown> = {
+export interface Trace<T = unknown> {
 	traceId: string
 	spans: Span[]
 	rootSpan: Span
@@ -212,7 +212,7 @@ export type TraceStatus = 'in-progress' | 'completed' | 'failed'
 /**
  * Trace context
  */
-export type TraceContext = {
+export interface TraceContext {
 	traceId: string
 	spanId: string
 	traceFlags: number
@@ -222,7 +222,7 @@ export type TraceContext = {
 /**
  * Tracer type
  */
-export type Tracer = {
+export interface Tracer {
 	startSpan: (name: string, options?: SpanOptions) => Span
 	getCurrentSpan: () => Span | undefined
 	setCurrentSpan: (span: Span) => void
@@ -232,7 +232,7 @@ export type Tracer = {
 /**
  * Span options
  */
-export type SpanOptions = {
+export interface SpanOptions {
 	kind?: SpanKind
 	attributes?: Record<string, unknown>
 	parent?: Span
@@ -243,7 +243,7 @@ export type SpanOptions = {
 /**
  * Span link
  */
-export type SpanLink = {
+export interface SpanLink {
 	traceId: string
 	spanId: string
 	attributes?: Record<string, unknown>
@@ -256,7 +256,7 @@ export type SpanLink = {
 /**
  * Monitor type
  */
-export type Monitor = {
+export interface Monitor {
 	name: string
 	check: () => Promise<MonitorResult>
 	interval: number
@@ -273,7 +273,7 @@ export type MonitorStatus = 'healthy' | 'unhealthy' | 'degraded' | 'unknown'
 /**
  * Monitor result
  */
-export type MonitorResult<T = unknown> = {
+export interface MonitorResult<T = unknown> {
 	status: MonitorStatus
 	message: string
 	timestamp: Date
@@ -284,7 +284,7 @@ export type MonitorResult<T = unknown> = {
 /**
  * Alert type
  */
-export type Alert<T = unknown> = {
+export interface Alert<T = unknown> {
 	id: string
 	name: string
 	severity: AlertSeverity
@@ -310,7 +310,7 @@ export type AlertStatus = 'firing' | 'resolved' | 'silenced' | 'inhibited'
 /**
  * Alert rule
  */
-export type AlertRule<T = unknown> = {
+export interface AlertRule<T = unknown> {
 	name: string
 	expression: string
 	duration: number
@@ -324,7 +324,7 @@ export type AlertRule<T = unknown> = {
 /**
  * Alert configuration
  */
-export type AlertConfig = {
+export interface AlertConfig {
 	rules: AlertRule[]
 	receivers: AlertReceiver[]
 	route: AlertRoute
@@ -334,7 +334,7 @@ export type AlertConfig = {
 /**
  * Alert receiver
  */
-export type AlertReceiver = {
+export interface AlertReceiver {
 	name: string
 	type: 'email' | 'slack' | 'pagerduty' | 'webhook' | 'opsgenie' | 'victorops'
 	config: Record<string, unknown>
@@ -343,7 +343,7 @@ export type AlertReceiver = {
 /**
  * Alert route
  */
-export type AlertRoute = {
+export interface AlertRoute {
 	receiver: string
 	match?: Record<string, string>
 	continue?: boolean
@@ -353,7 +353,7 @@ export type AlertRoute = {
 /**
  * Inhibit rule
  */
-export type InhibitRule = {
+export interface InhibitRule {
 	sourceMatch: Record<string, string>
 	targetMatch: Record<string, string>
 	equal: string[]
@@ -366,7 +366,7 @@ export type InhibitRule = {
 /**
  * Health indicator
  */
-export type HealthIndicator<T = unknown> = {
+export interface HealthIndicator<T = unknown> {
 	name: string
 	check: () => Promise<HealthCheckResult<T>>
 	critical: boolean
@@ -375,7 +375,7 @@ export type HealthIndicator<T = unknown> = {
 /**
  * Health check result
  */
-export type HealthCheckResult<T = unknown> = {
+export interface HealthCheckResult<T = unknown> {
 	status: 'healthy' | 'unhealthy' | 'degraded'
 	message?: string
 	timestamp: Date
@@ -386,7 +386,7 @@ export type HealthCheckResult<T = unknown> = {
 /**
  * Liveness check
  */
-export type LivenessCheck = {
+export interface LivenessCheck {
 	check: () => Promise<boolean>
 	timeout: number
 }
@@ -394,7 +394,7 @@ export type LivenessCheck = {
 /**
  * Readiness check
  */
-export type ReadinessCheck = {
+export interface ReadinessCheck {
 	check: () => Promise<boolean>
 	timeout: number
 	dependencies: string[]

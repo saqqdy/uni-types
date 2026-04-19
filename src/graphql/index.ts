@@ -11,7 +11,7 @@
 /**
  * GraphQL schema type representation
  */
-export type GraphQLSchema<T> = {
+export interface GraphQLSchema<T> {
 	query: T
 	mutation?: T
 	subscription?: T
@@ -21,25 +21,25 @@ export type GraphQLSchema<T> = {
 /**
  * GraphQL scalar and object types
  */
-export type GraphQLType<T> =
-	| GraphQLScalarType
-	| GraphQLObjectType<T>
-	| GraphQLEnumType
-	| GraphQLInputObjectType<T>
-	| GraphQLUnionType
-	| GraphQLInterfaceType<T>
+export type GraphQLType<T>
+	= | GraphQLScalarType
+		| GraphQLObjectType<T>
+		| GraphQLEnumType
+		| GraphQLInputObjectType<T>
+		| GraphQLUnionType
+		| GraphQLInterfaceType<T>
 
 /**
  * GraphQL scalar types
  */
-export type GraphQLScalarType =
-	| 'String'
-	| 'Int'
-	| 'Float'
-	| 'Boolean'
-	| 'ID'
-	| 'DateTime'
-	| 'JSON'
+export type GraphQLScalarType
+	= | 'String'
+		| 'Int'
+		| 'Float'
+		| 'Boolean'
+		| 'ID'
+		| 'DateTime'
+		| 'JSON'
 
 /**
  * GraphQL object type
@@ -93,7 +93,7 @@ export type GraphQLOutputType<T> = T extends GraphQLScalarType
 /**
  * GraphQL query type
  */
-export type GraphQLQuery<T, V = Record<string, never>> = {
+export interface GraphQLQuery<T, V = Record<string, never>> {
 	__query?: string
 	variables: V
 	return: T
@@ -102,7 +102,7 @@ export type GraphQLQuery<T, V = Record<string, never>> = {
 /**
  * GraphQL mutation type
  */
-export type GraphQLMutation<T, V = Record<string, never>> = {
+export interface GraphQLMutation<T, V = Record<string, never>> {
 	__mutation?: string
 	variables: V
 	return: T
@@ -111,7 +111,7 @@ export type GraphQLMutation<T, V = Record<string, never>> = {
 /**
  * GraphQL subscription type
  */
-export type GraphQLSubscription<T, V = Record<string, never>> = {
+export interface GraphQLSubscription<T, V = Record<string, never>> {
 	__subscription?: string
 	variables: V
 	return: T
@@ -136,7 +136,7 @@ export type GraphQLResolver<T, C = unknown, A = Record<string, unknown>> = (
 	parent: unknown,
 	args: A,
 	context: C,
-	info: GraphQLResolveInfo
+	info: GraphQLResolveInfo,
 ) => T | Promise<T>
 
 /**
@@ -146,7 +146,7 @@ export type GraphQLFieldResolver<T, Args = Record<string, unknown>, C = unknown>
 	source: unknown,
 	args: Args,
 	context: C,
-	info: GraphQLResolveInfo
+	info: GraphQLResolveInfo,
 ) => T | Promise<T>
 
 /**
@@ -159,12 +159,12 @@ export type GraphQLContext<T = Record<string, unknown>> = T & {
 /**
  * GraphQL resolve info
  */
-export type GraphQLResolveInfo = {
+export interface GraphQLResolveInfo {
 	fieldName: string
 	fieldNodes: unknown[]
 	returnType: unknown
 	parentType: unknown
-	path: { key: string | number; prev: unknown }
+	path: { key: string | number, prev: unknown }
 	schema: unknown
 	fragments: Record<string, unknown>
 	rootValue: unknown

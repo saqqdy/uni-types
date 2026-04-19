@@ -11,23 +11,23 @@
 /**
  * Event bus type
  */
-export type EventBus<T extends Record<string, unknown> = Record<string, unknown>> = {
-	publish<E extends keyof T>(event: E, data: T[E]): void
-	subscribe<E extends keyof T>(
+export interface EventBus<T extends Record<string, unknown> = Record<string, unknown>> {
+	publish: <E extends keyof T>(event: E, data: T[E]) => void
+	subscribe: <E extends keyof T>(
 		event: E,
-		handler: (data: T[E]) => void | Promise<void>
-	): () => void
-	unsubscribe<E extends keyof T>(
+		handler: (data: T[E]) => void | Promise<void>,
+	) => () => void
+	unsubscribe: <E extends keyof T>(
 		event: E,
-		handler: (data: T[E]) => void | Promise<void>
-	): void
+		handler: (data: T[E]) => void | Promise<void>,
+	) => void
 	emit: <E extends keyof T>(event: E, data: T[E]) => Promise<void>
 }
 
 /**
  * Event bus configuration
  */
-export type EventBusConfig<T extends Record<string, unknown> = Record<string, unknown>> = {
+export interface EventBusConfig<T extends Record<string, unknown> = Record<string, unknown>> {
 	handlers?: {
 		[E in keyof T]?: ((data: T[E]) => void | Promise<void>)[]
 	}
@@ -39,7 +39,7 @@ export type EventBusConfig<T extends Record<string, unknown> = Record<string, un
  * Event bus handler
  */
 export type EventBusHandler<T, E extends keyof T = keyof T> = (
-	data: T[E]
+	data: T[E],
 ) => void | Promise<void>
 
 /**
@@ -48,7 +48,7 @@ export type EventBusHandler<T, E extends keyof T = keyof T> = (
 export type EventBusMiddleware<T extends Record<string, unknown>> = (
 	event: keyof T,
 	data: T[keyof T],
-	next: () => Promise<void>
+	next: () => Promise<void>,
 ) => Promise<void>
 
 // ============================================================================
@@ -58,7 +58,7 @@ export type EventBusMiddleware<T extends Record<string, unknown>> = (
 /**
  * Event store type
  */
-export type EventStore<E = unknown> = {
+export interface EventStore<E = unknown> {
 	append: (event: E) => Promise<void>
 	getEvents: (aggregateId: string) => Promise<E[]>
 	getAllEvents: () => Promise<E[]>
@@ -86,14 +86,14 @@ export type EventTimestamp = number | string | Date
 /**
  * Base event type
  */
-export type BaseEvent<T = string, P = unknown> = {
+export interface BaseEvent<T = string, P = unknown> {
 	type: T
 	payload: P
 	timestamp: EventTimestamp
 	version: EventVersion
 	aggregateId?: string
 	correlationId?: string
- causationId?: string
+	causationId?: string
 }
 
 /**
@@ -110,7 +110,7 @@ export type AggregateEvents<T extends Record<string, unknown>> = {
 /**
  * Command type
  */
-export type Command<T = string, P = unknown> = {
+export interface Command<T = string, P = unknown> {
 	type: T
 	payload: P
 	timestamp: EventTimestamp
@@ -122,13 +122,13 @@ export type Command<T = string, P = unknown> = {
  * Command handler type
  */
 export type CommandHandler<C extends Command, R = void> = (
-	command: C
+	command: C,
 ) => R | Promise<R>
 
 /**
  * Query type
  */
-export type Query<T = string, R = unknown> = {
+export interface Query<T = string, R = unknown> {
 	type: T
 	params: R
 	timestamp: EventTimestamp
@@ -143,36 +143,36 @@ export type QueryHandler<Q extends Query, R> = (query: Q) => R | Promise<R>
 /**
  * Command result type
  */
-export type CommandResult<T = unknown> =
-	| { success: true; data: T }
-	| { success: false; error: Error }
+export type CommandResult<T = unknown>
+	= | { success: true, data: T }
+		| { success: false, error: Error }
 
 /**
  * Query result type
  */
-export type QueryResult<T = unknown> =
-	| { success: true; data: T }
-	| { success: false; error: Error }
+export type QueryResult<T = unknown>
+	= | { success: true, data: T }
+		| { success: false, error: Error }
 
 /**
  * Command bus type
  */
-export type CommandBus = {
+export interface CommandBus {
 	dispatch: <C extends Command>(command: C) => Promise<CommandResult>
 	register: <C extends Command>(
 		commandType: C['type'],
-		handler: CommandHandler<C>
+		handler: CommandHandler<C>,
 	) => void
 }
 
 /**
  * Query bus type
  */
-export type QueryBus = {
+export interface QueryBus {
 	execute: <Q extends Query, R>(query: Q) => Promise<QueryResult<R>>
 	register: <Q extends Query, R>(
 		queryType: Q['type'],
-		handler: QueryHandler<Q, R>
+		handler: QueryHandler<Q, R>,
 	) => void
 }
 
@@ -183,7 +183,7 @@ export type QueryBus = {
 /**
  * Saga type
  */
-export type Saga<T = unknown> = {
+export interface Saga<T = unknown> {
 	sagaId: string
 	steps: SagaStep[]
 	currentStep: number
@@ -195,7 +195,7 @@ export type Saga<T = unknown> = {
 /**
  * Saga step type
  */
-export type SagaStep<T = unknown> = {
+export interface SagaStep<T = unknown> {
 	stepId: string
 	name: string
 	execute: (context: T) => Promise<T>
@@ -207,7 +207,7 @@ export type SagaStep<T = unknown> = {
 /**
  * Saga compensation type
  */
-export type SagaCompensation<T = unknown> = {
+export interface SagaCompensation<T = unknown> {
 	stepId: string
 	compensate: (context: T) => Promise<void>
 	executed: boolean
@@ -216,9 +216,9 @@ export type SagaCompensation<T = unknown> = {
 /**
  * Saga result type
  */
-export type SagaResult<T = unknown> =
-	| { success: true; data: T }
-	| { success: false; error: Error; compensatedSteps: string[] }
+export type SagaResult<T = unknown>
+	= | { success: true, data: T }
+		| { success: false, error: Error, compensatedSteps: string[] }
 
 /**
  * Saga status
@@ -237,7 +237,7 @@ export type StepStatus = 'pending' | 'running' | 'completed' | 'failed' | 'compe
 /**
  * Message queue type
  */
-export type MessageQueue<M = unknown> = {
+export interface MessageQueue<M = unknown> {
 	publish: (message: M) => Promise<void>
 	consume: (handler: (message: M) => Promise<void>) => void
 	ack: (messageId: string) => Promise<void>
@@ -248,7 +248,7 @@ export type MessageQueue<M = unknown> = {
 /**
  * Queue message type
  */
-export type QueueMessage<T = unknown> = {
+export interface QueueMessage<T = unknown> {
 	id: string
 	payload: T
 	timestamp: EventTimestamp
@@ -261,7 +261,7 @@ export type QueueMessage<T = unknown> = {
 /**
  * Queue consumer type
  */
-export type QueueConsumer<T = unknown> = {
+export interface QueueConsumer<T = unknown> {
 	id: string
 	handler: (message: QueueMessage<T>) => Promise<void>
 	concurrency: number
@@ -271,7 +271,7 @@ export type QueueConsumer<T = unknown> = {
 /**
  * Queue producer type
  */
-export type QueueProducer<T = unknown> = {
+export interface QueueProducer<T = unknown> {
 	publish: (payload: T, options?: PublishOptions) => Promise<string>
 	publishBatch: (payloads: T[], options?: PublishOptions) => Promise<string[]>
 }
@@ -279,7 +279,7 @@ export type QueueProducer<T = unknown> = {
 /**
  * Publish options
  */
-export type PublishOptions = {
+export interface PublishOptions {
 	delay?: number
 	priority?: number
 	expiresAt?: Date | number
@@ -290,7 +290,7 @@ export type PublishOptions = {
 /**
  * Dead letter queue type
  */
-export type DeadLetterQueue<T = unknown> = {
+export interface DeadLetterQueue<T = unknown> {
 	publish: (message: QueueMessage<T>, reason: string) => Promise<void>
 	getMessages: () => Promise<QueueMessage<T>[]>
 	retry: (messageId: string) => Promise<void>

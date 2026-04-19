@@ -114,6 +114,12 @@ export type {
 	TypeSet,
 } from './collection'
 
+// Type-level concurrency (v1.4.0)
+export * from './concurrency'
+
+// Conditional types (v1.1.0)
+export * from './conditional'
+
 // Configuration Management (v1.5.0)
 export type {
 	Config,
@@ -125,9 +131,9 @@ export type {
 	ConfigLoaderOptions,
 	ConfigPriority,
 	ConfigSchema,
-	ConfigValue,
-	ConfigValidator,
 	ConfigValidationResult,
+	ConfigValidator,
+	ConfigValue,
 	ConfigWarning,
 	EnvConfig,
 	EnvMapping,
@@ -146,12 +152,6 @@ export type {
 	TargetingOperator,
 } from './config'
 
-// Type-level concurrency (v1.4.0)
-export * from './concurrency'
-
-// Conditional types (v1.1.0)
-export * from './conditional'
-
 // Core operations
 export * from './core'
 
@@ -163,6 +163,9 @@ export * from './datastructures'
 
 // Deep operations
 export * from './deep'
+
+// Ecosystem integration (v1.2.0)
+export * from './ecosystem'
 
 // Event-Driven Architecture (v1.5.0)
 export type {
@@ -177,6 +180,7 @@ export type {
 	EventBusConfig,
 	EventBusHandler,
 	EventBusMiddleware,
+	StepStatus as EventStepStatus,
 	EventStore,
 	EventStream,
 	EventTimestamp,
@@ -195,11 +199,7 @@ export type {
 	SagaResult,
 	SagaStatus,
 	SagaStep,
-	StepStatus as EventStepStatus,
 } from './event'
-
-// Ecosystem integration (v1.2.0)
-export * from './ecosystem'
 
 // Function utilities (v1.1.0)
 export * from './functions'
@@ -237,16 +237,16 @@ export type {
 	AlertStatus,
 	Counter,
 	Gauge,
-	HealthCheckResult as LoggingHealthCheckResult,
 	HealthIndicator,
 	Histogram,
 	InhibitRule,
 	LivenessCheck,
 	LogContext,
 	LogEntry,
-	LogLevel,
 	Logger,
 	LoggerConfig,
+	HealthCheckResult as LoggingHealthCheckResult,
+	LogLevel,
 	LogTransport,
 	Metric,
 	MetricsRegistry,
@@ -264,8 +264,8 @@ export type {
 	Summary,
 	Trace,
 	TraceContext,
-	TraceStatus,
 	Tracer,
+	TraceStatus,
 } from './logging'
 
 // Microservices Architecture (v1.5.0)
@@ -282,21 +282,21 @@ export type {
 	GatewayRoute,
 	HealthCheck,
 	HealthReport,
-	HealthStatus as ServiceHealthStatus,
 	InstanceStatus,
 	LoadBalancer,
 	LoadBalancerStrategy,
 	Microservice,
 	RateLimit,
-	RetryPolicy as ServiceRetryPolicy,
 	ServiceClient,
 	ServiceConfig,
 	ServiceDiscovery,
 	ServiceError,
+	HealthStatus as ServiceHealthStatus,
 	ServiceInstance,
 	ServiceRegistry,
 	ServiceRequest,
 	ServiceResponse,
+	RetryPolicy as ServiceRetryPolicy,
 } from './microservice'
 
 // Numeric utilities (v1.1.0)
@@ -335,6 +335,9 @@ export * from './template'
 // Type-level testing (v1.4.0)
 export * from './testing'
 
+// Utility types
+export * from './utils'
+
 // Validation Rules (v1.5.0)
 export type {
 	ArrayFieldValidator,
@@ -352,9 +355,9 @@ export type {
 	ObjectFieldValidator,
 	OrValidator,
 	Pattern,
-	SanitizeResult,
 	SanitizationRule,
 	Sanitizer,
+	SanitizeResult,
 	SchemaBuilder,
 	StringFieldValidator,
 	StringSanitizer,
@@ -374,29 +377,29 @@ export type {
 	EventListenerOptions,
 	EventMap,
 	EventPayload,
-	EventHandler as WebSocketEventHandler,
-	PubSub,
 	Publisher,
+	PubSub,
 	ReadableStreamLike,
 	RealTimeChannel,
 	RealTimeClient,
 	RealTimeMessage,
 	RealTimeSubscription,
-	StreamReader,
-	StreamWriter,
 	Stream,
 	StreamChunk,
+	StreamReader,
+	StreamWriter,
 	Subscriber,
 	SubscriptionOptions,
 	TransformStreamLike,
 	TypedEventTarget,
-	WritableStreamLike,
 	WebSocketConfig,
 	WebSocketEvent,
+	EventHandler as WebSocketEventHandler,
 	WebSocketHandler,
 	WebSocketMessage,
 	WebSocketOptions,
 	WebSocketState,
+	WritableStreamLike,
 } from './websocket'
 
 // Workflow Engine (v1.5.0)
@@ -420,9 +423,7 @@ export type {
 	HistoryEntry,
 	HistoryEvent,
 	HistoryEventType,
-	RetryPolicy as WorkflowRetryPolicy,
 	StepResult,
-	StepStatus as WorkflowStepStatus,
 	StepType,
 	TransitionAction,
 	TransitionCondition,
@@ -437,11 +438,10 @@ export type {
 	WorkflowHistory,
 	WorkflowInstance,
 	WorkflowPersistence,
+	RetryPolicy as WorkflowRetryPolicy,
 	WorkflowStatus,
 	WorkflowStep,
+	StepStatus as WorkflowStepStatus,
 	WorkflowTimeout,
 	WorkflowTransition,
 } from './workflow'
-
-// Utility types
-export * from './utils'

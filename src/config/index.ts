@@ -27,7 +27,7 @@ export type ConfigSchema<T = unknown> = {
 /**
  * Configuration field
  */
-export type ConfigField<T = unknown> = {
+export interface ConfigField<T = unknown> {
 	type: ConfigFieldType
 	required?: boolean
 	default?: T
@@ -70,7 +70,7 @@ export type Environment = 'development' | 'staging' | 'production' | 'test' | 'l
 /**
  * Environment variable type
  */
-export type EnvVar<T = unknown> = {
+export interface EnvVar<T = unknown> {
 	value: T
 	source: ConfigSource
 	required: boolean
@@ -81,7 +81,7 @@ export type EnvVar<T = unknown> = {
 /**
  * Environment configuration
  */
-export type EnvConfig<T = unknown> = {
+export interface EnvConfig<T = unknown> {
 	env: Environment
 	config: T
 	sources: Record<string, ConfigSource>
@@ -97,9 +97,9 @@ export type EnvMapping<T = unknown> = {
 /**
  * Parse environment result
  */
-export type ParseEnvResult<T = unknown> =
-	| { success: true; config: T }
-	| { success: false; errors: ConfigError[] }
+export type ParseEnvResult<T = unknown>
+	= | { success: true, config: T }
+		| { success: false, errors: ConfigError[] }
 
 // ============================================================================
 // Validation Types
@@ -108,7 +108,7 @@ export type ParseEnvResult<T = unknown> =
 /**
  * Configuration validator
  */
-export type ConfigValidator<T = unknown> = {
+export interface ConfigValidator<T = unknown> {
 	validate: (config: T) => Promise<ConfigValidationResult<T>>
 	schema: ConfigSchema<T>
 }
@@ -116,14 +116,14 @@ export type ConfigValidator<T = unknown> = {
 /**
  * Configuration validation result
  */
-export type ConfigValidationResult<T = unknown> =
-	| { success: true; config: T }
-	| { success: false; errors: ConfigError[] }
+export type ConfigValidationResult<T = unknown>
+	= | { success: true, config: T }
+		| { success: false, errors: ConfigError[] }
 
 /**
  * Configuration error
  */
-export type ConfigError = {
+export interface ConfigError {
 	path: string
 	message: string
 	value?: unknown
@@ -133,7 +133,7 @@ export type ConfigError = {
 /**
  * Configuration warnings
  */
-export type ConfigWarning = {
+export interface ConfigWarning {
 	path: string
 	message: string
 	value?: unknown
@@ -147,7 +147,7 @@ export type ConfigWarning = {
 /**
  * Secret type
  */
-export type Secret<T = string> = {
+export interface Secret<T = string> {
 	__secret: true
 	value: T
 	expiresAt?: Date
@@ -158,7 +158,7 @@ export type Secret<T = string> = {
 /**
  * Secret provider
  */
-export type SecretProvider<T = string> = {
+export interface SecretProvider<T = string> {
 	get: (key: string) => Promise<Secret<T>>
 	set: (key: string, value: T, options?: SecretOptions) => Promise<void>
 	delete: (key: string) => Promise<void>
@@ -168,7 +168,7 @@ export type SecretProvider<T = string> = {
 /**
  * Secret configuration
  */
-export type SecretConfig<T = string> = {
+export interface SecretConfig<T = string> {
 	provider: 'env' | 'file' | 'vault' | 'aws-secrets' | 'azure-keyvault' | 'gcp-secret'
 	prefix?: string
 	cache?: boolean
@@ -179,7 +179,7 @@ export type SecretConfig<T = string> = {
 /**
  * Secret options
  */
-export type SecretOptions = {
+export interface SecretOptions {
 	expiresIn?: number
 	tags?: Record<string, string>
 	metadata?: Record<string, unknown>
@@ -192,7 +192,7 @@ export type SecretOptions = {
 /**
  * Feature flag type
  */
-export type FeatureFlag<T = boolean> = {
+export interface FeatureFlag<T = boolean> {
 	name: string
 	enabled: T
 	description?: string
@@ -205,7 +205,7 @@ export type FeatureFlag<T = boolean> = {
 /**
  * Feature flag variant
  */
-export type FeatureFlagVariant<T = unknown> = {
+export interface FeatureFlagVariant<T = unknown> {
 	name: string
 	value: T
 	weight?: number
@@ -215,7 +215,7 @@ export type FeatureFlagVariant<T = unknown> = {
 /**
  * Feature targeting
  */
-export type FeatureTargeting = {
+export interface FeatureTargeting {
 	attribute: string
 	operator: TargetingOperator
 	values: unknown[]
@@ -225,19 +225,19 @@ export type FeatureTargeting = {
 /**
  * Targeting operator
  */
-export type TargetingOperator =
-	| 'eq'
-	| 'ne'
-	| 'gt'
-	| 'gte'
-	| 'lt'
-	| 'lte'
-	| 'contains'
-	| 'startsWith'
-	| 'endsWith'
-	| 'matches'
-	| 'in'
-	| 'notIn'
+export type TargetingOperator
+	= | 'eq'
+		| 'ne'
+		| 'gt'
+		| 'gte'
+		| 'lt'
+		| 'lte'
+		| 'contains'
+		| 'startsWith'
+		| 'endsWith'
+		| 'matches'
+		| 'in'
+		| 'notIn'
 
 /**
  * Feature flags collection
@@ -249,7 +249,7 @@ export type FeatureFlags<T = Record<string, boolean>> = {
 /**
  * Feature flag configuration
  */
-export type FeatureFlagConfig<T = Record<string, boolean>> = {
+export interface FeatureFlagConfig<T = Record<string, boolean>> {
 	flags: FeatureFlags<T>
 	defaultValue: boolean
 	refreshInterval?: number
@@ -264,7 +264,7 @@ export type FeatureFlagConfig<T = Record<string, boolean>> = {
 /**
  * Config loader type
  */
-export type ConfigLoader<T = unknown> = {
+export interface ConfigLoader<T = unknown> {
 	load: () => Promise<T>
 	reload: () => Promise<T>
 	watch: (callback: (config: T) => void) => () => void
@@ -273,7 +273,7 @@ export type ConfigLoader<T = unknown> = {
 /**
  * Config loader options
  */
-export type ConfigLoaderOptions = {
+export interface ConfigLoaderOptions {
 	sources: ConfigSource[]
 	priority?: ConfigPriority
 	env?: Environment
@@ -291,7 +291,7 @@ export type ConfigFileFormat = 'json' | 'yaml' | 'toml' | 'ini' | 'env'
 /**
  * Remote config provider
  */
-export type RemoteConfigProvider = {
+export interface RemoteConfigProvider {
 	get: (key: string) => Promise<ConfigValue>
 	set: (key: string, value: unknown) => Promise<void>
 	delete: (key: string) => Promise<void>

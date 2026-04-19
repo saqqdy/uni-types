@@ -11,7 +11,7 @@
 /**
  * Validator type
  */
-export type Validator<T = unknown> = {
+export interface Validator<T = unknown> {
 	validate: (value: unknown) => ValidatorResult<T>
 	optional: () => Validator<T | undefined>
 	nullable: () => Validator<T | null>
@@ -20,14 +20,14 @@ export type Validator<T = unknown> = {
 /**
  * Validator result
  */
-export type ValidatorResult<T = unknown> =
-	| { success: true; value: T }
-	| { success: false; errors: ValidationError[] }
+export type ValidatorResult<T = unknown>
+	= | { success: true, value: T }
+		| { success: false, errors: ValidationError[] }
 
 /**
  * Validation error
  */
-export type ValidationError = {
+export interface ValidationError {
 	path: string
 	message: string
 	code: string
@@ -38,7 +38,7 @@ export type ValidationError = {
 /**
  * Validation rule
  */
-export type ValidationRule<T = unknown> = {
+export interface ValidationRule<T = unknown> {
 	name: string
 	validate: (value: T) => boolean
 	message: string | ((value: T) => string)
@@ -138,7 +138,7 @@ export type ObjectFieldValidator<T = Record<string, unknown>> = Validator<T> & {
 /**
  * And validator
  */
-export type AndValidator<T = unknown> = {
+export interface AndValidator<T = unknown> {
 	validators: Validator<T>[]
 	validate: (value: unknown) => ValidatorResult<T>
 }
@@ -146,7 +146,7 @@ export type AndValidator<T = unknown> = {
 /**
  * Or validator
  */
-export type OrValidator<T = unknown> = {
+export interface OrValidator<T = unknown> {
 	validators: Validator<T>[]
 	validate: (value: unknown) => ValidatorResult<T>
 }
@@ -154,7 +154,7 @@ export type OrValidator<T = unknown> = {
 /**
  * Not validator
  */
-export type NotValidator<T = unknown> = {
+export interface NotValidator<T = unknown> {
 	validator: Validator<T>
 	validate: (value: unknown) => ValidatorResult<T>
 }
@@ -162,14 +162,14 @@ export type NotValidator<T = unknown> = {
 /**
  * Custom validator
  */
-export type CustomValidator<T = unknown> = {
+export interface CustomValidator<T = unknown> {
 	validate: (value: unknown, context?: ValidationContext) => ValidatorResult<T>
 }
 
 /**
  * Validation context
  */
-export type ValidationContext<T = unknown> = {
+export interface ValidationContext<T = unknown> {
 	path: string
 	parent?: T
 	root: unknown
@@ -179,7 +179,7 @@ export type ValidationContext<T = unknown> = {
 /**
  * Validation options
  */
-export type ValidationOptions = {
+export interface ValidationOptions {
 	abortEarly: boolean
 	stripUnknown: boolean
 	allowUnknown: boolean
@@ -219,7 +219,7 @@ export type Pattern<S extends string> = S
 /**
  * Email constraint
  */
-export type EmailConstraint = {
+export interface EmailConstraint {
 	allowDisplayName: boolean
 	allowTld: boolean
 	requireTld: boolean
@@ -229,7 +229,7 @@ export type EmailConstraint = {
 /**
  * URL constraint
  */
-export type URLConstraint = {
+export interface URLConstraint {
 	protocols: string[]
 	requireProtocol: boolean
 	requireHost: boolean
@@ -240,7 +240,7 @@ export type URLConstraint = {
 /**
  * UUID constraint
  */
-export type UUIDConstraint = {
+export interface UUIDConstraint {
 	version: 1 | 3 | 4 | 5 | 'all'
 }
 
@@ -251,21 +251,21 @@ export type UUIDConstraint = {
 /**
  * Sanitizer type
  */
-export type Sanitizer<T = unknown> = {
+export interface Sanitizer<T = unknown> {
 	sanitize: (value: unknown) => SanitizeResult<T>
 }
 
 /**
  * Sanitize result
  */
-export type SanitizeResult<T = unknown> =
-	| { success: true; value: T; changed: boolean }
-	| { success: false; error: string }
+export type SanitizeResult<T = unknown>
+	= | { success: true, value: T, changed: boolean }
+		| { success: false, error: string }
 
 /**
  * Sanitization rule
  */
-export type SanitizationRule<T = unknown> = {
+export interface SanitizationRule<T = unknown> {
 	name: string
 	sanitize: (value: T) => T
 	description?: string
@@ -306,7 +306,7 @@ export type NumberSanitizer = Sanitizer<number> & {
 /**
  * Schema builder
  */
-export type SchemaBuilder = {
+export interface SchemaBuilder {
 	string: () => StringFieldValidator
 	number: () => NumberFieldValidator
 	boolean: () => BooleanFieldValidator
