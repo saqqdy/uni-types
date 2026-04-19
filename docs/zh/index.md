@@ -58,6 +58,21 @@ features:
   - icon: 💾
     title: 缓存策略
     details: LRU、LFU、TTL 缓存、缓存失效、分布式缓存类型。
+  - icon: 🤖
+    title: AI/ML 类型
+    details: 张量类型、神经网络层、优化器、训练配置、推理结果类型。
+  - icon: 🧬
+    title: 函数式编程
+    details: Functor、Monad、Maybe、Either、IO、Reader、Writer、State 单子和 Lens 类型。
+  - icon: 🌐
+    title: 分布式系统
+    details: 共识协议、复制、分区、分布式锁、协调类型。
+  - icon: 🔐
+    title: 安全类型
+    details: 身份验证、加密、哈希、签名、JWT、OAuth、会话管理类型。
+  - icon: 🌍
+    title: 国际化
+    details: 语言环境管理、翻译、复数规则、日期/数字格式化、RTL 支持类型。
 ---
 
 ## 快速示例
@@ -65,7 +80,8 @@ features:
 ```typescript
 import type {
   PickRequired, DeepPartial, Sort, IsArray,
-  GraphQLQuery, WebSocketMessage, EventBus, Workflow
+  GraphQLQuery, WebSocketMessage, EventBus, Workflow,
+  Tensor, Model, Maybe, Either, Infer
 } from 'uni-types'
 
 // 核心：将指定属性变为必需
@@ -96,6 +112,16 @@ type AppEvents = EventBus<{ userCreated: { id: string }; orderPlaced: { orderId:
 
 // 工作流类型 (v1.5.0)
 type OrderWorkflow = Workflow<{ orderId: string; status: string }>
+
+// AI/ML 张量类型 (v1.6.0)
+type ImageTensor = Tensor<[224, 224, 3], 'float32'>
+
+// 函数式编程 (v1.6.0)
+type OptionalValue = Maybe<string> // Some<string> | None
+type Result = Either<Error, string> // Left<Error> | Right<string>
+
+// 类型推断 (v1.6.0)
+type PromiseValue = Infer<Promise<string>> // string
 ```
 
 ## 为什么选择 uni-types？

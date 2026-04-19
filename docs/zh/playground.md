@@ -18,7 +18,7 @@
 - 📦 **预加载类型** - 所有 uni-types 都可直接导入
 - 🎨 **语法高亮** - 完整的 TypeScript 语法支持
 
-## 可用类型 (500+)
+## 可用类型 (600+)
 
 所有 `uni-types` 类型都可用：
 
@@ -408,6 +408,118 @@ import type {
 } from 'uni-types'
 ```
 
+### AI/ML 类型 *(v1.6.0)*
+
+```typescript
+import type {
+  Tensor, TensorShape, TensorDType,
+  Model, ModelConfig, Layer, LayerType,
+  Optimizer, LossFunction, MLMetric,
+  Dataset, DataLoader, Batch,
+  InferenceResult, Prediction, Confidence
+} from 'uni-types'
+```
+
+### 函数式编程 *(v1.6.0)*
+
+```typescript
+import type {
+  Functor, Monad, Applicative,
+  Maybe, Some, None, Either, Left, Right,
+  IO, Reader, Writer, State,
+  Result, Ok, Err, Lens,
+  Semigroup, Monoid, Compose, Pipe, Curry
+} from 'uni-types'
+```
+
+### 类型级编译器 *(v1.6.0)*
+
+```typescript
+import type {
+  ASTNode, ASTNodeType, Token, TokenType,
+  Parser, ParserResult, ParseError,
+  CodeGenerator, GeneratedCode, SourceMap,
+  Transformer, Formatter
+} from 'uni-types'
+```
+
+### 分布式系统 *(v1.6.0)*
+
+```typescript
+import type {
+  Consensus, ConsensusState, LeaderElection,
+  Replica, ReplicationStrategy, Partition,
+  PartitionStrategy, ConsistencyLevel,
+  DistributedLock, TwoPhaseCommit, TransactionState,
+  FailureDetector, Heartbeat, Membership
+} from 'uni-types'
+```
+
+### 安全类型 *(v1.6.0)*
+
+```typescript
+import type {
+  Authentication, AuthType, AuthStatus,
+  Session, SessionId, Encryption, EncryptionAlgorithm,
+  Key, KeyPair, Hash, HashAlgorithm,
+  Signature, SignatureAlgorithm, JWT, OAuthToken, CSRFToken
+} from 'uni-types'
+```
+
+### 国际化 *(v1.6.0)*
+
+```typescript
+import type {
+  Locale, LocaleCode, LanguageCode, CountryCode,
+  Translation, TranslationKey, PluralForm,
+  Currency, TimeZone, DateFormat, NumberFormat, Direction
+} from 'uni-types'
+```
+
+### 测试框架 *(v1.6.0)*
+
+```typescript
+import type {
+  TestSuite, TestCase, TestResultType,
+  Assertion, AssertionResult, Mock, Spy,
+  Fixture, Coverage, CoverageReport,
+  Snapshot, Benchmark, BenchmarkResult
+} from 'uni-types'
+```
+
+### 插件系统 *(v1.6.0)*
+
+```typescript
+import type {
+  Plugin, PluginConfig, PluginContext, PluginLifecycle,
+  Hook, HookResult, Extension, ExtensionPoint,
+  Middleware, MiddlewarePipeline, Module, Registry
+} from 'uni-types'
+```
+
+### 类型推断 *(v1.6.0)*
+
+```typescript
+import type {
+  Infer, InferReturn, InferArgs, InferPromise,
+  ExtractFunction, ExtractClass, ExtractConstructor,
+  Reconstruct, Narrow, Widen,
+  IsAny, IsNever, IsUnknown, IsFunction, IsArray, IsUnion,
+  Equals, Extends, TypeName, TypeCategory
+} from 'uni-types'
+```
+
+### 性能监控 *(v1.6.0)*
+
+```typescript
+import type {
+  Performance, PerformanceMetric, Timing,
+  MemoryUsage, MemoryMetric, CPUUsage,
+  Profiler, ProfileResult, TraceSpan,
+  PerformanceTrace, PerformanceAlert
+} from 'uni-types'
+```
+
 ## 示例代码
 
 以下是一个展示各种功能的综合示例：
@@ -419,7 +531,11 @@ import type {
   CamelCase, SnakeCase, Paths, PathValue, AssertEqual,
   Microservice, ServiceConfig, CircuitBreaker, Cache,
   LRUCache, EventBus, Saga, Logger, LogLevel,
-  Workflow, WorkflowStep, RBAC, Permission, Role
+  Workflow, WorkflowStep, RBAC, Permission, Role,
+  // v1.6.0
+  Tensor, Model, Layer, Optimizer,
+  Maybe, Either, Result, Lens,
+  Infer, InferReturn, Equals, TypeName
 } from 'uni-types'
 
 // 核心操作 - 将属性变为必需
@@ -508,6 +624,21 @@ const loggerConfig: LoggerConfig = {
   format: 'json',
   transports: [{ type: 'console' }]
 }
+
+// v1.6.0 - AI/ML 类型
+type ImageTensor = Tensor<[224, 224, 3], 'float32'>
+type CNNModel = Model<ImageTensor, { label: string; confidence: number }>
+
+// v1.6.0 - 函数式编程
+type OptionalValue = Maybe<string> // Some<string> | None
+type ValidationResult = Either<Error, string> // Left<Error> | Right<string>
+type OperationResult = Result<Data, Error> // Ok<Data> | Err<Error>
+
+// v1.6.0 - 类型推断
+type PromiseValue = Infer<Promise<string>> // string
+type ReturnValue = InferReturn<() => number> // number
+type AreEqual = Equals<string, string> // true
+type Name = TypeName<number> // 'number'
 ```
 
 ## 外部资源

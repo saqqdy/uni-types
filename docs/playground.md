@@ -18,7 +18,7 @@ Try `uni-types` directly in your browser with real-time type checking!
 - 📦 **Pre-loaded Types** - All uni-types are available for import
 - 🎨 **Syntax Highlighting** - Full TypeScript syntax support
 
-## Available Types (500+)
+## Available Types (600+)
 
 All types from `uni-types` are available for import:
 
@@ -408,6 +408,118 @@ import type {
 } from 'uni-types'
 ```
 
+### AI/ML Types *(v1.6.0)*
+
+```typescript
+import type {
+  Tensor, TensorShape, TensorDType,
+  Model, ModelConfig, Layer, LayerType,
+  Optimizer, LossFunction, MLMetric,
+  Dataset, DataLoader, Batch,
+  InferenceResult, Prediction, Confidence
+} from 'uni-types'
+```
+
+### Functional Programming *(v1.6.0)*
+
+```typescript
+import type {
+  Functor, Monad, Applicative,
+  Maybe, Some, None, Either, Left, Right,
+  IO, Reader, Writer, State,
+  Result, Ok, Err, Lens,
+  Semigroup, Monoid, Compose, Pipe, Curry
+} from 'uni-types'
+```
+
+### Type-Level Compiler *(v1.6.0)*
+
+```typescript
+import type {
+  ASTNode, ASTNodeType, Token, TokenType,
+  Parser, ParserResult, ParseError,
+  CodeGenerator, GeneratedCode, SourceMap,
+  Transformer, Formatter
+} from 'uni-types'
+```
+
+### Distributed Systems *(v1.6.0)*
+
+```typescript
+import type {
+  Consensus, ConsensusState, LeaderElection,
+  Replica, ReplicationStrategy, Partition,
+  PartitionStrategy, ConsistencyLevel,
+  DistributedLock, TwoPhaseCommit, TransactionState,
+  FailureDetector, Heartbeat, Membership
+} from 'uni-types'
+```
+
+### Security Types *(v1.6.0)*
+
+```typescript
+import type {
+  Authentication, AuthType, AuthStatus,
+  Session, SessionId, Encryption, EncryptionAlgorithm,
+  Key, KeyPair, Hash, HashAlgorithm,
+  Signature, SignatureAlgorithm, JWT, OAuthToken, CSRFToken
+} from 'uni-types'
+```
+
+### Internationalization *(v1.6.0)*
+
+```typescript
+import type {
+  Locale, LocaleCode, LanguageCode, CountryCode,
+  Translation, TranslationKey, PluralForm,
+  Currency, TimeZone, DateFormat, NumberFormat, Direction
+} from 'uni-types'
+```
+
+### Testing Framework *(v1.6.0)*
+
+```typescript
+import type {
+  TestSuite, TestCase, TestResultType,
+  Assertion, AssertionResult, Mock, Spy,
+  Fixture, Coverage, CoverageReport,
+  Snapshot, Benchmark, BenchmarkResult
+} from 'uni-types'
+```
+
+### Plugin System *(v1.6.0)*
+
+```typescript
+import type {
+  Plugin, PluginConfig, PluginContext, PluginLifecycle,
+  Hook, HookResult, Extension, ExtensionPoint,
+  Middleware, MiddlewarePipeline, Module, Registry
+} from 'uni-types'
+```
+
+### Type Inference *(v1.6.0)*
+
+```typescript
+import type {
+  Infer, InferReturn, InferArgs, InferPromise,
+  ExtractFunction, ExtractClass, ExtractConstructor,
+  Reconstruct, Narrow, Widen,
+  IsAny, IsNever, IsUnknown, IsFunction, IsArray, IsUnion,
+  Equals, Extends, TypeName, TypeCategory
+} from 'uni-types'
+```
+
+### Performance Monitoring *(v1.6.0)*
+
+```typescript
+import type {
+  Performance, PerformanceMetric, Timing,
+  MemoryUsage, MemoryMetric, CPUUsage,
+  Profiler, ProfileResult, TraceSpan,
+  PerformanceTrace, PerformanceAlert
+} from 'uni-types'
+```
+
 ## Example Code
 
 Here's a comprehensive example showcasing various features:
@@ -419,7 +531,11 @@ import type {
   CamelCase, SnakeCase, Paths, PathValue, AssertEqual,
   Microservice, ServiceConfig, CircuitBreaker, Cache,
   LRUCache, EventBus, Saga, Logger, LogLevel,
-  Workflow, WorkflowStep, RBAC, Permission, Role
+  Workflow, WorkflowStep, RBAC, Permission, Role,
+  // v1.6.0
+  Tensor, Model, Layer, Optimizer,
+  Maybe, Either, Result, Lens,
+  Infer, InferReturn, Equals, TypeName
 } from 'uni-types'
 
 // Core operations - make properties required
@@ -508,6 +624,21 @@ const loggerConfig: LoggerConfig = {
   format: 'json',
   transports: [{ type: 'console' }]
 }
+
+// v1.6.0 - AI/ML Types
+type ImageTensor = Tensor<[224, 224, 3], 'float32'>
+type CNNModel = Model<ImageTensor, { label: string; confidence: number }>
+
+// v1.6.0 - Functional Programming
+type OptionalValue = Maybe<string> // Some<string> | None
+type ValidationResult = Either<Error, string> // Left<Error> | Right<string>
+type OperationResult = Result<Data, Error> // Ok<Data> | Err<Error>
+
+// v1.6.0 - Type Inference
+type PromiseValue = Infer<Promise<string>> // string
+type ReturnValue = InferReturn<() => number> // number
+type AreEqual = Equals<string, string> // true
+type Name = TypeName<number> // 'number'
 ```
 
 ## External Resources

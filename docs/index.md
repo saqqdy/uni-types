@@ -58,6 +58,21 @@ features:
   - icon: 💾
     title: Caching Strategies
     details: LRU, LFU, TTL caches, cache invalidation, and distributed cache types.
+  - icon: 🤖
+    title: AI/ML Types
+    details: Tensor types, neural network layers, optimizers, training configs, and inference result types.
+  - icon: 🧬
+    title: Functional Programming
+    details: Functor, Monad, Maybe, Either, IO, Reader, Writer, State monads, and Lens types.
+  - icon: 🌐
+    title: Distributed Systems
+    details: Consensus protocols, replication, partitioning, distributed locks, and coordination types.
+  - icon: 🔐
+    title: Security Types
+    details: Authentication, encryption, hashing, signing, JWT, OAuth, and session management types.
+  - icon: 🌍
+    title: Internationalization
+    details: Locale management, translations, plural rules, date/number formatting, and RTL support types.
 ---
 
 ## Quick Example
@@ -65,7 +80,8 @@ features:
 ```typescript
 import type {
   PickRequired, DeepPartial, Sort, IsArray,
-  GraphQLQuery, WebSocketMessage, EventBus, Workflow
+  GraphQLQuery, WebSocketMessage, EventBus, Workflow,
+  Tensor, Model, Maybe, Either, Infer
 } from 'uni-types'
 
 // Core: Make specific properties required
@@ -96,6 +112,16 @@ type AppEvents = EventBus<{ userCreated: { id: string }; orderPlaced: { orderId:
 
 // Workflow type (v1.5.0)
 type OrderWorkflow = Workflow<{ orderId: string; status: string }>
+
+// AI/ML tensor type (v1.6.0)
+type ImageTensor = Tensor<[224, 224, 3], 'float32'>
+
+// Functional programming (v1.6.0)
+type OptionalValue = Maybe<string> // Some<string> | None
+type Result = Either<Error, string> // Left<Error> | Right<string>
+
+// Type inference (v1.6.0)
+type PromiseValue = Infer<Promise<string>> // string
 ```
 
 ## Why uni-types?
