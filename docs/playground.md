@@ -18,7 +18,7 @@ Try `uni-types` directly in your browser with real-time type checking!
 - 📦 **Pre-loaded Types** - All uni-types are available for import
 - 🎨 **Syntax Highlighting** - Full TypeScript syntax support
 
-## Available Types (600+)
+## Available Types (800+)
 
 All types from `uni-types` are available for import:
 
@@ -520,6 +520,154 @@ import type {
 } from 'uni-types'
 ```
 
+### Type Visualization *(v1.7.0)*
+
+```typescript
+import type {
+  TypeDiagram, TypeTree, TypeGraph,
+  TypeMap, Debug, Inspect, Pretty, Display,
+  TypeDiff, AddedProperties, RemovedProperties,
+  ChangedProperties, UnchangedProperties,
+  TypeComparison, Similarity, Difference, Compatibility,
+  TypeDoc, DocEntry, DocMethod, DocParameter,
+  GenerateDocs, ASCIITree, ASCIITable, ASCIIGraph,
+  Expand, ExpandRecursively, Printable,
+  VisualizationOptions, MermaidClassDiagram, ColorScheme
+} from 'uni-types'
+```
+
+### Type-Level Cryptography *(v1.7.0)*
+
+```typescript
+import type {
+  HashAlgorithm, HashResult, SHA256, SHA512, Blake3,
+  EncryptionAlgorithm, EncryptedData, Key, KeyPair,
+  SignatureAlgorithm, SignatureResult, Signed, Verified,
+  JWT, JWTHeader, JWTPayload, JWTAlgorithm,
+  PasswordHashOptions, Certificate, Checksum,
+  Base64, Base64URL, Hex, URLEncoded
+} from 'uni-types'
+```
+
+### Type-Level Date/Time *(v1.7.0)*
+
+```typescript
+import type {
+  CalendarDate, DateComponents, DateString, ISODate,
+  TimeFormat, DateFormat, Duration, Timezone,
+  AddDays, AddMonths, AddYears, DaysBetween,
+  StartOfDay, EndOfDay, StartOfMonth, EndOfMonth,
+  IsLeapYear, DaysInMonth, Quarter, WeekOfYear,
+  UnixTimestamp, ToUnixTimestamp, TimeAgo
+} from 'uni-types'
+```
+
+### Type Decorators *(v1.7.0)*
+
+```typescript
+import type {
+  Decorator, ClassDecorator, MethodDecorator,
+  PropertyDecorator, ParameterDecorator,
+  Cached, Memoized, Deprecated, ReadOnly, WriteOnly,
+  Enumerable, Frozen, Validate, Retry, Timeout,
+  Logged, Initialize, Catch, Dispose,
+  MetadataKey, MetadataValue, GetMetadata, DefineMetadata
+} from 'uni-types'
+```
+
+### Code Generation Templates *(v1.7.0)*
+
+```typescript
+import type {
+  Template, TemplateString, TemplateLiteral,
+  GeneratedType, GeneratedInterface, GeneratedClass,
+  GeneratedFunction, TypeBuilder, InterfaceBuilder,
+  ClassBuilder, FunctionBuilder, OutputFormat,
+  GenerateFromJSON, GenerateFromOpenAPI,
+  ASTNode, ASTVisitor, ASTTransformer
+} from 'uni-types'
+```
+
+### Type-Safe Configuration *(v1.7.0)*
+
+```typescript
+import type {
+  ConfigSchema, ConfigField, ConfigValidationResult,
+  EnvConfig, EnvMapping, EnvField,
+  ConfigBuilder, ConfigLoader, ConfigWatcher,
+  EnvironmentName, EnvironmentAwareConfig,
+  SecretConfig, SecretSource, SecretValue,
+  MultiSourceConfig, MergedConfig, LoadResult
+} from 'uni-types'
+```
+
+### Type-Level Advanced Math *(v1.7.0)*
+
+```typescript
+import type {
+  Abs, Add, Subtract, Multiply, Divide,
+  Sqrt, Power, Factorial, Fibonacci,
+  Sin, Cos, Tan, Log, Exp,
+  GCD, LCM, IsPrime, IsEven, IsOdd,
+  CelsiusToFahrenheit, FahrenheitToCelsius,
+  DecimalToBinary, BinaryToDecimal,
+  NumericRange, Clamp, InRange
+} from 'uni-types'
+```
+
+### Type-Level Sorting & Searching *(v1.7.0)*
+
+```typescript
+import type {
+  Sort, QuickSort, MergeSort, HeapSort,
+  BinarySearch, LinearSearch, Find, FindIndex,
+  Filter, Reject, Every, Some, None,
+  Unique, Chunk, GroupBy, Partition,
+  Take, Drop, Slice, Splice, Reverse,
+  Zip, Unzip, Flatten, FlattenDeep,
+  Union, Intersection, Difference, SymmetricDifference
+} from 'uni-types'
+```
+
+### Metaprogramming Utilities *(v1.7.0)*
+
+```typescript
+import type {
+  Analyze, Apply, ComposeTypes, Construct,
+  Depth, Exactly, ExtendsType, FlattenType,
+  Generate, GenerateAll, GenerateFromSchema,
+  GetTypeCategory, IsNullable, IsOptionalType,
+  MergeTypes, OmitTypeAtPath, PickTypeAtPath,
+  Reflect, Satisfies, SetTypeAtPath, Transform,
+  TypeAtPath, TypeCategory, TypeInfo, TypeName, Width
+} from 'uni-types'
+```
+
+### Framework Integrations *(v1.7.0)*
+
+```typescript
+import type {
+  // Remix
+  RemixLoader, RemixAction, RemixRoute, RemixLoaderData,
+  // Astro
+  AstroProps, AstroFrontmatter, AstroLayout,
+  // SvelteKit
+  SvelteKitLoad, SvelteKitAction, SvelteKitPage,
+  // Qwik
+  QwikComponent, QwikSignal, QwikStore,
+  // Fresh (Deno)
+  FreshHandler, FreshContext, FreshRoute,
+  // Express
+  ExpressHandler, ExpressRequest, ExpressResponse,
+  // Fastify
+  FastifyHandler, FastifyRequest, FastifyReply,
+  // Hono
+  HonoHandler, HonoContext, HonoMiddleware,
+  // NestJS
+  NestController, NestService, NestModule, NestGuard
+} from 'uni-types'
+```
+
 ## Example Code
 
 Here's a comprehensive example showcasing various features:
@@ -535,7 +683,16 @@ import type {
   // v1.6.0
   Tensor, Model, Layer, Optimizer,
   Maybe, Either, Result, Lens,
-  Infer, InferReturn, Equals, TypeName
+  Infer, InferReturn, Equals, TypeName,
+  // v1.7.0
+  TypeDiagram, TypeTree, Debug, Inspect, Pretty,
+  HashAlgorithm, SHA256, EncryptionAlgorithm, Key,
+  CalendarDate, DateFormat, Duration, AddDays,
+  Decorator, Cached, Memoized, Deprecated,
+  Template, TemplateString, GeneratedType,
+  ConfigSchema, ConfigBuilder, EnvConfig,
+  RemixLoader, SvelteKitLoad, ExpressHandler,
+  Abs, Sqrt, Power, Fibonacci, IsPrime
 } from 'uni-types'
 
 // Core operations - make properties required
@@ -639,6 +796,50 @@ type PromiseValue = Infer<Promise<string>> // string
 type ReturnValue = InferReturn<() => number> // number
 type AreEqual = Equals<string, string> // true
 type Name = TypeName<number> // 'number'
+
+// v1.7.0 - Type Visualization
+type DebugUser = Debug<User>
+type PrettyConfig = Pretty<Config>
+type DiffResult = TypeDiff<{ a: string }, { a: string; b: number }>
+type Doc = GenerateDocs<User>
+
+// v1.7.0 - Cryptography Types
+interface SecureToken extends JWT<{ userId: string; role: string }> {}
+type HashAlgo = HashAlgorithm // 'sha256' | 'sha512' | ...
+type EncryptedPayload = EncryptedData<'aes-256-gcm'>
+
+// v1.7.0 - Date/Time Types
+type Today = CalendarDate<'gregorian'>
+type Formatted = DateFormat<'YYYY-MM-DD'>
+type Added = AddDays<'2024-01-01', 7>
+type Duration2 = Duration<'2h30m'>
+
+// v1.7.0 - Decorator Types
+const memoConfig: MemoizeOptions = { ttl: 60000 }
+const retryConfig: RetryOptions = { maxRetries: 3, delay: 1000 }
+
+// v1.7.0 - Config Builder
+interface AppConfig extends ConfigSchema<{
+  port: ConfigField<number>
+  host: ConfigField<string>
+  debug: ConfigField<boolean>
+}> {}
+
+// v1.7.0 - Framework Integration
+type RemixData = RemixLoaderData<RemixRoute<{ user: User }, never>>
+type ExpressReq = ExpressRequest<{ id: string }, { name: string }>
+type SvelteData = SvelteKitPage<{ slug: string }, { post: Post }>
+
+// v1.7.0 - Advanced Math
+type AbsValue = Abs<-5> // 5
+type SqrtValue = Sqrt<16> // 4
+type FibResult = Fibonacci<10> // 55
+type PrimeCheck = IsPrime<17> // true
+
+// v1.7.0 - Sorting & Searching
+type SortedTuple = QuickSort<[3, 1, 4, 1, 5]>
+type Found = SearchFind<[{ a: 1 }, { b: 2 }], { b: 2 }>
+type Chunks = Chunk<[1, 2, 3, 4, 5], 2>
 ```
 
 ## External Resources
