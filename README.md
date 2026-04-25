@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **600+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **700+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -881,6 +881,162 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `TraceSpan<T>` | Tracing span |
 | `PerformanceTrace<T>` | Performance trace |
 | `PerformanceAlert` | Performance alert |
+
+### Metaprogramming *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `MetaType<T>` | Meta type wrapper |
+| `TypeRepr<T>` | Type representation |
+| `GetType<T>` | Extract type from meta |
+| `HasType<T, U>` | Check if type has nested type |
+| `TypePath<T>` | Path to nested type |
+| `TypeDepth<T>` | Maximum nesting depth |
+| `TypeSize<T>` | Type size estimation |
+| `TypeComplexity<T>` | Type complexity score |
+| `AnalyzeType<T>` | Full type analysis |
+| `TypeStats<T>` | Type statistics |
+
+### Decorator Types *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `ClassDecorator<T>` | Class decorator type |
+| `MethodDecorator<T>` | Method decorator type |
+| `PropertyDecorator<T>` | Property decorator type |
+| `ParameterDecorator<T>` | Parameter decorator type |
+| `DecoratorResult<T>` | Decorator result type |
+| `DecoratorMetadata<T>` | Decorator metadata |
+| `DecoratorChain<T>` | Decorator chain |
+| `ComposableDecorator<T>` | Composable decorator |
+
+### Type Generation *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `GenerateType<T>` | Generate type from schema |
+| `GeneratedType<T>` | Generated type result |
+| `TypeBuilder<T>` | Type builder interface |
+| `SchemaToType<S>` | Convert schema to type |
+| `TypeFromSchema<T, S>` | Type from schema definition |
+| `GeneratedClass<T>` | Generated class type |
+| `GeneratedInterface<T>` | Generated interface |
+| `GeneratedEnum<T>` | Generated enum type |
+
+### Framework Types *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `NestModule<T>` | NestJS module type |
+| `NestController<T>` | NestJS controller type |
+| `NestService<T>` | NestJS service type |
+| `ExpressApp<T>` | Express app type |
+| `ExpressRouter<T>` | Express router type |
+| `ExpressMiddleware<T>` | Express middleware |
+| `FastifyApp<T>` | Fastify app type |
+| `FastifyPlugin<T>` | Fastify plugin type |
+| `KoaApp<T>` | Koa app type |
+| `KoaMiddleware<T>` | Koa middleware type |
+
+### TypeSafe Config *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `SafeConfig<T>` | Type-safe configuration |
+| `ConfigDefinition<T>` | Config definition |
+| `ConfigValue<T, K>` | Typed config value |
+| `ConfigSchema<T>` | Config schema type |
+| `EnvDefinition<T>` | Environment definition |
+| `EnvValue<K>` | Environment variable value |
+| `ConfigPath<T>` | Config path type |
+| `ValidateConfig<T>` | Config validation type |
+| `MergeConfig<A, B>` | Merge configurations |
+| `DeepConfig<T>` | Deep config type |
+
+### Type Visualization *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `VisualizeType<T>` | Visualize type structure |
+| `TypeDiagram<T>` | Type diagram representation |
+| `TypeTree<T>` | Type tree visualization |
+| `PrintType<T>` | Printable type string |
+| `TypeFormat<T>` | Type formatting options |
+| `TypeName<T>` | Extract type name |
+| `TypeStructure<T>` | Type structure info |
+| `ExpandType<T>` | Expanded type display |
+
+### Crypto Types *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `HashAlgorithm` | Hash algorithm types |
+| `HashOutput<L>` | Hash output type |
+| `CryptoKey<T>` | Cryptographic key type |
+| `KeyPair<T>` | Key pair type |
+| `Signature<T>` | Signature type |
+| `EncryptedData<T>` | Encrypted data type |
+| `CryptoConfig<T>` | Crypto configuration |
+| `CryptoProvider<T>` | Crypto provider interface |
+| `HashFunction<T>` | Hash function type |
+| `EncryptFunction<T>` | Encryption function |
+| `DecryptFunction<T>` | Decryption function |
+
+### Date/Time Types *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `DateTime<T>` | DateTime type |
+| `DateFormat<T>` | Date format type |
+| `TimeFormat<T>` | Time format type |
+| `Timestamp<T>` | Timestamp type |
+| `Duration<T>` | Duration type |
+| `DateRange<T>` | Date range type |
+| `TimeZoneType` | Time zone type |
+| `UTCDate<T>` | UTC date type |
+| `LocalDate<T>` | Local date type |
+| `ISODateString` | ISO date string |
+| `ParsedDate<T>` | Parsed date type |
+| `FormatDate<T, F>` | Formatted date type |
+
+### Advanced Math *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `Add<A, B>` | Type-level addition |
+| `Subtract<A, B>` | Type-level subtraction |
+| `Multiply<A, B>` | Type-level multiplication |
+| `Divide<A, B>` | Type-level division |
+| `Power<A, B>` | Power operation |
+| `Sqrt<N>` | Square root |
+| `Sin<N>`, `Cos<N>` | Trigonometric functions |
+| `PI`, `E` | Math constants |
+| `Factorial<N>` | Factorial |
+| `Fibonacci<N>` | Fibonacci number |
+| `IsPrime<N>` | Prime check |
+| `Mean<T>`, `Median<T>` | Statistical functions |
+| `IsEven<N>`, `IsOdd<N>` | Even/Odd check |
+
+### Type-Level Search *(v1.7.0)*
+
+| Type | Description |
+|------|-------------|
+| `Sort<T, Order>` | Sort tuple |
+| `QuickSort<T>` | Quick sort algorithm |
+| `MergeSort<T>` | Merge sort algorithm |
+| `BinarySearch<T, V>` | Binary search |
+| `Includes<T, V>` | Check inclusion |
+| `Filter<T, P>` | Filter by predicate |
+| `Take<T, N>` | Take first N elements |
+| `Drop<T, N>` | Drop first N elements |
+| `Chunk<T, N>` | Chunk into sublists |
+| `Union<A, B>` | Set union |
+| `Intersection<A, B>` | Set intersection |
+| `Unique<T>` | Unique elements |
+| `Reverse<T>` | Reverse tuple |
+| `Zip<A, B>` | Zip tuples |
+| `Flatten<T>` | Flatten nested tuples |
+| `MinElement<T>`, `MaxElement<T>` | Min/Max element |
 
 ## Examples
 

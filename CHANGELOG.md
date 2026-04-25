@@ -2,6 +2,162 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2026-04-25
+
+### Added
+
+#### Metaprogramming Utilities
+- `Reflect<T>` - Runtime-like type reflection
+- `TypeInfo<T>` - Type information structure
+- `TypeName<T>` - Get type name as string literal
+- `TypeCategory` - Type category enumeration
+- `GetTypeCategory<T>` - Get the category of a type
+- `Transform<T, Rules>` - Transform type using rules
+- `Apply<T, F>` - Apply function to type
+- `ComposeTypes<T, U>`, `MergeTypes<T, U>` - Type composition
+- `Satisfies<T, U>`, `ExtendsType<T, U>`, `Exactly<T, U>`, `Compatible<T, U>` - Type predicates
+- `IsNullable<T>`, `IsOptionalType<T>`, `IsReadonlyType<T>` - Type checks
+- `Construct<T>`, `Deconstruct<T>`, `FlattenType<T>` - Type construction
+- `Analyze<T>`, `Depth<T>`, `Width<T>`, `Complexity<T>` - Type analysis
+- `Generate<T>`, `GenerateFromSchema<S>` - Type generation
+- `TypeAtPath<T, P>`, `SetTypeAtPath<T, P, V>`, `OmitTypeAtPath<T, P>`, `PickTypeAtPath<T, P>` - Path utilities
+- `PatternMatch<T, Patterns>`, `ExtractByPattern<T, Pattern>`, `ExcludeByPattern<T, Pattern>` - Pattern matching
+- `CommonKeys<T, U>`, `UniqueKeys<T, U>`, `AllKeys<T, U>`, `HasCommonKeys<T, U>` - Type relations
+- `Lazy<T>`, `Thunk<T>`, `Identity<T>`, `Constant<T>`, `Flip<T>` - Type wrappers
+
+#### Type Decorators
+- `Decorator<T>`, `ClassDecorator<T>`, `MethodDecorator<T>`, `PropertyDecorator<T>`, `ParameterDecorator<T>`, `AccessorDecorator<T>` - Decorator types
+- `ClassDecoratorContext`, `ClassMethodDecoratorContext`, `ClassFieldDecoratorContext`, `ClassAccessorDecoratorContext`, `ClassGetterDecoratorContext`, `ClassSetterDecoratorContext` - Decorator contexts
+- `ComposeDecorators<T>`, `ChainDecorators<T>`, `ApplyDecorators<T, D>`, `MergeDecoratorResults<T>` - Decorator composition
+- `MetadataKey`, `MetadataValue<T>`, `MetadataMap<T>`, `MetadataEntry<T>`, `MetadataStorage<T>` - Metadata types
+- `ReflectMetadata<T>`, `DefineMetadata<K, V>`, `GetMetadata<K>`, `HasMetadata<K>`, `GetOwnMetadata<K>`, `GetMetadataKeys` - Reflect metadata
+- `DecoratorFactory<T, O>`, `DecoratorOptions<T>`, `DecoratorConfig<T>`, `CreateDecorator<T, O>` - Decorator factory
+- `Frozen<T>`, `Sealed<T>`, `Enumerable<T>`, `ReadOnly<T>`, `WriteOnly<T>`, `Deprecated<T>` - Common decorators
+- `Required<T>`, `Optional<T>`, `NonNull<T>`, `DefaultOptions<T>`, `Validate<T>` - Validation decorators
+- `Initialize<T>`, `Dispose<T>`, `BeforeOptions<T>`, `AfterOptions<T>`, `AroundOptions<T>` - Lifecycle decorators
+- `CacheOptions`, `Cached<T>`, `MemoizeOptions`, `Memoized<T>` - Cache decorators
+- `LogOptions`, `Logged<T>`, `TimeOptions`, `Timed<T>` - Logging decorators
+- `CatchOptions<E>`, `Catch<T>`, `RetryOptions`, `Retry<T>`, `TimeoutOptions`, `Timeout<T>` - Error handling decorators
+- `SerializeOptions`, `Serializable<T>`, `DeserializeOptions`, `JsonPropertyOptions` - Serialization decorators
+
+#### Code Generation Templates
+- `Template<T>`, `TemplateString<S, V>`, `TemplateLiteral<T>`, `TemplateResult<T>` - Template types
+- `TemplateError`, `TemplateWarning` - Template error types
+- `GeneratedType<T>`, `GeneratedInterface<T>`, `GeneratedProperty<T>`, `GeneratedClass<T>`, `GeneratedMethod<T>`, `GeneratedParameter<T>`, `GeneratedConstructor`, `GeneratedFunction<T>` - Generated types
+- `TypeBuilder<T>`, `InterfaceBuilder<T>`, `ClassBuilder<T>`, `FunctionBuilder<T>`, `PropertyOptions`, `MethodOptions`, `ParameterOptions` - Builder types
+- `OutputFormat`, `FormattedOutput<T>`, `OutputMetadata`, `Prettified<T>`, `Minified<T>` - Output types
+- `GenerateFromSchema<T, S>`, `SchemaField<T>`, `GenerateFromJSON<T>`, `GenerateFromGraphQL<T>`, `GenerateFromOpenAPI<T>` - Generation utilities
+- `GraphQLTypeMapping`, `OpenAPITypeMapping` - Type mappings
+- `GenerationOptions`, `TypeScriptOptions`, `JavaScriptOptions`, `JSONOptions`, `YAMLOptions` - Generation options
+- `TemplateVariable<T>`, `TemplateVariables<T>`, `ResolvedVariables<T>` - Template variables
+- `TemplateRegistry<T>`, `TemplateEntry<T>` - Template registry
+- `Singleton<T>`, `Factory<T, O>`, `Builder<T>`, `Adapter<T, U>`, `CodeDecorator<T>` - Code patterns
+- `ASTNode<T>`, `SourceLocation`, `Position`, `ASTVisitor<T>`, `ASTTransformer<T>` - AST types
+
+#### Framework Integrations
+- `RemixLoader<T>`, `RemixAction<T>`, `RemixMeta<T>`, `RemixRoute<LoaderData, ActionData>`, `RemixLoaderData<T>`, `RemixActionData<T>` - Remix types
+- `AstroProps<T>`, `AstroFrontmatter<T>`, `AstroGlobal`, `AstroLayout<Props, Slots>`, `AstroStaticPaths<T>` - Astro types
+- `SvelteKitLoad<Params, Data>`, `SvelteKitAction<Params, Data>`, `SvelteKitPage<Params, Data>`, `SvelteKitLayout<Params, Data>`, `SvelteKitServer<Params, LoadData, ActionData>` - SvelteKit types
+- `QwikComponent<Props>`, `QwikSignal<T>`, `QwikStore<T>`, `QwikEvent<T>`, `QwikUseSignal<T>`, `QwikUseStore<T>`, `QwikUseContext<T>`, `QwikServerFunction<T>` - Qwik types
+- `FreshHandler<Params, Data>`, `FreshContext<Params, Data>`, `FreshRoute<Params, Data>`, `FreshHandlerType`, `FreshMiddleware<Params>` - Fresh types
+- `ExpressHandler<P, ResBody, ReqBody>`, `ExpressRequest<P, ResBody, ReqBody>`, `ExpressResponse<ResBody>`, `ExpressRouter`, `ExpressMiddleware<P, ResBody>` - Express types
+- `FastifyHandler<Params, Data>`, `FastifyRequest<Params, Data>`, `FastifyReply`, `FastifySchema<Body, Response, Query>`, `FastifyMiddleware<Params>` - Fastify types
+- `HonoHandler<Params, Env>`, `HonoContext<Params, Env>`, `HonoMiddleware<Params, Env>`, `HonoRoute<Params, Env>` - Hono types
+- `NestController<T>`, `NestService<T>`, `NestModule`, `NestPipe<T, R>`, `NestGuard<T>`, `NestInterceptor<T, R>`, `NestFilter`, `NestMiddleware` - NestJS types
+
+#### Type-Safe Configuration
+- `ConfigSchema<T>`, `ConfigField<T>`, `ConfigFieldType`, `ConfigValidationResult<T>`, `ConfigValidationError`, `ConfigDefaults<T>` - Config schema
+- `EnvConfig<T>`, `EnvField<T>`, `EnvMapping<T>`, `EnvTransform<T>`, `EnvValidation<T>`, `EnvVars<T>` - Environment config
+- `MultiSourceConfig<Sources>`, `ConfigSource<T>`, `ConfigPriority`, `MergedConfig<Sources>` - Multi-source config
+- `ConfigBuilder<T>`, `ConfigStep<T, R>`, `ConfigPipeline<T>`, `BuildConfig<T>`, `ConfigWarning` - Config builder
+- `ConfigLoader<T>`, `LoadResult<T>`, `LoadError`, `LoadErrorCode`, `LoadOptions<T>` - Config loading
+- `ConfigWatcher<T>`, `ConfigChange<T>`, `ConfigCallback<T>` - Config watching
+- `ConfigFileFormat`, `JSONConfig<T>`, `YAMLConfig<T>`, `TOMLConfig<T>` - Config formats
+- `ConfigAccessor<T>`, `DeepConfigAccessor<T>`, `PathValue<T, P>` - Config accessors
+- `ConfigValidator<T>`, `ConfigRule<T>`, `ConfigRules<T>` - Config validation
+- `SecretConfig`, `SecretSource`, `SecretValue<T>` - Config secrets
+- `EnvironmentName`, `EnvironmentConfigLoader<Dev, Staging, Production, Test>`, `EnvironmentAwareConfig<...>` - Config environment
+- `ExtractConfigFromSchema<S>`, `PartialConfig<T>`, `RequiredConfig<T>`, `DeepPartialConfig<T>`, `MergeConfigs<T, U>` - Config helpers
+
+#### Type Visualization
+- `TypeDiagram<T>`, `TypeDiagramProperty`, `TypeDiagramMethod` - Type diagram
+- `TypeTree<T>`, `TypeName`, `TypeGraph<T>`, `TypeGraphNode<T>`, `TypeGraphEdge`, `TypeMap<T>` - Visual representation
+- `Debug<T>`, `TypeCategory`, `PropertyDebug`, `MethodDebug`, `Inspect<T>`, `ExtractTypeName<T>` - Debugging utilities
+- `Pretty<T>`, `Display<T, Format>` - Pretty print
+- `TypeDiff<T, U>`, `AddedProperties<T, U>`, `RemovedProperties<T, U>`, `ChangedProperties<T, U>`, `UnchangedProperties<T, U>`, `PropertyDiff<T, U>` - Type diff
+- `TypeComparison<T, U>`, `Similarity<T, U>`, `Difference<T, U>`, `Compatibility<T, U>` - Type comparison
+- `TypeDoc<T>`, `DocEntry<T>`, `DocMethod`, `DocParameter`, `DocCategory`, `GenerateDocs<T>` - Documentation generation
+- `ASCIITree<T>`, `ASCIITreeNode`, `ASCIITreeOptions`, `ASCIITable<T>`, `ASCIITableColumn`, `ASCIITableOptions`, `ASCIIGraph<T>`, `ASCIIGraphOptions` - ASCII art
+- `VisualizationOptions`, `MermaidOptions`, `MermaidClassDiagram<T>`, `MermaidClass`, `MermaidRelationship` - Visualization options
+- `Expand<T>`, `ExpandRecursively<T>`, `Printable<T>` - Type expansion
+- `IntrospectionResult<T>`, `PropertyIntrospection`, `MethodIntrospection` - Type introspection
+- `TypeColor`, `ColorScheme` - Color coding
+
+#### Type-Level Cryptography
+- `HashAlgorithm`, `HashResult<T>`, `SHA256<T>`, `SHA512<T>`, `MD5<T>`, `Blake3<T>` - Hash types
+- `EncodingFormat`, `Base64<T>`, `Base64URL<T>`, `Hex<T>`, `URLEncoded<T>`, `EncodingResult<From, To>` - Encoding types
+- `EncryptionAlgorithm`, `EncryptedData<T>`, `Encrypted<T, Key>`, `Decrypted<T, Key>`, `CipherText<T>`, `PlainText<T>`, `EncryptionOptions<A>` - Encryption types
+- `Key<T>`, `KeyType`, `KeyPair<P>`, `AsymmetricAlgorithm`, `KeyDerivationOptions`, `DerivedKey<T>`, `PBKDF2<T>`, `HKDF<T>` - Key types
+- `SignatureAlgorithm`, `SignatureResult<A>`, `Signed<T, Key>`, `Verified<T>`, `SigningKey<T>`, `VerificationKey<T>` - Signature types
+- `Checksum<T>`, `ChecksumAlgorithm`, `CRC32<T>`, `Adler32<T>`, `FNV1a<T>` - Checksum types
+- `MACAlgorithm`, `MACResult<A>` - MAC types
+- `JWT<T>`, `JWTHeader`, `JWTPayload<T>`, `JWTAlgorithm` - JWT types
+- `PasswordHashOptions`, `PasswordHashResult<A>`, `PasswordVerificationResult` - Password types
+- `Certificate`, `DistinguishedName`, `CertificateExtension` - Certificate types
+- `RandomBytes<N>`, `Nonce<N>`, `IV<N>`, `Salt<N>`, `CryptoTimestamp`, `CryptoContext` - Crypto utilities
+- `HashInput<T>`, `HashOutput<T>`, `HashFunction<I, O>`, `KeyLength<A>`, `IVLength<A>`, `TagLength<A>` - Hash utilities
+
+#### Type-Level Date/Time
+- `DateString<T>`, `ISODate<T>`, `ISODateTime<T>`, `UnixTimestamp`, `DateComponents`, `Year<T>`, `Month`, `Day<T>` - Date types
+- `TimeString<T>`, `Duration`, `DurationString<T>`, `TimeUnit`, `Milliseconds<T>`, `Seconds<T>`, `Minutes<T>`, `Hours<T>` - Time types
+- `AddDays<T, N>`, `AddMonths<T, N>`, `AddYears<T, N>`, `AddWeeks<T, N>`, `AddHours<T, N>`, `AddMinutes<T, N>`, `AddSeconds<T, N>` - Add operations
+- `SubtractDays<T, N>`, `SubtractMonths<T, N>`, `SubtractYears<T, N>` - Subtract operations
+- `DateDiff`, `DaysBetween<T, U>`, `MonthsBetween<T, U>`, `YearsBetween<T, U>`, `DateComparison` - Date comparison
+- `IsValidDate<T>`, `IsWeekend<T>`, `IsWeekday<T>`, `IsLeapYear<T>`, `DayOfWeek`, `DayOfYear<T>`, `WeekOfYear<T>`, `Quarter` - Date validation
+- `FormatDate<T, F>`, `ParseDate<T>`, `DateFormat`, `TimeFormat`, `DateFormatOptions` - Date formatting
+- `Timezone`, `CommonTimezone`, `UTCTime<T>`, `LocalTime<T, TZ>`, `ConvertTimezone<T, From, To>`, `TimezoneOffset<T>` - Timezone types
+- `RelativeTime`, `RelativeTimeOptions`, `HumanDuration` - Relative time
+- `DateRange<T>`, `DateInterval<T>`, `RecurrenceRule` - Date range types
+- `CalendarType`, `CalendarDate<T>`, `CalendarMonth` - Calendar types
+- `BusinessDayConfig`, `AddBusinessDays<T, N>`, `IsBusinessDay<T>`, `BusinessDaysBetween<T, U>` - Business day types
+- `UnixSeconds`, `UnixMilliseconds`, `ISOTimestamp<T>`, `ToUnixTimestamp<T>`, `FromUnixTimestamp<T>` - Timestamp types
+- `TimeAgo`, `TimeAgoOptions` - Time ago
+- `StartOfDay<T>`, `EndOfDay<T>`, `StartOfWeek<T>`, `EndOfWeek<T>`, `StartOfMonth<T>`, `EndOfMonth<T>`, `StartOfYear<T>`, `EndOfYear<T>` - Boundary types
+- `DaysInMonth<Y, M>`, `DaysInYear<Y>` - Days calculation
+
+#### Type-Level Advanced Math
+- `Add<A, B>`, `Subtract<A, B>`, `Multiply<A, B>`, `Divide<A, B>`, `Modulo<A, B>`, `Abs<N>`, `Neg<N>`, `Inc<N>`, `Dec<N>` - Basic math
+- `Power<A, B>`, `Sqrt<N>`, `Cbrt<N>`, `NthRoot<N, R>`, `Log<N>`, `Log10<N>`, `Log2<N>`, `Exp<N>` - Power/log operations
+- `Sign<N>`, `Floor<N>`, `Ceil<N>`, `Round<N>`, `Trunc<N>` - Rounding
+- `Sin<N>`, `Cos<N>`, `Tan<N>`, `Asin<N>`, `Acos<N>`, `Atan<N>`, `Atan2<Y, X>`, `Sinh<N>`, `Cosh<N>`, `Tanh<N>` - Trigonometry
+- `PI`, `E`, `LN2`, `LN10`, `LOG2E`, `LOG10E`, `SQRT2`, `SQRT1_2` - Constants
+- `GreaterThan<A, B>`, `LessThan<A, B>`, `GreaterThanOrEqual<A, B>`, `LessThanOrEqual<A, B>`, `NumericEqual<A, B>`, `NumericNotEqual<A, B>` - Comparison
+- `Max<A, B>`, `Min<A, B>`, `Clamp<N, Min, Max>`, `InRange<N, Min, Max>`, `InRangeInclusive<N, Min, Max>`, `InRangeExclusive<N, Min, Max>` - Range
+- `IsPrime<N>`, `Factors<N>`, `PrimeFactors<N>`, `Divisors<N>`, `GCD<A, B>`, `LCM<A, B>`, `Totient<N>`, `IsCoprime<A, B>`, `Fibonacci<N>`, `Factorial<N>`, `Permutation<N, R>`, `Combination<N, R>` - Number theory
+- `Mean<T>`, `Median<T>`, `Mode<T>`, `Variance<T>`, `StdDev<T>`, `Range<T>`, `Sum<T>`, `Product<T>`, `Percentile<T, P>`, `Quartiles<T>`, `Correlation<X, Y>`, `Covariance<X, Y>` - Statistics
+- `BitAnd<A, B>`, `BitOr<A, B>`, `BitXor<A, B>`, `BitNot<A>`, `LeftShift<A, N>`, `RightShift<A, N>`, `UnsignedRightShift<A, N>` - Bitwise
+- `IsEven<N>`, `IsOdd<N>`, `IsPositive<N>`, `IsNegative<N>`, `IsZero<N>`, `IsInteger<N>`, `IsFloat<N>`, `IsFinite<N>`, `IsInfinite<N>`, `IsNaN<N>` - Number utilities
+- `DegreesToRadians<D>`, `RadiansToDegrees<R>`, `GradiansToDegrees<G>`, `DegreesToGradians<D>` - Angle conversion
+- `NumberToString<N>`, `StringToNumber<S>`, `HexToDecimal<H>`, `DecimalToHex<N>`, `BinaryToDecimal<B>`, `DecimalToBinary<N>`, `OctalToDecimal<O>`, `DecimalToOctal<N>` - Number conversion
+- `NumericRange<Min, Max, Step>`, `IntegerRange<Min, Max>` - Range types
+- `Percentage<T>`, `Ratio<N, D>`, `Angle<T>`, `Temperature<T, Unit>`, `CelsiusToFahrenheit<C>`, `FahrenheitToCelsius<F>`, `CelsiusToKelvin<C>`, `KelvinToCelsius<K>` - Utility types
+
+#### Type-Level Sorting & Searching
+- `SortOrder`, `Sort<T, Order>`, `QuickSort<T>`, `MergeSort<T>`, `BubbleSort<T>`, `InsertionSort<T>`, `SelectionSort<T>`, `HeapSort<T>`, `CountingSort<T>`, `RadixSort<T>`, `BucketSort<T>` - Sorting types
+- `BinarySearchResult`, `BinarySearch<T, V>`, `LinearSearch<T, V>`, `FindIndex<T, V>`, `FindLastIndex<T, V>`, `Includes<T, V>`, `IndexOf<T, V>`, `LastIndexOf<T, V>`, `Find<T, P>`, `FindAll<T, P>` - Searching types
+- `Filter<T, P>`, `Reject<T, P>`, `Take<T, N>`, `TakeWhile<T, P>`, `Drop<T, N>`, `DropWhile<T, P>`, `TakeFirst<T>`, `TakeLast<T>`, `TakeLastN<T, N>`, `DropLastN<T, N>` - Filtering types
+- `GroupBy<T, K>`, `Chunk<T, N>`, `Partition<T, P>`, `CountBy<T, K>`, `CountOccurrences<T, V>`, `FrequencyMap<T>` - Grouping types
+- `Union<A, B>`, `Intersection<A, B>`, `Difference<A, B>`, `SymmetricDifference<A, B>`, `IsSubset<A, B>`, `IsSuperset<A, B>`, `AreDisjoint<A, B>`, `HaveCommon<A, B>` - Set operations
+- `Unique<T>`, `UniqueBy<T, K>`, `Duplicates<T>`, `NonDuplicates<T>`, `RemoveAt<T, I>`, `RemoveFirst<T, V>`, `RemoveAll<T, V>` - Unique operations
+- `Slice<T, Start, End>`, `Splice<T, Start, DeleteCount, Items>`, `Reverse<T>`, `RotateLeft<T, N>`, `RotateRight<T, N>` - Slice operations
+- `Zip<A, B>`, `Zip3<A, B, C>`, `ZipWith<A, B, F>`, `Unzip<T>`, `Unzip3<T>` - Zip operations
+- `Flatten<T>`, `FlattenDeep<T>`, `FlattenDepth<T, D>`, `Interleave<A, B>`, `Intersperse<T, S>` - Flatten operations
+- `Every<T, P>`, `Some<T, P>`, `None<T, P>`, `Count<T, P>` - Predicate types
+- `ArrayEquals<A, B>`, `Compare<A, B>`, `StartsWith<T, Prefix>`, `EndsWith<T, Suffix>` - Comparison types
+- `AllIndicesOf<T, V>`, `AllIndices<T, P>`, `At<T, I>`, `AtOr<T, I, F>`, `Range<Start, End>`, `RangeStep<Start, End, Step>` - Position types
+- `NumericComparator`, `StringComparator`, `DateComparator`, `Comparator<T>`, `SortOptions<T>`, `MultiSortOptions<T>`, `SearchOptions<T>`, `BinarySearchOptions<T>` - Sorting options
+- `MinElement<T>`, `MaxElement<T>`, `SumElements<T>`, `ProductElements<T>`, `Average<T>`, `MedianElement<T>`, `ModeElement<T>` - Utility types
+
 ## [1.6.0] - 2026-04-19
 
 ### Added

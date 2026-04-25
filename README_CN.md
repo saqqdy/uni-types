@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **600+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **700+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -881,6 +881,162 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `TraceSpan<T>` | 追踪跨度 |
 | `PerformanceTrace<T>` | 性能追踪 |
 | `PerformanceAlert` | 性能告警 |
+
+### 元编程 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `MetaType<T>` | 元类型包装器 |
+| `TypeRepr<T>` | 类型表示 |
+| `GetType<T>` | 从元类型提取类型 |
+| `HasType<T, U>` | 检查类型是否包含嵌套类型 |
+| `TypePath<T>` | 到嵌套类型的路径 |
+| `TypeDepth<T>` | 最大嵌套深度 |
+| `TypeSize<T>` | 类型大小估计 |
+| `TypeComplexity<T>` | 类型复杂度评分 |
+| `AnalyzeType<T>` | 完整类型分析 |
+| `TypeStats<T>` | 类型统计 |
+
+### 装饰器类型 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `ClassDecorator<T>` | 类装饰器类型 |
+| `MethodDecorator<T>` | 方法装饰器类型 |
+| `PropertyDecorator<T>` | 属性装饰器类型 |
+| `ParameterDecorator<T>` | 参数装饰器类型 |
+| `DecoratorResult<T>` | 装饰器结果类型 |
+| `DecoratorMetadata<T>` | 装饰器元数据 |
+| `DecoratorChain<T>` | 装饰器链 |
+| `ComposableDecorator<T>` | 可组合装饰器 |
+
+### 类型生成 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `GenerateType<T>` | 从 schema 生成类型 |
+| `GeneratedType<T>` | 生成的类型结果 |
+| `TypeBuilder<T>` | 类型构建器接口 |
+| `SchemaToType<S>` | 将 schema 转换为类型 |
+| `TypeFromSchema<T, S>` | 从 schema 定义生成类型 |
+| `GeneratedClass<T>` | 生成的类类型 |
+| `GeneratedInterface<T>` | 生成的接口 |
+| `GeneratedEnum<T>` | 生成的枚举类型 |
+
+### 框架类型 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `NestModule<T>` | NestJS 模块类型 |
+| `NestController<T>` | NestJS 控制器类型 |
+| `NestService<T>` | NestJS 服务类型 |
+| `ExpressApp<T>` | Express 应用类型 |
+| `ExpressRouter<T>` | Express 路由器类型 |
+| `ExpressMiddleware<T>` | Express 中间件 |
+| `FastifyApp<T>` | Fastify 应用类型 |
+| `FastifyPlugin<T>` | Fastify 插件类型 |
+| `KoaApp<T>` | Koa 应用类型 |
+| `KoaMiddleware<T>` | Koa 中间件类型 |
+
+### 类型安全配置 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `SafeConfig<T>` | 类型安全配置 |
+| `ConfigDefinition<T>` | 配置定义 |
+| `ConfigValue<T, K>` | 类型化配置值 |
+| `ConfigSchema<T>` | 配置 Schema 类型 |
+| `EnvDefinition<T>` | 环境变量定义 |
+| `EnvValue<K>` | 环境变量值 |
+| `ConfigPath<T>` | 配置路径类型 |
+| `ValidateConfig<T>` | 配置验证类型 |
+| `MergeConfig<A, B>` | 合并配置 |
+| `DeepConfig<T>` | 深层配置类型 |
+
+### 类型可视化 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `VisualizeType<T>` | 可视化类型结构 |
+| `TypeDiagram<T>` | 类型图表示 |
+| `TypeTree<T>` | 类型树可视化 |
+| `PrintType<T>` | 可打印类型字符串 |
+| `TypeFormat<T>` | 类型格式化选项 |
+| `TypeName<T>` | 提取类型名称 |
+| `TypeStructure<T>` | 类型结构信息 |
+| `ExpandType<T>` | 展开的类型显示 |
+
+### 加密类型 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `HashAlgorithm` | 哈希算法类型 |
+| `HashOutput<L>` | 哈希输出类型 |
+| `CryptoKey<T>` | 加密密钥类型 |
+| `KeyPair<T>` | 密钥对类型 |
+| `Signature<T>` | 签名类型 |
+| `EncryptedData<T>` | 加密数据类型 |
+| `CryptoConfig<T>` | 加密配置 |
+| `CryptoProvider<T>` | 加密提供者接口 |
+| `HashFunction<T>` | 哈希函数类型 |
+| `EncryptFunction<T>` | 加密函数 |
+| `DecryptFunction<T>` | 解密函数 |
+
+### 日期时间类型 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `DateTime<T>` | DateTime 类型 |
+| `DateFormat<T>` | 日期格式类型 |
+| `TimeFormat<T>` | 时间格式类型 |
+| `Timestamp<T>` | 时间戳类型 |
+| `Duration<T>` | 持续时间类型 |
+| `DateRange<T>` | 日期范围类型 |
+| `TimeZoneType` | 时区类型 |
+| `UTCDate<T>` | UTC 日期类型 |
+| `LocalDate<T>` | 本地日期类型 |
+| `ISODateString` | ISO 日期字符串 |
+| `ParsedDate<T>` | 解析后的日期类型 |
+| `FormatDate<T, F>` | 格式化日期类型 |
+
+### 高级数学 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Add<A, B>` | 类型级加法 |
+| `Subtract<A, B>` | 类型级减法 |
+| `Multiply<A, B>` | 类型级乘法 |
+| `Divide<A, B>` | 类型级除法 |
+| `Power<A, B>` | 幂运算 |
+| `Sqrt<N>` | 平方根 |
+| `Sin<N>`, `Cos<N>` | 三角函数 |
+| `PI`, `E` | 数学常量 |
+| `Factorial<N>` | 阶乘 |
+| `Fibonacci<N>` | 斐波那契数 |
+| `IsPrime<N>` | 质数检查 |
+| `Mean<T>`, `Median<T>` | 统计函数 |
+| `IsEven<N>`, `IsOdd<N>` | 奇偶检查 |
+
+### 类型级搜索 *(v1.7.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Sort<T, Order>` | 元组排序 |
+| `QuickSort<T>` | 快速排序算法 |
+| `MergeSort<T>` | 归并排序算法 |
+| `BinarySearch<T, V>` | 二分搜索 |
+| `Includes<T, V>` | 检查包含 |
+| `Filter<T, P>` | 按谓词过滤 |
+| `Take<T, N>` | 取前 N 个元素 |
+| `Drop<T, N>` | 丢弃前 N 个元素 |
+| `Chunk<T, N>` | 分块为子列表 |
+| `Union<A, B>` | 集合并集 |
+| `Intersection<A, B>` | 集合交集 |
+| `Unique<T>` | 唯一元素 |
+| `Reverse<T>` | 反转元组 |
+| `Zip<A, B>` | 拼接元组 |
+| `Flatten<T>` | 展平嵌套元组 |
+| `MinElement<T>`, `MaxElement<T>` | 最小/最大元素 |
 
 ## 示例
 
