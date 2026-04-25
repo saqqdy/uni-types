@@ -11,7 +11,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.4.0](#140) - Type-level programming & algorithms (2026-04-18)
 - [x] [1.5.0](#150) - Enterprise patterns & real-time systems (2026-04-19)
 - [x] [1.6.0](#160) - AI/ML & advanced type system (2026-04-19)
-- [ ] [1.7.0](#170) - Metaprogramming & advanced utilities (Planned)
+- [x] [1.7.0](#170) - Metaprogramming & advanced utilities (2026-04-25)
 - [ ] [1.8.0](#180) - Type inference engine & developer tools (Planned)
 - [ ] [1.9.0](#190) - Advanced domain-specific types (Planned)
 - [ ] [1.10.0](#1100) - Ultimate type system (Planned)
@@ -1686,7 +1686,7 @@ export type BenchmarkComparison<T> = ...
 
 ---
 
-## [1.7.0] - Planned
+## [1.7.0] - 2026-04-25
 
 ### New Features
 
@@ -2129,36 +2129,39 @@ export type IsSubset<A, B> = ...
 
 ### Documentation
 
-- [ ] Metaprogramming Utilities guide (English & Chinese)
-- [ ] Type Decorators guide (English & Chinese)
-- [ ] Code Generation Templates guide (English & Chinese)
-- [ ] Additional Framework Integrations guide (English & Chinese)
-- [ ] Type-Safe Configuration guide (English & Chinese)
-- [ ] Type Visualization guide (English & Chinese)
-- [ ] Type-Level Cryptography guide (English & Chinese)
-- [ ] Type-Level Date/Time guide (English & Chinese)
-- [ ] Type-Level Math guide (English & Chinese)
-- [ ] Type-Level Sorting & Searching guide (English & Chinese)
-- [ ] API reference pages for all new types
-- [ ] Update README with v1.7.0 features
-- [ ] Update CHANGELOG with v1.7.0 release notes
+- [x] Metaprogramming Utilities guide (English & Chinese)
+- [x] Type Decorators guide (English & Chinese)
+- [x] Code Generation Templates guide (English & Chinese)
+- [x] Additional Framework Integrations guide (English & Chinese)
+- [x] Type-Safe Configuration guide (English & Chinese)
+- [x] Type Visualization guide (English & Chinese)
+- [x] Type-Level Cryptography guide (English & Chinese)
+- [x] Type-Level Date/Time guide (English & Chinese)
+- [x] Type-Level Math guide (English & Chinese)
+- [x] Type-Level Sorting & Searching guide (English & Chinese)
+- [x] API reference pages for all new types
+- [x] Update README with v1.7.0 features
+- [x] Update CHANGELOG with v1.7.0 release notes
+- [x] Update Playground documentation
 
 ### Testing
 
-- [ ] Comprehensive tests for all new types
-- [ ] Metaprogramming reflection tests
-- [ ] Decorator composition tests
-- [ ] Framework integration tests
-- [ ] Date/time arithmetic tests
-- [ ] Math operation tests
-- [ ] Sorting algorithm correctness tests
+- [x] Comprehensive tests for all new types
+- [x] Metaprogramming reflection tests
+- [x] Decorator composition tests
+- [x] Framework integration tests
+- [x] Date/time arithmetic tests
+- [x] Math operation tests
+- [x] Sorting algorithm correctness tests
+- [x] 53 tests passing
 
 ### Code Quality
 
-- [ ] All lint checks passing
-- [ ] Build successful
-- [ ] Documentation complete
-- [ ] Type complexity analysis
+- [x] All lint checks passing
+- [x] Build successful
+- [x] Documentation complete
+- [x] Type complexity analysis
+- [x] No TypeScript compilation errors
 
 ---
 
