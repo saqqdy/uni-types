@@ -6,7 +6,7 @@ titleTemplate: 通用 TypeScript 类型工具库
 hero:
   name: uni-types
   text: TypeScript 类型工具库
-  tagline: 全面的 600+ 类型工具集合 - 企业级模式、实时系统、微服务等
+  tagline: 全面的 700+ 类型工具集合 - 企业级模式、实时系统、微服务等
   image:
     src: /logo.svg
     alt: uni-types
@@ -24,7 +24,7 @@ hero:
 features:
   - icon: 🎯
     title: 全面覆盖
-    details: 600+ 实用类型工具，涵盖核心操作、企业级模式、实时系统、微服务等。
+    details: 700+ 实用类型工具，涵盖核心操作、企业级模式、实时系统、微服务等。
   - icon: 🔒
     title: 类型安全
     details: 完整的 TypeScript 类型定义，编译时捕获错误。
@@ -73,6 +73,15 @@ features:
   - icon: 🌍
     title: 国际化
     details: 语言环境管理、翻译、复数规则、日期/数字格式化、RTL 支持类型。
+  - icon: 🔮
+    title: 元编程 (v1.7.0)
+    details: 类型分析、可视化、装饰器、类型生成和类型安全配置。
+  - icon: 🧮
+    title: 类型级数学 (v1.7.0)
+    details: 高级数学运算 - 三角函数、统计、数论和位运算。
+  - icon: 🔍
+    title: 类型级搜索 (v1.7.0)
+    details: 排序算法、二分搜索、过滤、分块、集合操作等。
 ---
 
 ## 快速示例
@@ -122,6 +131,30 @@ type Result = Either<Error, string> // Left<Error> | Right<string>
 
 // 类型推断 (v1.6.0)
 type PromiseValue = Infer<Promise<string>> // string
+
+// 元编程 (v1.7.0)
+type Analysis = AnalyzeType<{ nested: { deep: string } }>
+type Visual = VisualizeType<{ a: number; b: string }>
+
+// 装饰器类型 (v1.7.0)
+type LoggedMethod = MethodDecorator<(arg: string) => void>
+
+// 类型生成 (v1.7.0)
+type GeneratedUser = GenerateFromSchema<{ name: 'string'; age: 'number' }>
+
+// 加密类型 (v1.7.0)
+type Sha256Hash = HashOutput<256>
+
+// 日期时间类型 (v1.7.0)
+type UserDuration = Duration<{ hours: number; minutes: number }>
+
+// 类型级数学 (v1.7.0)
+type Sum = Add<10, 20> // number
+type IsSevenPrime = IsPrime<7> // true
+
+// 类型级搜索 (v1.7.0)
+type UniqueNumbers = Unique<[1, 2, 2, 3, 3]> // [1, 2, 3]
+type Intersect = Intersection<[1, 2, 3], [2, 3, 4]> // [2, 3]
 ```
 
 ## 为什么选择 uni-types？
@@ -135,5 +168,5 @@ type PromiseValue = Infer<Promise<string>> // string
 :::
 
 ::: success 企业级就绪
-600+ 类型涵盖微服务、事件驱动架构、工作流引擎和实时系统。
+700+ 类型涵盖微服务、事件驱动架构、工作流引擎和实时系统。
 :::

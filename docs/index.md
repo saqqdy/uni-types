@@ -6,7 +6,7 @@ titleTemplate: Universal TypeScript Type Utilities
 hero:
   name: uni-types
   text: TypeScript Type Utilities
-  tagline: A comprehensive collection of 600+ type utilities for TypeScript development - enterprise patterns, real-time systems, and more
+  tagline: A comprehensive collection of 700+ type utilities for TypeScript development - enterprise patterns, real-time systems, and more
   image:
     src: /logo.svg
     alt: uni-types
@@ -24,7 +24,7 @@ hero:
 features:
   - icon: 🎯
     title: Comprehensive
-    details: 600+ utility types covering core operations, enterprise patterns, real-time systems, microservices, and more.
+    details: 700+ utility types covering core operations, enterprise patterns, real-time systems, microservices, and more.
   - icon: 🔒
     title: Type Safe
     details: Full TypeScript support with complete type definitions. Catch errors at compile time.
@@ -73,6 +73,15 @@ features:
   - icon: 🌍
     title: Internationalization
     details: Locale management, translations, plural rules, date/number formatting, and RTL support types.
+  - icon: 🔮
+    title: Metaprogramming (v1.7.0)
+    details: Type analysis, visualization, decorators, type generation, and type-safe configuration.
+  - icon: 🧮
+    title: Type-Level Math (v1.7.0)
+    details: Advanced math operations - trigonometry, statistics, number theory, and bitwise operations.
+  - icon: 🔍
+    title: Type-Level Search (v1.7.0)
+    details: Sorting algorithms, binary search, filtering, chunking, set operations, and more.
 ---
 
 ## Quick Example
@@ -122,6 +131,30 @@ type Result = Either<Error, string> // Left<Error> | Right<string>
 
 // Type inference (v1.6.0)
 type PromiseValue = Infer<Promise<string>> // string
+
+// Metaprogramming (v1.7.0)
+type Analysis = AnalyzeType<{ nested: { deep: string } }>
+type Visual = VisualizeType<{ a: number; b: string }>
+
+// Decorator types (v1.7.0)
+type LoggedMethod = MethodDecorator<(arg: string) => void>
+
+// Type generation (v1.7.0)
+type GeneratedUser = GenerateFromSchema<{ name: 'string'; age: 'number' }>
+
+// Crypto types (v1.7.0)
+type Sha256Hash = HashOutput<256>
+
+// Date/Time types (v1.7.0)
+type UserDuration = Duration<{ hours: number; minutes: number }>
+
+// Type-level math (v1.7.0)
+type Sum = Add<10, 20> // number
+type IsSevenPrime = IsPrime<7> // true
+
+// Type-level search (v1.7.0)
+type UniqueNumbers = Unique<[1, 2, 2, 3, 3]> // [1, 2, 3]
+type Intersect = Intersection<[1, 2, 3], [2, 3, 4]> // [2, 3]
 ```
 
 ## Why uni-types?
@@ -135,5 +168,5 @@ Built with the latest TypeScript features for the best type inference.
 :::
 
 ::: success Enterprise Ready
-600+ types covering microservices, event-driven architecture, workflow engines, and real-time systems.
+700+ types covering microservices, event-driven architecture, workflow engines, and real-time systems.
 :::
