@@ -18,7 +18,7 @@ Try `uni-types` directly in your browser with real-time type checking!
 - 📦 **Pre-loaded Types** - All uni-types are available for import
 - 🎨 **Syntax Highlighting** - Full TypeScript syntax support
 
-## Available Types (800+)
+## Available Types (1500+)
 
 All types from `uni-types` are available for import:
 
@@ -780,6 +780,229 @@ import type {
   Workspace, WorkspaceConfig, WorkspaceDependency, WorkspaceGraph,
   PackagePlugin, PluginHook, PluginConfig,
   PackageScript, ScriptRunner, ScriptResult
+} from 'uni-types'
+```
+
+### Quantum Computing Types *(v1.9.0)*
+
+```typescript
+import type {
+  QubitState, QubitAmplitude, Qubit, QubitArray,
+  SingleQubitGate, TwoQubitGate, ThreeQubitGate, MultiQubitGate,
+  Hadamard, PauliX, PauliY, PauliZ, CNOT, Toffoli,
+  QuantumGate, QuantumCircuit, QuantumRegister, ClassicalRegister,
+  QuantumState, StateVector, DensityMatrix,
+  BellState, GHZState, EntangledPair,
+  QuantumAlgorithm, Grover, Shor, QFT, VQE, QAOA,
+  QuantumResult, QuantumTeleportation, SuperdenseCoding,
+  QECCode, SurfaceCode, LogicalQubit,
+  QuantumBackend, QuantumHardware, QuantumJob,
+  BlochSphereCoordinates, Fidelity, QuantumVolume
+} from 'uni-types'
+```
+
+### Game Development Types *(v1.9.0)*
+
+```typescript
+import type {
+  EntityId, Entity, EntityComponent, EntitySystem, EntityQuery,
+  Component, Position2D, Position3D, Velocity, TransformComponent,
+  SpriteComponent, AnimationComponent, HealthComponent,
+  GameState, GameAction, GameReducer, GameStore,
+  KeyState, KeyboardState, MouseState, GamepadState,
+  InputState, TouchState, TouchPoint,
+  PhysicsBody, ColliderShape, PhysicsMaterial, Collision,
+  Renderable, Material, Shader, Texture, Mesh, Camera,
+  AudioClip, AudioSource, AudioListener, SoundEffect,
+  Scene, SceneNode, SceneGraph, Vector2D, Vector3D,
+  UIElement, UIText, UIButton, UIProgress,
+  GameTime, Timer, Tween, EasingFunction,
+  Level, SpawnPoint, Checkpoint, Objective
+} from 'uni-types'
+```
+
+### Blockchain Types *(v1.9.0)*
+
+```typescript
+import type {
+  BlockHash, BlockHeader, BlockBody, Block, Withdrawal,
+  TransactionHash, TransactionType, Transaction,
+  LegacyTransaction, EIP2930Transaction, EIP1559Transaction, EIP4844Transaction,
+  TransactionSignature, AccessList, TransactionReceipt,
+  SmartContract, ContractABI, ABIFunction, ABIEvent, ABIParameter,
+  ContractMethod, ContractEvent,
+  Address, ChecksumAddress, PublicKey, PrivateKey, Signature,
+  TokenInfo, FungibleTokenBalance, TokenAllowance,
+  NonFungibleToken, MultiToken, TokenBalance,
+  WalletAccount, WalletConnectionStatus, WalletConnection, WalletProvider,
+  Chain, ChainId, NetworkConfig, EVMChainId,
+  GasEstimate, GasPrice, GasLimit, TransactionFee, GasFees,
+  ConsensusMechanism, ValidatorInfo, StakingInfo,
+  Log, LogFilter, JsonRpcProvider, JsonRpcRequest,
+  ContractDeployOptions, ContractDeployResult,
+  ENSName, ENSResolver,
+  PoolPair, LiquidityPool, SwapParams
+} from 'uni-types'
+```
+
+### Language Processing Types *(v1.9.0)*
+
+```typescript
+import type {
+  TokenType, Token, TokenStream, TokenizerOptions,
+  Sentence, Paragraph, Document, Corpus,
+  ParseNode, ParseTree, GrammarRule, Grammar,
+  DependencyRelation, DependencyRelationType,
+  LanguageModel, NLMTask, Vocabulary, SpecialTokens,
+  Embedding, EmbeddingVector, WordEmbedding, DocumentEmbedding,
+  SemanticRole, SemanticFrame, FrameElement,
+  EntityMention, EntityType, RelationMention, RelationType,
+  Morpheme, MorphemeType, MorphologicalFeatures, PartOfSpeech,
+  SentimentScore, SentimentLabel, SentimentResult, EmotionResult,
+  Locale, LanguagePair, TranslationResult, TranslationOptions,
+  NormalizationOptions, TextChunk, ChunkingOptions,
+  TermIndex, TermInfo, PostingListEntry,
+  ClassificationResult, TopicModelingResult,
+  QAResult, QAOptions
+} from 'uni-types'
+```
+
+### Graphics Types *(v1.9.0)*
+
+```typescript
+import type {
+  Color, RGB, RGBA, HSL, HSLA, HSV, HexColor, ColorFormat,
+  ColorStop, GradientType, Gradient,
+  Vector2, Vector3, Vector4, Point2D, Point3D,
+  Size2D, Size3D, Rect, Bounds, Ray, Plane,
+  Matrix2x2, Matrix3x3, Matrix4x4, Matrix4x4Flat,
+  TransformMatrix, DecomposedTransform, Quaternion,
+  Translation, Rotation, Scale, Transform,
+  Point, Line, LineStrip, Triangle, Quad, Polygon,
+  Circle, Ellipse, Rectangle, Sphere, Box, Cylinder, Cone, Capsule, Torus,
+  VertexAttribute, VertexBufferLayout, VertexBuffer, IndexBuffer,
+  UniformBuffer, StorageBuffer, GPUShaderStageFlags,
+  ShaderLanguage, ShaderStage, VertexShader, FragmentShader, ComputeShader,
+  ShaderProgram, BindGroupLayout,
+  TextureFormat, TextureDimension, TextureUsage,
+  TextureDescriptor, TextureViewDescriptor, SamplerDescriptor,
+  RenderPassDescriptor, ColorAttachment, DepthStencilAttachment,
+  RenderPipelineDescriptor, PrimitiveState, DepthStencilState,
+  BlendState, BlendFactor, CompareFunction,
+  LightType, DirectionalLight, PointLight, SpotLight, AmbientLight,
+  MaterialBase, PBRMaterial, UnlitMaterial, PhongMaterial
+} from 'uni-types'
+```
+
+### Audio Processing Types *(v1.9.0)*
+
+```typescript
+import type {
+  AudioSample, AudioBufferData, AudioChannel,
+  SampleRate, BitDepth, SampleFormat,
+  WaveformType, ADSREnvelope, Envelope, WaveformOptions,
+  Frequency, NoteName, Octave, MIDINoteNumber, NotePitch,
+  MusicalInterval, SemitoneInterval,
+  AudioEffectBase, ReverbEffect, DelayEffect, FilterEffect,
+  CompressorEffect, EqualizerEffect, DistortionEffect,
+  ChorusEffect, FlangerEffect, PhaserEffect, TremoloEffect, LimiterEffect,
+  MIDINote, MIDIEvent, MIDISequence, MIDITrack,
+  OscillatorOptions, LFOOptions, AudioSourceNode, SynthVoice, SynthesizerPatch,
+  FFTResult, Spectrum, Spectrogram, WaveformAnalysis,
+  PitchDetectionResult, BeatDetectionResult, AudioFeatures,
+  AudioFormat, AudioEncodingOptions, AudioMetadata,
+  AudioNodeConnection, AudioGraph, AudioGraphNode,
+  SpatialPosition, SpatialOrientation, SpatialPannerOptions
+} from 'uni-types'
+```
+
+### Animation Types *(v1.9.0)*
+
+```typescript
+import type {
+  AnimationTarget, AnimationDuration, AnimationFrame, AnimationTimeline,
+  AnimationPlaybackState, AnimationDirection, AnimationFillMode,
+  AnimationBase, Animation,
+  KeyframeBase, Keyframe, KeyframeInterpolation, KeyframeSequence,
+  EasingFunction, EasingType, EasingPreset, CubicBezier, StepsEasing,
+  Transition, TransitionProperty, TransitionDuration, TransitionShorthand,
+  SpringConfig, SpringState, SpringPreset,
+  SpriteSheet, SpriteFrame, SpriteAnimationDef, SpriteAnimation,
+  MorphTarget, MorphWeights, MorphAnimation,
+  Skeleton, Bone, BoneTransform, Joint, Pose,
+  AnimationState, AnimationTransition, AnimationLayer,
+  AnimationBlendTree, AvatarMask,
+  IKChain, IKTarget, IKSolverType, IKSolverConfig,
+  AnimationTrack, ExtrapolationMode, AnimationClip, AnimationEvent,
+  AnimationController, AnimationParameters, AnimationParameterValue,
+  InterpolateFunction, AnimationOptions
+} from 'uni-types'
+```
+
+### Error Handling Types *(v1.9.0)*
+
+```typescript
+import type {
+  ErrorType, ErrorMessage, ErrorStack, ErrorCode, ErrorBase,
+  CustomError, ErrorSeverity,
+  Result, Success, Failure, Ok, Err, ResultMatcher, AsyncResult,
+  Try, TryResult, TryCatchResult, CatchHandler, FinallyHandler,
+  Either, Left, Right, EitherMatcher,
+  Option, Some, None, OptionMatcher, NullableOption,
+  ErrorChain, ChainLink, ChainContext,
+  RecoveryStrategy, RecoveryOptions, RecoveryResult, RetryConfig,
+  ValidationError, ValidationErrors, FieldError, ValidationResult,
+  NetworkError, AuthenticationError, AuthorizationError,
+  NotFoundError, ConflictError, TimeoutError, RateLimitError,
+  ErrorHandler, GlobalErrorHandler, ErrorBoundaryProps,
+  ErrorFactory, ErrorInstance, ErrorLog,
+  AssertionResult, AssertionFunction, AssertionError,
+  Panic, FatalError, ExpectedErrors, BusinessError, SystemError
+} from 'uni-types'
+```
+
+### Event System Types *(v1.9.0)*
+
+```typescript
+import type {
+  EventType, EventPayload, EventTimestamp, EventId,
+  Event, TypedEvent, EventMap, EventConstructor,
+  EventEmitter, EventHandler, EventListener, EventSubscription,
+  EventBus, BusEvent, BusSubscription, EventBusMiddleware,
+  EventDispatcher, DispatchResult, DispatchError,
+  EventQueue, QueuedEvent, QueuePriority, QueueConfig,
+  Subscription, SubscriptionOptions, SubscriptionGroup,
+  EventPattern, PatternMatch, PatternMatcher, PatternSubscription,
+  EventAggregator, AggregatedEvent, AggregationType,
+  EventHistory, HistoryEntry, ReplayOptions, ReplayResult,
+  PropagationPhase, PropagationPath, PropagationController,
+  SyncEventHandler, AsyncEventHandler, ConditionalHandler,
+  EventTarget, DomainEvent, DomainEventHandler,
+  HandlerDecoratorOptions, EventMetadata,
+  EventNameFromHandler, PayloadFromEvent, EventHandlerMap
+} from 'uni-types'
+```
+
+### Reactive Programming Types *(v1.9.0)*
+
+```typescript
+import type {
+  Observable, Observer, PartialObserver, Subscription,
+  Subject, BehaviorSubject, ReplaySubject, AsyncSubject,
+  OperatorFunction, UnaryFunction, OperatorName,
+  MapOperator, FilterOperator, ReduceOperator,
+  TakeOptions, DebounceOptions, ThrottleOptions, RetryOptions,
+  Stream, StreamValue, StreamError,
+  Signal, ReadonlySignal, WritableSignal, SignalValue,
+  Computed, Effect, EffectOptions, SignalOptions,
+  Scheduler, SchedulerAction, SchedulerLike,
+  BackpressureStrategy, BackpressureConfig, BackpressureState,
+  Flow, FlowState, FlowController, ColdFlow, HotFlow,
+  Channel, ChannelBuffer, BufferedChannel, SelectableChannel,
+  CombineLatest, Zip, ForkJoinResult,
+  ReactivePrimitive, ReactiveValue, ReactiveStore,
+  StoreAction, StoreReducer, StoreMiddleware,
+  FromEvent, FromPromise, IntervalObservable, TimerObservable
 } from 'uni-types'
 ```
 
