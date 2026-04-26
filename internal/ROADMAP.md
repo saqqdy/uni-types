@@ -12,7 +12,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.5.0](#150) - Enterprise patterns & real-time systems (2026-04-19)
 - [x] [1.6.0](#160) - AI/ML & advanced type system (2026-04-19)
 - [x] [1.7.0](#170) - Metaprogramming & advanced utilities (2026-04-25)
-- [ ] [1.8.0](#180) - Type inference engine & developer tools (Planned)
+- [x] [1.8.0](#180) - Type inference engine & developer tools (2026-04-25)
 - [ ] [1.9.0](#190) - Advanced domain-specific types (Planned)
 - [ ] [1.10.0](#1100) - Ultimate type system (Planned)
 - [ ] [1.11.0](#1110) - Migration & deprecation tools (Planned)
@@ -2165,11 +2165,11 @@ export type IsSubset<A, B> = ...
 
 ---
 
-## [1.8.0] - Planned
+## [1.8.0] - 2026-04-25
 
 ### New Features
 
-#### 1. Advanced Type Inference Engine
+#### 1. Advanced Type Inference Engine ✓
 
 Advanced type inference and deduction utilities.
 
@@ -2218,7 +2218,7 @@ export type Pure<T> = ...
 export type Handle<T, E> = ...
 ```
 
-#### 2. Type-Level Database Operations
+#### 2. Type-Level Database Operations ✓
 
 Type-level database query building.
 
@@ -2266,7 +2266,7 @@ export type ModelScope<T> = ...
 export type ModelHook<T> = ...
 ```
 
-#### 3. Type-Level Network Protocols
+#### 3. Type-Level Network Protocols ✓
 
 Type-level network protocol definitions.
 
@@ -2314,7 +2314,7 @@ export type MQTTPayload<T> = ...
 export type MQTTQoS = 0 | 1 | 2
 ```
 
-#### 4. Type-Level File System
+#### 4. Type-Level File System ✓
 
 Type-level file system operations.
 
@@ -2358,7 +2358,7 @@ export type FileMetadata<T> = ...
 export type Timestamp = number
 ```
 
-#### 5. Type-Level Compiler Extensions
+#### 5. Type-Level Compiler Extensions ✓
 
 Type-level compiler and language extensions.
 
@@ -2405,7 +2405,7 @@ export type ScopeEntry<T> = ...
 export type ScopeChain<T> = ...
 ```
 
-#### 6. Type-Level Debugging Tools
+#### 6. Type-Level Debugging Tools ✓
 
 Type-level debugging and introspection.
 
@@ -2453,7 +2453,7 @@ export type REPLCommand<T> = ...
 export type REPLResult<T> = ...
 ```
 
-#### 7. Type-Level Optimizer
+#### 7. Type-Level Optimizer ✓
 
 Type-level optimization utilities.
 
@@ -2501,7 +2501,7 @@ export type HintLevel = 'info' | 'warning' | 'error'
 export type HintSuggestion<T> = ...
 ```
 
-#### 8. Type-Level Documentation Generator
+#### 8. Type-Level Documentation Generator ✓
 
 Type-level documentation generation.
 
@@ -2547,7 +2547,7 @@ export type DocSidebar<T> = ...
 export type DocBreadcrumb<T> = ...
 ```
 
-#### 9. Type-Level Test Framework
+#### 9. Type-Level Test Framework ✓
 
 Type-level testing framework utilities.
 
@@ -2597,7 +2597,7 @@ export type BenchmarkResult<T> = ...
 export type BenchmarkStats = { mean: number; std: number; min: number; max: number }
 ```
 
-#### 10. Type-Level Package Manager
+#### 10. Type-Level Package Manager ✓
 
 Type-level package management utilities.
 

@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **700+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **800+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -1037,6 +1037,116 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `Zip<A, B>` | 拼接元组 |
 | `Flatten<T>` | 展平嵌套元组 |
 | `MinElement<T>`, `MaxElement<T>` | 最小/最大元素 |
+
+### 类型推断引擎 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `InferEngine<T>` | 类型推断引擎 |
+| `InferContext<T>` | 推断上下文（含类型变量） |
+| `InferResult<T>` | 推断结果（成功/错误） |
+| `Deduce<T>` | 类型推导工具 |
+| `Constraint<T>` | 类型约束定义 |
+| `Substitution<T>` | 类型替换 |
+| `TypeVar` | 类型变量表示 |
+| `Polymorphic<T>` | 多态类型 |
+| `Kind`, `KindArrow`, `KindCheck<T>` | Kind 系统 |
+| `Effect<T>`, `EffectRow`, `Effectful<T>` | Effect 系统 |
+| `Pure<T>`, `Impure<T>` | 纯/非纯计算 |
+
+### 类型级网络 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Protocol`, `ProtocolVersion` | 协议定义 |
+| `HTTPMethod`, `HTTPHeaders` | HTTP 类型 |
+| `HTTPRequest<T>`, `HTTPResponse<T>` | HTTP 请求/响应 |
+| `WSMessage<T>`, `WSFrame`, `WSOpcode` | WebSocket 类型 |
+| `gRPCService`, `gRPCMethod<T>`, `gRPCRequest<T>` | gRPC 类型 |
+| `TCPPacket<T>`, `UDPPacket<T>`, `SocketAddress` | TCP/UDP 类型 |
+| `ProtoMessage`, `ProtoField<T>` | Protocol Buffers |
+| `MQTTPacket<T>`, `MQTTQoS` | MQTT 类型 |
+
+### 类型级文件系统 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Path`, `AbsolutePath`, `RelativePath` | 路径类型 |
+| `ParsePath<P>`, `JoinPath<P1, P2>` | 路径操作 |
+| `File`, `FileContent<T>`, `FileType` | 文件类型 |
+| `Directory`, `DirectoryEntry<T>` | 目录类型 |
+| `FileWatch<T>`, `WatchEvent<T>` | 文件监视 |
+| `VirtualFS<T>`, `VFSNode<T>` | 虚拟文件系统 |
+| `Archive`, `ArchiveFormat` | 归档类型 |
+| `MimeType`, `FileMetadata` | 文件元数据 |
+
+### 类型级编译器 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `CompilerPlugin<T>` | 编译器插件 |
+| `Macro<T>`, `MacroExpansion<T>` | 宏系统 |
+| `Diagnostic`, `DiagnosticLevel` | 编译器诊断 |
+| `SymbolTable`, `CompilerSymbol` | 符号管理 |
+| `Visitor<T>`, `TransformPass<T>` | AST 访问者模式 |
+
+### 类型级调试 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `DebugSession`, `DebugStatus` | 调试会话 |
+| `Breakpoint`, `BreakpointLocation` | 断点类型 |
+| `StackTrace`, `DebugStackFrame` | 调用栈 |
+| `Variable`, `VariableValue` | 变量检查 |
+| `MemoryRegion`, `MemoryAddress` | 内存调试 |
+| `DebugProtocol` | 调试协议（DAP） |
+| `REPL`, `REPLCommand<T>` | REPL 接口 |
+
+### 类型级优化器 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Optimization<T>`, `OptimizationLevel` | 优化类型 |
+| `TreeShake<T>`, `ShallowResult<T>` | Tree shaking |
+| `DeadCode`, `DeadCodeAnalysis<T>` | 死代码消除 |
+| `Inline<T>`, `InlineCandidate<T>` | 函数内联 |
+| `ConstantFold<T>` | 常量折叠 |
+| `MinifyType<T>` | 类型压缩 |
+| `PerformanceHint<T>` | 优化提示 |
+
+### 类型级文档生成 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Documentation<T>`, `DocGenEntry<T>` | 文档结构 |
+| `JSDoc<T>`, `JSDocTag<T>` | JSDoc 解析 |
+| `APIDoc<T>`, `APIEndpoint<T>` | API 文档 |
+| `DocSearch<T>`, `SearchIndex` | 文档搜索 |
+| `DocNavigation<T>`, `DocSidebar<T>` | 文档导航 |
+| `DocFormat` | 输出格式（markdown, html, json） |
+
+### 类型级测试框架 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `TestGroup`, `TestSetup`, `TestTeardown` | 测试组织 |
+| `Assert`, `AssertExtends<T, U>` | 类型断言 |
+| `MockFunction`, `TimerMock` | Mock 工具 |
+| `CoverageProvider`, `CoverageReporter` | 覆盖率类型 |
+| `SnapshotSerializer` | 快照序列化 |
+| `Worker`, `WorkerPool` | 并行测试执行 |
+
+### 类型级包管理器 *(v1.8.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `PkgPackage<T>`, `PackageName` | 包类型 |
+| `Dependencies`, `Dependency<T>` | 依赖类型 |
+| `SemVer`, `SemVerRange`, `SemVerDiff` | SemVer 类型 |
+| `LockFile<T>`, `LockFormat` | 锁文件类型 |
+| `Workspace<T>`, `WorkspaceGraph<T>` | 工作区/monorepo |
+| `RegistryAuth`, `RegistryPackage<T>` | 注册表类型 |
+| `Vulnerability` | 安全漏洞 |
 
 ## 示例
 

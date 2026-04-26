@@ -2,6 +2,186 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2026-04-25
+
+### Added
+
+#### Type Inference Engine
+- `InferEngine<T>`, `InferContext<T>`, `InferResult<T>`, `InferError<T>`, `InferErrorCode` - Inference engine core
+- `Deduce<T>`, `DeduceFrom<U, T>`, `DeduceAll<T>`, `DeduceDeep<T>` - Type deduction utilities
+- `DeduceArray<T>`, `DeducePromise<T>`, `DeduceReturn<T>`, `DeduceParams<T>` - Type extraction
+- `DeduceKey<T>`, `DeduceProperty<T>`, `DeduceFrom<T, U>` - Property deduction
+- `Constraint<T>`, `ConstraintType`, `Solve<T>`, `Unify<T>` - Constraint solving
+- `Substitution<T>`, `ApplySubstitution<T>`, `ComposeSubstitutions<T>` - Substitution types
+- `TypeVar`, `FreshVar<T>`, `FreeVars<T>`, `BoundVars<T>` - Type variable utilities
+- `Polymorphic<T>`, `Monomorphize<T>`, `Instantiate<T>`, `Generalize<T>` - Polymorphism
+- `RankN<T>`, `TypeAbs<T>`, `TypeApp<T>` - Rank-N types
+- `Kind`, `KindArrow`, `KindCheck<T>`, `KindError<T>`, `HigherKind<T>` - Kind system
+- `Effect<T>`, `EffectRow`, `EffectType`, `Effectful<T, E>` - Effect system
+- `Pure<T>`, `Impure<T>`, `Handle<T, E>`, `EffectHandler<T, E>` - Effect handling
+- `EffectAnnotation<T, E>`, `CheckEffect<T, A>`, `ComposeEffects<E1, E2>` - Effect composition
+- `TypeEnv<T>`, `EmptyEnv`, `ExtendEnv<E, K, V>`, `LookupEnv<E, K>` - Type environment
+- `InferArrayShape<T>`, `InferObjectShape<T>`, `InferFunctionShape<T>` - Shape inference
+- `InferUnionElement<T>`, `InferIntersectionElement<T>`, `InferCommon<T>` - Union/intersection inference
+- `InferenceRule<T>`, `RuleSet<T>`, `ApplyRule<R, T>` - Inference rules
+- `ReconstructInfer<T>`, `ReconstructConstraints<T>` - Type reconstruction
+
+#### Type-Level Database (Extended)
+- `TableSchema`, `ColumnSchema`, `IndexSchema`, `RelationSchema` - Schema definitions
+- `SQLQuery`, `SQLExpression`, `SQLCondition`, `SQLJoin` - SQL query types
+- `SelectBuilder`, `InsertBuilder`, `UpdateBuilder`, `DeleteBuilder` - Query builders
+- `MigrationRecord`, `MigrationActionUp<T>`, `MigrationActionDown<T>` - Migration types
+- `DBModel<T>`, `ModelAttribute<T>`, `ModelRelation<T>`, `ModelScope<T>`, `ModelHook<T>` - ORM types
+- `ConnectionPoolConfig`, `DatabaseConnectionOptions`, `SSLConfig` - Connection types
+- `IsolationLevel`, `TransactionOptions<T>`, `TransactionResult<T>` - Transaction types
+- `DatabaseError`, `DBValidationRule<T>` - Error and validation types
+
+#### Type-Level Network Protocols
+- `Protocol`, `ProtocolVersion`, `ProtocolEncoding`, `ProtocolMessage<T>` - Protocol core
+- `ProtocolHandler<T>`, `ProtocolContext<T>` - Protocol handling
+- `HTTPMethod`, `HTTPHeaders`, `HTTPBody<T>`, `HTTPStatus` - HTTP types
+- `HTTPRequest<T>`, `HTTPResponse<T>`, `HTTPRequestOptions<T>` - HTTP request/response
+- `WSMessage<T>`, `WSFrame`, `WSOpcode`, `WSEvent<T>`, `WSHandler<T>`, `WSOptions` - WebSocket types
+- `WSCloseCode` - WebSocket close codes
+- `gRPCService`, `gRPCMethod<T>`, `gRPCRequest<T>`, `gRPCResponse<T>`, `gRPCStatus`, `gRPCStream<T>` - gRPC types
+- `TCPPacket<T>`, `TCPFlags`, `TCPState`, `TCPSocketOptions<T>` - TCP types
+- `UDPPacket<T>`, `UDPSocketOptions<T>` - UDP types
+- `SocketAddress`, `NetworkInterface`, `Port`, `IPAddress` - Network address types
+- `ProtoMessage`, `ProtoField<T>`, `ProtoFieldType`, `ProtoEnum<T>`, `ProtoService`, `ProtoMethod<T>` - Protocol Buffers
+- `MQTTPacket<T>`, `MQTTQoS`, `MQTTConnectOptions`, `MQTTPublishOptions`, `MQTTProperties` - MQTT types
+- `MQTTPacketType`, `MQTTPayload<T>`, `MQTTTopic`, `MQTTHandler<T>`, `MQTTSubscribeOptions` - MQTT extended
+- `ReferrerPolicy`, `URLType` - URL types
+
+#### Type-Level File System
+- `Path`, `RelativePath`, `AbsolutePath`, `ParsePath<P>`, `JoinPath<P1, P2>`, `NormalizePath<P>` - Path types
+- `PathSegment`, `PathParts<P>`, `PathDepth<P>`, `ResolvePath<P>` - Path utilities
+- `File`, `FileContent<T>`, `FileType`, `FilePermission`, `FileMode`, `FileEncoding` - File types
+- `FileFlags`, `FileStats`, `FileMetadata`, `FileHash`, `FileOptions<T>` - File metadata
+- `Directory`, `DirectoryEntry<T>`, `DirectoryTree<T>`, `TreeNode<T>` - Directory types
+- `FileWatch<T>`, `WatchEvent<T>`, `WatchHandler<T>`, `WatchOptions`, `WatchDetails<T>` - File watching
+- `VirtualFS<T>`, `VFSNode<T>`, `VFSMount`, `VFSOperations<T>` - Virtual file system
+- `Archive`, `ArchiveEntry<T>`, `ArchiveFormat`, `ArchiveOptions<T>` - Archive types
+- `CompressionLevel`, `CommonExtension`, `CommonMimeType`, `MimeType`, `MimeTypeFromExtension<E>` - File format types
+- `ReadOptions<T>`, `WriteOptions<T>`, `AppendOptions<T>`, `CopyOptions`, `MoveOptions` - File operation options
+- `DeleteOptions`, `MkdirOptions`, `WalkOptions<T>`, `MountOptions`, `ExtractOptions<T>` - FS operations
+- `GlobPattern`, `CommonGlob`, `Timestamp` - Pattern and time types
+- `FSHashAlgorithm`, `FSEncryptionAlgorithm`, `FSExtension` - FS utilities
+
+#### Type-Level Compiler Extensions
+- `CompilerPlugin<T>`, `PluginHook<T>`, `PluginResult<T>`, `PluginError<T>` - Plugin system
+- `Macro<T>`, `MacroParam<T>`, `MacroBody<T>`, `MacroExpansion<T>`, `MacroContext<T>`, `MacroResult<T>` - Macro types
+- `Diagnostic`, `DiagnosticLevel`, `DiagnosticRange`, `DiagnosticSuggestion`, `DiagnosticAction` - Diagnostics
+- `DiagnosticReporter`, `CompilerSymbol`, `SymbolFlags`, `SymbolScope`, `SymbolTable` - Symbol types
+- `ScopeEntry`, `BindingKind`, `ScopeChain` - Scope types
+- `SourceLocationWithFile`, `SourceRange`, `SourceMapGenerator`, `SourceMapMapping` - Source map types
+- `TransformPass<T>`, `TransformPassResult<T>`, `TransformScheduler<T>` - Transform pipeline
+- `Visitor<T>`, `VisitContext<T>`, `VisitResult<T>` - Visitor pattern
+
+#### Type-Level Debugging Tools
+- `DebugInfo<T>`, `DebugSymbol`, `DebugContext<T>`, `DebugSession`, `DebugStatus` - Debug core
+- `Breakpoint`, `BreakpointLocation`, `BreakpointCondition`, `BreakpointAction`, `BreakpointType` - Breakpoints
+- `DataBreakpoint`, `FunctionBreakpoint`, `ExceptionBreakpoint` - Special breakpoints
+- `StackTrace`, `DebugStackFrame`, `DebugSource`, `CallStack` - Stack trace types
+- `Variable`, `VariableValue`, `VariableTypeInfo`, `VariablePresentationHint`, `DebugScope` - Variable types
+- `WatchExpression`, `WatchResult`, `WatchCallback`, `DebugWatchOptions` - Watch types
+- `MemoryRegion`, `MemoryAddress`, `MemoryValue`, `MemoryReadResult`, `MemoryWriteResult` - Memory types
+- `MemoryDisassembly` - Memory disassembly
+- `DebugProtocol`, `DebugMessage`, `DebugRequest<T>`, `DebugResponse<T>`, `DebugEvent<T>` - Debug protocol
+- `DebugEventType`, `DebugCommand`, `DebugConfiguration`, `DebugCapabilities` - Debug configuration
+- `DebugThread`, `ThreadStatus`, `DebugSymbolKind` - Thread and symbol types
+- `StoppedEvent`, `StoppedReason`, `OutputEvent` - Debug events
+- `REPL`, `REPLCommand<T>`, `REPLResult<T>`, `REPLContext<T>`, `REPLOptions` - REPL types
+- `TypeInfoField`, `TypeInfoMethod`, `EvaluateResult` - Type info types
+- `DebugChecksum` - Checksum for debugging
+
+#### Type-Level Optimizer
+- `Optimization<T>`, `OptimizationPass<T>`, `OptimizationResult<T>`, `OptimizationLevel` - Optimization core
+- `OptimizationOptions<T>`, `OptimizationContext<T>`, `OptimizationPipeline<T>`, `OptimizationStats` - Optimization config
+- `OptimizationRule<T>`, `RulePattern<T>`, `RuleReplacement<T>`, `RuleResult<T>` - Optimization rules
+- `RuleCondition<T>`, `RuleContext<T>` - Rule context
+- `TreeShake<T>`, `TreeShakeOptions<T>`, `ShallowResult<T>`, `UsedExports`, `UnusedExports` - Tree shaking
+- `SideEffect`, `SideEffectsAnalysis<T>`, `ShakeMessage` - Side effect analysis
+- `DeadCode`, `DeadCodeType`, `DeadCodeAnalysis<T>`, `DeadCodeLocation`, `DeadCodeOptions<T>` - Dead code
+- `EliminateDeadCode<T>`, `LiveCode` - Dead code elimination
+- `Inline<T>`, `InlineCandidate<T>`, `InlineResult<T>`, `InlineThreshold`, `InlineOptions<T>` - Inlining
+- `InlineCall<T>` - Call inlining
+- `ConstantFold<T>`, `ConstantFoldOptions<T>`, `FoldResult<T>`, `ConstantValue<T>` - Constant folding
+- `FoldableExpression<T>`, `ConstantAnalysis<T>`, `CommonSubexpression<T>` - Expression analysis
+- `MinifyType<T>`, `MinifiedType<T>`, `MinificationOptions` - Type minification
+- `OptTypeAlias`, `OptBinaryOperator`, `OptUnaryOperator` - Operator types
+- `CodeMotion<T>`, `FunctionAnalysis<T>`, `FunctionOptimization<T>` - Code motion
+- `LoopAnalysis<T>`, `LoopOptimization<T>`, `ModuleAnalysis<T>`, `ModuleOptimization<T>` - Analysis types
+- `PerformanceHint<T>`, `HintLevel`, `HintCategory`, `HintSuggestion` - Performance hints
+
+#### Type-Level Documentation Generator
+- `Documentation<T>`, `DocGenEntry<T>`, `DocSection<T>`, `DocPage<T>` - Documentation core
+- `DocEntryKind`, `DocError`, `DocCategory` - Entry types
+- `JSDoc<T>`, `JSDocTag<T>`, `JSDocParam`, `JSDocReturn`, `JSDocExample`, `JSDocThrows`, `JSDocTypeParam` - JSDoc types
+- `APIDoc<T>`, `APIEndpoint<T>`, `APIParameter<T>`, `APIResponse<T>`, `APISchema` - API documentation
+- `APIAuth`, `APIBody<T>`, `APIHeader<T>`, `APIMediaType`, `APIError<T>`, `APIRateLimit` - API types
+- `TypeDoc<T>`, `TypeDocProperty<T>`, `TypeDocMethod<T>`, `TypeDocParam`, `TypeDocGeneric`, `TypeDocKind` - Type docs
+- `TypeDocExample`, `TypeDocProperty<T>` - Type doc details
+- `DocOutput<T>`, `DocFormat`, `DocFile`, `DocIndex`, `DocConfig` - Output types
+- `DocSearch<T>`, `SearchResult<T>`, `SearchIndex`, `SearchIndexEntry`, `SearchIndexMetadata` - Search types
+- `DocNavigation<T>`, `DocSidebar<T>`, `DocBreadcrumb`, `DocMenu`, `MenuItem` - Navigation types
+- `DocSidebarItem`, `DocLayout`, `DocLayoutConfig`, `DocTheme`, `DocPlugin<T>` - Layout types
+- `DocSource`, `DocStats`, `DocMetadata`, `DocMetrics`, `DocAccessibility`, `DocQuality` - Metadata types
+- `DocCoverage`, `DocCompleteness`, `DocFooter`, `FooterLink`, `SocialLink` - Doc utilities
+- `TypeSignature`, `TypeHierarchy`, `ReferenceGraph`, `ReferenceMap`, `CrossReference` - Reference types
+- `BreadcrumbItem`, `DocGenOptions` - Utility types
+
+#### Type-Level Test Framework (Extended)
+- `TestGroup`, `TestSetup`, `TestTeardown` - Test organization
+- `Assert`, `AssertExtends<T, U>`, `AssertNever<T>`, `AssertEqual<T, U>`, `TypeAssertionCheck<T>` - Assertion types
+- `TestReporterInterface`, `FrameworkTestReporterType` - Reporter types
+- `ExpectMethods<T>`, `NegatedExpectMethods<T>`, `TestExpectType<T>` - Expect types
+- `MockFunction`, `ModuleMock`, `TimerMock`, `DateMock` - Mock types
+- `SnapshotSerializer`, `CoverageProvider`, `CoverageReporter` - Coverage types
+- `CoverageChange`, `CoverageWatermarks` - Coverage tracking
+- `MockFactory`, `MockImplementation<T>`, `MockReturn<T>`, `SpyFactory`, `StubFactory` - Mock utilities
+- `InlineSnapshot<T>`, `TestSnapshotOptions` - Snapshot types
+- `ParallelOptions`, `ReportConfig`, `ReportFormat` - Test configuration
+- `TestContext`, `TestContextProvider`, `TestEvent`, `TestEventHandler` - Test context
+- `TestMetadata`, `TestTiming`, `TestUtilities` - Test utilities
+- `Worker`, `WorkerPool` - Parallel execution
+- `TypeTest`, `ExpectError<T>` - Error testing
+
+#### Type-Level Package Manager
+- `PkgPackage<T>`, `PackageName`, `PackageVersion`, `PackageExports` - Package types
+- `Dependencies`, `Dependency<T>`, `DependencyType`, `DependencyVersion` - Dependency types
+- `DependencyGraph<T>`, `DependencyTree<T>`, `DependencyNode<T>`, `DependencyEdge<T>` - Dependency graph
+- `SemVer`, `SemVerRange`, `SemVerComparator`, `SemVerDiff`, `SemVerSatisfies` - SemVer types
+- `Resolution<T>`, `ResolveStrategy`, `ResolvedPackage<T>`, `ResolutionError`, `ResolutionResult<T>` - Resolution types
+- `ResolutionOptions`, `ResolutionErrorCode` - Resolution options
+- `LockFile<T>`, `PkgLockEntry<T>`, `LockFormat`, `LockFileOptions` - Lock file types
+- `PkgRegistry<T>`, `RegistryAuth`, `RegistryPackage<T>`, `RegistryVersion`, `PkgRegistryConfig` - Registry types
+- `Workspace<T>`, `WorkspaceConfig<T>`, `WorkspaceGraph<T>`, `WorkspaceDependency<T>`, `WorkspaceEdge<T>` - Workspace types
+- `WorkspacesConfig`, `WorkspaceOptions` - Workspace configuration
+- `PackagePlugin<T>`, `PkgPluginHook<T>`, `PkgPluginConfig` - Package plugin types
+- `InstallOptions`, `InstallResult<T>`, `Vulnerability` - Installation types
+- `LifecycleHook`, `LifecycleOptions` - Lifecycle types
+- `ScriptRunner`, `ScriptOptions`, `ScriptResult`, `PackageScript` - Script types
+- `NPMConfig`, `YarnConfig`, `PNPMConfig`, `PublishConfig` - Package manager configs
+- `PackageMeta<T>`, `Person`, `DistTags`, `PackOptions`, `PackResult<T>`, `PackedFile` - Package metadata
+
+### Documentation
+- Added 10 new guide pages (English & Chinese) for v1.8.0 modules:
+  - Type Inference Engine
+  - Type-Level Network Protocols
+  - Type-Level File System
+  - Type-Level Debugging Tools
+  - Type-Level Optimizer
+  - Type-Level Documentation Generator
+  - Type-Level Package Manager
+
+### Testing
+- Added comprehensive tests for all new v1.8.0 types (114 test cases)
+
+### Code Quality
+- All lint checks passing
+- Build successful
+- Type checking successful
+
 ## [1.7.0] - 2026-04-25
 
 ### Added

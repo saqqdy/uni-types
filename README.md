@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **700+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **800+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -1016,6 +1016,116 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `IsPrime<N>` | Prime check |
 | `Mean<T>`, `Median<T>` | Statistical functions |
 | `IsEven<N>`, `IsOdd<N>` | Even/Odd check |
+
+### Type Inference Engine *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `InferEngine<T>` | Type inference engine |
+| `InferContext<T>` | Inference context with type variables |
+| `InferResult<T>` | Inference result (success/error) |
+| `Deduce<T>` | Type deduction utility |
+| `Constraint<T>` | Type constraint definition |
+| `Substitution<T>` | Type substitution |
+| `TypeVar` | Type variable representation |
+| `Polymorphic<T>` | Polymorphic type |
+| `Kind`, `KindArrow`, `KindCheck<T>` | Kind system |
+| `Effect<T>`, `EffectRow`, `Effectful<T>` | Effect system |
+| `Pure<T>`, `Impure<T>` | Pure/impure computations |
+
+### Type-Level Network *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `Protocol`, `ProtocolVersion` | Protocol definition |
+| `HTTPMethod`, `HTTPHeaders` | HTTP types |
+| `HTTPRequest<T>`, `HTTPResponse<T>` | HTTP request/response |
+| `WSMessage<T>`, `WSFrame`, `WSOpcode` | WebSocket types |
+| `gRPCService`, `gRPCMethod<T>`, `gRPCRequest<T>` | gRPC types |
+| `TCPPacket<T>`, `UDPPacket<T>`, `SocketAddress` | TCP/UDP types |
+| `ProtoMessage`, `ProtoField<T>` | Protocol Buffers |
+| `MQTTPacket<T>`, `MQTTQoS` | MQTT types |
+
+### Type-Level File System *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `Path`, `AbsolutePath`, `RelativePath` | Path types |
+| `ParsePath<P>`, `JoinPath<P1, P2>` | Path operations |
+| `File`, `FileContent<T>`, `FileType` | File types |
+| `Directory`, `DirectoryEntry<T>` | Directory types |
+| `FileWatch<T>`, `WatchEvent<T>` | File watching |
+| `VirtualFS<T>`, `VFSNode<T>` | Virtual file system |
+| `Archive`, `ArchiveFormat` | Archive types |
+| `MimeType`, `FileMetadata` | File metadata |
+
+### Type-Level Compiler *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `CompilerPlugin<T>` | Compiler plugin |
+| `Macro<T>`, `MacroExpansion<T>` | Macro system |
+| `Diagnostic`, `DiagnosticLevel` | Compiler diagnostics |
+| `SymbolTable`, `CompilerSymbol` | Symbol management |
+| `Visitor<T>`, `TransformPass<T>` | AST visitor pattern |
+
+### Type-Level Debugging *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `DebugSession`, `DebugStatus` | Debug session |
+| `Breakpoint`, `BreakpointLocation` | Breakpoint types |
+| `StackTrace`, `DebugStackFrame` | Stack trace |
+| `Variable`, `VariableValue` | Variable inspection |
+| `MemoryRegion`, `MemoryAddress` | Memory debugging |
+| `DebugProtocol` | Debug protocol (DAP) |
+| `REPL`, `REPLCommand<T>` | REPL interface |
+
+### Type-Level Optimizer *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `Optimization<T>`, `OptimizationLevel` | Optimization types |
+| `TreeShake<T>`, `ShallowResult<T>` | Tree shaking |
+| `DeadCode`, `DeadCodeAnalysis<T>` | Dead code elimination |
+| `Inline<T>`, `InlineCandidate<T>` | Function inlining |
+| `ConstantFold<T>` | Constant folding |
+| `MinifyType<T>` | Type minification |
+| `PerformanceHint<T>` | Optimization hints |
+
+### Type-Level Docgen *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `Documentation<T>`, `DocGenEntry<T>` | Documentation structure |
+| `JSDoc<T>`, `JSDocTag<T>` | JSDoc parsing |
+| `APIDoc<T>`, `APIEndpoint<T>` | API documentation |
+| `DocSearch<T>`, `SearchIndex` | Documentation search |
+| `DocNavigation<T>`, `DocSidebar<T>` | Documentation navigation |
+| `DocFormat` | Output format (markdown, html, json) |
+
+### Type-Level Test Framework *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `TestGroup`, `TestSetup`, `TestTeardown` | Test organization |
+| `Assert`, `AssertExtends<T, U>` | Type assertions |
+| `MockFunction`, `TimerMock` | Mock utilities |
+| `CoverageProvider`, `CoverageReporter` | Coverage types |
+| `SnapshotSerializer` | Snapshot serialization |
+| `Worker`, `WorkerPool` | Parallel test execution |
+
+### Type-Level Package Manager *(v1.8.0)*
+
+| Type | Description |
+|------|-------------|
+| `PkgPackage<T>`, `PackageName` | Package types |
+| `Dependencies`, `Dependency<T>` | Dependency types |
+| `SemVer`, `SemVerRange`, `SemVerDiff` | SemVer types |
+| `LockFile<T>`, `LockFormat` | Lock file types |
+| `Workspace<T>`, `WorkspaceGraph<T>` | Workspace/monorepo |
+| `RegistryAuth`, `RegistryPackage<T>` | Registry types |
+| `Vulnerability` | Security vulnerability |
 
 ### Type-Level Search *(v1.7.0)*
 
