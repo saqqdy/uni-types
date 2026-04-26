@@ -1199,14 +1199,45 @@ export default defineConfig({
 
 	vite: {
 		build: {
-			chunkSizeWarningLimit: 1000,
+			chunkSizeWarningLimit: 1500,
 			rollupOptions: {
 				output: {
-					manualChunks: {
-						'vitepress-core': ['vitepress'],
+					manualChunks(id) {
+						// Split vitepress into smaller chunks
+						if (id.includes('node_modules/vitepress/')) {
+							if (id.includes('vitepress/dist/client')) {
+								return 'vitepress-client'
+							}
+							if (id.includes('vitepress/dist/node')) {
+								return 'vitepress-node'
+							}
+							return 'vitepress-core'
+						}
+						// Split Vue into separate chunk
+						if (id.includes('node_modules/vue/') || id.includes('node_modules/@vue/')) {
+							return 'vue-vendor'
+						}
+						// Split markdown-it and related
+						if (id.includes('node_modules/markdown-it') || id.includes('node_modules/@mdit-vue')) {
+							return 'markdown'
+						}
+						// Split search
+						if (id.includes('node_modules/@vueuse/') || id.includes('node_modules/minisearch')) {
+							return 'search'
+						}
+						// Split Shiki for code highlighting
+						if (id.includes('node_modules/shiki/') || id.includes('node_modules/shiki-')) {
+							return 'shiki'
+						}
 					},
 				},
 			},
+		},
+		optimizeDeps: {
+			include: ['mark.js'],
+		},
+		ssr: {
+			noExternal: ['mark.js'],
 		},
 	},
 })
