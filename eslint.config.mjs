@@ -5,6 +5,9 @@ export default eslintConfig({
 	ignores: ['examples/**', 'tests/**'],
 	markdown: false,
 	react: false,
+	rules: {
+		'style/indent-binary-ops': 'off',
+	},
 	stylistic: {
 		indent: 'tab',
 	},
