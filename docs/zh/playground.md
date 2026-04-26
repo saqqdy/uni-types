@@ -520,6 +520,233 @@ import type {
 } from 'uni-types'
 ```
 
+### 类型可视化 *(v1.7.0)*
+
+```typescript
+import type {
+  TypeDiagram, TypeTree, TypeGraph, TypeNode,
+  Debug, Inspect, Pretty, TypeDiff,
+  GenerateDocs, DocTemplate, MarkdownOutput
+} from 'uni-types'
+```
+
+### 类型级密码学 *(v1.7.0)*
+
+```typescript
+import type {
+  HashAlgorithm, SHA256, SHA512, MD5,
+  EncryptionAlgorithm, AES, RSA,
+  Key, KeyPair, EncryptedData, DecryptedData,
+  JWT, JWTPayload, JWTHeader, Signature
+} from 'uni-types'
+```
+
+### 类型级日期时间 *(v1.7.0)*
+
+```typescript
+import type {
+  CalendarDate, DateFormat, TimeFormat,
+  Duration, DurationUnit, AddDays, AddMonths,
+  DateDiff, DateRange, Timestamp, UnixTimestamp
+} from 'uni-types'
+```
+
+### 类型装饰器 *(v1.7.0)*
+
+```typescript
+import type {
+  Decorator, DecoratorContext, DecoratorResult,
+  Cached, MemoizeOptions, Memoized,
+  Deprecated, Experimental, Seal, Frozen,
+  Retry, RetryOptions, Throttle, Debounce
+} from 'uni-types'
+```
+
+### 代码生成模板 *(v1.7.0)*
+
+```typescript
+import type {
+  Template, TemplateString, TemplateContext,
+  GeneratedType, GeneratedInterface, GeneratedTypeAlias,
+  CodeBuilder, CodeSegment, CodeBlock
+} from 'uni-types'
+```
+
+### 类型安全配置 *(v1.7.0)*
+
+```typescript
+import type {
+  ConfigSchema, ConfigField, ConfigBuilder,
+  EnvConfig, EnvVar, EnvPrefix,
+  Secret, SecretRef, SecretProvider
+} from 'uni-types'
+```
+
+### 类型级高级数学 *(v1.7.0)*
+
+```typescript
+import type {
+  Abs, Sqrt, Power, Log,
+  Fibonacci, Factorial, IsPrime, GCD, LCM,
+  Trigonometric, Sin, Cos, Tan
+} from 'uni-types'
+```
+
+### 类型级排序搜索 *(v1.7.0)*
+
+```typescript
+import type {
+  QuickSort, MergeSort, BinarySearch,
+  SearchFind, SearchIncludes, SearchIndexOf,
+  Chunk, Unique, Difference, Intersection
+} from 'uni-types'
+```
+
+### 元编程工具 *(v1.7.0)*
+
+```typescript
+import type {
+  MetaType, MetaProperty, MetaFunction,
+  Reflect, Satisfies, TypeAtPath,
+  MergeTypes, OmitTypeAtPath, PickTypeAtPath,
+  Transform, SetTypeAtPath, TypeInfo, TypeName
+} from 'uni-types'
+```
+
+### 框架集成 *(v1.7.0)*
+
+```typescript
+import type {
+  // Remix
+  RemixLoader, RemixAction, RemixRoute, RemixLoaderData,
+  // Astro
+  AstroProps, AstroFrontmatter, AstroLayout,
+  // SvelteKit
+  SvelteKitLoad, SvelteKitAction, SvelteKitPage,
+  // Express
+  ExpressHandler, ExpressRequest, ExpressResponse,
+  // Fastify
+  FastifyHandler, FastifyRequest, FastifyReply,
+  // Hono
+  HonoHandler, HonoContext, HonoMiddleware
+} from 'uni-types'
+```
+
+### 类型推断引擎 *(v1.8.0)*
+
+```typescript
+import type {
+  InferEngine, InferContext, InferResult, InferError,
+  Deduce, DeduceFrom, DeduceAll, DeduceDeep,
+  Constraint, Solve, Unify, Substitution,
+  TypeVar, FreshVar, SubstituteVar, FreeVars,
+  Polymorphic, Monomorphize, Instantiate, Generalize,
+  Kind, KindError, KindCheck, HigherKind,
+  Effect, EffectRow, Effectful, Pure, Handle
+} from 'uni-types'
+```
+
+### 类型级数据库操作 *(v1.8.0)*
+
+```typescript
+import type {
+  QueryBuilder, SelectBuilder, InsertBuilder, UpdateBuilder, DeleteBuilder,
+  TableSchema, ColumnSchema, IndexSchema, RelationSchema,
+  SQLQuery, SQLExpression, SQLCondition, SQLJoin,
+  SelectQuery, InsertQuery, UpdateQuery, DeleteQuery,
+  Transaction, TransactionResult, IsolationLevel,
+  Migration, MigrationUp, MigrationDown, MigrationHistory,
+  Model, ModelRelation, ModelScope, ModelHook
+} from 'uni-types'
+```
+
+### 类型级网络协议 *(v1.8.0)*
+
+```typescript
+import type {
+  Protocol, ProtocolVersion, ProtocolEncoding, ProtocolMessage,
+  HTTPRequest, HTTPResponse, HTTPHeaders, HTTPBody,
+  WSMessage, WSFrame, WSEvent, WSHandler,
+  gRPCService, gRPCMethod, gRPCRequest, gRPCResponse,
+  TCPPacket, UDPPacket, SocketAddress,
+  ProtoMessage, ProtoField, ProtoEnum, ProtoService,
+  MQTTPacket, MQTTTopic, MQTTPayload, MQTTQoS
+} from 'uni-types'
+```
+
+### 类型级文件系统 *(v1.8.0)*
+
+```typescript
+import type {
+  Path, RelativePath, AbsolutePath, PathSegment,
+  File, FileContent, FileType, FilePermission,
+  Directory, DirectoryEntry, DirectoryTree, GlobPattern,
+  FileWatch, WatchEvent, WatchHandler,
+  VirtualFS, VFSNode, VFSMount,
+  Archive, ArchiveEntry, ArchiveFormat,
+  FileStats, FileMetadata, Timestamp
+} from 'uni-types'
+```
+
+### 类型级调试工具 *(v1.8.0)*
+
+```typescript
+import type {
+  DebugInfo, DebugSymbol, DebugContext,
+  Breakpoint, BreakpointCondition, BreakpointAction,
+  StackTrace, StackFrame, CallStack,
+  Variable, VariableValue, VariableType,
+  WatchExpression, WatchResult, WatchCallback,
+  MemoryRegion, MemoryAddress, MemoryValue,
+  DebugProtocol, DebugMessage, DebugCommand, DebugEvent,
+  REPL, REPLCommand, REPLResult
+} from 'uni-types'
+```
+
+### 类型级优化器 *(v1.8.0)*
+
+```typescript
+import type {
+  Optimization, OptimizationPass, OptimizationResult,
+  OptimizationRule, RulePattern, RuleReplacement, RuleCondition,
+  TreeShake, ShakeResult, UsedExports,
+  DeadCode, EliminateDeadCode, LiveCode,
+  Inline, InlineCandidate, InlineResult, InlineThreshold,
+  ConstantFold, FoldableExpression, FoldedValue,
+  MinifyType, MinificationOptions, MinifiedType,
+  PerformanceHint, HintLevel, HintSuggestion
+} from 'uni-types'
+```
+
+### 类型级文档生成器 *(v1.8.0)*
+
+```typescript
+import type {
+  Documentation, DocEntry, DocSection, DocPage,
+  JSDoc, JSDocTag, JSDocParam, JSDocReturn, JSDocExample,
+  APIDoc, APIEndpoint, APIParameter, APIResponse,
+  TypeDoc, TypeDocProperty, TypeDocMethod, TypeDocExample,
+  DocOutput, DocFormat, DocTheme,
+  DocSearch, SearchResult, SearchIndex,
+  DocNavigation, DocSidebar, DocBreadcrumb
+} from 'uni-types'
+```
+
+### 类型级包管理器 *(v1.8.0)*
+
+```typescript
+import type {
+  Package, PackageName, PackageVersion, PackageMeta,
+  Dependency, DependencyGraph, DependencyTree, DependencyVersion,
+  Resolution, ResolutionResult, ResolutionError, ResolveStrategy,
+  LockFile, LockEntry, LockFormat,
+  Registry, RegistryPackage, RegistryVersion, RegistryConfig,
+  Workspace, WorkspaceConfig, WorkspaceDependency, WorkspaceGraph,
+  PackagePlugin, PluginHook, PluginConfig,
+  PackageScript, ScriptRunner, ScriptResult
+} from 'uni-types'
+```
+
 ## 示例代码
 
 以下是一个展示各种功能的综合示例：
@@ -639,6 +866,94 @@ type PromiseValue = Infer<Promise<string>> // string
 type ReturnValue = InferReturn<() => number> // number
 type AreEqual = Equals<string, string> // true
 type Name = TypeName<number> // 'number'
+
+// v1.7.0 - 类型可视化
+type DebugUser = Debug<User>
+type PrettyConfig = Pretty<Config>
+type DiffResult = TypeDiff<{ a: string }, { a: string; b: number }>
+type Doc = GenerateDocs<User>
+
+// v1.7.0 - 密码学类型
+interface SecureToken extends JWT<{ userId: string; role: string }> {}
+type HashAlgo = HashAlgorithm // 'sha256' | 'sha512' | ...
+type EncryptedPayload = EncryptedData<'aes-256-gcm'>
+
+// v1.7.0 - 日期时间类型
+type Today = CalendarDate<'gregorian'>
+type Formatted = DateFormat<'YYYY-MM-DD'>
+type Added = AddDays<'2024-01-01', 7>
+type Duration2 = Duration<'2h30m'>
+
+// v1.7.0 - 装饰器类型
+const memoConfig: MemoizeOptions = { ttl: 60000 }
+const retryConfig: RetryOptions = { maxRetries: 3, delay: 1000 }
+
+// v1.7.0 - 配置构建器
+interface AppConfig extends ConfigSchema<{
+  port: ConfigField<number>
+  host: ConfigField<string>
+  debug: ConfigField<boolean>
+}> {}
+
+// v1.7.0 - 框架集成
+type RemixData = RemixLoaderData<RemixRoute<{ user: User }, never>>
+type ExpressReq = ExpressRequest<{ id: string }, { name: string }>
+type SvelteData = SvelteKitPage<{ slug: string }, { post: Post }>
+
+// v1.7.0 - 高级数学
+type AbsValue = Abs<-5> // 5
+type SqrtValue = Sqrt<16> // 4
+type FibResult = Fibonacci<10> // 55
+type PrimeCheck = IsPrime<17> // true
+
+// v1.7.0 - 排序搜索
+type SortedTuple = QuickSort<[3, 1, 4, 1, 5]>
+type Found = SearchFind<[{ a: 1 }, { b: 2 }], { b: 2 }>
+type Chunks = Chunk<[1, 2, 3, 4, 5], 2>
+
+// v1.8.0 - 类型推断引擎
+interface InferContext {
+  typeVars: Map<string, TypeVar>
+  constraints: Constraint[]
+}
+type InferredType = Deduce<{ a: string; b: number }>
+type Unified = Unify<string, number>
+
+// v1.8.0 - 网络协议
+interface APIRequest extends HTTPRequest<{ method: 'GET' }, { page: number }> {}
+interface WebSocket extends WSMessage<{ type: 'text' }, { data: string }> {}
+
+// v1.8.0 - 文件系统
+type ConfigPath = Path<'src/config/index.ts'>
+type SourceFile = File<{ content: string; encoding: 'utf-8' }>
+type ProjectTree = DirectoryTree<{ src: { index: File<{ content: string }> } }>
+
+// v1.8.0 - 调试
+interface DebugSession {
+  breakpoints: Breakpoint[]
+  callStack: CallStack
+  variables: Map<string, Variable>
+}
+
+// v1.8.0 - 优化器
+interface OptimizationPass {
+  name: string
+  rules: OptimizationRule[]
+  enabled: boolean
+}
+
+// v1.8.0 - 文档生成器
+interface TypeDocumentation extends TypeDoc<{
+  description: string
+  params: Record<string, string>
+  returns: string
+}> {}
+
+// v1.8.0 - 包管理器
+interface ProjectWorkspace extends Workspace<{
+  packages: Map<string, Package>
+  dependencies: DependencyGraph
+}> {}
 ```
 
 ## 外部资源

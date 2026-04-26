@@ -668,6 +668,121 @@ import type {
 } from 'uni-types'
 ```
 
+### Type Inference Engine *(v1.8.0)*
+
+```typescript
+import type {
+  InferEngine, InferContext, InferResult, InferError,
+  Deduce, DeduceFrom, DeduceAll, DeduceDeep,
+  Constraint, Solve, Unify, Substitution,
+  TypeVar, FreshVar, SubstituteVar, FreeVars,
+  Polymorphic, Monomorphize, Instantiate, Generalize,
+  Kind, KindError, KindCheck, HigherKind,
+  Effect, EffectRow, Effectful, Pure, Handle
+} from 'uni-types'
+```
+
+### Type-Level Database Operations *(v1.8.0)*
+
+```typescript
+import type {
+  QueryBuilder, SelectBuilder, InsertBuilder, UpdateBuilder, DeleteBuilder,
+  TableSchema, ColumnSchema, IndexSchema, RelationSchema,
+  SQLQuery, SQLExpression, SQLCondition, SQLJoin,
+  SelectQuery, InsertQuery, UpdateQuery, DeleteQuery,
+  Transaction, TransactionResult, IsolationLevel,
+  Migration, MigrationUp, MigrationDown, MigrationHistory,
+  Model, ModelRelation, ModelScope, ModelHook
+} from 'uni-types'
+```
+
+### Type-Level Network Protocols *(v1.8.0)*
+
+```typescript
+import type {
+  Protocol, ProtocolVersion, ProtocolEncoding, ProtocolMessage,
+  HTTPRequest, HTTPResponse, HTTPHeaders, HTTPBody,
+  WSMessage, WSFrame, WSEvent, WSHandler,
+  gRPCService, gRPCMethod, gRPCRequest, gRPCResponse,
+  TCPPacket, UDPPacket, SocketAddress,
+  ProtoMessage, ProtoField, ProtoEnum, ProtoService,
+  MQTTPacket, MQTTTopic, MQTTPayload, MQTTQoS
+} from 'uni-types'
+```
+
+### Type-Level File System *(v1.8.0)*
+
+```typescript
+import type {
+  Path, RelativePath, AbsolutePath, PathSegment,
+  File, FileContent, FileType, FilePermission,
+  Directory, DirectoryEntry, DirectoryTree, GlobPattern,
+  FileWatch, WatchEvent, WatchHandler,
+  VirtualFS, VFSNode, VFSMount,
+  Archive, ArchiveEntry, ArchiveFormat,
+  FileStats, FileMetadata, Timestamp
+} from 'uni-types'
+```
+
+### Type-Level Debugging Tools *(v1.8.0)*
+
+```typescript
+import type {
+  DebugInfo, DebugSymbol, DebugContext,
+  Breakpoint, BreakpointCondition, BreakpointAction,
+  StackTrace, StackFrame, CallStack,
+  Variable, VariableValue, VariableType,
+  WatchExpression, WatchResult, WatchCallback,
+  MemoryRegion, MemoryAddress, MemoryValue,
+  DebugProtocol, DebugMessage, DebugCommand, DebugEvent,
+  REPL, REPLCommand, REPLResult
+} from 'uni-types'
+```
+
+### Type-Level Optimizer *(v1.8.0)*
+
+```typescript
+import type {
+  Optimization, OptimizationPass, OptimizationResult,
+  OptimizationRule, RulePattern, RuleReplacement, RuleCondition,
+  TreeShake, ShakeResult, UsedExports,
+  DeadCode, EliminateDeadCode, LiveCode,
+  Inline, InlineCandidate, InlineResult, InlineThreshold,
+  ConstantFold, FoldableExpression, FoldedValue,
+  MinifyType, MinificationOptions, MinifiedType,
+  PerformanceHint, HintLevel, HintSuggestion
+} from 'uni-types'
+```
+
+### Type-Level Documentation Generator *(v1.8.0)*
+
+```typescript
+import type {
+  Documentation, DocEntry, DocSection, DocPage,
+  JSDoc, JSDocTag, JSDocParam, JSDocReturn, JSDocExample,
+  APIDoc, APIEndpoint, APIParameter, APIResponse,
+  TypeDoc, TypeDocProperty, TypeDocMethod, TypeDocExample,
+  DocOutput, DocFormat, DocTheme,
+  DocSearch, SearchResult, SearchIndex,
+  DocNavigation, DocSidebar, DocBreadcrumb
+} from 'uni-types'
+```
+
+### Type-Level Package Manager *(v1.8.0)*
+
+```typescript
+import type {
+  Package, PackageName, PackageVersion, PackageMeta,
+  Dependency, DependencyGraph, DependencyTree, DependencyVersion,
+  Resolution, ResolutionResult, ResolutionError, ResolveStrategy,
+  LockFile, LockEntry, LockFormat,
+  Registry, RegistryPackage, RegistryVersion, RegistryConfig,
+  Workspace, WorkspaceConfig, WorkspaceDependency, WorkspaceGraph,
+  PackagePlugin, PluginHook, PluginConfig,
+  PackageScript, ScriptRunner, ScriptResult
+} from 'uni-types'
+```
+
 ## Example Code
 
 Here's a comprehensive example showcasing various features:
@@ -840,6 +955,50 @@ type PrimeCheck = IsPrime<17> // true
 type SortedTuple = QuickSort<[3, 1, 4, 1, 5]>
 type Found = SearchFind<[{ a: 1 }, { b: 2 }], { b: 2 }>
 type Chunks = Chunk<[1, 2, 3, 4, 5], 2>
+
+// v1.8.0 - Type Inference Engine
+interface InferContext {
+  typeVars: Map<string, TypeVar>
+  constraints: Constraint[]
+}
+type InferredType = Deduce<{ a: string; b: number }>
+type Unified = Unify<string, number>
+
+// v1.8.0 - Network Protocols
+interface APIRequest extends HTTPRequest<{ method: 'GET' }, { page: number }> {}
+interface WebSocket extends WSMessage<{ type: 'text' }, { data: string }> {}
+
+// v1.8.0 - File System
+type ConfigPath = Path<'src/config/index.ts'>
+type SourceFile = File<{ content: string; encoding: 'utf-8' }>
+type ProjectTree = DirectoryTree<{ src: { index: File<{ content: string }> } }>
+
+// v1.8.0 - Debugging
+interface DebugSession {
+  breakpoints: Breakpoint[]
+  callStack: CallStack
+  variables: Map<string, Variable>
+}
+
+// v1.8.0 - Optimizer
+interface OptimizationPass {
+  name: string
+  rules: OptimizationRule[]
+  enabled: boolean
+}
+
+// v1.8.0 - Documentation Generator
+interface TypeDocumentation extends TypeDoc<{
+  description: string
+  params: Record<string, string>
+  returns: string
+}> {}
+
+// v1.8.0 - Package Manager
+interface ProjectWorkspace extends Workspace<{
+  packages: Map<string, Package>
+  dependencies: DependencyGraph
+}> {}
 ```
 
 ## External Resources
