@@ -415,3 +415,357 @@ export interface Transaction<R> {
 	isolationLevel?: 'READ UNCOMMITTED' | 'READ COMMITTED' | 'REPEATABLE READ' | 'SERIALIZABLE'
 	callback: () => Promise<R>
 }
+
+// ============================================================================
+// v1.8.0 - Advanced Database Types
+// ============================================================================
+
+/**
+ * Schema types
+ */
+export interface TableSchema<T extends Record<string, unknown> = Record<string, unknown>> {
+	name: string
+	columns: { [K in keyof T]: ColumnSchema<T[K]> }
+	indexes?: IndexSchema<T>[]
+	relations?: RelationSchema<T>[]
+}
+
+/**
+ * Column schema definition
+ */
+export interface ColumnSchema<T = unknown> {
+	name: string
+	type: SQLType<T>
+	nullable: boolean
+	defaultValue?: T
+	autoIncrement?: boolean
+	comment?: string
+	collation?: string
+}
+
+/**
+ * Index schema definition
+ */
+export interface IndexSchema<T extends Record<string, unknown> = Record<string, unknown>> {
+	name: string
+	table: string
+	columns: (keyof T)[]
+	unique: boolean
+	type: 'btree' | 'hash' | 'gin' | 'gist' | 'fulltext'
+}
+
+/**
+ * Relation schema definition
+ */
+export interface RelationSchema<T extends Record<string, unknown> = Record<string, unknown>> {
+	name: string
+	type: 'hasOne' | 'hasMany' | 'belongsTo' | 'belongsToMany'
+	foreignKey: keyof T
+	references: {
+		table: string
+		column: string
+	}
+	onDelete?: 'CASCADE' | 'SET NULL' | 'RESTRICT' | 'NO ACTION'
+	onUpdate?: 'CASCADE' | 'SET NULL' | 'RESTRICT' | 'NO ACTION'
+}
+
+// ============================================================================
+// SQL Expression Types
+// ============================================================================
+
+/**
+ * SQL query type
+ */
+export interface SQLQuery<T = unknown> {
+	sql: string
+	params: unknown[]
+	result: T
+}
+
+/**
+ * SQL expression type
+ */
+export type SQLExpression<T = unknown>
+	= | { type: 'literal', value: T }
+		| { type: 'column', name: string, table?: string }
+		| { type: 'function', name: string, args: SQLExpression[] }
+		| { type: 'binary', operator: string, left: SQLExpression, right: SQLExpression }
+		| { type: 'unary', operator: string, operand: SQLExpression }
+		| { type: 'case', cases: Array<{ when: SQLExpression, then: SQLExpression }>, else?: SQLExpression }
+		| { type: 'subquery', query: SQLQuery<T> }
+
+/**
+ * SQL condition type
+ */
+export type SQLCondition<T extends Record<string, unknown> = Record<string, unknown>>
+	= | { type: 'comparison', left: SQLExpression, operator: '=' | '<' | '>' | '<=' | '>=' | '<>' | 'LIKE' | 'ILIKE' | 'IS', right: SQLExpression }
+		| { type: 'null', operand: SQLExpression, isNull: boolean }
+		| { type: 'between', operand: SQLExpression, low: SQLExpression, high: SQLExpression }
+		| { type: 'in', operand: SQLExpression, values: SQLExpression[] }
+		| { type: 'exists', subquery: SQLQuery<T> }
+		| { type: 'and', conditions: SQLCondition<T>[] }
+		| { type: 'or', conditions: SQLCondition<T>[] }
+		| { type: 'not', condition: SQLCondition<T> }
+
+/**
+ * SQL join type
+ */
+export interface SQLJoin<T extends Record<string, unknown>, U extends Record<string, unknown>> {
+	type: 'INNER' | 'LEFT' | 'RIGHT' | 'FULL' | 'CROSS'
+	table: string
+	alias?: string
+	on: SQLCondition<T & U>
+}
+
+// ============================================================================
+// Query Builder Extensions
+// ============================================================================
+
+/**
+ * Select builder type
+ */
+export interface SelectBuilder<T extends Record<string, unknown>> {
+	from: (table: string, alias?: string) => SelectBuilder<T>
+	join: <U extends Record<string, unknown>>(join: SQLJoin<T, U>) => SelectBuilder<T & U>
+	where: (condition: SQLCondition<T>) => SelectBuilder<T>
+	groupBy: (columns: (keyof T)[]) => SelectBuilder<T>
+	having: (condition: SQLCondition<T>) => SelectBuilder<T>
+	orderBy: (columns: Array<{ column: keyof T, direction: 'ASC' | 'DESC' }>) => SelectBuilder<T>
+	limit: (count: number) => SelectBuilder<T>
+	offset: (count: number) => SelectBuilder<T>
+	build: () => SQLQuery<T[]>
+}
+
+/**
+ * Insert builder type
+ */
+export interface InsertBuilder<T extends Record<string, unknown>> {
+	into: (table: string) => InsertBuilder<T>
+	values: (data: Partial<T> | Partial<T>[]) => InsertBuilder<T>
+	returning: (columns: (keyof T)[]) => InsertBuilder<T>
+	onConflict: (action: 'doNothing' | 'doUpdate', columns?: (keyof T)[]) => InsertBuilder<T>
+	build: () => SQLQuery<T>
+}
+
+/**
+ * Update builder type
+ */
+export interface UpdateBuilder<T extends Record<string, unknown>> {
+	table: (name: string) => UpdateBuilder<T>
+	set: (data: Partial<T>) => UpdateBuilder<T>
+	where: (condition: SQLCondition<T>) => UpdateBuilder<T>
+	returning: (columns: (keyof T)[]) => UpdateBuilder<T>
+	build: () => SQLQuery<T>
+}
+
+/**
+ * Delete builder type
+ */
+export interface DeleteBuilder<T extends Record<string, unknown>> {
+	from: (table: string) => DeleteBuilder<T>
+	where: (condition: SQLCondition<T>) => DeleteBuilder<T>
+	returning: (columns: (keyof T)[]) => DeleteBuilder<T>
+	build: () => SQLQuery<T>
+}
+
+// ============================================================================
+// Transaction Extensions
+// ============================================================================
+
+/**
+ * Transaction result type
+ */
+export type TransactionResult<T>
+	= | { success: true, result: T }
+		| { success: false, error: DatabaseError }
+
+/**
+ * Database error type
+ */
+export interface DatabaseError {
+	code: string
+	message: string
+	detail?: string
+	hint?: string
+	table?: string
+	column?: string
+}
+
+/**
+ * Isolation level type
+ */
+export type IsolationLevel = 'read-uncommitted' | 'read-committed' | 'repeatable-read' | 'serializable'
+
+/**
+ * Transaction options
+ */
+export interface TransactionOptions {
+	isolationLevel?: IsolationLevel
+	readOnly?: boolean
+	deferrable?: boolean
+	timeout?: number
+}
+
+// ============================================================================
+// Migration Extensions
+// ============================================================================
+
+/**
+ * Migration type (v1.8.0)
+ */
+export interface MigrationRecord<T = unknown> {
+	name: string
+	version: string
+	description?: string
+	up: MigrationActionUp<T>
+	down: MigrationActionDown<T>
+	dependencies?: string[]
+}
+
+/**
+ * Migration up action (v1.8.0)
+ */
+export type MigrationActionUp<T = unknown>
+	= | { action: 'createTable', schema: TableSchema }
+		| { action: 'dropTable', table: string }
+		| { action: 'addColumn', table: string, column: ColumnSchema<T> }
+		| { action: 'dropColumn', table: string, column: string }
+		| { action: 'createIndex', index: IndexSchema }
+		| { action: 'dropIndex', name: string }
+		| { action: 'raw', sql: string }
+
+/**
+ * Migration down action (v1.8.0)
+ */
+export type MigrationActionDown<T = unknown>
+	= | { action: 'dropTable', table: string }
+		| { action: 'createTable', schema: TableSchema }
+		| { action: 'dropColumn', table: string, column: string }
+		| { action: 'addColumn', table: string, column: ColumnSchema<T> }
+		| { action: 'dropIndex', name: string }
+		| { action: 'createIndex', index: IndexSchema }
+		| { action: 'raw', sql: string }
+
+/**
+ * Migration history entry
+ */
+export interface MigrationHistoryEntry {
+	name: string
+	version: string
+	executedAt: Date
+	duration: number
+	success: boolean
+}
+
+// ============================================================================
+// ORM-like Types
+// ============================================================================
+
+/**
+ * Model type
+ */
+export interface Model<T extends Record<string, unknown>> {
+	tableName: string
+	schema: TableSchema<T>
+	attributes: { [K in keyof T]: ModelAttribute<T[K]> }
+	relations: ModelRelation<T>[]
+	scopes: ModelScope<T>[]
+	hooks: ModelHook<T>[]
+}
+
+/**
+ * Model attribute
+ */
+export interface ModelAttribute<T = unknown> {
+	fieldName: string
+	type: SQLType<T>
+	primaryKey: boolean
+	autoIncrement: boolean
+	allowNull: boolean
+	defaultValue?: T
+	validate?: ValidationRule<T>[]
+}
+
+/**
+ * Validation rule
+ */
+export type ValidationRule<T = unknown>
+	= | { type: 'required' }
+		| { type: 'min', value: number }
+		| { type: 'max', value: number }
+		| { type: 'pattern', regex: string }
+		| { type: 'enum', values: T[] }
+		| { type: 'custom', validator: (value: T) => boolean }
+
+/**
+ * Model relation
+ */
+export interface ModelRelation<T extends Record<string, unknown>> {
+	name: string
+	type: 'hasOne' | 'hasMany' | 'belongsTo' | 'belongsToMany'
+	model: string
+	foreignKey: keyof T
+	otherKey?: string
+	through?: string
+}
+
+/**
+ * Model scope
+ */
+export interface ModelScope<T extends Record<string, unknown>> {
+	name: string
+	definition: SQLCondition<T> | ((...args: unknown[]) => SQLCondition<T>)
+}
+
+/**
+ * Model hook
+ */
+export type ModelHook<T extends Record<string, unknown>>
+	= | { type: 'beforeCreate', handler: (record: Partial<T>) => Partial<T> | Promise<Partial<T>> }
+		| { type: 'afterCreate', handler: (record: T) => void | Promise<void> }
+		| { type: 'beforeUpdate', handler: (record: Partial<T>) => Partial<T> | Promise<Partial<T>> }
+		| { type: 'afterUpdate', handler: (record: T) => void | Promise<void> }
+		| { type: 'beforeDestroy', handler: (record: T) => void | Promise<void> }
+		| { type: 'afterDestroy', handler: (record: T) => void | Promise<void> }
+		| { type: 'beforeSave', handler: (record: Partial<T>) => Partial<T> | Promise<Partial<T>> }
+		| { type: 'afterSave', handler: (record: T) => void | Promise<void> }
+		| { type: 'beforeValidate', handler: (record: Partial<T>) => void | Promise<void> }
+		| { type: 'afterValidate', handler: (record: Partial<T>) => void | Promise<void> }
+
+// ============================================================================
+// Database Connection Pool
+// ============================================================================
+
+/**
+ * Connection pool config
+ */
+export interface ConnectionPoolConfig {
+	min: number
+	max: number
+	acquireTimeoutMillis: number
+	idleTimeoutMillis: number
+	propagateCreateError: boolean
+}
+
+/**
+ * Database connection options
+ */
+export interface DatabaseConnectionOptions {
+	host: string
+	port: number
+	database: string
+	user: string
+	password: string
+	ssl?: boolean | SSLConfig
+	pool?: ConnectionPoolConfig
+}
+
+/**
+ * SSL configuration
+ */
+export interface SSLConfig {
+	rejectUnauthorized: boolean
+	ca?: string
+	cert?: string
+	key?: string
+}

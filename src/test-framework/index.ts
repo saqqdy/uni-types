@@ -78,16 +78,16 @@ export interface TestConfig<T = unknown> {
 	parallel?: boolean
 	timeout?: number
 	retries?: number
-	reporters?: TestReporter[]
+	reporters?: TestReporterType[]
 	setupFiles?: string[]
 	teardownFiles?: string[]
 	options?: T
 }
 
 /**
- * Test reporter type
+ * Test reporter type (v1.7.0)
  */
-export type TestReporter = 'default' | 'verbose' | 'dot' | 'json' | 'junit' | 'html' | 'lcov' | string
+export type TestReporterType = 'default' | 'verbose' | 'dot' | 'json' | 'junit' | 'html' | 'lcov' | string
 
 // ============================================================================
 // Assertion Types
@@ -119,9 +119,9 @@ export interface AssertionError<T = unknown> extends Error {
 }
 
 /**
- * Expect type
+ * Expect type (v1.7.0)
  */
-export interface ExpectType<T = unknown> {
+export interface ExpectMethods<T = unknown> {
 	toBe: (expected: T) => void
 	toEqual: (expected: T) => void
 	toBeTruthy: () => void
@@ -153,14 +153,14 @@ export interface ExpectType<T = unknown> {
  * Assertion matcher type
  */
 export type AssertionMatcher = {
-	[K in keyof ExpectType]: ExpectType[K] extends (...args: infer A) => void ? A : never
+	[K in keyof ExpectMethods]: ExpectMethods[K] extends (...args: infer A) => void ? A : never
 }
 
 /**
  * Negation assertion type
  */
-export interface NegatedExpectType<T = unknown> extends Omit<ExpectType<T>, 'toBe' | 'toEqual'> {
-	not: ExpectType<T>
+export interface NegatedExpectMethods<T = unknown> extends Omit<ExpectMethods<T>, 'toBe' | 'toEqual'> {
+	not: ExpectMethods<T>
 }
 
 // ============================================================================
@@ -585,3 +585,444 @@ export interface TestFilter {
 	skip?: boolean
 	regex?: RegExp
 }
+
+// ============================================================================
+// v1.8.0 - Additional Test Framework Types
+// ============================================================================
+
+/**
+ * Test group type
+ */
+export interface TestGroup<T = unknown> {
+	name: string
+	description?: string
+	tests: TestCase<T>[]
+	parent?: TestGroup<T>
+	children?: TestGroup<T>[]
+	parallel?: boolean
+	timeout?: number
+	skip?: boolean
+	only?: boolean
+}
+
+/**
+ | Test setup
+ */
+export interface TestSetup<T = unknown> {
+	name: string
+	setup: () => Promise<T> | T
+	teardown?: (context: T) => Promise<void> | void
+	dependencies?: string[]
+}
+
+/**
+ | Test teardown
+ */
+export interface TestTeardown<T = unknown> {
+	name: string
+	teardown: (context: T) => Promise<void> | void
+	priority?: number
+}
+
+// ============================================================================
+// Advanced Assertion Types
+// ============================================================================
+
+/**
+ * Assert type
+ */
+export type Assert<T = unknown> = (condition: T, message?: string) => asserts condition
+
+/**
+ | Assert equal
+ */
+export type AssertEqual<T, U> = T extends U ? (U extends T ? true : false) : false
+
+/**
+ | Assert extends
+ */
+export type AssertExtends<T> = T
+
+/**
+ | Assert never
+ */
+export type AssertNever<T> = T
+
+/**
+ | Type assertion
+ */
+export interface TypeAssertionCheck<_T = unknown> {
+	toBeNever: () => void
+	toBeAny: () => void
+	toBeUnknown: () => void
+	toBeFunction: () => void
+	toBeObject: () => void
+	toBeArray: () => void
+	toBeString: () => void
+	toBeNumber: () => void
+	toBeBoolean: () => void
+	toBeNull: () => void
+	toBeUndefined: () => void
+	toBeVoid: () => void
+}
+
+/**
+ | Expect type (v1.8.0)
+ */
+export type TestExpectType<T> = T
+
+/**
+ | Expect error type
+ */
+export type ExpectError<T> = T extends Error ? T : never
+
+/**
+ | Type test
+ */
+export interface TypeTest<T = unknown> {
+	type: T
+	expect: TestExpectType<T>
+	assert: TypeAssertionCheck<T>
+}
+
+// ============================================================================
+// Test Reporter Types
+// ============================================================================
+
+/**
+ | Test reporter interface (v1.8.0)
+ */
+export interface TestReporterInterface<T = unknown> {
+	name: string
+	onStart?: (suite: TestSuite) => void
+	onTestStart?: (test: TestCase) => void
+	onTestEnd?: (test: TestCase, result: TestResult) => void
+	onSuiteEnd?: (suite: SuiteResult) => void
+	onEnd?: (result: TestRunnerResult) => void
+	onError?: (error: Error) => void
+	options?: T
+}
+
+/**
+ | Report format
+ */
+export type ReportFormat
+	= | 'console'
+		| 'json'
+		| 'junit'
+		| 'html'
+		| 'lcov'
+		| 'cobertura'
+		| 'tap'
+		| 'teamcity'
+		| 'github'
+
+/**
+ | Report configuration
+ */
+export interface ReportConfig {
+	format: ReportFormat
+	outputFile?: string
+	outputDir?: string
+	includeSummary?: boolean
+	includeCoverage?: boolean
+	includeStackTrace?: boolean
+	timestamp?: boolean
+}
+
+// ============================================================================
+// Test Context
+// ============================================================================
+
+/**
+ | Test context
+ */
+export interface TestContext<T = unknown> {
+	name: string
+	timeout: number
+	abortSignal?: AbortSignal
+	env: Record<string, string>
+	fixtures: Map<string, unknown>
+	mocks: Map<string, Mock>
+	spy: Map<string, Spy>
+	snapshot: Map<string, unknown>
+	task?: T
+}
+
+/**
+ | Test context provider
+ */
+export type TestContextProvider<T = unknown> = () => TestContext<T>
+
+// ============================================================================
+// Mocking Extensions
+// ============================================================================
+
+/**
+ | Mock implementation type
+ */
+export type MockImplementation<T extends (...args: unknown[]) => unknown = (...args: unknown[]) => unknown>
+	= | T
+		| ((...args: Parameters<T>) => ReturnType<T>)
+
+/**
+ | Mock return type
+ */
+export type MockReturn<T extends (...args: unknown[]) => unknown = (...args: unknown[]) => unknown>
+	= | ReturnType<T>
+		| ((...args: Parameters<T>) => ReturnType<T>)
+
+/**
+ | Mock function type
+ */
+export type MockFunction<T extends (...args: unknown[]) => unknown = (...args: unknown[]) => unknown>
+	= Mock<T> & {
+		mockClear: () => void
+		mockReset: () => void
+		mockRestore: () => void
+		mockImplementation: (fn: MockImplementation<T>) => Mock<T>
+		mockImplementationOnce: (fn: MockImplementation<T>) => Mock<T>
+		mockReturnValue: (value: MockReturn<T>) => Mock<T>
+		mockReturnValueOnce: (value: MockReturn<T>) => Mock<T>
+		mockResolvedValue: (value: Awaited<ReturnType<T>>) => Mock<T>
+		mockRejectedValue: (error: Error) => Mock<T>
+		getMockName: () => string
+		mockName: (name: string) => Mock<T>
+	}
+
+/**
+ | Module mock
+ */
+export interface ModuleMock {
+	module: string
+	exports: Record<string, unknown>
+	options?: {
+		virtual?: boolean
+	}
+}
+
+/**
+ | Timer mock
+ */
+export interface TimerMock {
+	useFakeTimers: () => void
+	useRealTimers: () => void
+	runAllTimers: () => void
+	runOnlyPendingTimers: () => void
+	advanceTimersByTime: (ms: number) => void
+	advanceTimersToNextTimer: () => void
+	getTimerCount: () => number
+}
+
+/**
+ | Date mock
+ */
+export interface DateMock {
+	useFakeDate: () => void
+	useRealDate: () => void
+	setSystemTime: (time?: number | Date) => void
+}
+
+// ============================================================================
+// Test Utilities
+// ============================================================================
+
+/**
+ | Test utility functions
+ */
+export interface TestUtilities {
+	describe: (name: string, fn: () => void) => void
+	it: (name: string, fn: () => void | Promise<void>) => void
+	test: (name: string, fn: () => void | Promise<void>) => void
+	beforeAll: (fn: TestHookFunction) => void
+	beforeEach: (fn: TestHookFunction) => void
+	afterEach: (fn: TestHookFunction) => void
+	afterAll: (fn: TestHookFunction) => void
+	expect: <T>(actual: T) => TestExpectType<T>
+	assert: Assert
+	skip: (name: string, fn: () => void) => void
+	only: (name: string, fn: () => void) => void
+	todo: (name: string) => void
+	fail: (message?: string) => never
+}
+
+/**
+ | Test metadata
+ */
+export interface TestMetadata {
+	id: string
+	name: string
+	fullName: string[]
+	path: string[]
+	tags: string[]
+	skip: boolean
+	only: boolean
+	todo: boolean
+	timeout: number
+	retries: number
+	parallel: boolean
+	file: string
+	location: { line: number, column: number }
+	annotations?: Array<{ type: string, message: string }>
+}
+
+/**
+ | Test timing
+ */
+export interface TestTiming {
+	start: number
+	end: number
+	duration: number
+	steps?: Array<{ name: string, duration: number }>
+}
+
+// ============================================================================
+// Test Events
+// ============================================================================
+
+/**
+ | Test event
+ */
+export type TestEvent<_T = unknown>
+	= | { type: 'run-start', timestamp: number }
+		| { type: 'run-end', timestamp: number, result: TestRunnerResult }
+		| { type: 'suite-start', suite: TestSuite, timestamp: number }
+		| { type: 'suite-end', suite: TestSuite, result: SuiteResult, timestamp: number }
+		| { type: 'test-start', test: TestCase, timestamp: number }
+		| { type: 'test-end', test: TestCase, result: TestResult, timestamp: number }
+		| { type: 'error', error: Error, timestamp: number }
+		| { type: 'hook-start', hook: TestHook, timestamp: number }
+		| { type: 'hook-end', hook: TestHook, timestamp: number }
+
+/**
+ | Test event handler
+ */
+export type TestEventHandler<T = unknown> = (event: TestEvent<T>) => void
+
+// ============================================================================
+// Snapshot Extensions
+// ============================================================================
+
+/**
+ | Inline snapshot
+ */
+export type InlineSnapshot<T = unknown> = string | { value: T, format?: string }
+
+/**
+ | Snapshot serializer
+ */
+export interface SnapshotSerializer<T = unknown> {
+	test: (value: unknown) => value is T
+	serialize: (value: T) => string
+}
+
+/**
+ | Snapshot options
+ */
+export interface SnapshotOptions<T = unknown> {
+	name?: string
+	inline?: boolean
+	hint?: string
+	format?: (value: T) => string
+}
+
+// ============================================================================
+// Coverage Extensions
+// ============================================================================
+
+/**
+ | Coverage provider
+ */
+export type CoverageProvider = 'v8' | 'istanbul' | 'custom'
+
+/**
+ | Coverage reporter
+ */
+export type CoverageReporter = 'text' | 'text-summary' | 'html' | 'json' | 'lcov' | 'clover' | 'cobertura'
+
+/**
+ | Coverage watermarks
+ */
+export interface CoverageWatermarks {
+	high: number
+	low: number
+}
+
+/**
+ | Coverage change
+ */
+export interface CoverageChange {
+	before: number
+	after: number
+	delta: number
+}
+
+// ============================================================================
+// Test Parallelization
+// ============================================================================
+
+/**
+ | Worker pool
+ */
+export interface WorkerPool {
+	size: number
+	acquire: () => Worker
+	release: (worker: Worker) => void
+	terminate: () => void
+}
+
+/**
+ | Worker
+ */
+export interface Worker {
+	id: number
+	send: <T>(message: unknown) => Promise<T>
+	terminate: () => void
+}
+
+/**
+ | Parallel options
+ */
+export interface ParallelOptions {
+	maxWorkers: number
+	minWorkers: number
+	batchSize: number
+	timeout: number
+	retries: number
+}
+
+// ============================================================================
+// Test Mocking Extensions
+// ============================================================================
+
+/**
+ | Mock factory
+ */
+export type MockFactory<T extends (...args: unknown[]) => unknown = (...args: unknown[]) => unknown> = (
+	...args: Parameters<T>
+) => ReturnType<T>
+
+/**
+ | Spy factory
+ */
+export type SpyFactory<T extends (...args: unknown[]) => unknown = (...args: unknown[]) => unknown> = (
+	original: T | undefined,
+	info: { name: string, module?: string },
+) => Spy<T>
+
+/**
+ | Stub
+ */
+export interface Stub<T = unknown> {
+	value: T
+	restore: () => void
+}
+
+/**
+ | Stub factory
+ */
+export type StubFactory<T = unknown> = (
+	object: object,
+	property: string,
+	value: T,
+) => Stub<T>

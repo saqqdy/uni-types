@@ -245,6 +245,43 @@ export type {
 	WhileStatement,
 } from './compiler'
 
+export type {
+	BindingKind,
+	CompilerPlugin,
+	PluginHook as CompilerPluginHook,
+	PluginOptions as CompilerPluginOptions,
+	Symbol as CompilerSymbol,
+	Diagnostic,
+	DiagnosticAction,
+	DiagnosticLevel,
+	DiagnosticRange,
+	DiagnosticReporter,
+	DiagnosticSuggestion,
+	Macro,
+	MacroBody,
+	MacroContext,
+	MacroExpansion,
+	MacroParam,
+	MacroResult,
+	PluginError,
+	PluginResult,
+	ScopeChain,
+	ScopeEntry,
+	SourceLocationWithFile,
+	SourceMapGenerator,
+	SourceMapMapping,
+	SourceRange,
+	SymbolFlags,
+	SymbolScope,
+	SymbolTable,
+	TransformPass,
+	TransformPassResult,
+	TransformScheduler,
+	VisitContext,
+	Visitor,
+	VisitResult,
+} from './compiler'
+
 // Type-level concurrency (v1.4.0)
 export * from './concurrency'
 
@@ -350,6 +387,38 @@ export type {
 // Type-level database (v1.4.0)
 export * from './database'
 
+export type {
+	ColumnSchema,
+	ConnectionPoolConfig,
+	DatabaseConnectionOptions,
+	DatabaseError,
+	Model as DBModel,
+	ValidationRule as DBValidationRule,
+	DeleteBuilder,
+	IndexSchema,
+	InsertBuilder,
+	IsolationLevel,
+	MigrationActionDown,
+	MigrationActionUp,
+	MigrationHistoryEntry,
+	MigrationRecord,
+	ModelAttribute,
+	ModelHook,
+	ModelRelation,
+	ModelScope,
+	RelationSchema,
+	SelectBuilder,
+	SQLCondition,
+	SQLExpression,
+	SQLJoin,
+	SQLQuery,
+	SSLConfig,
+	TableSchema,
+	TransactionOptions,
+	TransactionResult,
+	UpdateBuilder,
+} from './database'
+
 // Type-level data structures (v1.4.0)
 export * from './datastructures'
 
@@ -428,6 +497,65 @@ export type {
 	WeekOfYear,
 	YearsBetween,
 } from './datetime'
+
+export type {
+	Breakpoint,
+	BreakpointAction,
+	BreakpointCondition,
+	BreakpointLocation,
+	BreakpointType,
+	CallStack,
+	DataBreakpoint,
+	DebugCapabilities,
+	Checksum as DebugChecksum,
+	DebugCommand,
+	DebugConfiguration,
+	DebugContext,
+	DebugEvent,
+	DebugEventType,
+	DebugInfo,
+	DebugMessage,
+	DebugProtocol,
+	DebugRequest,
+	DebugResponse,
+	DebugScope,
+	DebugSession,
+	Source as DebugSource,
+	DebugStackFrame,
+	DebugStatus,
+	DebugSymbol,
+	DebugSymbolKind,
+	DebugThread,
+	WatchOptions as DebugWatchOptions,
+	EvaluateResult,
+	ExceptionBreakpoint,
+	FunctionBreakpoint,
+	MemoryAddress,
+	MemoryDisassembly,
+	MemoryReadResult,
+	MemoryRegion,
+	MemoryValue,
+	MemoryWriteResult,
+	OutputEvent,
+	REPL,
+	REPLCommand,
+	REPLContext,
+	REPLOptions,
+	REPLResult,
+	StackTrace,
+	StoppedEvent,
+	StoppedReason,
+	ThreadStatus,
+	TypeInfoField,
+	TypeInfoMethod,
+	Variable,
+	VariablePresentationHint,
+	VariableTypeInfo,
+	VariableValue,
+	WatchCallback,
+	WatchExpression,
+	WatchResult,
+} from './debugging'
 
 export type {
 	AccessorDecorator,
@@ -554,6 +682,79 @@ export type {
 	WriteConcern,
 } from './distributed'
 
+export type {
+	APIAuth,
+	APIBody,
+	APIDoc,
+	APIEndpoint,
+	APIError,
+	APIHeader,
+	APIMediaType,
+	APIParameter,
+	RateLimit as APIRateLimit,
+	APIResponse,
+	APISchema,
+	BreadcrumbItem,
+	CrossReference,
+	DocAccessibility,
+	DocBreadcrumb,
+	DocCompleteness,
+	DocConfig,
+	DocCoverage,
+	DocEntryKind,
+	DocError,
+	DocFile,
+	DocFooter,
+	DocFormat,
+	DocEntry as DocGenEntry,
+	DocGenOptions,
+	TypeDoc as DocGenTypeDoc,
+	DocIndex,
+	DocLayout,
+	DocLayoutConfig,
+	DocMenu,
+	DocMetadata,
+	DocMetrics,
+	DocNavigation,
+	DocOutput,
+	DocPage,
+	DocPlugin,
+	DocQuality,
+	DocSearch,
+	SearchOptions as DocSearchOptions,
+	DocSection,
+	DocSidebar,
+	DocSidebarItem,
+	DocSource,
+	DocStats,
+	DocTheme,
+	Documentation,
+	FooterLink,
+	JSDoc,
+	JSDocExample,
+	JSDocParam,
+	JSDocReturn,
+	JSDocTag,
+	JSDocThrows,
+	JSDocTypeParam,
+	MenuItem,
+	ReferenceGraph,
+	ReferenceMap,
+	SearchIndex,
+	SearchIndexEntry,
+	SearchIndexMetadata,
+	SearchResult,
+	SocialLink,
+	TypeDocExample,
+	TypeDocGeneric,
+	TypeDocKind,
+	TypeDocMethod,
+	TypeDocParam,
+	TypeDocProperty,
+	TypeHierarchy,
+	TypeSignature,
+} from './docgen'
+
 // Ecosystem integration (v1.2.0)
 export * from './ecosystem'
 
@@ -590,6 +791,68 @@ export type {
 	SagaStatus,
 	SagaStep,
 } from './event'
+
+export type {
+	AbsolutePath,
+	AppendOptions,
+	Archive,
+	ArchiveEntry,
+	ArchiveFormat,
+	ArchiveOptions,
+	CommonExtension,
+	CommonGlob,
+	CommonMimeType,
+	CompressionLevel,
+	CopyOptions,
+	DeleteOptions,
+	Directory,
+	DirectoryEntry,
+	DirectoryTree,
+	ExtractOptions,
+	File,
+	FileContent,
+	FileEncoding,
+	FileFlags,
+	FileHash,
+	FileMetadata,
+	FileMode,
+	FileOptions,
+	FilePermission,
+	FileStats,
+	FileType,
+	FileWatch,
+	EncryptionAlgorithm as FSEncryptionAlgorithm,
+	Extension as FSExtension,
+	HashAlgorithm as FSHashAlgorithm,
+	WatchOptions as FSWatchOptions,
+	GlobPattern,
+	JoinPath,
+	MimeType,
+	MimeTypeFromExtension,
+	MkdirOptions,
+	MountOptions,
+	MoveOptions,
+	NormalizePath,
+	ParsePath,
+	Path,
+	PathDepth,
+	PathParts,
+	PathSegment,
+	ReadOptions,
+	RelativePath,
+	ResolvePath,
+	Timestamp,
+	TreeNode,
+	VFSMount,
+	VFSNode,
+	VFSOperations,
+	VirtualFS,
+	WalkOptions,
+	WatchDetails,
+	WatchEvent,
+	WatchHandler,
+	WriteOptions,
+} from './filesystem'
 
 export type {
 	AstroFrontmatter,
@@ -882,6 +1145,90 @@ export type {
 	WidenTo,
 } from './inference'
 
+export type {
+	AllVars,
+	ApplyConstraint,
+	ApplyRule,
+	ApplySubstitution,
+	BaseKind,
+	Bidirectional,
+	BoundVars,
+	CheckAgainst,
+	CheckEffect,
+	Closed,
+	ComposeEffects,
+	ComposeSubstitutions,
+	CompoundKind,
+	Constraint,
+	ConstraintType,
+	Deduce,
+	DeduceAll,
+	DeduceArray,
+	DeduceDeep,
+	DeduceFrom,
+	DeduceKey,
+	DeduceParams,
+	DeducePromise,
+	DeduceProperty,
+	DeduceReturn,
+	DefaultRules,
+	Effect,
+	EffectAnnotation,
+	Effectful,
+	EffectHandler,
+	EffectRow,
+	EffectType,
+	EmptyEnv,
+	EnvChain,
+	ExtendEnv,
+	FreeVars,
+	FreshVar,
+	Generalize,
+	Handle,
+	HigherKind,
+	Impure,
+	InferArrayShape,
+	InferCommon,
+	InferContext,
+	InferEffect,
+	InferenceRule,
+	InferEngine,
+	InferError,
+	InferErrorCode,
+	InferFunctionShape,
+	InferIntersectionElement,
+	InferObjectShape,
+	InferResult,
+	InferSourceLocation,
+	InferUnionElement,
+	Instantiate,
+	Kind,
+	KindArrow,
+	KindCheck,
+	KindConstructor,
+	KindError,
+	LookupEnv,
+	Monomorphize,
+	Open,
+	Polymorphic,
+	Pure,
+	RankN,
+	ReconstructConstraints,
+	ReconstructInfer,
+	RuleSet,
+	Solve,
+	SubstituteVar,
+	Substitution,
+	SubstitutionScope,
+	Synthesize,
+	TypeAbs,
+	TypeApp,
+	TypeEnv,
+	TypeMismatchError,
+	TypeVar,
+	Unify,
+} from './inference-engine'
+
 // Type-level interop (v1.4.0)
 export * from './interop'
 
@@ -1143,23 +1490,223 @@ export type {
 	TraceSpan,
 } from './monitoring'
 
+export type {
+	gRPCMethod,
+	gRPCRequest,
+	gRPCResponse,
+	gRPCService,
+	gRPCStatus,
+	gRPCStream,
+	HTTPBody,
+	HTTPHeaders,
+	HTTPMethod,
+	HTTPRequest,
+	HTTPRequestOptions,
+	HTTPResponse,
+	IPAddress,
+	MQTTConnectOptions,
+	MQTTHandler,
+	MQTTPacket,
+	MQTTPacketType,
+	MQTTPayload,
+	MQTTProperties,
+	MQTTPublishOptions,
+	MQTTQoS,
+	MQTTSubscribeOptions,
+	MQTTTopic,
+	HTTPStatus as NetHTTPStatus,
+	NetworkInterface,
+	Port,
+	Protocol,
+	ProtocolContext,
+	ProtocolEncoding,
+	ProtocolHandler,
+	ProtocolMessage,
+	ProtocolVersion,
+	ProtoEnum,
+	ProtoField,
+	ProtoFieldType,
+	ProtoMessage,
+	ProtoMethod,
+	ProtoService,
+	ReferrerPolicy,
+	SocketAddress,
+	TCPFlags,
+	TCPPacket,
+	TCPSocketOptions,
+	TCPState,
+	UDPPacket,
+	UDPSocketOptions,
+	URLType,
+	WSCloseCode,
+	WSEvent,
+	WSFrame,
+	WSHandler,
+	WSMessage,
+	WSOpcode,
+	WSOptions,
+} from './network'
+
 // Numeric utilities (v1.1.0)
 export * from './numeric'
 
 // Object utilities (v1.3.0)
 export * from './object'
 
+export type {
+	CodeMotion,
+	CommonSubexpression,
+	ConstantAnalysis,
+	ConstantFold,
+	ConstantFoldOptions,
+	ConstantValue,
+	DeadCode,
+	DeadCodeAnalysis,
+	DeadCodeLocation,
+	DeadCodeOptions,
+	DeadCodeType,
+	EliminateDeadCode,
+	FoldableExpression,
+	FoldResult,
+	FunctionAnalysis,
+	FunctionOptimization,
+	HintCategory,
+	HintLevel,
+	HintSuggestion,
+	Inline,
+	InlineCall,
+	InlineCandidate,
+	InlineOptions,
+	InlineResult,
+	InlineThreshold,
+	LiveCode,
+	LoopAnalysis,
+	LoopOptimization,
+	MinificationOptions,
+	MinifiedType,
+	MinifyType,
+	ModuleAnalysis,
+	ModuleOptimization,
+	BinaryOperator as OptBinaryOperator,
+	Optimization,
+	OptimizationContext,
+	OptimizationLevel,
+	OptimizationOptions,
+	OptimizationPass,
+	OptimizationPipeline,
+	OptimizationResult,
+	OptimizationRule,
+	OptimizationStats,
+	TypeAlias as OptTypeAlias,
+	UnaryOperator as OptUnaryOperator,
+	PerformanceHint,
+	RuleCondition,
+	RuleContext,
+	RulePattern,
+	RuleReplacement,
+	RuleResult,
+	ShakeMessage,
+	ShallowResult,
+	SideEffect,
+	SideEffectsAnalysis,
+	TreeShake,
+	TreeShakeOptions,
+	UnusedExports,
+	UsedExports,
+} from './optimizer'
+
+export type {
+	Dependencies,
+	Dependency,
+	DependencyEdge,
+	DependencyGraph,
+	DependencyNode,
+	DependencyTree,
+	DependencyType,
+	DependencyVersion,
+	DistTags,
+	InstallOptions,
+	InstallResult,
+	LifecycleHook,
+	LifecycleOptions,
+	LockFile,
+	LockFileOptions,
+	LockFormat,
+	NPMConfig,
+	PackageExports,
+	PackageMeta,
+	PackageName,
+	PackagePlugin,
+	PackageScript,
+	PackageVersion,
+	PackedFile,
+	PackOptions,
+	PackResult,
+	Person,
+	LockEntry as PkgLockEntry,
+	Package as PkgPackage,
+	PluginConfig as PkgPluginConfig,
+	PluginHook as PkgPluginHook,
+	Registry as PkgRegistry,
+	RegistryConfig as PkgRegistryConfig,
+	PNPMConfig,
+	PublishConfig,
+	RegistryAuth,
+	RegistryPackage,
+	RegistryVersion,
+	Resolution,
+	ResolutionError,
+	ResolutionErrorCode,
+	ResolutionOptions,
+	ResolutionResult,
+	ResolvedPackage,
+	ResolveStrategy,
+	ScriptOptions,
+	ScriptResult,
+	ScriptRunner,
+	SemVer,
+	SemVerComparator,
+	SemVerDiff,
+	SemVerRange,
+	SemVerSatisfies,
+	Vulnerability,
+	Workspace,
+	WorkspaceConfig,
+	WorkspaceDependency,
+	WorkspaceEdge,
+	WorkspaceGraph,
+	WorkspaceOptions,
+	WorkspacesConfig,
+	YarnConfig,
+} from './package-manager'
+
 // Type-level parsers (v1.4.0)
 export * from './parsers'
+
+// ============================================================================
+// v1.7.0 - Metaprogramming Utilities
+// ============================================================================
 
 // Path utilities (v1.1.0)
 export * from './path'
 
+// ============================================================================
+// v1.7.0 - Type Decorators
+// ============================================================================
+
 // Pattern matching (v1.3.0)
 export * from './pattern'
 
+// ============================================================================
+// v1.7.0 - Code Generation Templates
+// ============================================================================
+
 // Performance optimization (v1.2.0)
 export * from './perf'
+
+// ============================================================================
+// v1.7.0 - Framework Integrations
+// ============================================================================
 
 // Plugin System Types (v1.6.0)
 export type {
@@ -1206,11 +1753,23 @@ export type {
 	StoredPlugin,
 } from './plugin'
 
+// ============================================================================
+// v1.7.0 - Type-Safe Configuration
+// ============================================================================
+
 // Record utilities (v1.1.0)
 export * from './record'
 
+// ============================================================================
+// v1.7.0 - Type Visualization
+// ============================================================================
+
 // Schema validation (v1.2.0)
 export * from './schema'
+
+// ============================================================================
+// v1.7.0 - Type-Level Cryptography
+// ============================================================================
 
 export type {
 	AllIndices,
@@ -1305,6 +1864,10 @@ export type {
 	ZipWith,
 } from './search'
 
+// ============================================================================
+// v1.7.0 - Type-Level Date/Time
+// ============================================================================
+
 // Security Types (v1.6.0)
 export type {
 	APICredentials,
@@ -1365,25 +1928,29 @@ export type {
 	SignedData,
 } from './security'
 
+// ============================================================================
+// v1.7.0 - Type-Level Advanced Math
+// ============================================================================
+
 // Type-level state machines (v1.4.0)
 export * from './statemachine'
 
 // ============================================================================
-// v1.7.0 - Metaprogramming Utilities
+// v1.7.0 - Type-Level Sorting & Searching
 // ============================================================================
 
 // String utilities (v1.3.0)
 export * from './string'
 
 // ============================================================================
-// v1.7.0 - Type Decorators
+// v1.8.0 - Type Inference Engine
 // ============================================================================
 
 // Template literal utilities (v1.1.0)
 export * from './template'
 
 // ============================================================================
-// v1.7.0 - Code Generation Templates
+// v1.8.0 - Type-Level Database Operations (Extended)
 // ============================================================================
 
 // Testing Framework Integration (v1.6.0)
@@ -1401,17 +1968,18 @@ export type {
 	CoverageRange,
 	CoverageReport,
 	CoverageThreshold,
-	ExpectType,
+	ExpectMethods,
 	FileCoverage,
 	Fixture,
 	FixtureConfig,
 	FixtureContext,
 	FixtureData,
+	TestReporterType as FrameworkTestReporterType,
 	Mock,
 	MockCall,
 	MockConfig,
 	MockResult,
-	NegatedExpectType,
+	NegatedExpectMethods,
 	Snapshot,
 	SnapshotConfig,
 	SnapshotMatch,
@@ -1428,7 +1996,6 @@ export type {
 	TestHook,
 	TestHookFunction,
 	TestHooksConfig,
-	TestReporter,
 	TestResult,
 	TestResultType,
 	TestRunner,
@@ -1438,14 +2005,61 @@ export type {
 } from './test-framework'
 
 // ============================================================================
-// v1.7.0 - Framework Integrations
+// v1.8.0 - Type-Level Network Protocols
+// ============================================================================
+
+export type {
+	Assert,
+	AssertEqual,
+	AssertExtends,
+	AssertNever,
+	CoverageChange,
+	CoverageProvider,
+	CoverageReporter,
+	CoverageWatermarks,
+	DateMock,
+	ExpectError,
+	InlineSnapshot,
+	MockFactory,
+	MockFunction,
+	MockImplementation,
+	MockReturn,
+	ModuleMock,
+	ParallelOptions,
+	ReportConfig,
+	ReportFormat,
+	SnapshotSerializer,
+	SpyFactory,
+	Stub,
+	StubFactory,
+	TestContext,
+	TestContextProvider,
+	TestEvent,
+	TestEventHandler,
+	TestGroup,
+	TestMetadata,
+	TestReporterInterface,
+	TestSetup,
+	SnapshotOptions as TestSnapshotOptions,
+	TestTeardown,
+	TestTiming,
+	TestUtilities,
+	TimerMock,
+	TypeAssertionCheck,
+	TypeTest,
+	Worker,
+	WorkerPool,
+} from './test-framework'
+
+// ============================================================================
+// v1.8.0 - Type-Level File System
 // ============================================================================
 
 // Type-level testing (v1.4.0)
 export * from './testing'
 
 // ============================================================================
-// v1.7.0 - Type-Safe Configuration
+// v1.8.0 - Type-Level Compiler Extensions
 // ============================================================================
 
 export type {
@@ -1498,14 +2112,14 @@ export type {
 } from './typesafe-config'
 
 // ============================================================================
-// v1.7.0 - Type Visualization
+// v1.8.0 - Type-Level Debugging Tools
 // ============================================================================
 
 // Utility types
 export * from './utils'
 
 // ============================================================================
-// v1.7.0 - Type-Level Cryptography
+// v1.8.0 - Type-Level Optimizer
 // ============================================================================
 
 // Validation Rules (v1.5.0)
@@ -1542,7 +2156,7 @@ export type {
 } from './validation'
 
 // ============================================================================
-// v1.7.0 - Type-Level Date/Time
+// v1.8.0 - Type-Level Documentation Generator
 // ============================================================================
 
 export type {
@@ -1592,7 +2206,7 @@ export type {
 } from './visualize'
 
 // ============================================================================
-// v1.7.0 - Type-Level Advanced Math
+// v1.8.0 - Type-Level Test Framework (Extended)
 // ============================================================================
 
 // WebSocket & Real-Time (v1.5.0)
@@ -1627,7 +2241,7 @@ export type {
 } from './websocket'
 
 // ============================================================================
-// v1.7.0 - Type-Level Sorting & Searching
+// v1.8.0 - Type-Level Package Manager
 // ============================================================================
 
 // Workflow Engine (v1.5.0)

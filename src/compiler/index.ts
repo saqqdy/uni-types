@@ -672,3 +672,419 @@ export interface PrintOptions {
 	comments: boolean
 	locations: boolean
 }
+
+// ============================================================================
+// v1.8.0 - Advanced Compiler Extensions
+// ============================================================================
+
+/**
+ * Compiler plugin type
+ */
+export interface CompilerPlugin<T = unknown> {
+	name: string
+	version: string
+	description?: string
+	author?: string
+	hooks: PluginHook<T>[]
+	options?: PluginOptions
+}
+
+/**
+ * Plugin hook type
+ */
+export type PluginHook<_T = unknown>
+	= | { type: 'beforeParse', handler: (input: string) => string }
+		| { type: 'afterParse', handler: (ast: ASTNode) => ASTNode }
+		| { type: 'beforeTransform', handler: (ast: ASTNode) => ASTNode }
+		| { type: 'afterTransform', handler: (ast: ASTNode) => ASTNode }
+		| { type: 'beforeGenerate', handler: (ast: ASTNode) => ASTNode }
+		| { type: 'afterGenerate', handler: (code: string) => string }
+		| { type: 'resolveId', handler: (id: string, parent: string) => string | null }
+		| { type: 'load', handler: (id: string) => { code: string } | null }
+		| { type: 'transform', handler: (code: string, id: string) => { code: string } }
+		| { type: 'buildStart', handler: () => void | Promise<void> }
+		| { type: 'buildEnd', handler: (error?: Error) => void | Promise<void> }
+		| { type: 'writeBundle', handler: (bundle: Record<string, unknown>) => void }
+
+/**
+ * Plugin result type
+ */
+export type PluginResult<T = unknown>
+	= | { success: true, value: T }
+		| { success: false, error: PluginError }
+
+/**
+ * Plugin error
+ */
+export interface PluginError {
+	message: string
+	plugin: string
+	code?: string
+	id?: string
+	loc?: SourceLocation
+	stack?: string
+}
+
+/**
+ * Plugin options
+ */
+export interface PluginOptions {
+	enforce?: 'pre' | 'post'
+	apply?: 'build' | 'serve'
+}
+
+// ============================================================================
+// Macro Types
+// ============================================================================
+
+/**
+ * Macro type
+ */
+export interface Macro<T = unknown> {
+	name: string
+	description?: string
+	params: MacroParam[]
+	body: MacroBody<T>
+	hygienic?: boolean
+}
+
+/**
+ * Macro parameter
+ */
+export interface MacroParam {
+	name: string
+	type?: string
+	optional?: boolean
+	default?: unknown
+	rest?: boolean
+}
+
+/**
+ * Macro body
+ */
+export type MacroBody<T = unknown>
+	= | ((...args: unknown[]) => T)
+		| ASTNode
+		| string
+
+/**
+ * Macro expansion result
+ */
+export interface MacroExpansion<_T = unknown> {
+	original: ASTNode
+	expanded: ASTNode
+	macro: string
+	hygiene: boolean
+}
+
+/**
+ * Macro context
+ */
+export interface MacroContext<T = unknown> {
+	name: string
+	args: unknown[]
+	path: (string | number)[]
+	scope: Scope
+	node: ASTNode
+	options?: T
+}
+
+/**
+ * Macro result
+ */
+export interface MacroResult<T = unknown> {
+	code: string
+	ast: ASTNode
+	macros: Map<string, Macro<T>>
+}
+
+// ============================================================================
+// Diagnostic Types
+// ============================================================================
+
+/**
+ * Diagnostic type
+ */
+export interface Diagnostic<T = unknown> {
+	id?: string
+	code: string | number
+	message: string
+	level: DiagnosticLevel
+	category?: string
+	source?: string
+	location?: DiagnosticRange<T>
+	related?: Diagnostic<T>[]
+	suggestions?: DiagnosticSuggestion[]
+	stack?: string
+}
+
+/**
+ * Diagnostic level
+ */
+export type DiagnosticLevel
+	= | 'error'
+		| 'warning'
+		| 'info'
+		| 'hint'
+		| 'suggestion'
+
+/**
+ * Diagnostic range
+ */
+export interface DiagnosticRange<T = unknown> {
+	start: SourceLocation
+	end: SourceLocation
+	file?: string
+	source?: string
+	related?: Diagnostic<T>[]
+}
+
+/**
+ * Diagnostic suggestion
+ */
+export interface DiagnosticSuggestion {
+	description: string
+	actions: DiagnosticAction[]
+}
+
+/**
+ * Diagnostic action
+ */
+export type DiagnosticAction
+	= | { type: 'replace', range: DiagnosticRange, text: string }
+		| { type: 'insert', position: SourceLocation, text: string }
+		| { type: 'delete', range: DiagnosticRange }
+
+/**
+ | Diagnostic reporter
+ */
+export interface DiagnosticReporter {
+	report: (diagnostic: Diagnostic) => void
+	flush: () => void
+	clear: () => void
+}
+
+// ============================================================================
+// Source Map Extensions
+// ============================================================================
+
+/**
+ * Source location with file
+ */
+export interface SourceLocationWithFile {
+	file?: string
+	line: number
+	column: number
+	offset?: number
+}
+
+/**
+ * Source range type
+ */
+export interface SourceRange {
+	start: SourceLocationWithFile
+	end: SourceLocationWithFile
+	file?: string
+}
+
+/**
+ * Source map generator
+ */
+export interface SourceMapGenerator {
+	addMapping: (mapping: SourceMapMapping) => void
+	setSourceContent: (source: string, content: string) => void
+	toString: () => string
+	toJSON: () => SourceMap
+}
+
+/**
+ * Source map mapping
+ */
+export interface SourceMapMapping {
+	generated: Position
+	original: Position
+	source: string
+	name?: string
+}
+
+// ============================================================================
+// Symbol Types
+// ============================================================================
+
+/**
+ * Symbol type
+ */
+export interface Symbol {
+	name: string
+	flags: SymbolFlags
+	declarations: ASTNode[]
+	valueDeclaration?: ASTNode
+	members?: Map<string, Symbol>
+	exports?: Map<string, Symbol>
+}
+
+/**
+ * Symbol flags
+ */
+export type SymbolFlags
+	= | 'none'
+		| 'function'
+		| 'class'
+		| 'interface'
+		| 'var'
+		| 'let'
+		| 'const'
+		| 'enum'
+		| 'valueModule'
+		| 'namespaceModule'
+		| 'typeLiteral'
+		| 'objectLiteral'
+		| 'method'
+		| 'property'
+		| 'getter'
+		| 'setter'
+		| 'accessor'
+		| 'signature'
+		| 'typeParameter'
+		| 'typeAlias'
+		| 'alias'
+		| 'export'
+		| 'import'
+		| 'blockScoped'
+		| 'optional'
+		| 'rest'
+
+/**
+ * Symbol table
+ */
+export interface SymbolTable {
+	symbols: Map<string, Symbol>
+	parent?: SymbolTable
+	children: SymbolTable[]
+	scope: 'global' | 'module' | 'function' | 'block' | 'class'
+}
+
+/**
+ * Symbol scope type
+ */
+export type SymbolScope
+	= | 'global'
+		| 'module'
+		| 'function'
+		| 'block'
+
+// ============================================================================
+// Scope Extensions
+// ============================================================================
+
+/**
+ * Scope entry
+ */
+export interface ScopeEntry<T = unknown> {
+	name: string
+	scope: Scope
+	kind: BindingKind
+	type?: T
+	value?: unknown
+	declared: boolean
+	referenced: boolean
+}
+
+/**
+ * Binding kind
+ */
+export type BindingKind
+	= | 'var'
+		| 'let'
+		| 'const'
+		| 'function'
+		| 'class'
+		| 'parameter'
+		| 'type'
+		| 'namespace'
+		| 'import'
+
+/**
+ * Scope chain
+ */
+export interface ScopeChain<T = unknown> {
+	scopes: Scope[]
+	push: (scope: Scope) => void
+	pop: () => Scope | undefined
+	current: () => Scope | undefined
+	find: (name: string) => ScopeEntry<T> | undefined
+}
+
+// ============================================================================
+// Transform Pass Types
+// ============================================================================
+
+/**
+ * Transform pass type
+ */
+export interface TransformPass<T = unknown> {
+	name: string
+	description?: string
+	before?: (ast: ASTNode) => ASTNode
+	transform: (ast: ASTNode) => ASTNode
+	after?: (ast: ASTNode) => ASTNode
+	options?: T
+}
+
+/**
+ * Transform pass result
+ */
+export interface TransformPassResult<T = ASTNode> {
+	ast: T
+	changed: boolean
+	stats: {
+		nodesVisited: number
+		nodesChanged: number
+		time: number
+	}
+}
+
+/**
+ | Transform scheduler
+ */
+export interface TransformScheduler<T = ASTNode> {
+	add: (pass: TransformPass) => void
+	remove: (name: string) => void
+	run: (ast: T) => TransformPassResult<T>
+	clear: () => void
+}
+
+// ============================================================================
+// Visitor Pattern
+// ============================================================================
+
+/**
+ | Visitor type
+ */
+export type Visitor<T = ASTNode, R = ASTNode | undefined> = (
+	node: T,
+	context: VisitContext<T>,
+) => R | undefined
+
+/**
+ * Visit result
+ */
+export type VisitResult<T = ASTNode>
+	= | { type: 'continue', node: T }
+		| { type: 'replace', node: T }
+		| { type: 'remove' }
+		| { type: 'skip' }
+
+/**
+ * Visit context
+ */
+export interface VisitContext<T = ASTNode> {
+	parent: T | null
+	key: string | number | null
+	path: (string | number)[]
+	depth: number
+	skip: () => void
+	replace: (node: T) => void
+	remove: () => void
+	visit: (node: T) => void
+}
