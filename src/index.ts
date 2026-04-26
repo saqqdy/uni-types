@@ -67,11 +67,17 @@ export type {
 	LongestCommonPrefix,
 } from './algorithms'
 
+// Type-Level Animation (v1.9.0)
+export * from './animation'
+
 // Assert utilities (v1.3.0)
 export * from './assert'
 
 // Async utilities (v1.3.0)
 export * from './async'
+
+// Type-Level Audio Processing (v1.9.0)
+export * from './audio'
 
 // Authorization & Permissions (v1.5.0)
 export type {
@@ -106,6 +112,9 @@ export type {
 	RolePermission,
 	RoleSet,
 } from './auth'
+
+// Type-Level Blockchain (v1.9.0)
+export * from './blockchain'
 
 // Brand types (v1.1.0)
 export * from './brand'
@@ -385,14 +394,13 @@ export type {
 } from './crypto'
 
 // Type-level database (v1.4.0)
-export * from './database'
-
 export type {
 	ColumnSchema,
 	ConnectionPoolConfig,
 	DatabaseConnectionOptions,
 	DatabaseError,
 	Model as DBModel,
+	Transaction as DBTransaction,
 	ValidationRule as DBValidationRule,
 	DeleteBuilder,
 	IndexSchema,
@@ -756,7 +764,75 @@ export type {
 } from './docgen'
 
 // Ecosystem integration (v1.2.0)
-export * from './ecosystem'
+export type {
+	ComponentProps,
+	PrismaCreateInput,
+	PropsWithChildren,
+} from './ecosystem'
+
+// Type-Level Error Handling (v1.9.0)
+export type {
+	AssertionFunction,
+	AuthenticationError,
+	AuthorizationError,
+	BusinessError,
+	CatchHandler,
+	ChainContext,
+	ChainLink,
+	ConflictError,
+	CustomError,
+	Either,
+	EitherMatcher,
+	Err,
+	AssertionError as ErrorAssertionError,
+	AssertionResult as ErrorAssertionResult,
+	AsyncResult as ErrorAsyncResult,
+	ErrorBase,
+	ErrorBoundaryProps,
+	ErrorChain,
+	ErrorCode,
+	ErrorFactory,
+	ErrorHandler,
+	ErrorInstance,
+	ErrorLog,
+	ErrorMessage,
+	ErrorSeverity,
+	ErrorStack,
+	ErrorType,
+	ExpectedErrors,
+	Failure,
+	FatalError,
+	FieldError,
+	FinallyHandler,
+	GlobalErrorHandler,
+	Left,
+	NetworkError,
+	None,
+	NotFoundError,
+	NullableOption,
+	Ok,
+	Option,
+	OptionMatcher,
+	Panic,
+	RateLimitError,
+	RecoveryOptions,
+	RecoveryResult,
+	RecoveryStrategy,
+	Result,
+	ResultMatcher,
+	RetryConfig,
+	Right,
+	Some,
+	Success,
+	SystemError,
+	TimeoutError,
+	Try,
+	TryCatchResult,
+	TryResult,
+	ValidationError,
+	ValidationErrors,
+	ValidationResult,
+} from './error-handling'
 
 // Event-Driven Architecture (v1.5.0)
 export type {
@@ -791,6 +867,9 @@ export type {
 	SagaStatus,
 	SagaStep,
 } from './event'
+
+// Type-Level Event System (v1.9.0)
+export * from './event-system'
 
 export type {
 	AbsolutePath,
@@ -921,13 +1000,17 @@ export type {
 	Compose,
 	Const,
 	Curry,
-	Either,
 	EitherOps,
 	Eq,
-	Err,
 	Flip,
 	FlipFn,
+	Either as FunctionalEither,
+	Err as FunctionalErr,
+	Left as FunctionalLeft,
 	None as FunctionalNone,
+	Ok as FunctionalOk,
+	Result as FunctionalResult,
+	Right as FunctionalRight,
 	Some as FunctionalSome,
 	Functor,
 	Getter,
@@ -935,7 +1018,6 @@ export type {
 	IO,
 	IOOps,
 	Iso,
-	Left,
 	Lens,
 	LensPath,
 	Set as LensSet,
@@ -943,7 +1025,6 @@ export type {
 	MaybeOps,
 	Monad,
 	Monoid,
-	Ok,
 	Ord,
 	Ordering,
 	Over,
@@ -954,9 +1035,7 @@ export type {
 	Reader,
 	ReaderOps,
 	Refinement,
-	Result,
 	ResultOps,
-	Right,
 	Semigroup,
 	Setter,
 	State,
@@ -971,7 +1050,73 @@ export type {
 } from './functional'
 
 // Function utilities (v1.1.0)
-export * from './functions'
+export type {
+	AsyncReturnType,
+	NthParameter,
+	Parameters,
+	ReturnType,
+} from './functions'
+
+// Type-Level Game Development (v1.9.0)
+export type {
+	AnimationComponent,
+	Checkpoint,
+	ColliderShape,
+	Collision,
+	Component,
+	Entity,
+	EntityComponent,
+	EntityId,
+	EntityQuery,
+	EntitySystem,
+	GameAction,
+	AnimationClip as GameAnimationClip,
+	AudioClip as GameAudioClip,
+	AudioListener as GameAudioListener,
+	AudioSource as GameAudioSource,
+	Camera as GameCamera,
+	EasingFunction as GameEasingFunction,
+	Material as GameMaterial,
+	Mesh as GameMesh,
+	GamepadState,
+	GameReducer,
+	Scene as GameScene,
+	SceneGraph as GameSceneGraph,
+	SceneNode as GameSceneNode,
+	Shader as GameShader,
+	SoundEffect as GameSoundEffect,
+	GameState,
+	GameStore,
+	Texture as GameTexture,
+	TextureFormat as GameTextureFormat,
+	GameTime,
+	Timer as GameTimer,
+	Tween as GameTween,
+	HealthComponent,
+	InputState,
+	KeyboardState,
+	KeyState,
+	Level,
+	MouseState,
+	Objective,
+	PhysicsBody,
+	PhysicsMaterial,
+	Position2D,
+	Position3D,
+	Renderable,
+	SpawnPoint,
+	SpriteComponent,
+	TouchPoint,
+	TouchState,
+	TransformComponent,
+	UIButton,
+	UIElement,
+	UIProgress,
+	UIText,
+	Vector2D,
+	Vector3D,
+	Velocity,
+} from './game'
 
 export type {
 	Adapter,
@@ -1017,6 +1162,9 @@ export type {
 	TypeScriptOptions,
 	YAMLOptions,
 } from './generate'
+
+// Type-Level Graphics (v1.9.0)
+export * from './graphics'
 
 // GraphQL Integration (v1.5.0)
 export * from './graphql'
@@ -1442,6 +1590,10 @@ export type {
 	RetryPolicy as ServiceRetryPolicy,
 } from './microservice'
 
+// ============================================================================
+// v1.7.0 - Metaprogramming Utilities
+// ============================================================================
+
 // Performance Monitoring (v1.6.0)
 export type {
 	AlertAction,
@@ -1489,6 +1641,10 @@ export type {
 	TraceContext,
 	TraceSpan,
 } from './monitoring'
+
+// ============================================================================
+// v1.7.0 - Type Decorators
+// ============================================================================
 
 export type {
 	gRPCMethod,
@@ -1547,11 +1703,30 @@ export type {
 	WSOptions,
 } from './network'
 
+// ============================================================================
+// v1.7.0 - Code Generation Templates
+// ============================================================================
+
+// Type-Level Language Processing (v1.9.0)
+export * from './nlp'
+
+// ============================================================================
+// v1.7.0 - Framework Integrations
+// ============================================================================
+
 // Numeric utilities (v1.1.0)
 export * from './numeric'
 
+// ============================================================================
+// v1.7.0 - Type-Safe Configuration
+// ============================================================================
+
 // Object utilities (v1.3.0)
 export * from './object'
+
+// ============================================================================
+// v1.7.0 - Type Visualization
+// ============================================================================
 
 export type {
 	CodeMotion,
@@ -1614,6 +1789,10 @@ export type {
 	UnusedExports,
 	UsedExports,
 } from './optimizer'
+
+// ============================================================================
+// v1.7.0 - Type-Level Cryptography
+// ============================================================================
 
 export type {
 	Dependencies,
@@ -1680,32 +1859,36 @@ export type {
 	YarnConfig,
 } from './package-manager'
 
+// ============================================================================
+// v1.7.0 - Type-Level Date/Time
+// ============================================================================
+
 // Type-level parsers (v1.4.0)
 export * from './parsers'
 
 // ============================================================================
-// v1.7.0 - Metaprogramming Utilities
+// v1.7.0 - Type-Level Advanced Math
 // ============================================================================
 
 // Path utilities (v1.1.0)
 export * from './path'
 
 // ============================================================================
-// v1.7.0 - Type Decorators
+// v1.7.0 - Type-Level Sorting & Searching
 // ============================================================================
 
 // Pattern matching (v1.3.0)
 export * from './pattern'
 
 // ============================================================================
-// v1.7.0 - Code Generation Templates
+// v1.8.0 - Type Inference Engine
 // ============================================================================
 
 // Performance optimization (v1.2.0)
 export * from './perf'
 
 // ============================================================================
-// v1.7.0 - Framework Integrations
+// v1.8.0 - Type-Level Database Operations (Extended)
 // ============================================================================
 
 // Plugin System Types (v1.6.0)
@@ -1754,21 +1937,107 @@ export type {
 } from './plugin'
 
 // ============================================================================
-// v1.7.0 - Type-Safe Configuration
+// v1.8.0 - Type-Level Network Protocols
+// ============================================================================
+
+// Type-Level Quantum Computing (v1.9.0)
+export * from './quantum'
+
+// ============================================================================
+// v1.8.0 - Type-Level File System
+// ============================================================================
+
+// Type-Level Reactive Programming (v1.9.0)
+export type {
+	AsyncSubject,
+	BackpressureConfig,
+	BackpressureState,
+	BackpressureStrategy,
+	BehaviorSubject,
+	BufferedChannel,
+	Channel,
+	ChannelBuffer,
+	ColdFlow,
+	CombineLatest,
+	Computed,
+	FilterOperator,
+	Flow,
+	FlowController,
+	FlowState,
+	ForkJoinResult,
+	FromEvent,
+	FromPromise,
+	HotFlow,
+	IntervalObservable,
+	MapOperator,
+	Observable,
+	Observer,
+	OperatorFunction,
+	OperatorName,
+	PartialObserver,
+	DebounceOptions as ReactiveDebounceOptions,
+	Effect as ReactiveEffect,
+	EffectOptions as ReactiveEffectOptions,
+	ReactivePrimitive,
+	RetryOptions as ReactiveRetryOptions,
+	Scheduler as ReactiveScheduler,
+	SignalOptions as ReactiveSignalOptions,
+	ReactiveStore,
+	Subscription as ReactiveSubscription,
+	TakeOptions as ReactiveTakeOptions,
+	ThrottleOptions as ReactiveThrottleOptions,
+	ReactiveValue,
+	Zip as ReactiveZip,
+	ReadonlySignal,
+	ReduceOperator,
+	ReplaySubject,
+	SchedulerAction,
+	SchedulerLike,
+	SelectableChannel,
+	Signal,
+	SignalValue,
+	StoreAction,
+	StoreMiddleware,
+	StoreReducer,
+	Stream,
+	StreamError,
+	StreamValue,
+	Subject,
+	TimerObservable,
+	UnaryFunction,
+	WritableSignal,
+} from './reactive'
+
+// ============================================================================
+// v1.8.0 - Type-Level Compiler Extensions
 // ============================================================================
 
 // Record utilities (v1.1.0)
 export * from './record'
 
 // ============================================================================
-// v1.7.0 - Type Visualization
+// v1.8.0 - Type-Level Debugging Tools
 // ============================================================================
 
 // Schema validation (v1.2.0)
-export * from './schema'
+export type {
+	CompositeGuard,
+	GuardedType,
+	HasRuntimeCheck,
+	IsYupSchema,
+	IsZodSchema,
+	RuntimeGuard,
+	AssertionFunction as SchemaAssertionFunction,
+	YupInput,
+	YupOutput,
+	ZodArrayElement,
+	ZodInput,
+	ZodOutput,
+	ZodShape,
+} from './schema'
 
 // ============================================================================
-// v1.7.0 - Type-Level Cryptography
+// v1.8.0 - Type-Level Optimizer
 // ============================================================================
 
 export type {
@@ -1865,7 +2134,7 @@ export type {
 } from './search'
 
 // ============================================================================
-// v1.7.0 - Type-Level Date/Time
+// v1.8.0 - Type-Level Documentation Generator
 // ============================================================================
 
 // Security Types (v1.6.0)
@@ -1929,36 +2198,43 @@ export type {
 } from './security'
 
 // ============================================================================
-// v1.7.0 - Type-Level Advanced Math
+// v1.8.0 - Type-Level Test Framework (Extended)
 // ============================================================================
 
 // Type-level state machines (v1.4.0)
-export * from './statemachine'
+export type {
+	BuildStateMachine,
+	CanTransition,
+	CurrentState,
+	IsTerminal,
+	MachineConfig,
+	NextState,
+	SendEvent,
+	StateHistory,
+	StateMachine,
+	State as StateMachineState,
+	Transition as StateTransition,
+	ValidTransitions,
+} from './statemachine'
 
 // ============================================================================
-// v1.7.0 - Type-Level Sorting & Searching
+// v1.8.0 - Type-Level Package Manager
 // ============================================================================
 
 // String utilities (v1.3.0)
 export * from './string'
 
 // ============================================================================
-// v1.8.0 - Type Inference Engine
+// v1.9.0 - Advanced Domain-Specific Types
 // ============================================================================
 
 // Template literal utilities (v1.1.0)
 export * from './template'
 
-// ============================================================================
-// v1.8.0 - Type-Level Database Operations (Extended)
-// ============================================================================
-
 // Testing Framework Integration (v1.6.0)
 export type {
 	Assertion,
-	AssertionError,
 	AssertionMatcher,
-	AssertionResult,
 	Benchmark,
 	BenchmarkConfig,
 	BenchmarkResult,
@@ -1987,6 +2263,8 @@ export type {
 	Spy,
 	SpyConfig,
 	SuiteResult,
+	AssertionError as TestAssertionError,
+	AssertionResult as TestAssertionResult,
 	TestCase,
 	TestConfig,
 	TestEnvironmentConfig,
@@ -2003,10 +2281,6 @@ export type {
 	TestSuite,
 	TestSummary,
 } from './test-framework'
-
-// ============================================================================
-// v1.8.0 - Type-Level Network Protocols
-// ============================================================================
 
 export type {
 	Assert,
@@ -2051,16 +2325,8 @@ export type {
 	WorkerPool,
 } from './test-framework'
 
-// ============================================================================
-// v1.8.0 - Type-Level File System
-// ============================================================================
-
 // Type-level testing (v1.4.0)
 export * from './testing'
-
-// ============================================================================
-// v1.8.0 - Type-Level Compiler Extensions
-// ============================================================================
 
 export type {
 	BuildConfig,
@@ -2111,16 +2377,8 @@ export type {
 	YAMLConfig,
 } from './typesafe-config'
 
-// ============================================================================
-// v1.8.0 - Type-Level Debugging Tools
-// ============================================================================
-
 // Utility types
 export * from './utils'
-
-// ============================================================================
-// v1.8.0 - Type-Level Optimizer
-// ============================================================================
 
 // Validation Rules (v1.5.0)
 export type {
@@ -2148,16 +2406,12 @@ export type {
 	URLConstraint,
 	UUIDConstraint,
 	ValidationContext,
-	ValidationError,
 	ValidationOptions,
 	ValidationRule,
 	Validator,
 	ValidatorResult,
+	ValidationError as ValidatorValidationError,
 } from './validation'
-
-// ============================================================================
-// v1.8.0 - Type-Level Documentation Generator
-// ============================================================================
 
 export type {
 	AddedProperties,
@@ -2205,10 +2459,6 @@ export type {
 	TypeMap as VisualizeTypeMap,
 } from './visualize'
 
-// ============================================================================
-// v1.8.0 - Type-Level Test Framework (Extended)
-// ============================================================================
-
 // WebSocket & Real-Time (v1.5.0)
 export type {
 	EventEmitter,
@@ -2222,7 +2472,6 @@ export type {
 	RealTimeClient,
 	RealTimeMessage,
 	RealTimeSubscription,
-	Stream,
 	StreamChunk,
 	StreamReader,
 	StreamWriter,
@@ -2237,12 +2486,9 @@ export type {
 	WebSocketMessage,
 	WebSocketOptions,
 	WebSocketState,
+	Stream as WebSocketStream,
 	WritableStreamLike,
 } from './websocket'
-
-// ============================================================================
-// v1.8.0 - Type-Level Package Manager
-// ============================================================================
 
 // Workflow Engine (v1.5.0)
 export type {
