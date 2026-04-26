@@ -13,7 +13,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.6.0](#160) - AI/ML & advanced type system (2026-04-19)
 - [x] [1.7.0](#170) - Metaprogramming & advanced utilities (2026-04-25)
 - [x] [1.8.0](#180) - Type inference engine & developer tools (2026-04-25)
-- [ ] [1.9.0](#190) - Advanced domain-specific types (Planned)
+- [x] [1.9.0](#190) - Advanced domain-specific types (2026-04-26)
 - [ ] [1.10.0](#1100) - Ultimate type system (Planned)
 - [ ] [1.11.0](#1110) - Migration & deprecation tools (Planned)
 - [ ] [1.12.0](#1120) - v2.0.0 Release Candidate (Planned)
@@ -2683,7 +2683,7 @@ export type ScriptResult<T> = ...
 
 ---
 
-## [1.9.0] - Planned
+## [1.9.0] - 2026-04-26
 
 ### New Features
 
@@ -3221,37 +3221,37 @@ export type ChannelConfig<T> = ...
 
 ### Documentation
 
-- [ ] Type-Level Quantum Computing guide (English & Chinese)
-- [ ] Type-Level Game Development guide (English & Chinese)
-- [ ] Type-Level Blockchain guide (English & Chinese)
-- [ ] Type-Level Language Processing guide (English & Chinese)
-- [ ] Type-Level Graphics guide (English & Chinese)
-- [ ] Type-Level Audio Processing guide (English & Chinese)
-- [ ] Type-Level Animation guide (English & Chinese)
-- [ ] Type-Level Error Handling guide (English & Chinese)
-- [ ] Type-Level Event System guide (English & Chinese)
-- [ ] Type-Level Reactive Programming guide (English & Chinese)
-- [ ] API reference pages for all new types
-- [ ] Update README with v1.9.0 features
-- [ ] Update CHANGELOG with v1.9.0 release notes
+- [x] Type-Level Quantum Computing guide (English & Chinese)
+- [x] Type-Level Game Development guide (English & Chinese)
+- [x] Type-Level Blockchain guide (English & Chinese)
+- [x] Type-Level Language Processing guide (English & Chinese)
+- [x] Type-Level Graphics guide (English & Chinese)
+- [x] Type-Level Audio Processing guide (English & Chinese)
+- [x] Type-Level Animation guide (English & Chinese)
+- [x] Type-Level Error Handling guide (English & Chinese)
+- [x] Type-Level Event System guide (English & Chinese)
+- [x] Type-Level Reactive Programming guide (English & Chinese)
+- [x] API reference pages for all new types
+- [x] Update README with v1.9.0 features
+- [x] Update CHANGELOG with v1.9.0 release notes
 
 ### Testing
 
-- [ ] Comprehensive tests for all new types
-- [ ] Quantum gate operation tests
-- [ ] Game entity system tests
-- [ ] Smart contract validation tests
-- [ ] Graphics transform tests
-- [ ] Audio processing tests
-- [ ] Animation keyframe tests
-- [ ] Reactive stream tests
+- [x] Comprehensive tests for all new types
+- [x] Quantum gate operation tests
+- [x] Game entity system tests
+- [x] Smart contract validation tests
+- [x] Graphics transform tests
+- [x] Audio processing tests
+- [x] Animation keyframe tests
+- [x] Reactive stream tests
 
 ### Code Quality
 
-- [ ] All lint checks passing
-- [ ] Build successful
-- [ ] Documentation complete
-- [ ] Type complexity benchmarks
+- [x] All lint checks passing
+- [x] Build successful
+- [x] Documentation complete
+- [x] Type complexity benchmarks
 
 ---
 

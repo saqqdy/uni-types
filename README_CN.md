@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **800+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **1500+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -1037,6 +1037,156 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `Zip<A, B>` | 拼接元组 |
 | `Flatten<T>` | 展平嵌套元组 |
 | `MinElement<T>`, `MaxElement<T>` | 最小/最大元素 |
+
+### 量子计算 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Qubit<T>`, `QubitState`, `QubitArray<N, T>` | 量子比特类型 |
+| `QuantumGate`, `Hadamard`, `PauliX/Y/Z` | 量子门 |
+| `CNOT`, `Toffoli`, `PhaseGate` | 多量子比特门 |
+| `QuantumCircuit<N>`, `CircuitGate<T>` | 电路类型 |
+| `QuantumRegister<N>`, `ClassicalRegister<N>` | 寄存器类型 |
+| `QuantumState<N>`, `StateVector<N>` | 状态表示 |
+| `BellState`, `GHZState<N>`, `EntangledPair` | 纠缠类型 |
+| `Grover<T>`, `Shor`, `QFT<N>`, `VQE`, `QAOA` | 量子算法 |
+| `QuantumHardware`, `QuantumBackend` | 硬件类型 |
+
+### 游戏开发 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Entity<T>`, `EntityId`, `EntityComponent<T>` | 实体类型 |
+| `Component`, `Position2D/3D`, `Velocity` | 组件类型 |
+| `GameState<T>`, `GameAction<T>`, `GameStore<T>` | 状态管理 |
+| `InputState`, `KeyboardState`, `MouseState`, `GamepadState` | 输入处理 |
+| `PhysicsBody<T>`, `ColliderShape`, `Collision<T>` | 物理类型 |
+| `Scene<T>`, `SceneNode<T>`, `Camera<T>` | 场景图 |
+| `Material`, `Shader`, `Texture`, `Mesh` | 渲染类型 |
+| `AudioClip`, `AudioSource`, `AudioListener` | 音频类型 |
+| `Level`, `SpawnPoint`, `Checkpoint`, `Objective` | 关卡设计 |
+
+### 区块链 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Block<T>`, `BlockHeader`, `BlockBody` | 区块类型 |
+| `Transaction`, `LegacyTransaction`, `EIP1559Transaction` | 交易类型 |
+| `SmartContract<A>`, `ContractABI` | 智能合约类型 |
+| `Address`, `PublicKey`, `PrivateKey`, `Signature` | 地址/加密类型 |
+| `TokenInfo`, `FungibleTokenBalance`, `NonFungibleToken` | 代币类型 |
+| `WalletAccount`, `WalletConnection`, `WalletProvider` | 钱包类型 |
+| `Chain`, `ChainId`, `NetworkConfig` | 网络类型 |
+| `GasEstimate`, `GasPrice`, `GasFees` | Gas 类型 |
+| `JsonRpcProvider`, `JsonRpcRequest` | JSON-RPC 类型 |
+
+### 语言处理 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Token<T>`, `TokenType`, `TokenStream<T>` | 分词 |
+| `Sentence<T>`, `Paragraph<S>`, `Document<P>` | 文档结构 |
+| `ParseTree`, `ParseNode<T>`, `Grammar` | 解析类型 |
+| `LanguageModel<T>`, `Vocabulary<T>`, `Embedding<T>` | 语言模型 |
+| `SemanticRole`, `SemanticFrame`, `EntityMention` | 语义分析 |
+| `Morpheme`, `PartOfSpeech`, `MorphologicalFeatures` | 形态学 |
+| `SentimentResult`, `EmotionResult` | 情感分析 |
+| `TranslationResult`, `Locale`, `LanguagePair` | 翻译类型 |
+| `ClassificationResult`, `TopicInfo`, `QAResult` | 分类/问答 |
+
+### 图形 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Color`, `RGB`, `RGBA`, `HSL`, `HexColor` | 颜色类型 |
+| `Vector2/3/4`, `Point2D/3D`, `Size2D/3D` | 向量类型 |
+| `Matrix2x2`, `Matrix3x3`, `Matrix4x4`, `Quaternion` | 矩阵类型 |
+| `Transform`, `Translation`, `Rotation`, `Scale` | 变换类型 |
+| `Point`, `Line`, `Triangle`, `Quad`, `Polygon` | 图元类型 |
+| `Circle`, `Rectangle`, `Sphere`, `Box` | 形状类型 |
+| `VertexBuffer`, `IndexBuffer`, `UniformBuffer` | 缓冲类型 |
+| `VertexShader`, `FragmentShader`, `ComputeShader` | 着色器类型 |
+| `Texture`, `SamplerDescriptor`, `TextureFormat` | 纹理类型 |
+| `RenderPipeline`, `ComputePipeline` | 管线类型 |
+| `Light`, `DirectionalLight`, `PointLight`, `SpotLight` | 光源类型 |
+
+### 音频处理 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `AudioSample`, `AudioBufferData`, `AudioChannel` | 音频数据 |
+| `SampleRate`, `BitDepth`, `SampleFormat` | 格式类型 |
+| `WaveformType`, `ADSREnvelope`, `Envelope` | 波形/包络 |
+| `Frequency`, `NoteName`, `Octave`, `NotePitch` | 音乐音高 |
+| `ReverbEffect`, `DelayEffect`, `FilterEffect` | 音频效果 |
+| `CompressorEffect`, `EqualizerEffect`, `DistortionEffect` | 更多效果 |
+| `MIDINote`, `MIDIEvent`, `MIDISequence`, `MIDITrack` | MIDI 类型 |
+| `OscillatorOptions`, `LFOOptions`, `SynthesizerPatch` | 合成器类型 |
+| `FFTResult`, `Spectrum`, `Spectrogram` | 分析类型 |
+| `AudioFormat`, `AudioEncodingOptions`, `AudioMetadata` | 编码类型 |
+
+### 动画 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Animation<T>`, `AnimationFrame<T>`, `AnimationTimeline<T>` | 动画核心 |
+| `Keyframe<T>`, `KeyframeSequence<T>`, `KeyframeInterpolation` | 关键帧类型 |
+| `EasingType`, `EasingPreset`, `CubicBezier`, `StepsEasing` | 缓动类型 |
+| `Transition<T>`, `TransitionShorthand` | CSS 过渡 |
+| `SpringConfig`, `SpringState`, `SpringPreset` | 弹簧物理 |
+| `SpriteSheet`, `SpriteFrame`, `SpriteAnimation` | 精灵动画 |
+| `MorphTarget`, `MorphWeights`, `MorphAnimation` | 变形目标 |
+| `Skeleton`, `Bone`, `Joint`, `Pose` | 骨骼动画 |
+| `AnimationState`, `AnimationTransition`, `AnimationLayer` | 状态机 |
+| `IKChain`, `IKTarget`, `IKSolverType` | 逆向运动学 |
+| `AnimationTrack`, `AnimationClip`, `AnimationEvent` | 时间线类型 |
+
+### 错误处理 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Result<T, E>`, `Success<T>`, `Failure<E>` | Result 类型 |
+| `Ok<T>`, `Err<E>`, `AsyncResult<T, E>` | Result 辅助 |
+| `Try<T, E>`, `TryResult<T>`, `CatchHandler<T, E>` | Try-catch 类型 |
+| `Either<L, R>`, `Left<L>`, `Right<R>` | Either 类型 |
+| `Option<T>`, `Some<T>`, `None` | Option 类型 |
+| `ErrorChain<T>`, `ChainLink<T>` | 错误链 |
+| `RecoveryStrategy`, `RecoveryOptions<T>`, `RetryConfig` | 恢复类型 |
+| `ValidationError<T>`, `FieldError<T>`, `ValidationResult<T>` | 验证错误 |
+| `NetworkError`, `AuthenticationError`, `NotFoundError` | 领域错误 |
+| `Panic`, `FatalError`, `BusinessError`, `SystemError` | 错误分类 |
+
+### 事件系统 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Event<T>`, `TypedEvent<K, V>`, `EventMap` | 事件类型 |
+| `EventEmitter<T>`, `EventHandler<T>` | 发射器类型 |
+| `EventBus<T>`, `BusEvent<T>`, `EventBusMiddleware` | 事件总线 |
+| `EventDispatcher<T>`, `DispatchResult<T>` | 调度器类型 |
+| `EventQueue<T>`, `QueuedEvent<T>`, `QueuePriority` | 队列类型 |
+| `Subscription`, `SubscriptionOptions<T>`, `SubscriptionFilter<T>` | 订阅类型 |
+| `EventPattern`, `PatternMatch<T>`, `PatternResult<T>` | 模式匹配 |
+| `EventAggregator<T>`, `AggregatedEvent<T>` | 聚合类型 |
+| `EventHistory<T>`, `ReplayOptions<T>` | 历史类型 |
+| `DomainEvent<A, T>`, `EventSourcedAggregate<I>` | 领域事件 |
+
+### 响应式编程 *(v1.9.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Observable<T>`, `Observer<T>`, `Subscription` | Observable 模式 |
+| `Subject<T>`, `BehaviorSubject<T>`, `ReplaySubject<T>` | Subject 类型 |
+| `OperatorFunction<T, R>`, `MapOperator`, `FilterOperator` | 操作符 |
+| `DebounceOptions`, `ThrottleOptions`, `RetryOptions` | 操作符选项 |
+| `Stream<T>`, `StreamValue<T>`, `StreamError` | 流类型 |
+| `Signal<T>`, `WritableSignal<T>`, `Computed<T>` | Signal 类型 |
+| `Effect`, `EffectCallback`, `SignalOptions<T>` | Effect 类型 |
+| `Scheduler`, `SchedulerAction<T>`, `SchedulerLike` | 调度器类型 |
+| `BackpressureStrategy`, `BackpressureConfig` | 背压 |
+| `Flow<T>`, `FlowState`, `FlowController<T>` | Flow 类型 |
+| `Channel<T>`, `BufferedChannel<T>`, `ChannelConfig<T>` | Channel 类型 |
+| `CombineLatest<T>`, `Zip<T>`, `ForkJoinResult<T>` | 组合器 |
 
 ### 类型推断引擎 *(v1.8.0)*
 

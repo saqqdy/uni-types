@@ -2,7 +2,7 @@
 	"name": "uni-types",
 	"description": "Universal TypeScript type utilities - A comprehensive collection of type helpers for TypeScript development",
 	"type": "module",
-	"version": "1.8.0",
+	"version": "1.9.0",
 	"packageManager": "pnpm@9.15.9",
 	"main": "dist/index.cjs",
 	"module": "dist/index.mjs",

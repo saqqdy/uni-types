@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **800+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **1500+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -1147,6 +1147,156 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `Zip<A, B>` | Zip tuples |
 | `Flatten<T>` | Flatten nested tuples |
 | `MinElement<T>`, `MaxElement<T>` | Min/Max element |
+
+### Quantum Computing *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Qubit<T>`, `QubitState`, `QubitArray<N, T>` | Qubit types |
+| `QuantumGate`, `Hadamard`, `PauliX/Y/Z` | Quantum gates |
+| `CNOT`, `Toffoli`, `PhaseGate` | Multi-qubit gates |
+| `QuantumCircuit<N>`, `CircuitGate<T>` | Circuit types |
+| `QuantumRegister<N>`, `ClassicalRegister<N>` | Register types |
+| `QuantumState<N>`, `StateVector<N>` | State representation |
+| `BellState`, `GHZState<N>`, `EntangledPair` | Entanglement types |
+| `Grover<T>`, `Shor`, `QFT<N>`, `VQE`, `QAOA` | Quantum algorithms |
+| `QuantumHardware`, `QuantumBackend` | Hardware types |
+
+### Game Development *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Entity<T>`, `EntityId`, `EntityComponent<T>` | Entity types |
+| `Component`, `Position2D/3D`, `Velocity` | Component types |
+| `GameState<T>`, `GameAction<T>`, `GameStore<T>` | State management |
+| `InputState`, `KeyboardState`, `MouseState`, `GamepadState` | Input handling |
+| `PhysicsBody<T>`, `ColliderShape`, `Collision<T>` | Physics types |
+| `Scene<T>`, `SceneNode<T>`, `Camera<T>` | Scene graph |
+| `Material`, `Shader`, `Texture`, `Mesh` | Rendering types |
+| `AudioClip`, `AudioSource`, `AudioListener` | Audio types |
+| `Level`, `SpawnPoint`, `Checkpoint`, `Objective` | Level design |
+
+### Blockchain *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Block<T>`, `BlockHeader`, `BlockBody` | Block types |
+| `Transaction`, `LegacyTransaction`, `EIP1559Transaction` | Transaction types |
+| `SmartContract<A>`, `ContractABI` | Smart contract types |
+| `Address`, `PublicKey`, `PrivateKey`, `Signature` | Address/crypto types |
+| `TokenInfo`, `FungibleTokenBalance`, `NonFungibleToken` | Token types |
+| `WalletAccount`, `WalletConnection`, `WalletProvider` | Wallet types |
+| `Chain`, `ChainId`, `NetworkConfig` | Network types |
+| `GasEstimate`, `GasPrice`, `GasFees` | Gas types |
+| `JsonRpcProvider`, `JsonRpcRequest` | JSON-RPC types |
+
+### Language Processing *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Token<T>`, `TokenType`, `TokenStream<T>` | Tokenization |
+| `Sentence<T>`, `Paragraph<S>`, `Document<P>` | Document structure |
+| `ParseTree`, `ParseNode<T>`, `Grammar` | Parsing types |
+| `LanguageModel<T>`, `Vocabulary<T>`, `Embedding<T>` | Language models |
+| `SemanticRole`, `SemanticFrame`, `EntityMention` | Semantic analysis |
+| `Morpheme`, `PartOfSpeech`, `MorphologicalFeatures` | Morphology |
+| `SentimentResult`, `EmotionResult` | Sentiment analysis |
+| `TranslationResult`, `Locale`, `LanguagePair` | Translation types |
+| `ClassificationResult`, `TopicInfo`, `QAResult` | Classification/QA |
+
+### Graphics *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Color`, `RGB`, `RGBA`, `HSL`, `HexColor` | Color types |
+| `Vector2/3/4`, `Point2D/3D`, `Size2D/3D` | Vector types |
+| `Matrix2x2`, `Matrix3x3`, `Matrix4x4`, `Quaternion` | Matrix types |
+| `Transform`, `Translation`, `Rotation`, `Scale` | Transform types |
+| `Point`, `Line`, `Triangle`, `Quad`, `Polygon` | Primitive types |
+| `Circle`, `Rectangle`, `Sphere`, `Box` | Shape types |
+| `VertexBuffer`, `IndexBuffer`, `UniformBuffer` | Buffer types |
+| `VertexShader`, `FragmentShader`, `ComputeShader` | Shader types |
+| `Texture`, `SamplerDescriptor`, `TextureFormat` | Texture types |
+| `RenderPipeline`, `ComputePipeline` | Pipeline types |
+| `Light`, `DirectionalLight`, `PointLight`, `SpotLight` | Light types |
+
+### Audio Processing *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `AudioSample`, `AudioBufferData`, `AudioChannel` | Audio data |
+| `SampleRate`, `BitDepth`, `SampleFormat` | Format types |
+| `WaveformType`, `ADSREnvelope`, `Envelope` | Waveform/envelope |
+| `Frequency`, `NoteName`, `Octave`, `NotePitch` | Musical pitch |
+| `ReverbEffect`, `DelayEffect`, `FilterEffect` | Audio effects |
+| `CompressorEffect`, `EqualizerEffect`, `DistortionEffect` | More effects |
+| `MIDINote`, `MIDIEvent`, `MIDISequence`, `MIDITrack` | MIDI types |
+| `OscillatorOptions`, `LFOOptions`, `SynthesizerPatch` | Synthesizer types |
+| `FFTResult`, `Spectrum`, `Spectrogram` | Analysis types |
+| `AudioFormat`, `AudioEncodingOptions`, `AudioMetadata` | Encoding types |
+
+### Animation *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Animation<T>`, `AnimationFrame<T>`, `AnimationTimeline<T>` | Animation core |
+| `Keyframe<T>`, `KeyframeSequence<T>`, `KeyframeInterpolation` | Keyframe types |
+| `EasingType`, `EasingPreset`, `CubicBezier`, `StepsEasing` | Easing types |
+| `Transition<T>`, `TransitionShorthand` | CSS transitions |
+| `SpringConfig`, `SpringState`, `SpringPreset` | Spring physics |
+| `SpriteSheet`, `SpriteFrame`, `SpriteAnimation` | Sprite animation |
+| `MorphTarget`, `MorphWeights`, `MorphAnimation` | Morph targets |
+| `Skeleton`, `Bone`, `Joint`, `Pose` | Skeletal animation |
+| `AnimationState`, `AnimationTransition`, `AnimationLayer` | State machine |
+| `IKChain`, `IKTarget`, `IKSolverType` | Inverse kinematics |
+| `AnimationTrack`, `AnimationClip`, `AnimationEvent` | Timeline types |
+
+### Error Handling *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Result<T, E>`, `Success<T>`, `Failure<E>` | Result type |
+| `Ok<T>`, `Err<E>`, `AsyncResult<T, E>` | Result helpers |
+| `Try<T, E>`, `TryResult<T>`, `CatchHandler<T, E>` | Try-catch types |
+| `Either<L, R>`, `Left<L>`, `Right<R>` | Either type |
+| `Option<T>`, `Some<T>`, `None` | Option type |
+| `ErrorChain<T>`, `ChainLink<T>` | Error chain |
+| `RecoveryStrategy`, `RecoveryOptions<T>`, `RetryConfig` | Recovery types |
+| `ValidationError<T>`, `FieldError<T>`, `ValidationResult<T>` | Validation errors |
+| `NetworkError`, `AuthenticationError`, `NotFoundError` | Domain errors |
+| `Panic`, `FatalError`, `BusinessError`, `SystemError` | Error categories |
+
+### Event System *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Event<T>`, `TypedEvent<K, V>`, `EventMap` | Event types |
+| `EventEmitter<T>`, `EventHandler<T>` | Emitter types |
+| `EventBus<T>`, `BusEvent<T>`, `EventBusMiddleware` | Event bus |
+| `EventDispatcher<T>`, `DispatchResult<T>` | Dispatcher types |
+| `EventQueue<T>`, `QueuedEvent<T>`, `QueuePriority` | Queue types |
+| `Subscription`, `SubscriptionOptions<T>`, `SubscriptionFilter<T>` | Subscription |
+| `EventPattern`, `PatternMatch<T>`, `PatternResult<T>` | Pattern matching |
+| `EventAggregator<T>`, `AggregatedEvent<T>` | Aggregation types |
+| `EventHistory<T>`, `ReplayOptions<T>` | History types |
+| `DomainEvent<A, T>`, `EventSourcedAggregate<I>` | Domain events |
+
+### Reactive Programming *(v1.9.0)*
+
+| Type | Description |
+|------|-------------|
+| `Observable<T>`, `Observer<T>`, `Subscription` | Observable pattern |
+| `Subject<T>`, `BehaviorSubject<T>`, `ReplaySubject<T>` | Subject types |
+| `OperatorFunction<T, R>`, `MapOperator`, `FilterOperator` | Operators |
+| `DebounceOptions`, `ThrottleOptions`, `RetryOptions` | Operator options |
+| `Stream<T>`, `StreamValue<T>`, `StreamError` | Stream types |
+| `Signal<T>`, `WritableSignal<T>`, `Computed<T>` | Signal types |
+| `Effect`, `EffectCallback`, `SignalOptions<T>` | Effect types |
+| `Scheduler`, `SchedulerAction<T>`, `SchedulerLike` | Scheduler types |
+| `BackpressureStrategy`, `BackpressureConfig` | Backpressure |
+| `Flow<T>`, `FlowState`, `FlowController<T>` | Flow types |
+| `Channel<T>`, `BufferedChannel<T>`, `ChannelConfig<T>` | Channel types |
+| `CombineLatest<T>`, `Zip<T>`, `ForkJoinResult<T>` | Combinators |
 
 ## Examples
 
