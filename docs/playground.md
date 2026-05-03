@@ -18,7 +18,7 @@ Try `uni-types` directly in your browser with real-time type checking!
 - 📦 **Pre-loaded Types** - All uni-types are available for import
 - 🎨 **Syntax Highlighting** - Full TypeScript syntax support
 
-## Available Types (1500+)
+## Available Types (2000+)
 
 All types from `uni-types` are available for import:
 
@@ -1222,6 +1222,151 @@ interface ProjectWorkspace extends Workspace<{
   packages: Map<string, Package>
   dependencies: DependencyGraph
 }> {}
+
+// v1.9.0 - Quantum Computing
+type QuantumState = QubitState<{ alpha: number; beta: number }>
+type BellPair = BellState<'phi_plus'>
+type GateApplied = ApplyGate<Hadamard, Qubit>
+
+// v1.9.0 - Game Development
+type GameEntity = Entity<{ position: Vector2D; velocity: Vector2D }>
+type PhysicsBody = RigidBody<{ mass: number; friction: number }>
+type Sprite = SpriteComponent<{ texture: string; width: number }>
+
+// v1.9.0 - Blockchain
+type Transaction1559 = EIP1559Transaction<{ gasLimit: number; maxFeePerGas: string }>
+type ERC20Balance = FungibleTokenBalance<{ address: string; amount: string }>
+type WalletState = WalletConnectionStatus
+
+// v1.9.0 - Language Processing
+type NLPDocument = Document<{ tokens: Token[]; sentences: Sentence[] }>
+type Sentiment = SentimentResult<{ score: number; label: SentimentLabel }>
+type Translation = TranslationResult<{ source: string; target: string }>
+
+// v1.9.0 - Graphics
+type ColorRGBA = RGBA<{ r: 255; g: 128; b: 64; a: 1 }>
+type Transform3D = Transform<{ position: Vector3; rotation: Quaternion }>
+type ShaderProgram = ShaderProgram<{ vertex: string; fragment: string }>
+
+// v1.9.0 - Audio Processing
+type AudioWaveform = WaveformOptions<{ type: 'sine'; frequency: 440 }>
+type MIDINoteOn = MIDINoteOnEvent<{ note: 60; velocity: 100 }>
+type AudioAnalysis = FFTResult<{ frequencies: number[]; magnitudes: number[] }>
+
+// v1.9.0 - Animation
+type KeyframeSequence = KeyframeSequence<{ time: number; value: number }[]>
+type AnimationTimeline = AnimationTimeline<{ duration: number; keyframes: Keyframe[] }>
+type EasedValue = EasingFunction<'ease-in-out', number>
+
+// v1.9.0 - Error Handling
+type ChainError = ErrorChain<{ errors: Error[]; context: unknown }>
+type Recovery = RecoveryOptions<{ strategy: 'retry'; maxAttempts: number }>
+type PanicError = Panic<{ message: string; code: number }>
+
+// v1.9.0 - Event System
+type EventEmitter = EventEmitter<{ click: MouseEvent; keydown: KeyboardEvent }>
+type EventBus = EventBus<{ userCreated: { id: string }; orderPlaced: { orderId: string } }>
+type DomainEvt = DomainEvent<{ orderId: string }, { status: string }>
+
+// v1.9.0 - Reactive Programming
+type ObservableStream = Observable<{ value: string; timestamp: number }>
+type SignalState = WritableSignal<{ count: number }>
+type BehaviorSubjectState = BehaviorSubject<{ initialValue: string }>
+```
+
+### v1.10.0 Types
+
+```typescript
+// v1.10.0 - Ultimate Type Utilities
+type PerfectUser = Perfect<{ name?: string; age: number }>
+type CompleteConfig = Complete<{ host?: string | null; port: number | undefined }>
+type FinalOptions = Final<{ debug?: boolean; timeout?: number | null }>
+type UltimateState = Ultimate<{ config?: { value?: string }; count: number | null }>
+type Validated = Validate<{ name: 'John'; age: 30 }, { name: string; age: number }>
+
+// v1.10.0 - Higher-Kinded Types
+type MaybeKind = Kind<{ _A?: unknown }, string>
+type EitherKind = Kind2<{ _A?: unknown; _B?: unknown }, string, number>
+type Composed = Compose<(n: number) => boolean, (s: string) => number>
+type Piped = Pipe<(s: string) => number, (n: number) => boolean>
+type ChurchBool = ChurchBoolean
+type MaybeType = Maybe<string>
+
+// v1.10.0 - Framework Integrations
+type AngularComp = AngularComponent<{ selector: string; inputs: { value: string } }>
+type SvelteStore = SvelteStore<string>
+type PreactFunc = PreactFC<{ value: string }>
+type SolidSignal = SolidSignal<string>
+type LitEl = LitElement<{ properties: { value: string } }>
+type StencilComp = StencilComponent<{ props: { value: string }; state: { count: number } }>
+type AlpineData = AlpineComponent<{ data: { value: string }; methods: { increment(): void } }>
+
+// v1.10.0 - Build Tools
+type WebpackConf = WebpackConfig<{ entry: string; output: { path: string } }>
+type ViteConf = ViteConfig<{ plugins: VitePlugin[]; build: ViteBuild }>
+type RollupConf = RollupConfig<{ input: string; output: RollupOutput }>
+type ESBuildOpts = ESBuildOptions<{ bundle: true; minify: true }>
+type BabelConf = BabelConfig<{ presets: string[]; plugins: string[] }>
+type SWCConf = SWCConfig<{ jsc: { parser: SWCParser } }>
+
+// v1.10.0 - DevOps
+type DockerComposeConf = DockerCompose<{ services: Record<string, DockerComposeService> }>
+type K8sDeploy = K8sDeployment<{ metadata: { name: string }; spec: unknown }>
+type K8sSvc = K8sService<{ spec: { ports: K8sServicePort[] } }>
+type TerraformRes = TerraformResource<{ type: string; name: string }>
+type AnsiblePlay = AnsiblePlaybook<{ name: string; hosts: string; tasks: AnsibleTask[] }>
+type GitHubWF = GitHubWorkflow<{ name: string; jobs: Record<string, GitHubJob> }>
+type GitLabPipe = GitLabPipeline<{ stages: string[] }>
+
+// v1.10.0 - Quality Assurance
+type ESLintConf = ESLintConfig<{ rules: Record<string, unknown> }>
+type PrettierConf = PrettierConfig<{ printWidth: number; semi: boolean }>
+type SecurityAudit = SecurityAudit<{ vulnerabilities: Vulnerability[] }>
+type DepAudit = DependencyAudit<{ dependencies: DependencyInfo[] }>
+type PerfAudit = PerformanceAudit<{ metrics: PerformanceMetric[] }>
+type BundleAnal = BundleAnalysis<{ bundles: BundleInfo[] }>
+type QualityGate = QualityGate<{ conditions: GateCondition[] }>
+
+// v1.10.0 - Architecture Patterns
+type EntityT = Entity<{ id: string; props: { name: string } }>
+type UseCaseT = UseCase<{ input: string }, { output: number }>
+type PortT = Port<{ type: 'inbound'; methods: { execute(): void } }>
+type AggregateT = Aggregate<{ root: Entity; entities: unknown[] }>
+type CommandT = Command<'CreateUser', { name: string; email: string }>
+type QueryT = Query<'GetUser', { id: string }>
+type BoundedCtx = BoundedContext<{ name: string }>
+type EventStreamT = EventStream<{ events: DomainEvent[] }>
+
+// v1.10.0 - Data Formats
+type JSONVal = JSONValue
+type JSONSchemaT = JSONSchema<{ type: 'object'; properties: unknown }>
+type XMLNodeT = XMLNode<{ name: string; attributes: unknown }>
+type CSVRowT = CSVRow<{ name: string; value: number }>
+type TOMLVal = TOMLValue<{ type: 'string'; value: string }>
+type ProtoMsg = ProtoMessage<{ name: string; fields: ProtoField[] }>
+type AvroSchemaT = AvroSchema<{ type: 'record'; fields: AvroField[] }>
+
+// v1.10.0 - Accessibility
+type ARIARoleT = ARIARole
+type AriaProps = AccessibilityProps<{ role: 'button'; 'aria-label': string }>
+type FocusTrapT = FocusTrap<{ enabled: boolean; container: HTMLElement }>
+type KeyNav = KeyboardNavigation<{ orientation: 'vertical'; loop: true }>
+type ColorContrastT = ColorContrast<{ foreground: string; background: string }>
+type MotionPref = MotionPreference
+type AccNodeT = AccessibilityNode<{ role: 'button'; name: string }>
+
+// v1.10.0 - Final Polish
+type Optimized = Optimize<{ a?: string | undefined }>
+type Simplified = SimplifyAll<{ a: string } & { b: number }>
+type Deduped = RemoveDuplicates<['a', 'b', 'a', 'c']>
+type Compacted = Compact<{ a?: string; b: number }>
+type Debugged = DebugType<{ a: string; b?: number }>
+type FrozenT = Freeze<{ a: string }>
+type ImmutableT = Immutable<{ a: { b: string } }>
+type IsAnyT = IsAny<any>
+type IsNeverT = IsNever<never>
+type IsArrayT = IsArray<string[]>
+type EqualsT = Equals<string, string>
 ```
 
 ## External Resources
