@@ -54,8 +54,8 @@ export interface ESLintParserOptions {
 	extraFileExtensions?: string[]
 }
 
-export type ESLintRuleConfig =
-	| 0
+export type ESLintRuleConfig
+	= | 0
 	| 1
 	| 2
 	| 'off'
@@ -98,7 +98,7 @@ export interface ESLintRule {
 		hasSuggestions?: boolean
 		schema?: unknown | unknown[]
 		messages?: Record<string, string>
-		deprecated?: boolean | { message: string; url: string }
+		deprecated?: boolean | { message: string, url: string }
 		replacedBy?: string[]
 	}
 	create: (context: ESLintRuleContext) => Record<string, (...args: unknown[]) => void>
@@ -116,9 +116,9 @@ export interface ESLintRuleContext {
 		messageId?: string
 		message?: string
 		data?: Record<string, unknown>
-		loc?: { line: number; column: number } | { start: { line: number; column: number }; end: { line: number; column: number } }
+		loc?: { line: number, column: number } | { start: { line: number, column: number }, end: { line: number, column: number } }
 		fix?: (fixer: ESLintRuleFixer) => ESLintFix | ESLintFix[] | null
-		suggest?: { desc: string; fix: (fixer: ESLintRuleFixer) => ESLintFix }[]
+		suggest?: { desc: string, fix: (fixer: ESLintRuleFixer) => ESLintFix }[]
 	}) => void
 	getSourceCode: () => unknown
 	getAncestors: () => unknown[]
@@ -148,8 +148,8 @@ export interface ESLintFix {
 export interface ESLintPlugin {
 	name: string
 	rules?: Record<string, ESLintRule>
-	configs?: Record<string, ESLintConfig | { extends: string[]; plugins: string[]; rules: Record<string, ESLintRuleConfig> }>
-	processors?: Record<string, { preprocess: (text: string, filename: string) => string[] | { text: string; filename?: string }[]; postprocess: (messages: unknown[][], filename: string) => unknown[]; supportsAutofix?: boolean }>
+	configs?: Record<string, ESLintConfig | { extends: string[], plugins: string[], rules: Record<string, ESLintRuleConfig> }>
+	processors?: Record<string, { preprocess: (text: string, filename: string) => string[] | { text: string, filename?: string }[], postprocess: (messages: unknown[][], filename: string) => unknown[], supportsAutofix?: boolean }>
 	environments?: Record<string, Record<string, boolean>>
 }
 
@@ -166,7 +166,7 @@ export interface ESLintResult {
 	fixableWarningCount: number
 	source?: string
 	output?: string
-	usedDeprecatedRules: { ruleId: string; replacedBy: string[] }[]
+	usedDeprecatedRules: { ruleId: string, replacedBy: string[] }[]
 }
 
 export interface ESLintMessage {
@@ -180,7 +180,7 @@ export interface ESLintMessage {
 	nodeType?: string
 	messageId?: string
 	fix?: ESLintFix
-	suggestions?: { desc: string; fix: ESLintFix }[]
+	suggestions?: { desc: string, fix: ESLintFix }[]
 }
 
 // ============== TSLint Types ==============
@@ -257,6 +257,35 @@ export interface FormatResult {
 // ============== Code Analysis Types ==============
 
 /**
+ * Analysis issue type
+ */
+export interface AnalysisIssue {
+	id: string
+	type: 'error' | 'warning' | 'info'
+	message: string
+	file: string
+	line?: number
+	column?: number
+	ruleId?: string
+	severity: number
+}
+
+/**
+ * Analysis suggestion type
+ */
+export interface AnalysisSuggestion {
+	id: string
+	message: string
+	file: string
+	line?: number
+	column?: number
+	fix?: {
+		range: [number, number]
+		text: string
+	}
+}
+
+/**
  * Code analysis result type
  */
 export interface CodeAnalysis<T = unknown> {
@@ -291,7 +320,7 @@ export interface AnalysisSummary {
 	totalComments: number
 	averageComplexity: number
 	averageMaintainability: number
-	languages: Record<string, { files: number; lines: number; percentage: number }>
+	languages: Record<string, { files: number, lines: number, percentage: number }>
 }
 
 export interface CodeMetrics {
@@ -367,7 +396,7 @@ export interface ComplexityClass {
 		cyclomaticDensity: number
 		halstead: unknown
 		params: number
-		sloc: { logical: number; physical: number }
+		sloc: { logical: number, physical: number }
 	}
 }
 
@@ -739,7 +768,7 @@ export interface ModuleReason {
 
 export interface DuplicateModule {
 	name: string
-	versions: { version: string; paths: string[]; size: number }[]
+	versions: { version: string, paths: string[], size: number }[]
 	totalSize: number
 	savings: number
 }
@@ -887,7 +916,7 @@ export interface TestInfo {
 	failureMessages?: string[]
 	failureDetails?: unknown
 	ancestorTitles?: string[]
-	location?: { line: number; column: number }
+	location?: { line: number, column: number }
 	retryCount?: number
 }
 
@@ -907,7 +936,7 @@ export interface TestSummary {
 export interface TestPerformance {
 	totalDuration: number
 	averageTestDuration: number
-	slowestTests: { name: string; duration: number }[]
+	slowestTests: { name: string, duration: number }[]
 	parallelism: number
 	overhead: number
 }
@@ -966,7 +995,7 @@ export interface ComplexityMetrics {
 	cyclomaticComplexity: number
 	cognitiveComplexity: number
 	averageComplexity: number
-	complexityDistribution: { range: string; count: number }[]
+	complexityDistribution: { range: string, count: number }[]
 }
 
 export interface DuplicationMetrics {

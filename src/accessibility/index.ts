@@ -9,9 +9,9 @@
 /**
  * ARIA role type
  */
-export type ARIARole =
+export type ARIARole
 	// Document structure roles
-	| 'article'
+	= | 'article'
 	| 'cell'
 	| 'columnheader'
 	| 'definition'
@@ -43,6 +43,7 @@ export type ARIARole =
 	| 'checkbox'
 	| 'combobox'
 	| 'dialog'
+	| 'grid'
 	| 'gridcell'
 	| 'link'
 	| 'listbox'
@@ -62,8 +63,10 @@ export type ARIARole =
 	| 'spinbutton'
 	| 'switch'
 	| 'tab'
+	| 'tablist'
 	| 'tabpanel'
 	| 'textbox'
+	| 'tree'
 	| 'treeitem'
 	// Landmark roles
 	| 'banner'
@@ -98,8 +101,8 @@ export type ARIARole =
 /**
  * ARIA role category
  */
-export type ARIARoleCategory =
-	| 'document-structure'
+export type ARIARoleCategory
+	= | 'document-structure'
 	| 'widget'
 	| 'landmark'
 	| 'live-region'
@@ -111,8 +114,8 @@ export type ARIARoleCategory =
 /**
  * ARIA property attribute names
  */
-export type ARIAProperty =
-	| 'aria-activedescendant'
+export type ARIAProperty
+	= | 'aria-activedescendant'
 	| 'aria-atomic'
 	| 'aria-autocomplete'
 	| 'aria-busy'
@@ -164,8 +167,8 @@ export type ARIAProperty =
 /**
  * ARIA state attribute names
  */
-export type ARIAState =
-	| 'aria-checked'
+export type ARIAState
+	= | 'aria-checked'
 	| 'aria-disabled'
 	| 'aria-expanded'
 	| 'aria-hidden'
@@ -179,8 +182,8 @@ export type ARIAState =
 /**
  * ARIA property value types
  */
-export type ARIAPropertyValue<T = unknown> =
-	| boolean
+export type ARIAPropertyValue<T = unknown>
+	= | boolean
 	| string
 	| number
 	| 'true'
@@ -191,8 +194,8 @@ export type ARIAPropertyValue<T = unknown> =
 /**
  * aria-current values
  */
-export type ARIACurrentValue =
-	| 'page'
+export type ARIACurrentValue
+	= | 'page'
 	| 'step'
 	| 'location'
 	| 'date'
@@ -203,8 +206,8 @@ export type ARIACurrentValue =
 /**
  * aria-haspopup values
  */
-export type ARIAHasPopupValue =
-	| 'false'
+export type ARIAHasPopupValue
+	= | 'false'
 	| 'true'
 	| 'menu'
 	| 'listbox'
@@ -220,8 +223,8 @@ export type ARIALiveValue = 'off' | 'polite' | 'assertive'
 /**
  * aria-relevant values
  */
-export type ARIARelevantValue =
-	| 'additions'
+export type ARIARelevantValue
+	= | 'additions'
 	| 'removals'
 	| 'text'
 	| 'all'
@@ -524,8 +527,8 @@ export interface RowHeaderAccessibilityProps extends AccessibilityProps {
 /**
  * Focus state type
  */
-export type FocusState =
-	| 'none'
+export type FocusState
+	= | 'none'
 	| 'self'
 	| 'children'
 	| 'scope'
@@ -575,8 +578,8 @@ export interface FocusManager<T = HTMLElement> {
 /**
  * Focusable element type
  */
-export type FocusableElement =
-	| HTMLButtonElement
+export type FocusableElement
+	= | HTMLButtonElement
 	| HTMLInputElement
 	| HTMLSelectElement
 	| HTMLTextAreaElement
@@ -628,10 +631,10 @@ export type ScreenReaderText = string
  * Visually hidden props
  */
 export interface VisuallyHiddenProps {
-	as?: keyof HTMLElementTagNameMap
+	as?: string
 	children?: unknown
 	className?: string
-	style?: Partial<CSSStyleDeclaration>
+	style?: Record<string, string>
 	focusable?: boolean
 	unmountOnExit?: boolean
 }
@@ -707,8 +710,8 @@ export type KeyboardShortcut = string | {
 /**
  * Key code type
  */
-export type KeyCode =
-	| 'Enter'
+export type KeyCode
+	= | 'Enter'
 	| 'Space'
 	| 'Escape'
 	| 'Tab'
@@ -787,8 +790,8 @@ export interface ColorContrast<T = unknown> {
  */
 export interface ColorContrastResult {
 	contrastRatio: ContrastRatio
-	wcagAA: { normal: boolean; large: boolean }
-	wcagAAA: { normal: boolean; large: boolean }
+	wcagAA: { normal: boolean, large: boolean }
+	wcagAAA: { normal: boolean, large: boolean }
 	recommendations?: ColorContrastRecommendation[]
 }
 
@@ -825,9 +828,9 @@ export interface WCAGContrastRequirements {
 export type MotionPreference = 'no-preference' | 'reduce'
 
 /**
- * Animation options type
+ * Animation options type (accessibility-specific)
  */
-export interface AnimationOptions<T = unknown> {
+export interface AccessibilityAnimationOptions<T = unknown> {
 	duration?: number
 	delay?: number
 	easing?: string
@@ -852,14 +855,14 @@ export type MotionSafeAnimation<T = unknown> = T | {
 export interface MotionMediaQuery {
 	matches: boolean
 	media: string
-	onchange: ((this: MediaQueryList, ev: MediaQueryListEvent) => void) | null
+	onchange: ((this: unknown, ev: unknown) => void) | null
 }
 
 /**
  * Vestibular sensitivity
  */
-export type VestibularTrigger =
-	| 'scale'
+export type VestibularTrigger
+	= | 'scale'
 	| 'rotate'
 	| 'spin'
 	| 'flip'
@@ -872,8 +875,8 @@ export type VestibularTrigger =
 /**
  * Safe animation types
  */
-export type SafeAnimationType =
-	| 'fade'
+export type SafeAnimationType
+	= | 'fade'
 	| 'slide-up'
 	| 'slide-down'
 	| 'slide-left'
@@ -907,8 +910,8 @@ export interface AccessibilityNode<T = unknown> {
 export interface AccessibilityTree<T = unknown> {
 	root: AccessibilityNode<T>
 	focusOrder: AccessibilityNode<T>[]
-	landmarks: { type: string; node: AccessibilityNode<T> }[]
-	headings: { level: number; node: AccessibilityNode<T> }[]
+	landmarks: { type: string, node: AccessibilityNode<T> }[]
+	headings: { level: number, node: AccessibilityNode<T> }[]
 	links: AccessibilityNode<T>[]
 	forms: AccessibilityNode<T>[]
 	custom?: T
@@ -960,7 +963,7 @@ export interface AccessibilityCheckResult {
 	violations: AccessibilityViolation[]
 	incomplete: AccessibilityViolation[]
 	inapplicable: { id: string }[]
-	passes: { id: string; nodes: { html: string }[] }[]
+	passes: { id: string, nodes: { html: string }[] }[]
 	summary: {
 		violations: number
 		incomplete: number
@@ -1064,8 +1067,8 @@ export interface HintTextProps {
 /**
  * Landmark type
  */
-export type LandmarkType =
-	| 'banner'
+export type LandmarkType
+	= | 'banner'
 	| 'complementary'
 	| 'contentinfo'
 	| 'form'

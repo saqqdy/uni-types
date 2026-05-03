@@ -79,8 +79,8 @@ export interface DockerContainer {
 	health?: DockerHealthStatus
 }
 
-export type DockerContainerStatus =
-	| 'created'
+export type DockerContainerStatus
+	= | 'created'
 	| 'running'
 	| 'paused'
 	| 'restarting'
@@ -121,6 +121,11 @@ export interface DockerCompose {
 	secrets?: Record<string, DockerComposeSecret>
 }
 
+export interface DockerComposeLoggingConfig {
+	driver?: string
+	options?: Record<string, string>
+}
+
 export interface DockerComposeService {
 	image?: string
 	build?: string | DockerComposeBuild
@@ -130,7 +135,7 @@ export interface DockerComposeService {
 	environment?: Record<string, string | number> | string[]
 	env_file?: string | string[]
 	depends_on?: string[] | Record<string, { condition?: 'service_started' | 'service_healthy' | 'service_completed_successfully' }>
-	volumes?: (string | { type: string; source?: string; target: string })[]
+	volumes?: (string | { type: string, source?: string, target: string })[]
 	networks?: string[]
 	restart?: 'no' | 'always' | 'on-failure' | 'unless-stopped'
 	command?: string | string[]
@@ -140,7 +145,7 @@ export interface DockerComposeService {
 	deploy?: DockerComposeDeploy
 	resources?: DockerComposeResources
 	profiles?: string[]
-	logging?: DockerComposeLogging
+	logging?: DockerComposeLoggingConfig
 	user?: string
 	working_dir?: string
 	hostname?: string
@@ -226,7 +231,7 @@ export interface DockerComposeNetwork {
 	driver_opts?: Record<string, string>
 	ipam?: {
 		driver?: 'default' | 'null'
-		config?: { subnet?: string; gateway?: string; ip_range?: string }[]
+		config?: { subnet?: string, gateway?: string, ip_range?: string }[]
 	}
 	external?: boolean | { name: string }
 	name?: string
@@ -359,13 +364,13 @@ export interface K8sPodSpec {
 	dnsConfig?: {
 		nameservers?: string[]
 		searches?: string[]
-		options?: { name: string; value?: string }[]
+		options?: { name: string, value?: string }[]
 	}
 	hostname?: string
 	subdomain?: string
 	hostnameFQDN?: string
 	setHostnameAsFQDN?: boolean
-	hostAliases?: { ip: string; hostnames: string[] }[]
+	hostAliases?: { ip: string, hostnames: string[] }[]
 }
 
 export interface K8sContainer {
@@ -408,10 +413,10 @@ export interface K8sEnvVar {
 }
 
 export interface K8sEnvVarSource {
-	fieldRef?: { apiVersion?: string; fieldPath: string }
-	resourceFieldRef?: { containerName?: string; resource: string; divisor?: string }
-	configMapKeyRef?: { name: string; key: string; optional?: boolean }
-	secretKeyRef?: { name: string; key: string; optional?: boolean }
+	fieldRef?: { apiVersion?: string, fieldPath: string }
+	resourceFieldRef?: { containerName?: string, resource: string, divisor?: string }
+	configMapKeyRef?: { name: string, key: string, optional?: boolean }
+	secretKeyRef?: { name: string, key: string, optional?: boolean }
 }
 
 export interface K8sResourceRequirements {
@@ -430,32 +435,32 @@ export interface K8sVolumeMount {
 
 export interface K8sVolume {
 	name: string
-	configMap?: { name: string; items?: { key: string; path: string; mode?: number }[]; defaultMode?: number; optional?: boolean }
-	secret?: { secretName: string; items?: { key: string; path: string; mode?: number }[]; defaultMode?: number; optional?: boolean }
-	emptyDir?: { medium?: 'default' | 'Memory' | 'HugePages'; sizeLimit?: string }
-	persistentVolumeClaim?: { claimName: string; readOnly?: boolean }
-	hostPath?: { path: string; type?: 'DirectoryOrCreate' | 'Directory' | 'FileOrCreate' | 'File' | 'Socket' | 'CharDevice' | 'BlockDevice' | '' }
-	nfs?: { server: string; path: string; readOnly?: boolean }
-	iscsi?: { targetPortal: string; iqns: string; lun: number; fsType?: string; readOnly?: boolean; portals?: string[]; chapAuthSession?: boolean; chapAuthDiscovery?: boolean; secretRef?: { name: string } }
-	flexVolume?: { driver: string; fsType?: string; secretRef?: { name: string }; readOnly?: boolean; options?: Record<string, string> }
-	csi?: { driver: string; fsType?: string; nodePublishSecretRef?: { name: string }; readOnly?: boolean; volumeAttributes?: Record<string, string> }
-	projected?: { sources: K8sProjectedVolumeSource[]; defaultMode?: number }
-	gitRepo?: { repository: string; revision?: string; directory?: string }
-	azureDisk?: { diskName: string; diskURI: string; cachingMode?: 'None' | 'ReadOnly' | 'ReadWrite'; fsType?: string; kind?: 'Shared' | 'Dedicated'; readOnly?: boolean }
-	azureFile?: { secretName: string; shareName: string; readOnly?: boolean }
+	configMap?: { name: string, items?: { key: string, path: string, mode?: number }[], defaultMode?: number, optional?: boolean }
+	secret?: { secretName: string, items?: { key: string, path: string, mode?: number }[], defaultMode?: number, optional?: boolean }
+	emptyDir?: { medium?: 'default' | 'Memory' | 'HugePages', sizeLimit?: string }
+	persistentVolumeClaim?: { claimName: string, readOnly?: boolean }
+	hostPath?: { path: string, type?: 'DirectoryOrCreate' | 'Directory' | 'FileOrCreate' | 'File' | 'Socket' | 'CharDevice' | 'BlockDevice' | '' }
+	nfs?: { server: string, path: string, readOnly?: boolean }
+	iscsi?: { targetPortal: string, iqns: string, lun: number, fsType?: string, readOnly?: boolean, portals?: string[], chapAuthSession?: boolean, chapAuthDiscovery?: boolean, secretRef?: { name: string } }
+	flexVolume?: { driver: string, fsType?: string, secretRef?: { name: string }, readOnly?: boolean, options?: Record<string, string> }
+	csi?: { driver: string, fsType?: string, nodePublishSecretRef?: { name: string }, readOnly?: boolean, volumeAttributes?: Record<string, string> }
+	projected?: { sources: K8sProjectedVolumeSource[], defaultMode?: number }
+	gitRepo?: { repository: string, revision?: string, directory?: string }
+	azureDisk?: { diskName: string, diskURI: string, cachingMode?: 'None' | 'ReadOnly' | 'ReadWrite', fsType?: string, kind?: 'Shared' | 'Dedicated', readOnly?: boolean }
+	azureFile?: { secretName: string, shareName: string, readOnly?: boolean }
 }
 
 export interface K8sProjectedVolumeSource {
-	configMap?: { name: string; items?: { key: string; path: string; mode?: number }[]; optional?: boolean }
-	secret?: { name: string; items?: { key: string; path: string; mode?: number }[]; optional?: boolean }
-	serviceAccountToken?: { audience?: string; expirationSeconds?: number; path: string }
-	downwardAPI?: { items: { path: string; fieldRef: { apiVersion?: string; fieldPath: string } }[] }
+	configMap?: { name: string, items?: { key: string, path: string, mode?: number }[], optional?: boolean }
+	secret?: { name: string, items?: { key: string, path: string, mode?: number }[], optional?: boolean }
+	serviceAccountToken?: { audience?: string, expirationSeconds?: number, path: string }
+	downwardAPI?: { items: { path: string, fieldRef: { apiVersion?: string, fieldPath: string } }[] }
 }
 
 export interface K8sProbe {
 	exec?: { command: string[] }
-	httpGet?: { port: number | string; path: string; host?: string; scheme?: 'HTTP' | 'HTTPS'; httpHeaders?: { name: string; value: string }[] }
-	tcpSocket?: { port: number | string; host?: string }
+	httpGet?: { port: number | string, path: string, host?: string, scheme?: 'HTTP' | 'HTTPS', httpHeaders?: { name: string, value: string }[] }
+	tcpSocket?: { port: number | string, host?: string }
 	initialDelaySeconds?: number
 	timeoutSeconds?: number
 	periodSeconds?: number
@@ -471,8 +476,8 @@ export interface K8sLifecycle {
 
 export interface K8sHandler {
 	exec?: { command: string[] }
-	httpGet?: { port: number | string; path: string; host?: string; scheme?: 'HTTP' | 'HTTPS'; httpHeaders?: { name: string; value: string }[] }
-	tcpSocket?: { port: number | string; host?: string }
+	httpGet?: { port: number | string, path: string, host?: string, scheme?: 'HTTP' | 'HTTPS', httpHeaders?: { name: string, value: string }[] }
+	tcpSocket?: { port: number | string, host?: string }
 }
 
 export interface K8sPodSecurityContext {
@@ -482,10 +487,10 @@ export interface K8sPodSecurityContext {
 	fsGroup?: number
 	fsGroupChangePolicy?: 'OnRootMismatch' | 'Always'
 	supplementalGroups?: number[]
-	seLinuxOptions?: { user?: string; role?: string; type?: string; level?: string }
-	seccompProfile?: { type: 'Unconfined' | 'RuntimeDefault' | 'Localhost'; localhostProfile?: string }
-	sysctls?: { name: string; value: string }[]
-	windowsOptions?: { gmsaCredentialSpec?: string; gmsaCredentialSpecName?: string; runAsUserName?: string; hostProcess?: boolean }
+	seLinuxOptions?: { user?: string, role?: string, type?: string, level?: string }
+	seccompProfile?: { type: 'Unconfined' | 'RuntimeDefault' | 'Localhost', localhostProfile?: string }
+	sysctls?: { name: string, value: string }[]
+	windowsOptions?: { gmsaCredentialSpec?: string, gmsaCredentialSpecName?: string, runAsUserName?: string, hostProcess?: boolean }
 }
 
 export interface K8sSecurityContext {
@@ -495,10 +500,10 @@ export interface K8sSecurityContext {
 	allowPrivilegeEscalation?: boolean
 	readOnlyRootFilesystem?: boolean
 	privileged?: boolean
-	capabilities?: { add?: string[]; drop?: string[] }
-	seLinuxOptions?: { user?: string; role?: string; type?: string; level?: string }
-	seccompProfile?: { type: 'Unconfined' | 'RuntimeDefault' | 'Localhost'; localhostProfile?: string }
-	windowsOptions?: { gmsaCredentialSpec?: string; gmsaCredentialSpecName?: string; runAsUserName?: string; hostProcess?: boolean }
+	capabilities?: { add?: string[], drop?: string[] }
+	seLinuxOptions?: { user?: string, role?: string, type?: string, level?: string }
+	seccompProfile?: { type: 'Unconfined' | 'RuntimeDefault' | 'Localhost', localhostProfile?: string }
+	windowsOptions?: { gmsaCredentialSpec?: string, gmsaCredentialSpecName?: string, runAsUserName?: string, hostProcess?: boolean }
 	procMount?: 'Default' | 'Unmasked'
 }
 
@@ -510,12 +515,12 @@ export interface K8sAffinity {
 
 export interface K8sNodeAffinity {
 	requiredDuringSchedulingIgnoredDuringExecution?: K8sNodeSelector
-	preferredDuringSchedulingIgnoredDuringExecution?: { weight: number; preference: K8sNodeSelectorTerm }[]
+	preferredDuringSchedulingIgnoredDuringExecution?: { weight: number, preference: K8sNodeSelectorTerm }[]
 }
 
 export interface K8sPodAffinity {
 	requiredDuringSchedulingIgnoredDuringExecution?: K8sPodAffinityTerm[]
-	preferredDuringSchedulingIgnoredDuringExecution?: { weight: number; podAffinityTerm: K8sPodAffinityTerm }[]
+	preferredDuringSchedulingIgnoredDuringExecution?: { weight: number, podAffinityTerm: K8sPodAffinityTerm }[]
 }
 
 export interface K8sToleration {
@@ -530,7 +535,7 @@ export interface K8sTopologySpreadConstraint {
 	maxSkew: number
 	topologyKey: string
 	whenUnsatisfiable: 'DoNotSchedule' | 'ScheduleAnyway'
-	labelSelector?: { matchLabels?: Record<string, string>; matchExpressions?: { key: string; operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist'; values?: string[] }[] }
+	labelSelector?: { matchLabels?: Record<string, string>, matchExpressions?: { key: string, operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist', values?: string[] }[] }
 	minDomains?: number
 	topologySpreadConstraintRef?: { name: string }
 }
@@ -540,15 +545,15 @@ export interface K8sNodeSelector {
 }
 
 export interface K8sNodeSelectorTerm {
-	matchExpressions?: { key: string; operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist' | 'Gt' | 'Lt'; values?: string[] }[]
-	matchFields?: { key: string; operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist' | 'Gt' | 'Lt'; values?: string[] }[]
+	matchExpressions?: { key: string, operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist' | 'Gt' | 'Lt', values?: string[] }[]
+	matchFields?: { key: string, operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist' | 'Gt' | 'Lt', values?: string[] }[]
 }
 
 export interface K8sPodAffinityTerm {
-	labelSelector?: { matchLabels?: Record<string, string>; matchExpressions?: { key: string; operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist'; values?: string[] }[] }
+	labelSelector?: { matchLabels?: Record<string, string>, matchExpressions?: { key: string, operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist', values?: string[] }[] }
 	namespaces?: string[]
 	topologyKey: string
-	namespaceSelector?: { matchLabels?: Record<string, string>; matchExpressions?: { key: string; operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist'; values?: string[] }[] }
+	namespaceSelector?: { matchLabels?: Record<string, string>, matchExpressions?: { key: string, operator: 'In' | 'NotIn' | 'Exists' | 'DoesNotExist', values?: string[] }[] }
 }
 
 export interface K8sObjectMeta {
@@ -562,7 +567,7 @@ export interface K8sObjectMeta {
 	creationTimestamp?: string
 	deletionTimestamp?: string
 	deletionGracePeriodSeconds?: number
-	ownerReferences?: { apiVersion: string; kind: string; name: string; uid: string; controller?: boolean; blockOwnerDeletion?: boolean }[]
+	ownerReferences?: { apiVersion: string, kind: string, name: string, uid: string, controller?: boolean, blockOwnerDeletion?: boolean }[]
 	finalizers?: string[]
 	clusterName?: string
 	managedFields?: unknown[]
@@ -602,8 +607,8 @@ export interface K8sIngress {
 	metadata: K8sObjectMeta
 	spec: {
 		ingressClassName?: string
-		defaultBackend?: { service: { name: string; port: K8sServicePort } }
-		tls?: { hosts?: string[]; secretName: string }[]
+		defaultBackend?: { service: { name: string, port: K8sServicePort } }
+		tls?: { hosts?: string[], secretName: string }[]
 		rules: {
 			host?: string
 			http: {
@@ -611,8 +616,8 @@ export interface K8sIngress {
 					path: string
 					pathType: 'Exact' | 'Prefix' | 'ImplementationSpecific'
 					backend: {
-						service: { name: string; port: K8sServicePort }
-						resource?: { apiGroup: string; kind: string; name: string }
+						service: { name: string, port: K8sServicePort }
+						resource?: { apiGroup: string, kind: string, name: string }
 					}
 				}[]
 			}
@@ -647,7 +652,7 @@ export interface TerraformProvisioner {
 	type: 'local-exec' | 'remote-exec' | 'chef' | 'file' | 'habitat' | 'puppet' | 'salt-masterless'
 	when?: 'create' | 'destroy'
 	on_failure?: 'continue' | 'fail'
-	command?: string | { interpreter: string[]; script: string; scripts?: string[] }
+	command?: string | { interpreter: string[], script: string, scripts?: string[] }
 	inline?: string[]
 	inline_command?: string[]
 	insecure_connection?: boolean | string
@@ -691,7 +696,7 @@ export interface TerraformModule<T = Record<string, unknown>> {
  */
 export interface TerraformProvider<T = Record<string, unknown>> {
 	source?: string
-	version?: string | { source: string; version: string }
+	version?: string | { source: string, version: string }
 	properties?: T
 	alias?: string
 }
@@ -731,7 +736,7 @@ export interface TerraformOutput {
 export interface TerraformConfig {
 	terraform?: {
 		required_version?: string
-		required_providers?: Record<string, { source?: string; version?: string; configuration_aliases?: unknown }>
+		required_providers?: Record<string, { source?: string, version?: string, configuration_aliases?: unknown }>
 		backend?: {
 			type: 'local' | 'remote' | 's3' | 'azurerm' | 'gcs' | 'consul' | 'pg' | 'http' | 'artifactory'
 			config?: Record<string, unknown>
@@ -814,12 +819,12 @@ export interface AnsibleTask {
 	with_dict?: unknown
 	with_fileglob?: string
 	with_filetree?: string
-	with_first_found?: { files: string[]; paths?: string[]; skip?: boolean }
+	with_first_found?: { files: string[], paths?: string[], skip?: boolean }
 	with_indexed_items?: unknown[]
 	with_lines?: string
 	with_random_choice?: unknown[]
-	with_sequence?: { start?: number; end?: number; stride?: number; count?: number; format?: string }
-	with_subelements?: { list: unknown[]; subelement: string }
+	with_sequence?: { start?: number, end?: number, stride?: number, count?: number, format?: string }
+	with_subelements?: { list: unknown[], subelement: string }
 	with_together?: unknown[][]
 	with_nested?: unknown[][]
 	notify?: string | string[]
@@ -862,7 +867,7 @@ export interface AnsibleRole {
 			description?: string
 			license?: string
 			min_ansible_version?: string
-			platforms?: { name: string; versions?: string[] }[]
+			platforms?: { name: string, versions?: string[] }[]
 			galaxy_tags?: string[]
 		}
 	}
@@ -881,9 +886,9 @@ export interface AnsibleHandler extends AnsibleTask {
  */
 export interface AnsibleInventory {
 	all?: {
-		hosts?: Record<string, { ansible_host?: string; ansible_user?: string; ansible_port?: number; [key: string]: unknown }>
+		hosts?: Record<string, { ansible_host?: string, ansible_user?: string, ansible_port?: number, [key: string]: unknown }>
 		vars?: Record<string, unknown>
-		children?: Record<string, { hosts?: Record<string, unknown>; vars?: Record<string, unknown>; children?: Record<string, unknown> }>
+		children?: Record<string, { hosts?: Record<string, unknown>, vars?: Record<string, unknown>, children?: Record<string, unknown> }>
 	}
 	ungrouped?: {
 		hosts?: Record<string, unknown>
@@ -899,23 +904,23 @@ export interface AnsibleInventory {
 export interface GitHubWorkflow {
 	name?: string
 	on?: string | string[] | {
-		push?: { branches?: string[]; branches_ignore?: string[]; paths?: string[]; paths_ignore?: string[]; tags?: string[]; tags_ignore?: string[] }
-		pull_request?: { branches?: string[]; branches_ignore?: string[]; paths?: string[]; paths_ignore?: string[]; types?: string[] }
+		push?: { branches?: string[], branches_ignore?: string[], paths?: string[], paths_ignore?: string[], tags?: string[], tags_ignore?: string[] }
+		pull_request?: { branches?: string[], branches_ignore?: string[], paths?: string[], paths_ignore?: string[], types?: string[] }
 		schedule?: { cron: string }[]
-		workflow_dispatch?: { inputs?: Record<string, { description?: string; required?: boolean; default?: string; type?: 'string' | 'choice' | 'boolean' | 'environment'; options?: string[] }> }
+		workflow_dispatch?: { inputs?: Record<string, { description?: string, required?: boolean, default?: string, type?: 'string' | 'choice' | 'boolean' | 'environment', options?: string[] }> }
 		repository_dispatch?: { types?: string[] }
 		workflow_call?: {
-			inputs?: Record<string, { description?: string; required?: boolean; default?: string; type: 'string' | 'choice' | 'boolean' | 'environment' | 'number'; options?: string[] }>
-			outputs?: Record<string, { description?: string; value: string }>
-			secrets?: Record<string, { description?: string; required?: boolean }>
+			inputs?: Record<string, { description?: string, required?: boolean, default?: string, type: 'string' | 'choice' | 'boolean' | 'environment' | 'number', options?: string[] }>
+			outputs?: Record<string, { description?: string, value: string }>
+			secrets?: Record<string, { description?: string, required?: boolean }>
 		}
-		workflow_run?: { workflows?: string[]; types?: string[]; branches?: string[] }
+		workflow_run?: { workflows?: string[], types?: string[], branches?: string[] }
 		release?: { types?: string[] }
 		page_build?: unknown
 	}
 	env?: Record<string, string | number>
-	defaults?: { run?: { shell?: string; working_directory?: string } }
-	concurrency?: { group?: string; cancel_in_progress?: boolean }
+	defaults?: { run?: { shell?: string, working_directory?: string } }
+	concurrency?: { group?: string, cancel_in_progress?: boolean }
 	jobs: Record<string, GitHubJob>
 }
 
@@ -926,17 +931,17 @@ export interface GitHubJob {
 	runs_on: string | string[]
 	timeout_minutes?: number
 	strategy?: {
-		matrix?: Record<string, unknown[]> | { include: Record<string, unknown>[]; exclude: Record<string, unknown>[] }
+		matrix?: Record<string, unknown[]> | { include: Record<string, unknown>[], exclude: Record<string, unknown>[] }
 		fail_fast?: boolean
 		max_parallel?: number
 	}
-	container?: string | { image: string; credentials?: { username?: string; password?: string }; env?: Record<string, string>; ports?: number[]; volumes?: string[]; options?: string }
-	services?: Record<string, { image: string; credentials?: { username?: string; password?: string }; env?: Record<string, string>; ports?: number[]; volumes?: string[]; options?: string }>
+	container?: string | { image: string, credentials?: { username?: string, password?: string }, env?: Record<string, string>, ports?: number[], volumes?: string[], options?: string }
+	services?: Record<string, { image: string, credentials?: { username?: string, password?: string }, env?: Record<string, string>, ports?: number[], volumes?: string[], options?: string }>
 	env?: Record<string, string | number>
 	steps: GitHubStep[]
 	outputs?: Record<string, string>
 	permissions?: Record<string, 'read' | 'write' | 'none'> | string
-	environment?: string | { name: string; url?: string }
+	environment?: string | { name: string, url?: string }
 	continue_on_error?: boolean
 }
 
@@ -958,59 +963,56 @@ export interface GitHubStep {
  * GitLab CI pipeline configuration
  */
 export interface GitLabPipeline {
-	image?: string | { name: string; entrypoint?: string | string[] }
+	image?: string | { name: string, entrypoint?: string | string[] }
 	stages?: string[]
 	default?: {
-		image?: string | { name: string; entrypoint?: string | string[] }
+		image?: string | { name: string, entrypoint?: string | string[] }
 		services?: (string | GitLabService)[]
 		before_script?: string[]
 		after_script?: string[]
 		cache?: GitLabCache
 		interruptible?: boolean
-		retry?: number | { max: number; when: string | string[] }
 		timeout?: string
 		artifacts?: GitLabArtifacts
 	}
-	variables?: Record<string, string | { value: string; description?: string }>
-	stages?: string[]
-	workflow?: { rules?: { if?: string; variables?: Record<string, string> }[] }
-	include?: (string | { local?: string; remote?: string; template?: string; project?: string; ref?: string; file: string })[]
+	variables?: Record<string, string | { value: string, description?: string }>
+	workflow?: { rules?: { if?: string, variables?: Record<string, string> }[] }
+	include?: (string | { local?: string, remote?: string, template?: string, project?: string, ref?: string, file: string })[]
 	[job: string]: GitLabJob | unknown
 }
 
 export interface GitLabJob {
-	image?: string | { name: string; entrypoint?: string | string[]; docker?: { platform?: string } }
+	image?: string | { name: string, entrypoint?: string | string[], docker?: { platform?: string } }
 	services?: (string | GitLabService)[]
 	script: string[]
 	stage?: string
-	extends?: string | string[]
-	rules?: { if?: string; changes?: string[]; exists?: string[]; variables?: Record<string, string>; when?: string; allow_failure?: boolean }[]
-	needs?: (string | { job: string; artifacts?: boolean; optional?: boolean })[]
+	rules?: { if?: string, changes?: string[], exists?: string[], variables?: Record<string, string>, when?: string, allow_failure?: boolean }[]
+	needs?: (string | { job: string, artifacts?: boolean, optional?: boolean })[]
 	dependencies?: string[]
 	extends?: string | string[]
 	variables?: Record<string, string>
-	environment?: string | { name: string; url?: string; on_stop?: string; action?: 'start' | 'stop' | 'access' | 'prepare' }
+	environment?: string | { name: string, url?: string, on_stop?: string, action?: 'start' | 'stop' | 'access' | 'prepare' }
 	cache?: GitLabCache
 	artifacts?: GitLabArtifacts
-	only?: string | string[] | { refs?: string[]; variables?: string[]; changes?: string[]; kubernetes?: string }
-	except?: string | string[] | { refs?: string[]; variables?: string[]; changes?: string[]; kubernetes?: string }
+	only?: string | string[] | { refs?: string[], variables?: string[], changes?: string[], kubernetes?: string }
+	except?: string | string[] | { refs?: string[], variables?: string[], changes?: string[], kubernetes?: string }
 	ref?: string
 	tags?: string[]
 	allow_failure?: boolean | { exit_codes: number | number[] }
 	when?: 'on_success' | 'on_failure' | 'always' | 'manual' | 'delayed' | 'never'
 	delay?: number
 	start_in?: string
-	retry?: number | { max: number; when: string | string[] }
+	retry?: number | { max: number, when: string | string[] }
 	timeout?: string
 	parallel?: number | { matrix: Record<string, unknown[]>[] }
 	interruptible?: boolean
 	resource_group?: string
-	trigger?: string | { project?: string; branch?: string; strategy?: string }
+	trigger?: string | { project?: string, branch?: string, strategy?: string }
 	coverage?: string
-	release?: { tag_name: string; name?: string; description: string; ref?: string; milestones?: string[]; released_at?: string }
-	inherit?: { variables?: boolean | string[]; default?: boolean | string[] }
+	release?: { tag_name: string, name?: string, description: string, ref?: string, milestones?: string[], released_at?: string }
+	inherit?: { variables?: boolean | string[], default?: boolean | string[] }
 	identity_trust?: string
-	secrets?: Record<string, { vault: { engine: { name: string; path: string }; path: string; field: string } }>
+	secrets?: Record<string, { vault: { engine: { name: string, path: string }, path: string, field: string } }>
 	id_tokens?: Record<string, { aud: string | string[] }>
 	before_script?: string[]
 	after_script?: string[]
@@ -1023,11 +1025,11 @@ export interface GitLabService {
 	variables?: Record<string, string>
 	alias?: string
 	ports?: number[]
-	credentials?: { username: string; password: string }
+	credentials?: { username: string, password: string }
 }
 
 export interface GitLabCache {
-	key?: string | { files: string[]; prefix?: string }
+	key?: string | { files: string[], prefix?: string }
 	paths: string[]
 	policy?: 'pull' | 'push' | 'pull-push' | 'push-pull'
 	when?: 'on_success' | 'on_failure' | 'always'
@@ -1058,7 +1060,7 @@ export interface GitLabArtifacts {
 		lsif?: string
 		terraform?: string
 		dotenv?: string
-		coverage_report?: { coverage_format: string; path: string }
+		coverage_report?: { coverage_format: string, path: string }
 	}
 }
 
@@ -1066,68 +1068,68 @@ export interface GitLabArtifacts {
  * Jenkins pipeline configuration
  */
 export interface JenkinsPipeline {
-	agent: 'any' | 'none' | { label?: string; docker?: string | { image: string; args?: string }; dockerfile?: { filename?: string; dir?: string; label?: string; additionalBuildArgs?: string; args?: string }; kubernetes?: unknown }
+	agent: 'any' | 'none' | { label?: string, docker?: string | { image: string, args?: string }, dockerfile?: { filename?: string, dir?: string, label?: string, additionalBuildArgs?: string, args?: string }, kubernetes?: unknown }
 	environment?: Record<string, string | { credentials: string }>
 	options?: {
-		buildDiscarder?: { logRotator: { numToKeepStr?: string; daysToKeepStr?: string; artifactDaysToKeepStr?: string; artifactNumToKeepStr?: string } }
+		buildDiscarder?: { logRotator: { numToKeepStr?: string, daysToKeepStr?: string, artifactDaysToKeepStr?: string, artifactNumToKeepStr?: string } }
 		checkoutToSubdirectory?: string
 		disableConcurrentBuilds?: boolean | { abortPrevious: boolean }
 		disableResume?: boolean
 		newContainerPerStage?: boolean
-		overrideIndexTriggers?: { ignoreMacroTriggers: boolean; ignoreRemoteTriggers: boolean }
+		overrideIndexTriggers?: { ignoreMacroTriggers: boolean, ignoreRemoteTriggers: boolean }
 		preserveStashes?: boolean | { buildCount: number }
 		quietPeriod?: number
 		retry?: number
 		skipDefaultCheckout?: boolean
 		skipStagesAfterUnstable?: boolean
-		timeout?: { time: number; unit?: 'NANOSECONDS' | 'MICROSECONDS' | 'MILLISECONDS' | 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' }
+		timeout?: { time: number, unit?: 'NANOSECONDS' | 'MICROSECONDS' | 'MILLISECONDS' | 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' }
 		timestamps?: boolean
 		parallelsAlwaysFailInFast?: boolean
 	}
-	parameters?: { name: string; type: 'string' | 'text' | 'boolean' | 'choice' | 'password' | 'password' | 'boolean'; defaultValue?: unknown; description?: string; choices?: string[] }[]
-	triggers?: { cron?: string; pollSCM?: string; github?: unknown }
+	parameters?: { name: string, type: 'string' | 'text' | 'boolean' | 'choice' | 'password' | 'password' | 'boolean', defaultValue?: unknown, description?: string, choices?: string[] }[]
+	triggers?: { cron?: string, pollSCM?: string, github?: unknown }
 	stages: JenkinsStage[]
-	post?: { always?: JenkinsStep[]; success?: JenkinsStep[]; failure?: JenkinsStep[]; unstable?: JenkinsStep[]; changed?: JenkinsStep[]; aborted?: JenkinsStep[]; cleanup?: JenkinsStep[] }
+	post?: { always?: JenkinsStep[], success?: JenkinsStep[], failure?: JenkinsStep[], unstable?: JenkinsStep[], changed?: JenkinsStep[], aborted?: JenkinsStep[], cleanup?: JenkinsStep[] }
 }
 
 export interface JenkinsStage {
 	stage: string
-	agent?: 'any' | 'none' | { label?: string; docker?: string | { image: string; args?: string } }
-	when?: { branch?: string; environment?: { name: string; value: string }; expression?: string; not?: unknown; allOf?: unknown[]; anyOf?: unknown[]; beforeAgent?: boolean; beforeInput?: boolean; beforeOptions?: boolean }
+	agent?: 'any' | 'none' | { label?: string, docker?: string | { image: string, args?: string } }
+	when?: { branch?: string, environment?: { name: string, value: string }, expression?: string, not?: unknown, allOf?: unknown[], anyOf?: unknown[], beforeAgent?: boolean, beforeInput?: boolean, beforeOptions?: boolean }
 	environment?: Record<string, string | { credentials: string }>
 	steps?: JenkinsStep[]
 	parallel?: JenkinsStage[]
-	matrix?: { axes: { name: string; values: string[] }[]; excludes?: { axis: { name: string; values: string[] }[] }[]; agent?: unknown; when?: unknown }
+	matrix?: { axes: { name: string, values: string[] }[], excludes?: { axis: { name: string, values: string[] }[] }[], agent?: unknown, when?: unknown }
 	stages?: JenkinsStage[]
-	input?: { message: string; id?: string; ok?: string; submitter?: string; submitterParameter?: string; parameters?: unknown[] }
+	input?: { message: string, id?: string, ok?: string, submitter?: string, submitterParameter?: string, parameters?: unknown[] }
 	options?: unknown
 	post?: unknown
 }
 
 export interface JenkinsStep {
 	script?: string
-	sh?: string | { script: string; returnStdout?: boolean; returnStatus?: boolean; encoding?: string }
-	bat?: string | { script: string; returnStdout?: boolean; returnStatus?: boolean; encoding?: string }
-	pwsh?: string | { script: string; returnStdout?: boolean; returnStatus?: boolean; encoding?: string }
+	sh?: string | { script: string, returnStdout?: boolean, returnStatus?: boolean, encoding?: string }
+	bat?: string | { script: string, returnStdout?: boolean, returnStatus?: boolean, encoding?: string }
+	pwsh?: string | { script: string, returnStdout?: boolean, returnStatus?: boolean, encoding?: string }
 	echo?: string
 	dir?: string
-	withCredentials?: { usernamePassword: { credentialsId: string; usernameVariable: string; passwordVariable: string }[]; string: { credentialsId: string; variable: string }[] }
+	withCredentials?: { usernamePassword: { credentialsId: string, usernameVariable: string, passwordVariable: string }[], string: { credentialsId: string, variable: string }[] }
 	withEnv?: Record<string, string>
 	error?: string
 	retry?: number
-	sleep?: number | { time: number; unit: 'NANOSECONDS' | 'MICROSECONDS' | 'MILLISECONDS' | 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' }
-	timeout?: { time: number; unit?: string }
+	sleep?: number | { time: number, unit: 'NANOSECONDS' | 'MICROSECONDS' | 'MILLISECONDS' | 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' }
+	timeout?: { time: number, unit?: string }
 	waitUntil?: JenkinsStep[]
-	writeFile?: { file: string; text: string; encoding?: string }
-	readFile?: string | { file: string; encoding?: string }
+	writeFile?: { file: string, text: string, encoding?: string }
+	readFile?: string | { file: string, encoding?: string }
 	fileExists?: string
-	archiveArtifacts?: string | { artifacts: string; allowEmptyArchive?: boolean; fingerprint?: boolean; onlyIfSuccessful?: boolean; defaultExcludes?: boolean }
-	junit?: string | { testResults: string; allowEmptyResults?: boolean; keepLongStdio?: boolean; healthScaleFactor?: number }
-	publishHTML?: { reportDir: string; reportFiles: string; reportName?: string; keepAll?: boolean; allowMissing?: boolean; alwaysLinkToLastBuild?: boolean }
+	archiveArtifacts?: string | { artifacts: string, allowEmptyArchive?: boolean, fingerprint?: boolean, onlyIfSuccessful?: boolean, defaultExcludes?: boolean }
+	junit?: string | { testResults: string, allowEmptyResults?: boolean, keepLongStdio?: boolean, healthScaleFactor?: number }
+	publishHTML?: { reportDir: string, reportFiles: string, reportName?: string, keepAll?: boolean, allowMissing?: boolean, alwaysLinkToLastBuild?: boolean }
 	emailext?: unknown
 	slack?: unknown
 	milestone?: number
-	build?: { job: string; parameters?: Record<string, string>; propagate?: boolean; wait?: boolean }
+	build?: { job: string, parameters?: Record<string, string>, propagate?: boolean, wait?: boolean }
 }
 
 /**
@@ -1136,24 +1138,24 @@ export interface JenkinsStep {
 export interface CircleCIConfig {
 	version: string | number
 	setup?: boolean
-	parameters?: Record<string, { type: 'string' | 'boolean' | 'integer' | 'enum'; default?: unknown; description?: string; enum?: string[] }>
-	orbs?: Record<string, { commands?: Record<string, unknown>; executors?: Record<string, unknown>; jobs?: Record<string, unknown> } | string>
-	executors?: Record<string, { docker?: { image: string; command?: string; environment?: Record<string, string> }[]; resource_class?: string }>
-	commands?: Record<string, { description?: string; parameters?: Record<string, unknown>; steps: unknown[] }>
+	parameters?: Record<string, { type: 'string' | 'boolean' | 'integer' | 'enum', default?: unknown, description?: string, enum?: string[] }>
+	orbs?: Record<string, { commands?: Record<string, unknown>, executors?: Record<string, unknown>, jobs?: Record<string, unknown> } | string>
+	executors?: Record<string, { docker?: { image: string, command?: string, environment?: Record<string, string> }[], resource_class?: string }>
+	commands?: Record<string, { description?: string, parameters?: Record<string, unknown>, steps: unknown[] }>
 	jobs?: Record<string, CircleCIJob>
 	workflows?: Record<string, {
-		triggers?: { schedule: { cron: string; filters: { branches: { only?: string[]; ignore?: string[] } } } }[]
+		triggers?: { schedule: { cron: string, filters: { branches: { only?: string[], ignore?: string[] } } } }[]
 		when?: string
 		unless?: string
-		jobs: (string | { [job: string]: { filters?: { branches: { only?: string[]; ignore?: string[] }; tags: { only?: string[]; ignore?: string[] } }; requires?: string[]; context?: string | string[]; type?: 'approval' } })[]
+		jobs: (string | { [job: string]: { filters?: { branches: { only?: string[], ignore?: string[] }, tags: { only?: string[], ignore?: string[] } }, requires?: string[], context?: string | string[], type?: 'approval' } })[]
 	}>
 }
 
 export interface CircleCIJob {
-	docker?: { image: string; command?: string; environment?: Record<string, string> }[]
-	machine?: { image: string; docker_layer_caching?: boolean }
+	docker?: { image: string, command?: string, environment?: Record<string, string> }[]
+	machine?: { image: string, docker_layer_caching?: boolean }
 	macos?: { xcode: string }
-	windows?: { image: string; shell: 'bash.exe' | 'powershell.exe' }
+	windows?: { image: string, shell: 'bash.exe' | 'powershell.exe' }
 	environment?: Record<string, string>
 	shell?: '/bin/sh' | '/bin/bash' | '/usr/bin/env bash' | '/usr/bin/env sh'
 	parameters?: Record<string, unknown>
@@ -1164,21 +1166,16 @@ export interface CircleCIJob {
 }
 
 export interface CircleCIStep {
-	run?: string | { name?: string; command: string; shell?: string; when?: 'always' | 'on_success' | 'on_fail'; environment?: Record<string, string>; working_directory?: string; background?: boolean; no_output_timeout?: string }
+	run?: string | { name?: string, command: string, shell?: string, when?: 'always' | 'on_success' | 'on_fail', environment?: Record<string, string>, working_directory?: string, background?: boolean, no_output_timeout?: string }
 	when?: 'always' | 'on_success' | 'on_fail'
 	checkout?: { path?: string }
-	persist_to_workspace?: { root: string; paths: string[] }
+	persist_to_workspace?: { root: string, paths: string[] }
 	attach_workspace?: { at: string }
 	restore_cache?: { keys: string[] }
-	save_cache?: { key: string; paths: string[] }
-	store_artifacts?: { path: string; destination?: string }
+	save_cache?: { key: string, paths: string[] }
+	store_artifacts?: { path: string, destination?: string }
 	store_test_results?: { path: string }
 	deploy?: string | { command: string }
-	persist_to_workspace?: { root: string; paths: string[] }
-	set_workspace_on_path?: string
-	attach_workspace?: { at: string }
-	restore_cache?: { key: string } | { keys: string[]; name?: string }
-	save_cache?: { key: string; paths: string[]; when?: 'always' | 'on_success' | 'on_fail' }
 }
 
 // ============== Cloud Types ==============
@@ -1208,7 +1205,7 @@ export interface AzureResource<T = Record<string, unknown>> {
 	properties?: T
 	tags?: Record<string, string>
 	dependsOn?: string[]
-	sku?: { name: string; tier?: string; capacity?: number }
+	sku?: { name: string, tier?: string, capacity?: number }
 	zones?: string[]
 	resources?: AzureResource[]
 }
@@ -1254,7 +1251,7 @@ export interface CloudFormation {
 	Mappings?: Record<string, Record<string, Record<string, unknown>>>
 	Conditions?: Record<string, unknown>
 	Resources: Record<string, AWSResource>
-	Outputs?: Record<string, { Value: unknown; Description?: string; Export?: { Name: string } }>
+	Outputs?: Record<string, { Value: unknown, Description?: string, Export?: { Name: string } }>
 	Metadata?: Record<string, unknown>
 }
 
@@ -1273,7 +1270,7 @@ export interface HelmChart {
 	icon?: string
 	home?: string
 	sources?: string[]
-	maintainers?: { name: string; email?: string; url?: string }[]
+	maintainers?: { name: string, email?: string, url?: string }[]
 	keywords?: string[]
 	annotations?: Record<string, string>
 	deprecated?: boolean
@@ -1322,19 +1319,19 @@ export type HelmValues = Record<string, unknown>
  * Helm values configuration
  */
 export interface HelmValuesFile {
-	image?: { repository: string; tag?: string; pullPolicy?: 'Always' | 'Never' | 'IfNotPresent' }
+	image?: { repository: string, tag?: string, pullPolicy?: 'Always' | 'Never' | 'IfNotPresent' }
 	replicaCount?: number
 	imagePullSecrets?: { name: string }[]
 	nameOverride?: string
 	fullnameOverride?: string
-	serviceAccount?: { create?: boolean; annotations?: Record<string, string>; name?: string }
+	serviceAccount?: { create?: boolean, annotations?: Record<string, string>, name?: string }
 	podAnnotations?: Record<string, string>
 	podSecurityContext?: K8sPodSecurityContext
 	securityContext?: K8sSecurityContext
-	service?: { type: 'ClusterIP' | 'NodePort' | 'LoadBalancer'; port: number }
-	ingress?: { enabled?: boolean; className?: string; annotations?: Record<string, string>; hosts?: { host?: string; paths: { path: string; pathType: string }[] }[]; tls?: { secretName: string; hosts?: string[] }[] }
+	service?: { type: 'ClusterIP' | 'NodePort' | 'LoadBalancer', port: number }
+	ingress?: { enabled?: boolean, className?: string, annotations?: Record<string, string>, hosts?: { host?: string, paths: { path: string, pathType: string }[] }[], tls?: { secretName: string, hosts?: string[] }[] }
 	resources?: K8sResourceRequirements
-	autoscaling?: { enabled?: boolean; minReplicas?: number; maxReplicas?: number; targetCPUUtilizationPercentage?: number; targetMemoryUtilizationPercentage?: number }
+	autoscaling?: { enabled?: boolean, minReplicas?: number, maxReplicas?: number, targetCPUUtilizationPercentage?: number, targetMemoryUtilizationPercentage?: number }
 	nodeSelector?: Record<string, string>
 	tolerations?: K8sToleration[]
 	affinity?: K8sAffinity

@@ -782,12 +782,12 @@ export type AngularInput<T = unknown> = {
 	required?: boolean
 	alias?: string
 	transform?: (value: unknown) => T
-} & ({ required: true } | { required?: false; defaultValue?: T })
+} & ({ required: true } | { required?: false, defaultValue?: T })
 
 /**
  * Angular output type
  */
-export type AngularOutput<T = unknown> = {
+export interface AngularOutput<_T = unknown> {
 	alias?: string
 }
 
@@ -817,11 +817,11 @@ export type AngularEffect = (fn: () => void | (() => void)) => void
 /**
  * Svelte component type
  */
-export type SvelteComponent<
+export interface SvelteComponent<
 	Props extends Record<string, unknown> = Record<string, unknown>,
 	Events extends Record<string, unknown> = Record<string, unknown>,
 	Slots extends Record<string, unknown> = Record<string, unknown>,
-> = {
+> {
 	new (options: {
 		target: Element
 		props?: Props
@@ -880,7 +880,7 @@ export type SvelteTransition = (node: Element, parameters?: unknown) => {
 /**
  * Svelte animation type
  */
-export type SvelteAnimation = (node: Element, options?: { from: DOMRect, to: DOMRect }) => {
+export type SvelteAnimation = (node: Element, options?: { from: { x: number, y: number, width: number, height: number }, to: { x: number, y: number, width: number, height: number } }) => {
 	delay?: number
 	duration?: number
 	easing?: (t: number) => number
@@ -1023,7 +1023,7 @@ export interface BackboneRouter {
  */
 export type PreactComponent<
 	Props extends Record<string, unknown> = Record<string, unknown>,
-	State extends Record<string, unknown> = Record<string, unknown>,
+	_State extends Record<string, unknown> = Record<string, unknown>,
 > = (props: Props) => unknown
 
 /**
@@ -1051,7 +1051,7 @@ export interface PreactHooks {
  * Preact context type
  */
 export interface PreactContext<T = unknown> {
-	Provider: (props: { value: T; children?: unknown }) => unknown
+	Provider: (props: { value: T, children?: unknown }) => unknown
 	Consumer: (props: { children: (value: T) => unknown }) => unknown
 	defaultValue: T
 }
@@ -1118,7 +1118,7 @@ export type SolidRenderEffect = (fn: () => void) => void
  * Lit element type
  */
 export interface LitElement<
-	Props extends Record<string, unknown> = Record<string, unknown>,
+	_Props extends Record<string, unknown> = Record<string, unknown>,
 > {
 	render: () => unknown
 	updated: (changedProperties: Map<string, unknown>) => void
@@ -1170,7 +1170,7 @@ export type LitDecorator = (
 /**
  * Lit custom element type
  */
-export type LitCustomElement<T extends HTMLElement = HTMLElement> = {
+export interface LitCustomElement<T extends HTMLElement = HTMLElement> {
 	new (): T
 }
 
@@ -1305,7 +1305,7 @@ export type AlpineBind<T = unknown> = T | (() => T)
 /**
  * Alpine x-on type
  */
-export type AlpineOn<Event = Event> = (event: Event) => void
+export type AlpineOn<E = unknown> = (event: E) => void
 
 /**
  * Alpine x-show type
@@ -1328,7 +1328,7 @@ export interface AlpineFor<T = unknown> {
 /**
  * Alpine x-model type
  */
-export type AlpineModel<T = unknown> = {
+export interface AlpineModel<T = unknown> {
 	value: T
 	$: string
 }

@@ -28,7 +28,7 @@ export interface WebpackOutput {
 	path?: string
 	filename?: string | ((pathData: { chunk: unknown }) => string)
 	publicPath?: string
-	library?: string | { name: string; type: string }
+	library?: string | { name: string, type: string }
 	libraryTarget?: string
 	chunkFilename?: string
 	assetModuleFilename?: string
@@ -59,7 +59,7 @@ export interface WebpackLoader {
 }
 
 export interface WebpackResolve {
-	alias?: Record<string, string | false | { alias: string; name: string }>
+	alias?: Record<string, string | false | { alias: string, name: string }>
 	extensions?: string[]
 	modules?: string | string[]
 	mainFields?: string | string[]
@@ -76,16 +76,16 @@ export interface WebpackPlugin {
 }
 
 export interface WebpackDevServer {
-	static?: boolean | { directory: string; publicPath?: string; serveIndex?: boolean; watch?: boolean }
+	static?: boolean | { directory: string, publicPath?: string, serveIndex?: boolean, watch?: boolean }
 	port?: number | string
 	host?: string
 	open?: boolean | string | { app?: string | string[] }
 	hot?: boolean
 	compress?: boolean
-	historyApiFallback?: boolean | { index?: string; disableDotRule?: boolean }
+	historyApiFallback?: boolean | { index?: string, disableDotRule?: boolean }
 	proxy?: Record<string, string | WebpackProxyConfig>
 	headers?: Record<string, string>
-	https?: boolean | { key: string; cert: string; ca?: string }
+	https?: boolean | { key: string, cert: string, ca?: string }
 }
 
 export interface WebpackProxyConfig {
@@ -228,8 +228,8 @@ export interface ViteConfig {
 export interface VitePlugin {
 	name: string
 	enforce?: 'pre' | 'post'
-	apply?: 'serve' | 'build' | ((config: ViteConfig, env: { mode: string; command: string }) => boolean)
-	config?: (config: ViteConfig, env: { mode: string; command: string }) => ViteConfig | void
+	apply?: 'serve' | 'build' | ((config: ViteConfig, env: { mode: string, command: string }) => boolean)
+	config?: (config: ViteConfig, env: { mode: string, command: string }) => ViteConfig | void
 	configResolved?: (resolvedConfig: unknown) => void
 	transform?: (code: string, id: string) => ViteTransformResult | Promise<ViteTransformResult>
 	load?: (id: string, options?: { ssr?: boolean }) => ViteLoadResult | Promise<ViteLoadResult>
@@ -272,7 +272,7 @@ export interface ViteResolve {
 	preserveSymlinks?: boolean
 }
 
-export type ViteAlias = {
+export interface ViteAlias {
 	find: string | RegExp
 	replacement: string
 	customResolver?: (id: string) => string | Promise<string>
@@ -288,7 +288,7 @@ export interface ViteBuild {
 	sourcemapExcludeSources?: boolean
 	reportCompressedSize?: boolean
 	chunkSizeWarningLimit?: number
-	rollupOptions?: RollupOptions
+	rollupOptions?: RollupConfig
 	assetsDir?: string
 	assetsInlineLimit?: number
 	write?: boolean
@@ -311,7 +311,7 @@ export interface ViteLibOptions {
 	entry: string | string[] | { [entryAlias: string]: string }
 	name?: string
 	formats?: ('es' | 'cjs' | 'umd' | 'iife')[]
- fileName?: string | ((format: string) => string)
+	fileName?: string | ((format: string) => string)
 }
 
 export interface ViteServer {
@@ -446,10 +446,10 @@ export interface ViteDevServer {
 	watcher: unknown
 	moduleGraph: unknown
 	transformIndexHtml: (url: string, html: string) => Promise<string>
-	transformRequest: (url: string, options?: { ssr?: boolean }) => Promise<{ code: string; map: unknown } | null>
+	transformRequest: (url: string, options?: { ssr?: boolean }) => Promise<{ code: string, map: unknown } | null>
 	ssrLoadModule: (url: string) => Promise<unknown>
 	reloadModule: (url: string) => Promise<void>
-	send: (event: { type: string; path?: string }) => void
+	send: (event: { type: string, path?: string }) => void
 	printUrls: () => void
 	resolve: (url: string) => Promise<string>
 	ws: unknown
@@ -498,7 +498,6 @@ export interface RollupOutput {
 	sourcemapFile?: string
 	sourcemapPathTransform?: (relativeSourcemapPath: string, sourcemapPath: string) => string
 	esModule?: boolean
-	exports?: 'auto' | 'default' | 'named' | 'none'
 	extend?: boolean
 	hashCharacters?: string
 	assetFileNames?: string | ((chunkInfo: { name: string }) => string)
@@ -593,7 +592,7 @@ export interface RollupWarning {
 	message: string
 	id?: string
 	pos?: number
-	loc?: { file: string; line: number; column: number }
+	loc?: { file: string, line: number, column: number }
 	frame?: string
 	stack?: string
 }
@@ -678,7 +677,6 @@ export interface ESBuildOptions {
 	ignoreAnnotations?: boolean
 	drop?: ('console' | 'debugger')[]
 	dropLabels?: string[]
-	inject?: string[]
 	plugins?: ESBuildPlugin[]
 	absWorkingDir?: string
 	nodePaths?: string[]
@@ -688,9 +686,6 @@ export interface ESBuildOptions {
 	write?: boolean
 	allowOverwrite?: boolean
 	charset?: 'ascii' | 'utf8'
-	banner?: string | Record<string, string>
-	footer?: string | Record<string, string>
-	plugins?: ESBuildPlugin[]
 }
 
 /**
@@ -703,7 +698,7 @@ export interface ESBuildPlugin {
 
 export interface ESBuildPluginBuild {
 	initialOptions: ESBuildOptions
-	resolve: (path: string, options?: { importer?: string; resolveDir?: string; namespace?: string }) => Promise<ESBuildResolveResult>
+	resolve: (path: string, options?: { importer?: string, resolveDir?: string, namespace?: string }) => Promise<ESBuildResolveResult>
 	onStart: (callback: () => void | Promise<void>) => void
 	onEnd: (callback: (result: ESBuildResult) => void | Promise<void>) => void
 	onResolve: (options: ESBuildOnResolveOptions, callback: (args: ESBuildOnResolveArgs) => ESBuildOnResolveResult | Promise<ESBuildOnResolveResult>) => void
@@ -896,7 +891,7 @@ export interface TurbopackPlugin {
 export interface BabelConfig {
 	presets?: (string | [string, Record<string, unknown>])[]
 	plugins?: (string | [string, Record<string, unknown>])[]
-	env?: Record<string, { presets?: unknown[]; plugins?: unknown[] }>
+	env?: Record<string, { presets?: unknown[], plugins?: unknown[] }>
 	cwd?: string
 	root?: string
 	rootMode?: 'root' | 'upward' | 'upward-optional'
@@ -1035,7 +1030,7 @@ export interface SWCCompressOptions {
 }
 
 export interface SWCMangleOptions {
-	props?: { regex?: RegExp; reserved?: string[] }
+	props?: { regex?: RegExp, reserved?: string[] }
 	toplevel?: boolean
 	keep_classnames?: boolean
 	keep_fnames?: boolean
@@ -1079,7 +1074,7 @@ export interface UniversalBuildConfig {
 		filename: string
 		format: 'esm' | 'cjs' | 'umd' | 'iife'
 		publicPath?: string
-		library?: { name: string; type: string }
+		library?: { name: string, type: string }
 	}
 	plugins?: unknown[]
 	resolve?: {

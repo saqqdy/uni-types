@@ -1,3 +1,6 @@
+// Accessibility Types (v1.10.0)
+export * from './accessibility'
+
 // AI/ML Type Utilities (v1.6.0)
 export type {
 	ActivationFunction,
@@ -118,6 +121,9 @@ export * from './blockchain'
 
 // Brand types (v1.1.0)
 export * from './brand'
+
+// Build Tools Types (v1.10.0)
+export * from './build-tools'
 
 // Caching Strategies (v1.5.0)
 export type {
@@ -393,6 +399,9 @@ export type {
 	Verified,
 } from './crypto'
 
+// Data Format Types (v1.10.0)
+export * from './data-format'
+
 // Type-level database (v1.4.0)
 export type {
 	ColumnSchema,
@@ -626,6 +635,9 @@ export type {
 
 // Deep operations
 export * from './deep'
+
+// DevOps Types (v1.10.0)
+export * from './devops'
 
 // Distributed Systems (v1.6.0)
 export type {
@@ -1172,6 +1184,36 @@ export * from './graphql'
 // Type guards
 export * from './guards'
 
+// Higher-Kinded Types (v1.10.0)
+export type {
+	ChurchBoolean,
+	ChurchList,
+	ChurchNumeral,
+	ChurchPair,
+	ComposeAll,
+	Curried,
+	Fix,
+	FlipArgs,
+	HKT,
+	Either as HKTEither,
+	Just as HKTJust,
+	Maybe as HKTMaybe,
+	Monad as HKTMonad,
+	Nothing as HKTNothing,
+	Kind2,
+	Kind3,
+	Memoize,
+	Mu,
+	Nu,
+	PartialApply,
+	PipeAll,
+	Recurse,
+	RecurseUntil,
+	RecurseWhile,
+	TailCall,
+	Uncurried,
+} from './hkt'
+
 // Type-level HTTP & API (v1.4.0)
 export type {
 	Middleware as HTTPMiddleware,
@@ -1380,8 +1422,16 @@ export type {
 // Type-level interop (v1.4.0)
 export * from './interop'
 
+// ============================================================================
+// v1.7.0 - Metaprogramming Utilities
+// ============================================================================
+
 // Key utilities (v1.1.0)
 export * from './keys'
+
+// ============================================================================
+// v1.7.0 - Type Decorators
+// ============================================================================
 
 // Logging & Observability (v1.5.0)
 export type {
@@ -1424,6 +1474,10 @@ export type {
 	Tracer,
 	TraceStatus,
 } from './logging'
+
+// ============================================================================
+// v1.7.0 - Code Generation Templates
+// ============================================================================
 
 export type {
 	Abs,
@@ -1526,6 +1580,10 @@ export type {
 	Variance,
 } from './math-advanced'
 
+// ============================================================================
+// v1.7.0 - Framework Integrations
+// ============================================================================
+
 export type {
 	Analyze,
 	Apply,
@@ -1559,6 +1617,10 @@ export type {
 	Width,
 } from './meta'
 
+// ============================================================================
+// v1.7.0 - Type-Safe Configuration
+// ============================================================================
+
 // Microservices Architecture (v1.5.0)
 export type {
 	APIGateway,
@@ -1591,7 +1653,7 @@ export type {
 } from './microservice'
 
 // ============================================================================
-// v1.7.0 - Metaprogramming Utilities
+// v1.7.0 - Type Visualization
 // ============================================================================
 
 // Performance Monitoring (v1.6.0)
@@ -1643,7 +1705,7 @@ export type {
 } from './monitoring'
 
 // ============================================================================
-// v1.7.0 - Type Decorators
+// v1.7.0 - Type-Level Cryptography
 // ============================================================================
 
 export type {
@@ -1704,28 +1766,28 @@ export type {
 } from './network'
 
 // ============================================================================
-// v1.7.0 - Code Generation Templates
+// v1.7.0 - Type-Level Date/Time
 // ============================================================================
 
 // Type-Level Language Processing (v1.9.0)
 export * from './nlp'
 
 // ============================================================================
-// v1.7.0 - Framework Integrations
+// v1.7.0 - Type-Level Advanced Math
 // ============================================================================
 
 // Numeric utilities (v1.1.0)
 export * from './numeric'
 
 // ============================================================================
-// v1.7.0 - Type-Safe Configuration
+// v1.7.0 - Type-Level Sorting & Searching
 // ============================================================================
 
 // Object utilities (v1.3.0)
 export * from './object'
 
 // ============================================================================
-// v1.7.0 - Type Visualization
+// v1.8.0 - Type Inference Engine
 // ============================================================================
 
 export type {
@@ -1791,7 +1853,7 @@ export type {
 } from './optimizer'
 
 // ============================================================================
-// v1.7.0 - Type-Level Cryptography
+// v1.8.0 - Type-Level Database Operations (Extended)
 // ============================================================================
 
 export type {
@@ -1860,35 +1922,35 @@ export type {
 } from './package-manager'
 
 // ============================================================================
-// v1.7.0 - Type-Level Date/Time
+// v1.8.0 - Type-Level Network Protocols
 // ============================================================================
 
 // Type-level parsers (v1.4.0)
 export * from './parsers'
 
 // ============================================================================
-// v1.7.0 - Type-Level Advanced Math
+// v1.8.0 - Type-Level File System
 // ============================================================================
 
 // Path utilities (v1.1.0)
 export * from './path'
 
 // ============================================================================
-// v1.7.0 - Type-Level Sorting & Searching
+// v1.8.0 - Type-Level Compiler Extensions
 // ============================================================================
 
 // Pattern matching (v1.3.0)
 export * from './pattern'
 
 // ============================================================================
-// v1.8.0 - Type Inference Engine
+// v1.8.0 - Type-Level Debugging Tools
 // ============================================================================
 
 // Performance optimization (v1.2.0)
 export * from './perf'
 
 // ============================================================================
-// v1.8.0 - Type-Level Database Operations (Extended)
+// v1.8.0 - Type-Level Optimizer
 // ============================================================================
 
 // Plugin System Types (v1.6.0)
@@ -1937,14 +1999,75 @@ export type {
 } from './plugin'
 
 // ============================================================================
-// v1.8.0 - Type-Level Network Protocols
+// v1.8.0 - Type-Level Documentation Generator
+// ============================================================================
+
+// Final Polish Types (v1.10.0)
+export type {
+	Annotate,
+	CheckAll,
+	CleanAll,
+	Deduplicate,
+	DeduplicateProperties,
+	DeepReplaceValue,
+	Describe,
+	Example,
+	ExplainType,
+	FlattenAll,
+	FlattenIntersection,
+	FlattenUnionToTuple,
+	HasKey,
+	IsObject,
+	IsPrimitive,
+	Lock,
+	MapType,
+	MergeDeduplicated,
+	Minify,
+	NormalizeAll,
+	OmitByValue,
+	Optimize,
+	OptimizeDeep,
+	OptimizedType,
+	OptimizeFor,
+	PickByValue,
+	RemoveDuplicates,
+	ReplaceValue,
+	Shorten,
+	ShowType,
+	SimplifyAll,
+	SimplifyIntersection,
+	SimplifyUnion,
+	StripNullable,
+	StripNullish,
+	StripOptional,
+	TestAll,
+	TypeCheckError,
+	TypeDependency,
+	TypeDocumentation,
+	TypePath,
+	TypeReferenceGraph,
+	TypeStructure,
+	Unique,
+	UniqueKeys,
+	VerifyAll,
+} from './polish'
+
+// ============================================================================
+// v1.8.0 - Type-Level Test Framework (Extended)
+// ============================================================================
+
+// Quality Assurance Types (v1.10.0)
+export * from './qa'
+
+// ============================================================================
+// v1.8.0 - Type-Level Package Manager
 // ============================================================================
 
 // Type-Level Quantum Computing (v1.9.0)
 export * from './quantum'
 
 // ============================================================================
-// v1.8.0 - Type-Level File System
+// v1.9.0 - Advanced Domain-Specific Types
 // ============================================================================
 
 // Type-Level Reactive Programming (v1.9.0)
@@ -2008,16 +2131,8 @@ export type {
 	WritableSignal,
 } from './reactive'
 
-// ============================================================================
-// v1.8.0 - Type-Level Compiler Extensions
-// ============================================================================
-
 // Record utilities (v1.1.0)
 export * from './record'
-
-// ============================================================================
-// v1.8.0 - Type-Level Debugging Tools
-// ============================================================================
 
 // Schema validation (v1.2.0)
 export type {
@@ -2035,10 +2150,6 @@ export type {
 	ZodOutput,
 	ZodShape,
 } from './schema'
-
-// ============================================================================
-// v1.8.0 - Type-Level Optimizer
-// ============================================================================
 
 export type {
 	AllIndices,
@@ -2133,10 +2244,6 @@ export type {
 	ZipWith,
 } from './search'
 
-// ============================================================================
-// v1.8.0 - Type-Level Documentation Generator
-// ============================================================================
-
 // Security Types (v1.6.0)
 export type {
 	APICredentials,
@@ -2197,10 +2304,6 @@ export type {
 	SignedData,
 } from './security'
 
-// ============================================================================
-// v1.8.0 - Type-Level Test Framework (Extended)
-// ============================================================================
-
 // Type-level state machines (v1.4.0)
 export type {
 	BuildStateMachine,
@@ -2217,16 +2320,8 @@ export type {
 	ValidTransitions,
 } from './statemachine'
 
-// ============================================================================
-// v1.8.0 - Type-Level Package Manager
-// ============================================================================
-
 // String utilities (v1.3.0)
 export * from './string'
-
-// ============================================================================
-// v1.9.0 - Advanced Domain-Specific Types
-// ============================================================================
 
 // Template literal utilities (v1.1.0)
 export * from './template'
@@ -2325,6 +2420,8 @@ export type {
 	WorkerPool,
 } from './test-framework'
 
+// ============== v1.10.0 Types ==============
+
 // Type-level testing (v1.4.0)
 export * from './testing'
 
@@ -2376,6 +2473,25 @@ export type {
 	SecretConfig as TypesafeSecretConfig,
 	YAMLConfig,
 } from './typesafe-config'
+
+// Ultimate Type Utilities (v1.10.0)
+export type {
+	AssertKeys,
+	AssertShape,
+	AssertValues,
+	Complete,
+	CompleteEntries,
+	CompleteKeys,
+	CompleteValues,
+	Final,
+	Locked,
+	Perfect,
+	PerfectOmit,
+	PerfectPartial,
+	PerfectPick,
+	PerfectRequired,
+	Ultimate,
+} from './ultimate'
 
 // Utility types
 export * from './utils'
@@ -2533,29 +2649,3 @@ export type {
 	WorkflowTimeout,
 	WorkflowTransition,
 } from './workflow'
-
-// ============== v1.10.0 Types ==============
-
-// Ultimate Type Utilities (v1.10.0)
-export * from './ultimate'
-
-// Higher-Kinded Types (v1.10.0)
-export * from './hkt'
-
-// Build Tools Types (v1.10.0)
-export * from './build-tools'
-
-// DevOps Types (v1.10.0)
-export * from './devops'
-
-// Quality Assurance Types (v1.10.0)
-export * from './qa'
-
-// Accessibility Types (v1.10.0)
-export * from './accessibility'
-
-// Final Polish Types (v1.10.0)
-export * from './polish'
-
-// Data Format Types (v1.10.0)
-export * from './data-format'

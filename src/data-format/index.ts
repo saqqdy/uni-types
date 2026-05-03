@@ -9,8 +9,8 @@
 /**
  * JSON value type
  */
-export type JSONValue =
-	| string
+export type JSONValue
+	= | string
 	| number
 	| boolean
 	| null
@@ -20,7 +20,7 @@ export type JSONValue =
 /**
  * JSON object type
  */
-export type JSONObject = { [key: string]: JSONValue }
+export interface JSONObject { [key: string]: JSONValue }
 
 /**
  * JSON array type
@@ -35,7 +35,7 @@ export type JSONPrimitive = string | number | boolean | null
 /**
  * JSON schema type
  */
-export interface JSONSchema<T = unknown> {
+export interface JSONSchema<_T = unknown> {
 	$schema?: string
 	$id?: string
 	title?: string
@@ -72,8 +72,6 @@ export interface JSONSchema<T = unknown> {
 	minItems?: number
 	maxItems?: number
 	uniqueItems?: boolean
-	contains?: JSONSchema
-	contentEncoding?: string
 	contentMediaType?: string
 	examples?: unknown[]
 	ref?: string
@@ -81,20 +79,18 @@ export interface JSONSchema<T = unknown> {
 	definitions?: Record<string, JSONSchema>
 	$defs?: Record<string, JSONSchema>
 	nullable?: boolean
-	discriminator?: { propertyName: string; mapping?: Record<string, string> }
-	xml?: { name?: string; namespace?: string; prefix?: string; attribute?: boolean; wrapped?: boolean }
-	externalDocs?: { url: string; description?: string }
+	discriminator?: { propertyName: string, mapping?: Record<string, string> }
+	xml?: { name?: string, namespace?: string, prefix?: string, attribute?: boolean, wrapped?: boolean }
+	externalDocs?: { url: string, description?: string }
 	deprecated?: boolean
 	readOnly?: boolean
 	writeOnly?: boolean
-	contains?: JSONSchema
-	examples?: unknown[]
 }
 
 /**
  * JSON path type
  */
-export type JSONPath<T = unknown> = string | (string | number)[]
+export type JSONPath<_T = unknown> = string | (string | number)[]
 
 /**
  * JSON patch operation type
@@ -149,7 +145,7 @@ export interface XMLDocument {
 		encoding?: string
 		standalone?: 'yes' | 'no'
 	}
-	processingInstructions?: { target: string; content: string }[]
+	processingInstructions?: { target: string, content: string }[]
 	doctype?: string
 	root: XMLNode
 }
@@ -157,7 +153,7 @@ export interface XMLDocument {
 /**
  * XML schema type (XSD)
  */
-export interface XMLSchema<T = unknown> {
+export interface XMLSchema<_T = unknown> {
 	targetNamespace?: string
 	elementFormDefault?: 'qualified' | 'unqualified'
 	attributeFormDefault?: 'qualified' | 'unqualified'
@@ -252,8 +248,8 @@ export type XPathResult<T = unknown> = T | T[] | null
 /**
  * YAML value type
  */
-export type YAMLValue<T = unknown> =
-	| string
+export type YAMLValue<T = unknown>
+	= | string
 	| number
 	| boolean
 	| null
@@ -313,7 +309,7 @@ export interface YAMLConfig {
 	version?: '1.1' | '1.2'
 	schema?: 'failsafe' | 'json' | 'core' | 'yaml-1.1'
 	merge?: boolean
-	tags?: { tag: string; test: RegExp; resolve: (value: string) => unknown }[]
+	tags?: { tag: string, test: RegExp, resolve: (value: string) => unknown }[]
 }
 
 // ============== CSV Types ==============
@@ -343,7 +339,7 @@ export interface CSVConfig<T = unknown> {
 	skipEmptyLines?: boolean
 	trim?: boolean
 	trimHeaders?: boolean
-	cast?: boolean | ((value: string, context: { header: string | number; index: number }) => unknown)
+	cast?: boolean | ((value: string, context: { header: string | number, index: number }) => unknown)
 	castDate?: boolean | string
 	comment?: string
 	maxRowSize?: number
@@ -384,7 +380,7 @@ export interface CSVStringifyOptions extends CSVConfig {
  */
 export interface CSVParseResult<T = unknown> {
 	data: CSVRow<T>[]
-	errors: { message: string; row: number; column?: number }[]
+	errors: { message: string, row: number, column?: number }[]
 	meta: {
 		delimiter: string
 		linebreak: string
@@ -400,8 +396,8 @@ export interface CSVParseResult<T = unknown> {
 /**
  * TOML value type
  */
-export type TOMLValue<T = unknown> =
-	| string
+export type TOMLValue<T = unknown>
+	= | string
 	| number
 	| boolean
 	| Date
@@ -430,7 +426,7 @@ export type TOMLKey = string
  */
 export interface TOMLDocument<T = unknown> {
 	tables: TOMLTable[]
-	errors: { message: string; line: number; column: number }[]
+	errors: { message: string, line: number, column: number }[]
 	custom?: T
 }
 
@@ -454,7 +450,7 @@ export interface ProtoMessage<T = unknown> {
 	nestedEnums?: ProtoEnum[]
 	extensions?: ProtoExtension[]
 	options?: Record<string, unknown>
-	reserved?: { start: number; end?: number }[] | string[]
+	reserved?: { start: number, end?: number }[] | string[]
 	custom?: T
 }
 
@@ -480,9 +476,9 @@ export interface ProtoField {
  */
 export interface ProtoEnum {
 	name: string
-	values: { name: string; number: number; options?: Record<string, unknown> }[]
+	values: { name: string, number: number, options?: Record<string, unknown> }[]
 	options?: Record<string, unknown>
-	reserved?: { start: number; end?: number }[] | string[]
+	reserved?: { start: number, end?: number }[] | string[]
 }
 
 /**
@@ -531,8 +527,8 @@ export interface ProtoFile<T = unknown> {
 /**
  * MessagePack value type
  */
-export type MessagePackValue<T = unknown> =
-	| null
+export type MessagePackValue<T = unknown>
+	= | null
 	| boolean
 	| number
 	| string
@@ -545,8 +541,8 @@ export type MessagePackValue<T = unknown> =
 /**
  * MessagePack type
  */
-export type MessagePackType =
-	| 'nil'
+export type MessagePackType
+	= | 'nil'
 	| 'bool'
 	| 'int'
 	| 'float'
@@ -584,8 +580,8 @@ export interface MessagePackOptions {
 /**
  * Avro schema type
  */
-export type AvroSchema =
-	| string
+export type AvroSchema
+	= | string
 	| AvroPrimitiveType
 	| AvroRecordSchema
 	| AvroEnumSchema
@@ -594,8 +590,8 @@ export type AvroSchema =
 	| AvroFixedSchema
 	| AvroUnionSchema
 
-export type AvroPrimitiveType =
-	| 'null'
+export type AvroPrimitiveType
+	= | 'null'
 	| 'boolean'
 	| 'int'
 	| 'long'
@@ -679,8 +675,8 @@ export type AvroUnionSchema = AvroSchema[]
 /**
  * BSON value type
  */
-export type BSONValue<T = unknown> =
-	| null
+export type BSONValue<T = unknown>
+	= | null
 	| boolean
 	| number
 	| string
@@ -842,10 +838,10 @@ export interface UniversalDataFormat<T = unknown> {
 export interface DataTransformationResult<T = unknown, U = unknown> {
 	input: T
 	output: U
-	errors: { message: string; path?: string; value?: unknown }[]
+	errors: { message: string, path?: string, value?: unknown }[]
 	warnings: string[]
-	lost?: { path: string; value: unknown }[]
-	gained?: { path: string; value: unknown }[]
+	lost?: { path: string, value: unknown }[]
+	gained?: { path: string, value: unknown }[]
 }
 
 /**
@@ -853,7 +849,7 @@ export interface DataTransformationResult<T = unknown, U = unknown> {
  */
 export interface DataValidationResult<T = unknown> {
 	valid: boolean
-	errors: { path: string; message: string; value?: unknown; schema?: unknown }[]
-	warnings: { path: string; message: string; value?: unknown }[]
+	errors: { path: string, message: string, value?: unknown, schema?: unknown }[]
+	warnings: { path: string, message: string, value?: unknown }[]
 	data?: T
 }

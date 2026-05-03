@@ -584,9 +584,9 @@ export interface AddEventListenerOptions extends ListenerOptions {
 // ============================================================================
 
 /**
- * Domain event interface
+ * Domain event interface (event system)
  */
-export interface DomainEvent<A = string, T = unknown> extends Event<T> {
+export interface EventSystemDomainEvent<A = string, T = unknown> extends Event<T> {
 	aggregateId: A
 	aggregateType: string
 	version: number
@@ -595,8 +595,8 @@ export interface DomainEvent<A = string, T = unknown> extends Event<T> {
 /**
  * Domain event handler
  */
-export type DomainEventHandler<A, T = unknown> = (
-	event: DomainEvent<A, T>,
+export type EventSystemDomainEventHandler<A, T = unknown> = (
+	event: EventSystemDomainEvent<A, T>,
 ) => void | Promise<void>
 
 /**
@@ -605,8 +605,8 @@ export type DomainEventHandler<A, T = unknown> = (
 export interface EventSourcedAggregate<I = string> {
 	id: I
 	version: number
-	uncommittedEvents: DomainEvent<I>[]
-	applyEvent: <T>(event: DomainEvent<I, T>) => void
+	uncommittedEvents: EventSystemDomainEvent<I>[]
+	applyEvent: <T>(event: EventSystemDomainEvent<I, T>) => void
 }
 
 // ============================================================================

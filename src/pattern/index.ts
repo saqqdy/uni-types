@@ -99,7 +99,7 @@ export type ForEach<T extends unknown[], F> = T extends [infer First, ...infer R
 /**
  * Layer type - represents a single layer in layered architecture
  */
-export type Layer<T extends Record<string, unknown> = Record<string, unknown>> = {
+export interface Layer<T extends Record<string, unknown> = Record<string, unknown>> {
 	name: string
 	components: T
 	dependencies: string[]
@@ -199,7 +199,7 @@ export interface Presenter<Input = unknown, Output = unknown> {
 /**
  * Clean architecture layers
  */
-export type CleanArchitectureLayers = {
+export interface CleanArchitectureLayers {
 	entities: Entity[]
 	useCases: UseCase[]
 	interfaces: Gateway[]
@@ -226,8 +226,9 @@ export interface Port<
 export interface InboundPort<
 	Input = unknown,
 	Output = unknown,
-> extends Port<{ execute: (input: Input) => Promise<Output> }> {
+> {
 	type: 'inbound'
+	execute: (input: Input) => Promise<Output>
 }
 
 /**
@@ -236,8 +237,9 @@ export interface InboundPort<
 export interface OutboundPort<
 	Input = unknown,
 	Output = unknown,
-> extends Port<{ handle: (input: Input) => Promise<Output> }> {
+> {
 	type: 'outbound'
+	handle: (input: Input) => Promise<Output>
 }
 
 /**
@@ -282,10 +284,10 @@ export interface Core<
  * Aggregate type - cluster of domain objects
  */
 export interface Aggregate<
-	Entity extends Record<string, unknown> = Record<string, unknown>,
+	T extends Record<string, unknown> = Record<string, unknown>,
 	Entities extends unknown[] = unknown[],
-> extends Entity<Entity> {
-	root: Entity
+> extends Entity<T> {
+	root: T
 	entities: Entities
 }
 
@@ -518,7 +520,6 @@ export interface CoreSystem<
 export interface PluginInterface<
 	Plugin extends Record<string, unknown> = Record<string, unknown>,
 > {
-	name: string
 	version: string
 	name: string
 	dependencies?: string[]
@@ -569,7 +570,7 @@ export interface DataGrid<
 	Data extends Record<string, unknown> = Record<string, unknown>,
 > {
 	name: string
-	partitions: { id: string; data: Data }[]
+	partitions: { id: string, data: Data }[]
 	replicationFactor: number
 	consistency: 'strong' | 'eventual' | 'causal'
 }
@@ -581,7 +582,7 @@ export interface DataGrid<
 /**
  * Architecture constraint type
  */
-export type ArchitectureConstraint = {
+export interface ArchitectureConstraint {
 	rule: string
 	severity: 'error' | 'warning' | 'info'
 	description?: string

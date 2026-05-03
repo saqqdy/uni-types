@@ -27,8 +27,8 @@ export type OptimizeDeep<T> = T extends object
 /**
  * Optimize for target - optimize type for specific target
  */
-export type OptimizeFor<T, Target extends 'size' | 'speed' | 'readability'> =
-	Target extends 'size'
+export type OptimizeFor<T, Target extends 'size' | 'speed' | 'readability'>
+	= Target extends 'size'
 		? OptimizeDeep<T>
 		: Target extends 'speed'
 			? T
@@ -109,8 +109,8 @@ export type FlattenIntersection<T> = T extends infer O
 /**
  * Flatten union to tuple
  */
-export type FlattenUnionToTuple<T, Result extends unknown[] = []> =
-	[T] extends [never]
+export type FlattenUnionToTuple<T, Result extends unknown[] = []>
+	= [T] extends [never]
 		? Result
 		: T extends T
 			? FlattenUnionToTuple<Exclude<T, T>, [...Result, T]>
@@ -137,8 +137,8 @@ export type RemoveDuplicates<T extends unknown[]> = T extends [infer First, ...i
 /**
  * Unique - get unique types from tuple
  */
-export type Unique<T extends unknown[], Seen extends unknown[] = []> =
-	T extends [infer First, ...infer Rest]
+export type Unique<T extends unknown[], Seen extends unknown[] = []>
+	= T extends [infer First, ...infer Rest]
 		? First extends Seen[number]
 			? Unique<Rest, Seen>
 			: [First, ...Unique<Rest, [...Seen, First]>]
@@ -224,7 +224,7 @@ export type DebugType<T> = T extends infer O
 /**
  * Explain type - provides explanation of type
  */
-export type ExplainType<T> = {
+export interface ExplainType<T> {
 	type: T
 	keys: T extends object ? keyof T : never
 	entries: T extends object ? { [K in keyof T]: [K, T[K]] }[keyof T] : never
@@ -287,8 +287,8 @@ export type TypePath<T, Path extends string = ''> = T extends object
 /**
  * Type at path - get type at specific path
  */
-export type TypeAtPath<T, Path extends string> =
-	Path extends `${infer First}.${infer Rest}`
+export type TypeAtPath<T, Path extends string>
+	= Path extends `${infer First}.${infer Rest}`
 		? First extends keyof T
 			? TypeAtPath<T[First], Rest>
 			: never
@@ -324,7 +324,7 @@ export type VerifyAll<T, Shape> = T extends Shape
 /**
  * Test all - test type against predicate
  */
-export type TestAll<T, Predicate extends (value: T) => boolean> = T
+export type TestAll<T, _Predicate extends (value: T) => boolean> = T
 
 /**
  * Type check result
@@ -511,7 +511,7 @@ export type DeepReplaceValue<T, From, To> = T extends From
 /**
  * Type analysis result
  */
-export interface TypeAnalysis<T> {
+export interface TypeAnalysis<_T> {
 	complexity: number
 	depth: number
 	propertyCount: number
@@ -556,8 +556,8 @@ export interface TypeDependency {
  * Type reference graph
  */
 export interface TypeReferenceGraph {
-	nodes: { name: string; type: unknown }[]
-	edges: { from: string; to: string }[]
+	nodes: { name: string, type: unknown }[]
+	edges: { from: string, to: string }[]
 	cycles: string[][]
 }
 
@@ -596,7 +596,7 @@ export type IsArray<T> = T extends unknown[] ? true : false
  * Is object - check if type is object
  */
 export type IsObject<T> = T extends object
-	? T extends Function
+	? T extends (...args: unknown[]) => unknown
 		? false
 		: true
 	: false
@@ -625,7 +625,7 @@ export type IsUnion<T, U = T> = T extends T
 /**
  * Is intersection - check if type is intersection
  */
-export type IsIntersection<T> = T extends infer U & infer _
+export type IsIntersection<T> = T extends infer _U & infer _
 	? true
 	: false
 
