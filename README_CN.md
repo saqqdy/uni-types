@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **1500+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **2000+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -1297,6 +1297,157 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `Workspace<T>`, `WorkspaceGraph<T>` | 工作区/monorepo |
 | `RegistryAuth`, `RegistryPackage<T>` | 注册表类型 |
 | `Vulnerability` | 安全漏洞 |
+
+### 极致类型工具 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `Perfect<T>`, `Complete<T>`, `Final<T>`, `Ultimate<T>` | 极致类型约束 |
+| `PerfectPick<T, K>`, `PerfectOmit<T, K>`, `PerfectPartial<T>`, `PerfectRequired<T>` | 完美操作 |
+| `CompleteKeys<T>`, `CompleteValues<T>`, `CompleteEntries<T>` | 完整性类型 |
+| `Finalize<T>`, `Frozen<T>`, `Sealed<T>`, `Locked<T>` | 终结化类型 |
+| `Validate<T, Schema>`, `Validated<T, Schema>`, `ValidationResult<T>` | 类型验证 |
+| `AssertType<T, U>`, `AssertShape<T, Shape>`, `AssertKeys<T, K>` | 类型断言 |
+
+### 高阶类型 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `HKT<F, A>`, `Kind<F, A>`, `Kind2<F, A, B>`, `Kind3<F, A, B, C>` | 高阶类型 |
+| `Recurse<T, N>`, `RecurseWhile<T, Cond, F>`, `RecurseUntil<T, Cond, F>` | 类型递归 |
+| `Memoize<T>`, `Memoized<T>`, `CacheKey<T>`, `CacheValue<T>` | 类型记忆化 |
+| `PartialApply<F, Args>`, `Curried<F>`, `Uncurried<F>`, `FlipArgs<F>` | 偏应用 |
+| `Compose<F, G>`, `Pipe<F, G>`, `ComposeAll<Fs>`, `PipeAll<Fs>` | 类型组合 |
+| `Fix<F>`, `Unfix<F, T>`, `Mu<F>`, `Nu<F>` | 不动点类型 |
+| `ChurchNumeral`, `ChurchBoolean`, `ChurchList<T>`, `ChurchPair<A, B>` | Church 编码 |
+| `Functor<F>`, `Apply<F>`, `Applicative<F>`, `Monad<F>` | 类型类 |
+| `Either<L, R>`, `Maybe<T>`, `Left<L>`, `Right<R>`, `Just<T>`, `Nothing` | 代数类型 |
+
+### 框架集成 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `AngularComponent<T>`, `AngularService<T>`, `AngularPipe<I, O>`, `AngularDirective<T>` | Angular 类型 |
+| `AngularModule`, `AngularSignal<T>`, `AngularComputed<T>`, `AngularEffect` | Angular 工具 |
+| `SvelteComponent<P, E, S>`, `SvelteStore<T>`, `SvelteAction<E, P>`, `SvelteTransition` | Svelte 类型 |
+| `EmberComponent<A>`, `EmberService<T>`, `EmberRoute<M, P>`, `EmberController<M, Q>` | Ember 类型 |
+| `BackboneModel<A>`, `BackboneCollection<M>`, `BackboneView<M, E>`, `BackboneRouter` | Backbone 类型 |
+| `PreactComponent<P, S>`, `PreactFC<P>`, `PreactHooks`, `PreactContext<T>` | Preact 类型 |
+| `SolidComponent<P>`, `SolidSignal<T>`, `SolidResource<T>`, `SolidMemo<T>` | Solid 类型 |
+| `LitElement<P>`, `LitPropertyConfig<T>`, `LitDecorator`, `LitCustomElement<T>` | Lit 类型 |
+| `StencilComponent<P, S>`, `StencilProp<T>`, `StencilEvent<T>`, `StencilEventEmitter<T>` | Stencil 类型 |
+| `AlpineComponent<D, M>`, `AlpineStore<S>`, `AlpineMagic<T>`, `AlpineReactive<T>` | Alpine.js 类型 |
+
+### 构建工具 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `WebpackConfig`, `WebpackModule`, `WebpackPlugin`, `WebpackLoader` | Webpack 类型 |
+| `WebpackDevServer`, `WebpackOptimization`, `WebpackSplitChunks` | Webpack 工具 |
+| `ViteConfig`, `VitePlugin`, `ViteBuild`, `ViteServer`, `ViteDevServer` | Vite 类型 |
+| `RollupConfig`, `RollupOutput`, `RollupPlugin`, `RollupBuild` | Rollup 类型 |
+| `ESBuildOptions`, `ESBuildPlugin`, `ESBuildResult`, `ESBuildMessage` | esbuild 类型 |
+| `ParcelConfig`, `ParcelTransformer`, `ParcelNamer` | Parcel 类型 |
+| `TurbopackConfig`, `TurbopackLoader`, `TurbopackPlugin` | Turbopack 类型 |
+| `BabelConfig`, `BabelPreset<T>`, `BabelPlugin<T>`, `BabelTransformResult` | Babel 类型 |
+| `SWCConfig`, `SWCParser`, `SWCTransform`, `SWCMinifyOptions` | SWC 类型 |
+
+### DevOps *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `Dockerfile`, `DockerImage`, `DockerContainer`, `DockerCompose` | Docker 类型 |
+| `DockerComposeService`, `DockerComposeBuild`, `DockerComposeDeploy` | Docker Compose |
+| `K8sDeployment`, `K8sService`, `K8sPod`, `K8sConfigMap`, `K8sSecret`, `K8sIngress` | Kubernetes 类型 |
+| `K8sContainer`, `K8sVolume`, `K8sProbe`, `K8sAffinity`, `K8sToleration` | K8s 工具 |
+| `TerraformResource<T>`, `TerraformModule<T>`, `TerraformProvider<T>` | Terraform 类型 |
+| `TerraformVariable<T>`, `TerraformOutput`, `TerraformConfig` | Terraform 工具 |
+| `AnsiblePlaybook`, `AnsibleTask`, `AnsibleRole`, `AnsibleInventory` | Ansible 类型 |
+| `GitHubWorkflow`, `GitHubJob`, `GitHubStep` | GitHub Actions |
+| `GitLabPipeline`, `GitLabJob`, `GitLabCache`, `GitLabArtifacts` | GitLab CI |
+| `JenkinsPipeline`, `JenkinsStage`, `JenkinsStep` | Jenkins 类型 |
+| `CircleCIConfig`, `CircleCIJob`, `CircleCIStep` | CircleCI 类型 |
+| `AWSResource<T>`, `AzureResource<T>`, `GCPResource<T>`, `CloudFormation` | 云平台类型 |
+| `HelmChart`, `HelmRelease`, `HelmValues` | Helm 类型 |
+
+### 质量保证 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `ESLintConfig`, `ESLintRule`, `ESLintPlugin`, `ESLintResult` | ESLint 类型 |
+| `PrettierConfig`, `FormatOptions`, `FormatResult` | Prettier 类型 |
+| `CodeAnalysis<T>`, `ComplexityReport`, `CodeMetrics` | 代码分析 |
+| `MaintainabilityIndex`, `TechnicalDebt<T>`, `DebtItem` | 代码质量 |
+| `SecurityAudit<T>`, `Vulnerability`, `SecurityReport<T>` | 安全类型 |
+| `DependencyAudit<T>`, `OutdatedPackage`, `LicenseCheck<T>` | 依赖类型 |
+| `PerformanceAudit<T>`, `BundleAnalysis<T>`, `PerformanceMetric` | 性能类型 |
+| `LighthouseScore`, `QualityGate<T>`, `GateCondition`, `GateResult` | 质量门禁 |
+| `TestCoverage`, `TestResult`, `TestSummary`, `TestPerformance` | 测试类型 |
+| `CodeQualityMetrics`, `MaintainabilityMetrics`, `SecurityMetrics` | 质量指标 |
+
+### 架构模式 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `Layer<T>`, `PresentationLayer<T>`, `BusinessLayer<T>`, `DataAccessLayer<T>` | 分层架构 |
+| `Entity<T>`, `UseCase<I, O>`, `Gateway<T>`, `Presenter<I, O>` | 整洁架构 |
+| `Port<M>`, `InboundPort<I, O>`, `OutboundPort<I, O>`, `Adapter<P>` | 六边形架构 |
+| `Hexagon<D, I, O>`, `Core<D>` | 六边形核心 |
+| `Aggregate<E, Es>`, `ValueObject<T>`, `DomainEvent<D>`, `Repository<E, I>` | DDD 类型 |
+| `DomainService<I, O>`, `BoundedContext<A, R, S, E>`, `ContextMap<C>` | DDD 工具 |
+| `ContextRelationship`, `ContextBoundary` | 限界上下文 |
+| `Command<T, P>`, `Query<T, P>`, `CommandHandler<C>`, `QueryHandler<Q>` | CQRS 类型 |
+| `CommandBus`, `QueryBus` | CQRS 总线 |
+| `EventStream<E>`, `EventStore<E>`, `Projection<E, S>`, `Saga<S>` | 事件溯源 |
+| `CoreSystem<F>`, `PluginInterface<P>`, `ExtensionPoint<E>` | 微内核 |
+| `ProcessingUnit<D>`, `VirtualizedMiddleware<P>`, `DataGrid<D>` | 空间型架构 |
+
+### 数据格式 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `JSONValue`, `JSONSchema<T>`, `JSONPath<T>`, `JSONPatch<T>` | JSON 类型 |
+| `XMLNode<T>`, `XMLAttribute<T>`, `XMLSchema<T>`, `XPath<T>` | XML 类型 |
+| `YAMLValue<T>`, `YAMLNode<T>`, `YAMLPath<T>` | YAML 类型 |
+| `CSVRow<T>`, `CSVHeader`, `CSVConfig<T>` | CSV 类型 |
+| `TOMLValue<T>`, `TOMLTable<T>`, `TOMLKey` | TOML 类型 |
+| `ProtoMessage<T>`, `ProtoField<T>`, `ProtoEnum<T>`, `ProtoService<T>` | Protocol Buffers |
+| `MessagePackValue<T>`, `MessagePackType` | MessagePack |
+| `AvroSchema<T>`, `AvroRecord<T>`, `AvroField<T>` | Avro 类型 |
+| `BSONValue<T>`, `BSONDocument<T>` | BSON 类型 |
+
+### 无障碍访问 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `ARIARole`, `ARIARoleCategory`, `ARIAProperty`, `ARIAState` | ARIA 核心类型 |
+| `AccessibilityProps`, `ButtonAccessibilityProps`, `InputAccessibilityProps` | 无障碍属性 |
+| `FocusState`, `FocusTrap<T>`, `FocusManager<T>`, `FocusableElement` | 焦点类型 |
+| `ScreenReaderAnnouncement`, `LiveRegion<T>`, `VisuallyHiddenProps` | 屏幕阅读器 |
+| `KeyboardNavigation<T>`, `KeyHandler<T>`, `KeyBinding`, `KeyCode` | 键盘导航 |
+| `ContrastRatio`, `WCAGLevel`, `ColorContrast<T>`, `ColorContrastResult` | 颜色对比 |
+| `MotionPreference`, `AnimationOptions<T>`, `MotionSafeAnimation<T>` | 动作敏感度 |
+| `AccessibilityNode<T>`, `AccessibilityTree<T>` | 无障碍树 |
+| `AccessibilityViolation`, `AccessibilityCheckResult`, `WCAGCriterion` | 无障碍检查 |
+| `FormFieldAccessibility`, `LandmarkType`, `AltText`, `AccessibleName` | 表单与地标 |
+
+### 最终优化 *(v1.10.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `Optimize<T>`, `OptimizeDeep<T>`, `OptimizeFor<T, Target>` | 类型优化 |
+| `SimplifyAll<T>`, `FlattenAll<T>`, `NormalizeAll<T>`, `CleanAll<T>` | 简化类型 |
+| `Deduplicate<T>`, `RemoveDuplicates<T>`, `Unique<T, S>` | 去重类型 |
+| `Minify<T>`, `Shorten<T>`, `Compact<T>`, `CompactDeep<T>` | 最小化类型 |
+| `DebugType<T>`, `ExplainType<T>`, `PrettyType<T>`, `ShowType<T>` | 调试类型 |
+| `TypeInfo<T>`, `TypeStructure<T>`, `TypePath<T, P>`, `TypeAtPath<T, P>` | 类型分析 |
+| `ValidateAll<T, S>`, `CheckAll<T, C>`, `VerifyAll<T, S>`, `TestAll<T, P>` | 验证类型 |
+| `Document<T, M>`, `Describe<T, D>`, `Example<T, E>`, `Annotate<T, A>` | 文档类型 |
+| `Finalize<T>`, `Freeze<T>`, `Lock<T>`, `Seal<T>`, `Immutable<T>` | 终结化类型 |
+| `IsAny<T>`, `IsNever<T>`, `IsUnknown<T>`, `IsNullable<T>` | 类型检查 |
+| `IsArray<T>`, `IsObject<T>`, `IsFunction<T>`, `IsPrimitive<T>` | 类型守卫 |
+| `IsUnion<T>`, `IsIntersection<T>`, `IsOptional<T, K>`, `IsReadonly<T, K>` | 类型工具 |
+| `Equals<T, U>`, `Extends<T, U>`, `HasKey<T, K>`, `HasKeys<T, K>` | 类型比较 |
 
 ## 示例
 
