@@ -710,3 +710,625 @@ export type UniversalMiddleware = (
 	res: unknown,
 	next: () => void | Promise<void>,
 ) => void | Promise<void>
+
+// ============================================================================
+// Angular Types
+// ============================================================================
+
+/**
+ * Angular component type
+ */
+export interface AngularComponent<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+	State extends Record<string, unknown> = Record<string, unknown>,
+> {
+	selector: string
+	template?: string
+	templateUrl?: string
+	styles?: string[]
+	styleUrls?: string[]
+	inputs?: (keyof Props)[]
+	outputs?: string[]
+	input?: Props
+	state?: State
+}
+
+/**
+ * Angular service type
+ */
+export type AngularService<T extends Record<string, (...args: unknown[]) => unknown> = Record<string, (...args: unknown[]) => unknown>> = {
+	providedIn?: 'root' | 'any' | 'platform'
+} & T
+
+/**
+ * Angular pipe type
+ */
+export interface AngularPipe<Input = unknown, Output = unknown> {
+	name: string
+	pure?: boolean
+	standalone?: boolean
+	transform: (value: Input, ...args: unknown[]) => Output
+}
+
+/**
+ * Angular directive type
+ */
+export interface AngularDirective<
+	Inputs extends Record<string, unknown> = Record<string, unknown>,
+> {
+	selector: string
+	inputs?: (keyof Inputs)[]
+	outputs?: string[]
+	host?: Record<string, string>
+	hostListeners?: Record<string, string>
+	hostProperties?: Record<string, string>
+}
+
+/**
+ * Angular module type
+ */
+export interface AngularModule {
+	declarations?: unknown[]
+	imports?: unknown[]
+	providers?: unknown[]
+	exports?: unknown[]
+	bootstrap?: unknown[]
+}
+
+/**
+ * Angular input type
+ */
+export type AngularInput<T = unknown> = {
+	required?: boolean
+	alias?: string
+	transform?: (value: unknown) => T
+} & ({ required: true } | { required?: false; defaultValue?: T })
+
+/**
+ * Angular output type
+ */
+export type AngularOutput<T = unknown> = {
+	alias?: string
+}
+
+/**
+ * Angular signal type
+ */
+export interface AngularSignal<T = unknown> {
+	(): T
+	set: (value: T) => void
+	update: (fn: (value: T) => T) => void
+}
+
+/**
+ * Angular computed type
+ */
+export type AngularComputed<T = unknown> = () => T
+
+/**
+ * Angular effect type
+ */
+export type AngularEffect = (fn: () => void | (() => void)) => void
+
+// ============================================================================
+// Svelte Extended Types
+// ============================================================================
+
+/**
+ * Svelte component type
+ */
+export type SvelteComponent<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+	Events extends Record<string, unknown> = Record<string, unknown>,
+	Slots extends Record<string, unknown> = Record<string, unknown>,
+> = {
+	new (options: {
+		target: Element
+		props?: Props
+		$$inline?: boolean
+	}): {
+		$$prop_def: Props
+		$$events_def: Events
+		$$slot_def: Slots
+		$destroy: () => void
+		$on: <K extends keyof Events>(event: K, callback: (e: Events[K]) => void) => () => void
+		$set: (props: Partial<Props>) => void
+	}
+}
+
+/**
+ * Svelte store type
+ */
+export interface SvelteStore<T = unknown> {
+	subscribe: (run: (value: T) => void) => () => void
+	set?: (value: T) => void
+	update?: (fn: (value: T) => T) => void
+}
+
+/**
+ * Svelte readable store
+ */
+export type SvelteReadable<T = unknown> = Pick<SvelteStore<T>, 'subscribe'>
+
+/**
+ * Svelte writable store
+ */
+export type SvelteWritable<T = unknown> = SvelteStore<T>
+
+/**
+ * Svelte action type
+ */
+export type SvelteAction<
+	Element = HTMLElement,
+	Parameters = unknown,
+> = (node: Element, parameters: Parameters) => {
+	update?: (parameters: Parameters) => void
+	destroy?: () => void
+}
+
+/**
+ * Svelte transition type
+ */
+export type SvelteTransition = (node: Element, parameters?: unknown) => {
+	delay?: number
+	duration?: number
+	easing?: (t: number) => number
+	css?: (t: number, u: number) => string
+	tick?: (t: number, u: number) => void
+}
+
+/**
+ * Svelte animation type
+ */
+export type SvelteAnimation = (node: Element, options?: { from: DOMRect, to: DOMRect }) => {
+	delay?: number
+	duration?: number
+	easing?: (t: number) => number
+	css?: (t: number, u: number) => string
+	tick?: (t: number, u: number) => void
+}
+
+// ============================================================================
+// Ember Types
+// ============================================================================
+
+/**
+ * Ember component type
+ */
+export interface EmberComponent<
+	Args extends Record<string, unknown> = Record<string, unknown>,
+> {
+	Args: Args
+	args: Args
+	element: Element | null
+	isDestroying: boolean
+	isDestroyed: boolean
+}
+
+/**
+ * Ember service type
+ */
+export type EmberService<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+	isDestroying: boolean
+	isDestroyed: boolean
+}
+
+/**
+ * Ember route type
+ */
+export interface EmberRoute<
+	Model = unknown,
+	Params extends Record<string, string> = Record<string, string>,
+> {
+	model: (params: Params, transition: unknown) => Model | Promise<Model>
+	beforeModel: (transition: unknown) => void | Promise<void>
+	afterModel: (resolvedModel: Model, transition: unknown) => void | Promise<void>
+	redirect: (model: Model, transition: unknown) => void
+	serialize: (model: Model, params: string[]) => Record<string, string>
+}
+
+/**
+ * Ember controller type
+ */
+export interface EmberController<
+	Model = unknown,
+	QueryParams extends Record<string, unknown> = Record<string, unknown>,
+> {
+	model: Model
+	queryParams: QueryParams
+	replaceRoute: (name: string, models?: unknown) => void
+	transitionToRoute: (name: string, models?: unknown) => void
+}
+
+// ============================================================================
+// Backbone Types
+// ============================================================================
+
+/**
+ * Backbone model type
+ */
+export interface BackboneModel<
+	Attributes extends Record<string, unknown> = Record<string, unknown>,
+> {
+	id: string | number
+	cid: string
+	attributes: Attributes
+	get: <K extends keyof Attributes>(key: K) => Attributes[K]
+	set: <K extends keyof Attributes>(key: K, value: Attributes[K], options?: unknown) => this
+	unset: <K extends keyof Attributes>(key: K, options?: unknown) => this
+	clear: (options?: unknown) => this
+	toJSON: () => Attributes
+	save: (attrs?: Partial<Attributes>, options?: unknown) => Promise<this>
+	fetch: (options?: unknown) => Promise<this>
+	destroy: (options?: unknown) => Promise<this>
+	url: string | (() => string)
+}
+
+/**
+ * Backbone collection type
+ */
+export interface BackboneCollection<
+	Model extends BackboneModel = BackboneModel,
+> {
+	model: Model
+	models: Model[]
+	length: number
+	add: (models: Model | Model[], options?: unknown) => Model[]
+	remove: (models: Model | Model[], options?: unknown) => Model[]
+	reset: (models?: Model[], options?: unknown) => Model[]
+	at: (index: number) => Model | undefined
+	get: (id: string | number) => Model | undefined
+	findWhere: (attrs: Partial<Model['attributes']>) => Model | undefined
+	where: (attrs: Partial<Model['attributes']>) => Model[]
+	url: string | (() => string)
+	fetch: (options?: unknown) => Promise<this>
+	create: (attrs: unknown, options?: unknown) => Model
+}
+
+/**
+ * Backbone view type
+ */
+export interface BackboneView<
+	Model extends BackboneModel = BackboneModel,
+	Element extends HTMLElement = HTMLElement,
+> {
+	el: Element
+	$el: unknown
+	model: Model
+	collection: BackboneCollection<Model>
+	template: (data: unknown) => string
+	render: () => this
+	remove: () => this
+	events: Record<string, string>
+	delegateEvents: (events?: Record<string, string>) => this
+	undelegateEvents: () => this
+}
+
+/**
+ * Backbone router type
+ */
+export interface BackboneRouter {
+	routes: Record<string, string>
+	navigate: (fragment: string, options?: { trigger?: boolean, replace?: boolean }) => BackboneRouter
+	route: (route: string, name: string, callback?: () => void) => BackboneRouter
+	execute: (callback: (() => void) | undefined, args: string[], name: string) => void
+}
+
+// ============================================================================
+// Preact Types
+// ============================================================================
+
+/**
+ * Preact component type
+ */
+export type PreactComponent<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+	State extends Record<string, unknown> = Record<string, unknown>,
+> = (props: Props) => unknown
+
+/**
+ * Preact functional component
+ */
+export type PreactFC<Props extends Record<string, unknown> = Record<string, unknown>> = (
+	props: Props & { children?: unknown },
+) => unknown
+
+/**
+ * Preact hooks type
+ */
+export interface PreactHooks {
+	useState: <T>(initial: T | (() => T)) => [T, (value: T | ((prev: T) => T)) => void]
+	useReducer: <S, A>(reducer: (state: S, action: A) => S, initial: S) => [S, (action: A) => void]
+	useEffect: (effect: () => void | (() => void), deps?: unknown[]) => void
+	useLayoutEffect: (effect: () => void | (() => void), deps?: unknown[]) => void
+	useMemo: <T>(factory: () => T, deps: unknown[]) => T
+	useCallback: <T extends (...args: unknown[]) => unknown>(callback: T, deps: unknown[]) => T
+	useRef: <T>(initial: T) => { current: T }
+	useContext: <T>(context: PreactContext<T>) => T
+}
+
+/**
+ * Preact context type
+ */
+export interface PreactContext<T = unknown> {
+	Provider: (props: { value: T; children?: unknown }) => unknown
+	Consumer: (props: { children: (value: T) => unknown }) => unknown
+	defaultValue: T
+}
+
+/**
+ * Preact ref type
+ */
+export type PreactRef<T = unknown> = { current: T | null } | ((instance: T | null) => void)
+
+// ============================================================================
+// Solid Extended Types
+// ============================================================================
+
+/**
+ * Solid component type
+ */
+export type SolidComponent<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+> = (props: Props) => unknown
+
+/**
+ * Solid signal type
+ */
+export type SolidSignal<T = unknown> = [
+	get: () => T,
+	set: (value: T | ((prev: T) => T)) => T,
+]
+
+/**
+ * Solid resource type
+ */
+export interface SolidResource<T = unknown> {
+	(): T | undefined
+	loading: boolean
+	error: unknown
+	latest: T | undefined
+}
+
+/**
+ * Solid memo type
+ */
+export type SolidMemo<T = unknown> = () => T
+
+/**
+ * Solid effect type
+ */
+export type SolidEffect = (fn: () => void | (() => void)) => void
+
+/**
+ * Solid computed type
+ */
+export type SolidComputed = (fn: () => void) => void
+
+/**
+ * Solid render effect type
+ */
+export type SolidRenderEffect = (fn: () => void) => void
+
+// ============================================================================
+// Lit Types
+// ============================================================================
+
+/**
+ * Lit element type
+ */
+export interface LitElement<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+> {
+	render: () => unknown
+	updated: (changedProperties: Map<string, unknown>) => void
+	firstUpdated: (changedProperties: Map<string, unknown>) => void
+	connectedCallback: () => void
+	disconnectedCallback: () => void
+}
+
+/**
+ * Lit element constructor type (for static properties)
+ */
+export interface LitElementConstructor<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+> {
+	new (): LitElement<Props>
+	properties: Record<keyof Props, LitPropertyConfig>
+	styles: unknown
+}
+
+/**
+ * Lit property config type
+ */
+export interface LitPropertyConfig<T = unknown> {
+	type?: StringConstructor | NumberConstructor | BooleanConstructor | ObjectConstructor | ArrayConstructor
+	attribute?: string | boolean
+	reflect?: boolean
+	converter?: {
+		fromAttribute?: (value: string | null, type?: unknown) => T
+		toAttribute?: (value: T, type?: unknown) => string | null
+	}
+	hasChanged?: (value: T, oldValue: T) => boolean
+	state?: boolean
+}
+
+/**
+ * Lit property type
+ */
+export type LitProperty<T = unknown> = T
+
+/**
+ * Lit decorator type
+ */
+export type LitDecorator = (
+	proto: unknown,
+	name: string,
+	descriptor?: PropertyDescriptor,
+) => PropertyDescriptor | void
+
+/**
+ * Lit custom element type
+ */
+export type LitCustomElement<T extends HTMLElement = HTMLElement> = {
+	new (): T
+}
+
+// ============================================================================
+// Stencil Types
+// ============================================================================
+
+/**
+ * Stencil component type
+ */
+export interface StencilComponent<
+	Props extends Record<string, unknown> = Record<string, unknown>,
+	State extends Record<string, unknown> = Record<string, unknown>,
+> {
+	props: Props
+	state: State
+	hostElement: HTMLElement
+	render: () => unknown
+	componentWillLoad: () => Promise<void> | void
+	componentDidLoad: () => void
+	componentWillUpdate: () => Promise<void> | void
+	componentDidUpdate: () => void
+	componentWillRender: () => Promise<void> | void
+	componentDidRender: () => void
+	componentDidUnload: () => void
+}
+
+/**
+ * Stencil prop type
+ */
+export interface StencilProp<T = unknown> {
+	type?: 'String' | 'Number' | 'Boolean' | 'Object' | 'Array' | 'Any'
+	attribute?: string
+	reflect?: boolean
+	mutable?: boolean
+	required?: boolean
+	defaultValue?: T
+}
+
+/**
+ * Stencil state type
+ */
+export type StencilState<T = unknown> = T
+
+/**
+ * Stencil event type
+ */
+export interface StencilEvent<T = unknown> {
+	bubbles?: boolean
+	cancelable?: boolean
+	composed?: boolean
+	detail: T
+}
+
+/**
+ * Stencil event emitter type
+ */
+export interface StencilEventEmitter<T = unknown> {
+	emit: (detail: T) => void
+}
+
+/**
+ * Stencil method type
+ */
+export type StencilMethod = () => void | Promise<void>
+
+/**
+ * Stencil watch decorator type
+ */
+export type StencilWatch = (propName: string, callback: (newValue: unknown, oldValue: unknown) => void) => void
+
+// ============================================================================
+// Alpine.js Types
+// ============================================================================
+
+/**
+ * Alpine component type
+ */
+export interface AlpineComponent<
+	Data extends Record<string, unknown> = Record<string, unknown>,
+	Methods extends Record<string, (...args: unknown[]) => unknown> = Record<string, (...args: unknown[]) => unknown>,
+> {
+	data: Data
+	methods: Methods
+	init?: () => void
+	destroy?: () => void
+}
+
+/**
+ * Alpine store type
+ */
+export type AlpineStore<
+	State extends Record<string, unknown> = Record<string, unknown>,
+> = State & {
+	get: <K extends keyof State>(key: K) => State[K]
+	set: <K extends keyof State>(key: K, value: State[K]) => void
+	toggle: (key: keyof State) => void
+}
+
+/**
+ * Alpine magic type
+ */
+export type AlpineMagic<T = unknown> = (el: Element, options?: unknown) => T
+
+/**
+ * Alpine directive type
+ */
+export interface AlpineDirective {
+	name: string
+	callback: (el: Element, value: unknown, modifiers: string[], expression: string, effect: (fn: () => void) => void) => void
+}
+
+/**
+ * Alpine reactive type
+ */
+export type AlpineReactive<T extends Record<string, unknown>> = {
+	[K in keyof T]: T[K]
+} & {
+	$watch: (key: string, callback: (value: unknown, oldValue: unknown) => void) => void
+}
+
+/**
+ * Alpine x-data type
+ */
+export type AlpineData<T extends Record<string, unknown> = Record<string, unknown>> = T | (() => T)
+
+/**
+ * Alpine x-bind type
+ */
+export type AlpineBind<T = unknown> = T | (() => T)
+
+/**
+ * Alpine x-on type
+ */
+export type AlpineOn<Event = Event> = (event: Event) => void
+
+/**
+ * Alpine x-show type
+ */
+export type AlpineShow = boolean | (() => boolean)
+
+/**
+ * Alpine x-if type
+ */
+export type AlpineIf = boolean | (() => boolean)
+
+/**
+ * Alpine x-for type
+ */
+export interface AlpineFor<T = unknown> {
+	items: T[]
+	key?: string | ((item: T, index: number) => string)
+}
+
+/**
+ * Alpine x-model type
+ */
+export type AlpineModel<T = unknown> = {
+	value: T
+	$: string
+}
