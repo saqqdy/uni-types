@@ -18,7 +18,7 @@
 - 📦 **预加载类型** - 所有 uni-types 都可直接导入
 - 🎨 **语法高亮** - 完整的 TypeScript 语法支持
 
-## 可用类型 (2000+)
+## 可用类型 (2500+)
 
 所有 `uni-types` 类型都可用：
 
@@ -1331,6 +1331,93 @@ type IsAnyT = IsAny<any>
 type IsNeverT = IsNever<never>
 type IsArrayT = IsArray<string[]>
 type EqualsT = Equals<string, string>
+```
+
+### v1.11.0 类型
+
+```typescript
+// v1.11.0 - 迁移工具
+type MigrationStatusT = MigrationStatus
+type MigrationResultT = MigrationResult<{ a: string }>
+type MigratedV2 = MigrateToV2<{ oldProp: string }>
+type MigratedV1 = MigrateFromV1<{ newProp: string }>
+type RenameProp = RenameType<{ oldName: string }, 'oldName', 'newName'>
+type CompatV1T = CompatV1<{ legacy: string }>
+type CompatV2T = CompatV2<{ modern: string }>
+type BackportT = Backport<{ feature: string }, '1.11.0'>
+type ValidateMig = ValidateMigration<{ a: string }, { a: string }>
+type MigrationComplex = MigrationComplexity
+type CodemodT = Codemod<{ transform: string }>
+type MigrationStepT = MigrationStep<{ input: string }>
+type MigrationPathT = MigrationPath<{ from: string }, { to: string }>
+
+// v1.11.0 - 废弃管理
+type DeprecatedT = Deprecated<{ legacy: string }, 'Use NewType instead'>
+type DeprecatedSinceT = DeprecatedSince<{ old: string }, '1.10.0'>
+type WillBeRemovedT = WillBeRemoved<{ removed: string }, '2.0.0'>
+type LegacyT = Legacy<{ backwards: string }>
+type LegacyAliasT = LegacyAlias<{ old: string }, 'NewAlias'>
+type DeprecationWarn = DeprecationWarning<{ type: string }>
+type VersionGateT = VersionGate<{ versioned: string }, '1.0.0', '2.0.0'>
+type RemovedInT = RemovedIn<{ gone: string }, '2.0.0'>
+type IntroducedInT = IntroducedIn<{ new: string }, '1.11.0'>
+type SunsetT = Sunset<{ ending: string }>
+type SunsetScheduleT = SunsetSchedule<{ lifecycle: string }>
+type EndOfLifeT = EndOfLife<{ deprecated: string }>
+type DeprecationLevelT = DeprecationLevel
+
+// v1.11.0 - 性能优化
+type FastT = Fast<{ a: string } & { b: number }>
+type OptimizedT = Optimized<ComplexType>
+type CachedCompT = CachedCompute<string>
+type LazyCompT = LazyCompute<string>
+type ReduceComplexT = ReduceComplexity<{ nested: { deep: { type: string } } }>
+type SimplifyCompilerT = SimplifyForCompiler<{ a: string } & { b: number }>
+type LightWeightT = LightWeight<{ heavy: string }>
+type MinimalT = Minimal<{ a: string; b?: undefined }>
+type SharedStructT = SharedStructure<{ shared: string }>
+type PooledT = Pooled<{ reusable: string }>
+type PrecomputeT = Precompute<{ complex: string }>
+type BuildHintT = BuildHint<{ optimized: string }>
+type TypeComplexMetrics = TypeComplexityMetrics<{ complex: string }>
+type PerfHintT = PerformanceHint<{ slow: string }>
+type OptimizationStrat = OptimizationStrategy
+type OptimizationLvl = OptimizationLevel
+
+// v1.11.0 - 增强错误消息
+type DetailedErrT = DetailedError<{ error: string }>
+type ErrorCategoryT = ErrorCategory
+type TypedErrT = TypedError<'type'>
+type DiagnosticT = Diagnostic<{ issue: string }>
+type DiagnosticSevT = DiagnosticSeverity
+type TypeMismatchT = TypeMismatch<string, number>
+type MissingPropT = MissingProperty<{ a: string }, 'b'>
+type InvalidTypeT = InvalidType<string, number>
+type RecoverableErrT = RecoverableError<{ recoverable: string }>
+type RecoveryStratT = RecoveryStrategy
+type FallbackT = FallbackType<string | undefined, string>
+type GracefulDegradT = GracefulDegradation<{ degraded: string }>
+type HelpMsgT = HelpMessage<{ help: string }>
+type QuickFixT = QuickFix<{ fixable: string }>
+type QuickFixActionT = QuickFixAction
+type CommonErrorT = CommonErrorType
+type ErrorReportT = ErrorReport
+
+// v1.11.0 - 破坏性变更检测
+type BreakingChangeT = BreakingChange
+type BreakingChangeTypeT = BreakingChangeType
+type BreakingChangeSevT = BreakingChangeSeverity
+type APIDiffT = APIDiff<{ old: string }, { new: string }>
+type AddedAPIT = AddedAPI<{ added: string }>
+type RemovedAPIT = RemovedAPI<{ removed: string }>
+type CompatibilityCheckT = CompatibilityCheck<{ a: string }, { a: number }>
+type CompatibilityLvlT = CompatibilityLevel
+type MigrationEffortT = MigrationEffort
+type ImpactScopeT = ImpactScope
+type RiskLevelT = RiskLevel
+type ImpactAnalysisT = ImpactAnalysis
+type VersionChangelogT = VersionChangelog
+type BreakingChangeGuardT = BreakingChangeGuard
 ```
 
 ## 外部资源

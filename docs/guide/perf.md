@@ -2,6 +2,148 @@
 
 Types for optimizing TypeScript compilation and type checking.
 
+## Performance Types (v1.11.0)
+
+New performance optimization types for advanced use cases.
+
+### Fast & Optimized
+
+```typescript
+import type { Fast, Optimized, CachedCompute, LazyCompute } from 'uni-types'
+
+// Fast type - optimized for compilation speed
+type FastType = Fast<{ a: string } & { b: number }>
+// { a: string; b: number }
+
+// Optimized type - balanced optimization
+type OptType = Optimized<ComplexType>
+
+// Cached computation
+type Cached = CachedCompute<string>
+
+// Lazy computation
+type LazyComp = LazyCompute<string>  // () => string
+```
+
+### Compilation Optimization
+
+```typescript
+import type {
+  ReduceComplexity,
+  SimplifyForCompiler,
+  OptimizeInference,
+  ReduceRecursion,
+  RecursionLimit
+} from 'uni-types'
+
+// Reduce type complexity
+type Reduced = ReduceComplexity<NestedType>
+
+// Simplify for compiler
+type Simple = SimplifyForCompiler<{ a: string } & { b: number }>
+
+// Optimize inference
+type Inferred = OptimizeInference<T>
+
+// Limit recursion depth
+type Limited = RecursionLimit<DeepType, 10>
+```
+
+### Memory Optimization
+
+```typescript
+import type {
+  LightWeight,
+  Minimal,
+  SharedStructure,
+  Pooled,
+  InternedString
+} from 'uni-types'
+
+// Lightweight representation
+type Light = LightWeight<HeavyType>
+
+// Minimal representation (excludes undefined)
+type Min = Minimal<{ a: string; b?: undefined }>
+
+// Shared structure
+type Shared = SharedStructure<{ a: string }>
+
+// Pooled type
+type PooledType = Pooled<number>
+
+// Interned string
+type Interned = InternedString
+```
+
+### Build Performance
+
+```typescript
+import type {
+  Precompute,
+  PrecomputedValue,
+  DeferredEvaluation,
+  BuildHint,
+  SkipCheck
+} from 'uni-types'
+
+// Precompute type
+type Pre = Precompute<ComplexType>
+
+// Precomputed value
+type PreValue = PrecomputedValue<string, 'literal'>
+
+// Deferred evaluation
+type Deferred = DeferredEvaluation<string>
+
+// Build hints
+type Hinted = BuildHint<string>
+```
+
+### Performance Monitoring
+
+```typescript
+import type {
+  TypeComplexityMetrics,
+  CompilationTime,
+  TypeSize,
+  PerformanceHint,
+  PerformanceOptimization
+} from 'uni-types'
+
+// Type complexity metrics
+interface Metrics extends TypeComplexityMetrics<MyType> {}
+
+// Compilation time estimation
+interface Time extends CompilationTime<MyType> {}
+
+// Type size estimation
+interface Size extends TypeSize<MyType> {}
+
+// Performance hint
+type Hinted = PerformanceHint<string>
+```
+
+### Optimization Strategy
+
+```typescript
+import type {
+  OptimizationStrategy,
+  OptimizationLevel,
+  OptimizationConfig,
+  OptimizationResult
+} from 'uni-types'
+
+// Strategy: 'aggressive' | 'balanced' | 'conservative' | 'debug'
+type Strategy = OptimizationStrategy
+
+// Level: 0 | 1 | 2 | 3
+type Level = OptimizationLevel
+
+// Configuration
+interface Config extends OptimizationConfig {}
+```
+
 ## Lazy Type Evaluation
 
 Defer type evaluation for better compilation performance.

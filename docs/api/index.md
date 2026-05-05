@@ -405,3 +405,63 @@ Complete API reference for all type utilities in uni-types.
 | [`YupOutput<T>`](/api/schema/yup-output) | Extract Yup output type |
 | [`YupInput<T>`](/api/schema/yup-input) | Extract Yup input type |
 | [`IsYupSchema<T>`](/api/schema/isyupschema) | Check if Yup schema |
+
+### [Migration](/api/migration) *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| [`MigrationStatus`](/api/migration#migrationstatus) | Migration status |
+| [`MigrationResult<T>`](/api/migration#migrationresult) | Migration result |
+| [`MigrateToV2<T>`](/api/migration#migratetov2) | Migrate to V2 |
+| [`MigrateFromV1<T>`](/api/migration#migratefromv1) | Migrate from V1 |
+| [`RenameType<T, From, To>`](/api/migration#renametype) | Rename properties |
+| [`CompatV1<T>`](/api/migration#compatv1) | V1 compatibility layer |
+| [`CompatV2<T>`](/api/migration#compatv2) | V2 compatibility layer |
+| [`ValidateMigration<T, U>`](/api/migration#validatemigration) | Validate migration |
+| [`MigrationDiff<T, U>`](/api/migration#migrationdiff) | Migration diff |
+| [`Codemod<T>`](/api/migration#codemod) | Codemod types |
+
+### [Deprecation](/api/deprecation) *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| [`Deprecated<T, Message>`](/api/deprecation#deprecated) | Deprecation marker |
+| [`DeprecatedSince<T, Version>`](/api/deprecation#deprecatedsince) | Deprecation version marker |
+| [`WillBeRemoved<T, Version>`](/api/deprecation#willberemoved) | Removal version marker |
+| [`Legacy<T>`](/api/deprecation#legacy) | Legacy type |
+| [`DeprecationWarning<T>`](/api/deprecation#deprecationwarning) | Deprecation warning |
+| [`VersionGate<T, Min, Max>`](/api/deprecation#versiongate) | Version gate |
+| [`RemovedIn<T, Version>`](/api/deprecation#removedin) | Removed in version |
+| [`IntroducedIn<T, Version>`](/api/deprecation#introducedin) | Introduced in version |
+| [`Sunset<T>`](/api/deprecation#sunset) | Sunset marker |
+| [`EndOfLife<T>`](/api/deprecation#endoflife) | End of life |
+
+### [Enhanced Error](/api/enhanced-error) *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| [`DetailedError<T>`](/api/enhanced-error#detailederror) | Detailed error |
+| [`ErrorDetails`](/api/enhanced-error#errordetails) | Error details |
+| [`ErrorCategory`](/api/enhanced-error#errorcategory) | Error category |
+| [`TypedError<T>`](/api/enhanced-error#typederror) | Typed error |
+| [`Diagnostic<T>`](/api/enhanced-error#diagnostic) | Diagnostic types |
+| [`DiagnosticSeverity`](/api/enhanced-error#diagnosticseverity) | Diagnostic severity |
+| [`TypeMismatch<T, Expected>`](/api/enhanced-error#typemismatch) | Type mismatch |
+| [`RecoverableError<T>`](/api/enhanced-error#recoverableerror) | Recoverable error |
+| [`RecoveryStrategy`](/api/enhanced-error#recoverystrategy) | Recovery strategy |
+| [`HelpMessage<T>`](/api/enhanced-error#helpmessage) | Help message |
+
+### [Breaking Change](/api/breaking-change) *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| [`BreakingChangeReport<T>`](/api/breaking-change#breakingchangereport) | Breaking change report |
+| [`BreakingChange`](/api/breaking-change#breakingchange) | Breaking change |
+| [`BreakingChangeType`](/api/breaking-change#breakingchangetype) | Change type |
+| [`APIDiff<T, U>`](/api/breaking-change#apidiff) | API diff |
+| [`CompatibilityCheck<T, U>`](/api/breaking-change#compatibilitycheck) | Compatibility check |
+| [`CompatibilityLevel`](/api/breaking-change#compatibilitylevel) | Compatibility level |
+| [`MigrationEffort`](/api/breaking-change#migrationeffort) | Migration effort |
+| [`ImpactAnalysis`](/api/breaking-change#impactanalysis) | Impact analysis |
+| [`RiskLevel`](/api/breaking-change#risklevel) | Risk level |
+| [`BreakingChangeGuard`](/api/breaking-change#breakingchangeguard) | Change guard |

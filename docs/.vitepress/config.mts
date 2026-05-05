@@ -490,6 +490,16 @@ export default defineConfig({
 							],
 							text: 'Workflow',
 						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/api/migration', text: 'Migration' },
+								{ link: '/api/deprecation', text: 'Deprecation' },
+								{ link: '/api/enhanced-error', text: 'Enhanced Error' },
+								{ link: '/api/breaking-change', text: 'Breaking Change' },
+							],
+							text: 'v1.11.0 Migration Tools',
+						},
 					],
 					'/guide/': [
 						{
@@ -1089,6 +1099,16 @@ export default defineConfig({
 								{ link: '/zh/api/workflow/bpmn-task', text: 'BPMNTask' },
 							],
 							text: '工作流',
+						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/zh/api/migration', text: '迁移工具' },
+								{ link: '/zh/api/deprecation', text: '废弃管理' },
+								{ link: '/zh/api/enhanced-error', text: '增强错误' },
+								{ link: '/zh/api/breaking-change', text: '破坏性变更' },
+							],
+							text: 'v1.11.0 迁移工具',
 						},
 					],
 					'/zh/guide/': [

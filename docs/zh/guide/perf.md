@@ -2,6 +2,148 @@
 
 用于优化 TypeScript 编译和类型检查的类型。
 
+## 性能类型 (v1.11.0)
+
+新增的性能优化类型，用于高级场景。
+
+### Fast & Optimized
+
+```typescript
+import type { Fast, Optimized, CachedCompute, LazyCompute } from 'uni-types'
+
+// Fast 类型 - 优化编译速度
+type FastType = Fast<{ a: string } & { b: number }>
+// { a: string; b: number }
+
+// Optimized 类型 - 平衡优化
+type OptType = Optimized<ComplexType>
+
+// 缓存计算
+type Cached = CachedCompute<string>
+
+// 懒计算
+type LazyComp = LazyCompute<string>  // () => string
+```
+
+### 编译优化
+
+```typescript
+import type {
+  ReduceComplexity,
+  SimplifyForCompiler,
+  OptimizeInference,
+  ReduceRecursion,
+  RecursionLimit
+} from 'uni-types'
+
+// 降低类型复杂度
+type Reduced = ReduceComplexity<NestedType>
+
+// 为编译器简化
+type Simple = SimplifyForCompiler<{ a: string } & { b: number }>
+
+// 优化推断
+type Inferred = OptimizeInference<T>
+
+// 限制递归深度
+type Limited = RecursionLimit<DeepType, 10>
+```
+
+### 内存优化
+
+```typescript
+import type {
+  LightWeight,
+  Minimal,
+  SharedStructure,
+  Pooled,
+  InternedString
+} from 'uni-types'
+
+// 轻量表示
+type Light = LightWeight<HeavyType>
+
+// 最小表示（排除 undefined）
+type Min = Minimal<{ a: string; b?: undefined }>
+
+// 共享结构
+type Shared = SharedStructure<{ a: string }>
+
+// 池化类型
+type PooledType = Pooled<number>
+
+// 内部字符串
+type Interned = InternedString
+```
+
+### 构建性能
+
+```typescript
+import type {
+  Precompute,
+  PrecomputedValue,
+  DeferredEvaluation,
+  BuildHint,
+  SkipCheck
+} from 'uni-types'
+
+// 预计算类型
+type Pre = Precompute<ComplexType>
+
+// 预计算值
+type PreValue = PrecomputedValue<string, 'literal'>
+
+// 延迟求值
+type Deferred = DeferredEvaluation<string>
+
+// 构建提示
+type Hinted = BuildHint<string>
+```
+
+### 性能监控
+
+```typescript
+import type {
+  TypeComplexityMetrics,
+  CompilationTime,
+  TypeSize,
+  PerformanceHint,
+  PerformanceOptimization
+} from 'uni-types'
+
+// 类型复杂度指标
+interface Metrics extends TypeComplexityMetrics<MyType> {}
+
+// 编译时间估算
+interface Time extends CompilationTime<MyType> {}
+
+// 类型大小估算
+interface Size extends TypeSize<MyType> {}
+
+// 性能提示
+type Hinted = PerformanceHint<string>
+```
+
+### 优化策略
+
+```typescript
+import type {
+  OptimizationStrategy,
+  OptimizationLevel,
+  OptimizationConfig,
+  OptimizationResult
+} from 'uni-types'
+
+// 策略: 'aggressive' | 'balanced' | 'conservative' | 'debug'
+type Strategy = OptimizationStrategy
+
+// 级别: 0 | 1 | 2 | 3
+type Level = OptimizationLevel
+
+// 配置
+interface Config extends OptimizationConfig {}
+```
+
 ## 懒加载类型求值
 
 延迟类型求值以获得更好的编译性能。

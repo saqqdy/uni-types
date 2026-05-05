@@ -405,3 +405,63 @@ uni-types 所有类型工具的完整 API 参考。
 | [`YupOutput<T>`](/zh/api/schema/yup-output) | 提取 Yup 输出类型 |
 | [`YupInput<T>`](/zh/api/schema/yup-input) | 提取 Yup 输入类型 |
 | [`IsYupSchema<T>`](/zh/api/schema/isyupschema) | 检查是否为 Yup schema |
+
+### [迁移工具](/zh/api/migration) *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| [`MigrationStatus`](/zh/api/migration#migrationstatus) | 迁移状态 |
+| [`MigrationResult<T>`](/zh/api/migration#migrationresult) | 迁移结果 |
+| [`MigrateToV2<T>`](/zh/api/migration#migratetov2) | 迁移到 V2 |
+| [`MigrateFromV1<T>`](/zh/api/migration#migratefromv1) | 从 V1 迁移 |
+| [`RenameType<T, From, To>`](/zh/api/migration#renametype) | 重命名属性 |
+| [`CompatV1<T>`](/zh/api/migration#compatv1) | V1 兼容层 |
+| [`CompatV2<T>`](/zh/api/migration#compatv2) | V2 兼容层 |
+| [`ValidateMigration<T, U>`](/zh/api/migration#validatemigration) | 验证迁移 |
+| [`MigrationDiff<T, U>`](/zh/api/migration#migrationdiff) | 迁移差异 |
+| [`Codemod<T>`](/zh/api/migration#codemod) | Codemod 类型 |
+
+### [废弃管理](/zh/api/deprecation) *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| [`Deprecated<T, Message>`](/zh/api/deprecation#deprecated) | 废弃标记 |
+| [`DeprecatedSince<T, Version>`](/zh/api/deprecation#deprecatedsince) | 废弃版本标记 |
+| [`WillBeRemoved<T, Version>`](/zh/api/deprecation#willberemoved) | 移除版本标记 |
+| [`Legacy<T>`](/zh/api/deprecation#legacy) | 遗留类型 |
+| [`DeprecationWarning<T>`](/zh/api/deprecation#deprecationwarning) | 废弃警告 |
+| [`VersionGate<T, Min, Max>`](/zh/api/deprecation#versiongate) | 版本门控 |
+| [`RemovedIn<T, Version>`](/zh/api/deprecation#removedin) | 移除版本 |
+| [`IntroducedIn<T, Version>`](/zh/api/deprecation#introducedin) | 引入版本 |
+| [`Sunset<T>`](/zh/api/deprecation#sunset) | Sunset 标记 |
+| [`EndOfLife<T>`](/zh/api/deprecation#endoflife) | 生命周期结束 |
+
+### [增强错误消息](/zh/api/enhanced-error) *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| [`DetailedError<T>`](/zh/api/enhanced-error#detailederror) | 详细错误 |
+| [`ErrorDetails`](/zh/api/enhanced-error#errordetails) | 错误详情 |
+| [`ErrorCategory`](/zh/api/enhanced-error#errorcategory) | 错误分类 |
+| [`TypedError<T>`](/zh/api/enhanced-error#typederror) | 类型错误 |
+| [`Diagnostic<T>`](/zh/api/enhanced-error#diagnostic) | 诊断类型 |
+| [`DiagnosticSeverity`](/zh/api/enhanced-error#diagnosticseverity) | 诊断严重性 |
+| [`TypeMismatch<T, Expected>`](/zh/api/enhanced-error#typemismatch) | 类型不匹配 |
+| [`RecoverableError<T>`](/zh/api/enhanced-error#recoverableerror) | 可恢复错误 |
+| [`RecoveryStrategy`](/zh/api/enhanced-error#recoverystrategy) | 恢复策略 |
+| [`HelpMessage<T>`](/zh/api/enhanced-error#helpmessage) | 帮助消息 |
+
+### [破坏性变更检测](/zh/api/breaking-change) *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| [`BreakingChangeReport<T>`](/zh/api/breaking-change#breakingchangereport) | 破坏性变更报告 |
+| [`BreakingChange`](/zh/api/breaking-change#breakingchange) | 破坏性变更 |
+| [`BreakingChangeType`](/zh/api/breaking-change#breakingchangetype) | 变更类型 |
+| [`APIDiff<T, U>`](/zh/api/breaking-change#apidiff) | API 差异 |
+| [`CompatibilityCheck<T, U>`](/zh/api/breaking-change#compatibilitycheck) | 兼容性检查 |
+| [`CompatibilityLevel`](/zh/api/breaking-change#compatibilitylevel) | 兼容性级别 |
+| [`MigrationEffort`](/zh/api/breaking-change#migrationeffort) | 迁移工作量 |
+| [`ImpactAnalysis`](/zh/api/breaking-change#impactanalysis) | 影响分析 |
+| [`RiskLevel`](/zh/api/breaking-change#risklevel) | 风险级别 |
+| [`BreakingChangeGuard`](/zh/api/breaking-change#breakingchangeguard) | 变更守卫 |
