@@ -2,6 +2,84 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.11.0] - 2026-05-03
+
+### Added
+
+#### Type Migration Utilities
+- `MigrationStatus`, `MigrationResult<T>`, `MigrationChange`, `MigrationChangeType` - Migration helpers
+- `MigrationWarning`, `MigrationError`, `MigrationMap<T>`, `MigrationRule<T>` - Migration tracking
+- `MigrateToV2<T>`, `MigrateFromV1<T>` - Version migration helpers
+- `TransformType<T, Rules>`, `RenameType<T, From, To>`, `RestructureType<T, Schema>` - Type transformation
+- `FlattenNamespace<T>` - Namespace flattening
+- `CompatMode`, `CompatV1<T>`, `CompatV2<T>` - Compatibility wrappers
+- `Backport<T, Version>`, `ForwardPort<T, Version>` - Version porting
+- `VersionCompat` - Version compatibility info
+- `ValidateMigration<T, U>`, `MigrationDiff<T, U>`, `BreakingChanges<T, U>` - Migration validation
+- `MigrationReport`, `MigrationComplexity` - Migration reporting
+- `Codemod<T>`, `CodemodResult<T>`, `CodemodRule<T>`, `CodemodContext<T>` - Codemod types
+- `ApplyCodemod<T, R>`, `MigrationStep<T>`, `MigrationPath<T, U>` - Migration execution
+- `MigrationConfig`, `MigrationContext<T>`, `MigrationState`, `MigrationProgress` - Migration configuration
+- `MigrationHistory`, `MigrationPipeline<T>`, `ComposeMigrations<T, U, V>` - Migration utilities
+
+#### Deprecation Management
+- `Deprecated<T, Message>`, `DeprecatedSince<T, Version>`, `WillBeRemoved<T, Version>` - Deprecation markers
+- `Replacement<T, New>`, `DeprecationInfo`, `DeprecationLevel` - Replacement types
+- `Legacy<T>`, `LegacyAlias<T, New>`, `BackwardsCompatible<T, Old>`, `Polyfill<T, Implementation>` - Legacy support
+- `LegacyAPI` - Legacy API info
+- `Warning<T>`, `WarningLevel`, `DeprecationWarning<T>`, `DeprecationMigrationWarning<T>` - Warning types
+- `WarningConfig` - Warning configuration
+- `VersionGate<T, Min, Max>`, `RemovedIn<T, Version>`, `IntroducedIn<T, Version>` - Version gates
+- `VersionedAPI<T, V>`, `VersionRange`, `VersionConstraint` - Version utilities
+- `Sunset<T>`, `SunsetSchedule<T>`, `SunsetPhase`, `EndOfLife<T>`, `SunsetPolicy` - Sunset utilities
+- `DeprecationStatus`, `DeprecationTracker`, `DeprecationRegistry` - Deprecation tracking
+- `DeprecationCheckOptions`, `DeprecationCheckResult` - Deprecation checking
+- `MigrationSuggestion`, `DeprecationAnnouncement` - Deprecation utilities
+
+#### Type Performance Optimization
+- `Fast<T>`, `Optimized<T>`, `CachedCompute<T>`, `LazyCompute<T>` - Performance types
+- `ReduceComplexity<T>`, `SimplifyForCompiler<T>`, `OptimizeInference<T>` - Compilation optimization
+- `ReduceRecursion<T, Depth>`, `RecursionLimit<T, Depth, Current>`, `TailRecursive<T>` - Recursion optimization
+- `LightWeight<T>`, `Minimal<T>`, `CompactRepresentation<T>`, `SharedStructure<T>` - Memory optimization
+- `Pooled<T>`, `InternedString` - Memory utilities
+- `Precompute<T>`, `PrecomputedValue<T, V>`, `DeferredEvaluation<T>`, `IncrementalType<T>` - Build performance
+- `BuildHint<T>`, `BuildHintType`, `SkipCheck<T>` - Build hints
+- `TypeComplexityMetrics<T>`, `CompilationTime<T>`, `TypeSize<T>` - Performance monitoring
+- `PerformanceHint<T>`, `PerformanceHintInfo`, `PerformanceOptimization` - Performance hints
+- `TypeAnalysis`, `PerformanceIssue`, `PerformanceOptimizationSuggestion`, `BaselineComparison` - Performance analysis
+- `TypeProfilerConfig`, `TypeProfilerResult`, `TypeProfileEntry`, `HotPath` - Type profiler
+- `TypeBenchmarkConfig`, `TypeBenchmarkResult` - Benchmark types
+- `OptimizationStrategy`, `OptimizationLevel`, `OptimizationConfig` - Optimization configuration
+- `OptimizationType`, `OptimizationResult<T>`, `AppliedOptimization`, `OptimizationImprovement` - Optimization results
+
+#### Enhanced Error Messages
+- `DetailedError<T>`, `ErrorDetails`, `ErrorCategory` - Error enhancement
+- `TypedError<T>`, `ErrorContext<T>`, `ErrorSuggestion<T>`, `SuggestionInfo` - Error context
+- `Diagnostic<T>`, `DiagnosticInfo`, `DiagnosticSeverity`, `DiagnosticCode`, `DiagnosticMessage<T>` - Diagnostic types
+- `RelatedDiagnostic`, `DiagnosticLocation` - Diagnostic utilities
+- `TypeMismatch<T, Expected>`, `MismatchDetails`, `MismatchKind` - Type errors
+- `MissingProperty<T, K>`, `InvalidType<T, Valid>`, `ConstraintViolation<T, Constraint>` - Specific errors
+- `RecoverableError<T>`, `ErrorRecovery<T>`, `RecoveryStrategy`, `RecoveryOption` - Error recovery
+- `FallbackType<T, Fallback>`, `GracefulDegradation<T>`, `DegradedValue` - Fallback types
+- `HelpMessage<T>`, `HelpInfo`, `HelpExample` - Help messages
+- `DocumentationLink<T>`, `ExampleUsage<T>`, `QuickFix<T>`, `QuickFixInfo`, `QuickFixAction` - Quick fixes
+- `ErrorReport`, `ReportedError`, `ReportedWarning`, `ErrorReporterConfig`, `ErrorFilter` - Error reporting
+- `CommonErrorType`, `ErrorCatalogEntry`, `ErrorCatalog` - Error catalog
+
+#### Breaking Change Detection
+- `BreakingChangeReport<T>`, `BreakingChange`, `BreakingChangeType`, `BreakingChangeSeverity` - Breaking change types
+- `BreakingChangeSummary`, `MigrationEffort` - Breaking change summary
+- `APIDiff<T, U>`, `AddedAPI<T>`, `RemovedAPI<T>`, `ChangedAPI<T, U>`, `APIChange` - API diff
+- `CompatibilityCheck<T, U>`, `BreakingChangeCompatibilityReport<T>`, `CompatibilityLevel` - Compatibility check
+- `CompatibilityIssue`, `CompatibilityIssueType` - Compatibility issues
+- `BreakingChangeMigrationPath<T, U>`, `BreakingChangeMigrationStep<T>`, `BreakingChangeMigrationComplexity` - Migration path
+- `MigrationPlan` - Migration planning
+- `ChangeDetectionOptions`, `ChangeDetectionResult<T>`, `Change`, `ChangeType` - Change detection
+- `VersionComparison`, `DeprecationChange`, `VersionChangelog` - Version comparison
+- `ImpactAnalysis`, `ImpactScope`, `AffectedComponent`, `RiskLevel` - Impact analysis
+- `ImpactRecommendation`, `MitigationStrategy` - Impact recommendations
+- `BreakingChangeRule`, `BreakingChangeGuard`, `BreakingChangePreventionConfig` - Breaking change prevention
+
 ## [1.10.0] - 2026-05-02
 
 ### Added
