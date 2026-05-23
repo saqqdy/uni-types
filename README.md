@@ -18,7 +18,7 @@ A comprehensive collection of type helpers for TypeScript development
 
 ## Features
 
-- 🎯 **2000+ Type Utilities** - Comprehensive type helpers for every use case
+- 🎯 **2500+ Type Utilities** - Comprehensive type helpers for every use case
 - 🔒 **Type Safe** - Full TypeScript support with strict type checking
 - 📦 **Zero Dependencies** - Lightweight and tree-shakeable
 - 🚀 **TypeScript 5.x** - Built with the latest TypeScript features
@@ -1448,6 +1448,77 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `IsArray<T>`, `IsObject<T>`, `IsFunction<T>`, `IsPrimitive<T>` | Type guards |
 | `IsUnion<T>`, `IsIntersection<T>`, `IsOptional<T, K>`, `IsReadonly<T, K>` | Type utilities |
 | `Equals<T, U>`, `Extends<T, U>`, `HasKey<T, K>`, `HasKeys<T, K>` | Type comparisons |
+
+### Migration Utilities *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| `MigrationStatus`, `MigrationResult<T>`, `MigrationChange` | Migration helpers |
+| `MigrationWarning`, `MigrationError`, `MigrationMap<T>`, `MigrationRule<T>` | Migration tracking |
+| `MigrateToV2<T>`, `MigrateFromV1<T>` | Version migration |
+| `TransformType<T, Rules>`, `RenameType<T, From, To>`, `RestructureType<T, Schema>` | Type transformation |
+| `FlattenNamespace<T>` | Namespace flattening |
+| `CompatV1<T>`, `CompatV2<T>`, `Backport<T, Version>`, `ForwardPort<T, Version>` | Compatibility layer |
+| `ValidateMigration<T, U>`, `MigrationDiff<T, U>`, `BreakingChanges<T, U>` | Migration validation |
+| `MigrationReport`, `MigrationComplexity` | Migration reporting |
+| `Codemod<T>`, `CodemodResult<T>`, `CodemodRule<T>` | Codemod types |
+| `MigrationStep<T>`, `MigrationPath<T, U>`, `MigrationConfig` | Migration execution |
+
+### Deprecation Management *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| `Deprecated<T, Message>`, `DeprecatedSince<T, Version>`, `WillBeRemoved<T, Version>` | Deprecation markers |
+| `Replacement<T, New>`, `DeprecationInfo`, `DeprecationLevel` | Replacement types |
+| `Legacy<T>`, `LegacyAlias<T, New>`, `BackwardsCompatible<T, Old>` | Legacy support |
+| `Warning<T>`, `WarningLevel`, `DeprecationWarning<T>`, `DeprecationMigrationWarning<T>` | Warning types |
+| `VersionGate<T, Min, Max>`, `RemovedIn<T, Version>`, `IntroducedIn<T, Version>` | Version gates |
+| `VersionedAPI<T, V>`, `VersionRange`, `VersionConstraint` | Version utilities |
+| `Sunset<T>`, `SunsetSchedule<T>`, `EndOfLife<T>`, `SunsetPolicy` | Sunset utilities |
+| `DeprecationTracker`, `DeprecationRegistry`, `DeprecationCheckResult` | Deprecation tracking |
+
+### Performance Optimization *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| `Fast<T>`, `Optimized<T>`, `CachedCompute<T>`, `LazyCompute<T>` | Performance types |
+| `ReduceComplexity<T>`, `SimplifyForCompiler<T>`, `OptimizeInference<T>` | Compilation optimization |
+| `ReduceRecursion<T, Depth>`, `RecursionLimit<T, Depth>`, `TailRecursive<T>` | Recursion optimization |
+| `LightWeight<T>`, `Minimal<T>`, `CompactRepresentation<T>` | Memory optimization |
+| `Precompute<T>`, `PrecomputedValue<T, V>`, `DeferredEvaluation<T>` | Build performance |
+| `BuildHint<T>`, `BuildHintType`, `SkipCheck<T>` | Build hints |
+| `TypeComplexityMetrics<T>`, `CompilationTime<T>`, `TypeSize<T>` | Performance monitoring |
+| `PerformanceHint<T>`, `PerformanceOptimizationSuggestion` | Performance hints |
+| `TypeProfilerConfig`, `TypeProfilerResult`, `HotPath` | Type profiler |
+| `OptimizationStrategy`, `OptimizationLevel`, `OptimizationConfig` | Optimization config |
+
+### Enhanced Error Messages *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| `DetailedError<T>`, `ErrorDetails`, `ErrorCategory` | Error enhancement |
+| `TypedError<T>`, `ErrorContext<T>`, `ErrorSuggestion<T>` | Error context |
+| `Diagnostic<T>`, `DiagnosticInfo`, `DiagnosticSeverity` | Diagnostic types |
+| `TypeMismatch<T, Expected>`, `MissingProperty<T, K>`, `InvalidType<T, Valid>` | Type errors |
+| `RecoverableError<T>`, `ErrorRecovery<T>`, `RecoveryStrategy` | Error recovery |
+| `FallbackType<T, Fallback>`, `GracefulDegradation<T>` | Fallback types |
+| `HelpMessage<T>`, `HelpInfo`, `DocumentationLink<T>`, `QuickFix<T>` | Help messages |
+| `ErrorReport`, `ReportedError`, `ReportedWarning`, `ErrorReporterConfig` | Error reporting |
+| `CommonErrorType`, `ErrorCatalogEntry`, `ErrorCatalog` | Error catalog |
+
+### Breaking Change Detection *(v1.11.0)*
+
+| Type | Description |
+|------|-------------|
+| `BreakingChangeReport<T>`, `BreakingChange`, `BreakingChangeType` | Breaking change types |
+| `BreakingChangeSummary`, `MigrationEffort` | Breaking change summary |
+| `APIDiff<T, U>`, `AddedAPI<T>`, `RemovedAPI<T>`, `ChangedAPI<T, U>` | API diff |
+| `CompatibilityCheck<T, U>`, `BreakingChangeCompatibilityReport<T>` | Compatibility check |
+| `BreakingChangeMigrationPath<T, U>`, `BreakingChangeMigrationStep<T>` | Migration path |
+| `ChangeDetectionOptions`, `ChangeDetectionResult<T>`, `Change` | Change detection |
+| `VersionComparison`, `VersionChangelog`, `DeprecationChange` | Version comparison |
+| `ImpactAnalysis`, `AffectedComponent`, `RiskLevel`, `MitigationStrategy` | Impact analysis |
+| `BreakingChangeRule`, `BreakingChangeGuard`, `BreakingChangePreventionConfig` | Prevention |
 
 ## Examples
 

@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **2000+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **2500+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -1448,6 +1448,77 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `IsArray<T>`, `IsObject<T>`, `IsFunction<T>`, `IsPrimitive<T>` | 类型守卫 |
 | `IsUnion<T>`, `IsIntersection<T>`, `IsOptional<T, K>`, `IsReadonly<T, K>` | 类型工具 |
 | `Equals<T, U>`, `Extends<T, U>`, `HasKey<T, K>`, `HasKeys<T, K>` | 类型比较 |
+
+### 迁移工具 *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `MigrationStatus`, `MigrationResult<T>`, `MigrationChange` | 迁移辅助类型 |
+| `MigrationWarning`, `MigrationError`, `MigrationMap<T>`, `MigrationRule<T>` | 迁移追踪 |
+| `MigrateToV2<T>`, `MigrateFromV1<T>` | 版本迁移 |
+| `TransformType<T, Rules>`, `RenameType<T, From, To>`, `RestructureType<T, Schema>` | 类型转换 |
+| `FlattenNamespace<T>` | 命名空间扁平化 |
+| `CompatV1<T>`, `CompatV2<T>`, `Backport<T, Version>`, `ForwardPort<T, Version>` | 兼容层 |
+| `ValidateMigration<T, U>`, `MigrationDiff<T, U>`, `BreakingChanges<T, U>` | 迁移验证 |
+| `MigrationReport`, `MigrationComplexity` | 迁移报告 |
+| `Codemod<T>`, `CodemodResult<T>`, `CodemodRule<T>` | Codemod 类型 |
+| `MigrationStep<T>`, `MigrationPath<T, U>`, `MigrationConfig` | 迁移执行 |
+
+### 废弃管理 *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `Deprecated<T, Message>`, `DeprecatedSince<T, Version>`, `WillBeRemoved<T, Version>` | 废弃标记 |
+| `Replacement<T, New>`, `DeprecationInfo`, `DeprecationLevel` | 替换类型 |
+| `Legacy<T>`, `LegacyAlias<T, New>`, `BackwardsCompatible<T, Old>` | 遗留支持 |
+| `Warning<T>`, `WarningLevel`, `DeprecationWarning<T>`, `DeprecationMigrationWarning<T>` | 警告类型 |
+| `VersionGate<T, Min, Max>`, `RemovedIn<T, Version>`, `IntroducedIn<T, Version>` | 版本门控 |
+| `VersionedAPI<T, V>`, `VersionRange`, `VersionConstraint` | 版本工具 |
+| `Sunset<T>`, `SunsetSchedule<T>`, `EndOfLife<T>`, `SunsetPolicy` | Sunset 工具 |
+| `DeprecationTracker`, `DeprecationRegistry`, `DeprecationCheckResult` | 废弃追踪 |
+
+### 性能优化 *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `Fast<T>`, `Optimized<T>`, `CachedCompute<T>`, `LazyCompute<T>` | 性能类型 |
+| `ReduceComplexity<T>`, `SimplifyForCompiler<T>`, `OptimizeInference<T>` | 编译优化 |
+| `ReduceRecursion<T, Depth>`, `RecursionLimit<T, Depth>`, `TailRecursive<T>` | 递归优化 |
+| `LightWeight<T>`, `Minimal<T>`, `CompactRepresentation<T>` | 内存优化 |
+| `Precompute<T>`, `PrecomputedValue<T, V>`, `DeferredEvaluation<T>` | 构建性能 |
+| `BuildHint<T>`, `BuildHintType`, `SkipCheck<T>` | 构建提示 |
+| `TypeComplexityMetrics<T>`, `CompilationTime<T>`, `TypeSize<T>` | 性能监控 |
+| `PerformanceHint<T>`, `PerformanceOptimizationSuggestion` | 性能提示 |
+| `TypeProfilerConfig`, `TypeProfilerResult`, `HotPath` | 类型分析器 |
+| `OptimizationStrategy`, `OptimizationLevel`, `OptimizationConfig` | 优化配置 |
+
+### 增强错误消息 *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `DetailedError<T>`, `ErrorDetails`, `ErrorCategory` | 错误增强 |
+| `TypedError<T>`, `ErrorContext<T>`, `ErrorSuggestion<T>` | 错误上下文 |
+| `Diagnostic<T>`, `DiagnosticInfo`, `DiagnosticSeverity` | 诊断类型 |
+| `TypeMismatch<T, Expected>`, `MissingProperty<T, K>`, `InvalidType<T, Valid>` | 类型错误 |
+| `RecoverableError<T>`, `ErrorRecovery<T>`, `RecoveryStrategy` | 错误恢复 |
+| `FallbackType<T, Fallback>`, `GracefulDegradation<T>` | 回退类型 |
+| `HelpMessage<T>`, `HelpInfo`, `DocumentationLink<T>`, `QuickFix<T>` | 帮助消息 |
+| `ErrorReport`, `ReportedError`, `ReportedWarning`, `ErrorReporterConfig` | 错误报告 |
+| `CommonErrorType`, `ErrorCatalogEntry`, `ErrorCatalog` | 错误目录 |
+
+### 破坏性变更检测 *(v1.11.0)*
+
+| 类型 | 描述 |
+|------|-------------|
+| `BreakingChangeReport<T>`, `BreakingChange`, `BreakingChangeType` | 破坏性变更类型 |
+| `BreakingChangeSummary`, `MigrationEffort` | 破坏性变更摘要 |
+| `APIDiff<T, U>`, `AddedAPI<T>`, `RemovedAPI<T>`, `ChangedAPI<T, U>` | API 差异 |
+| `CompatibilityCheck<T, U>`, `BreakingChangeCompatibilityReport<T>` | 兼容性检查 |
+| `BreakingChangeMigrationPath<T, U>`, `BreakingChangeMigrationStep<T>` | 迁移路径 |
+| `ChangeDetectionOptions`, `ChangeDetectionResult<T>`, `Change` | 变更检测 |
+| `VersionComparison`, `VersionChangelog`, `DeprecationChange` | 版本比较 |
+| `ImpactAnalysis`, `AffectedComponent`, `RiskLevel`, `MitigationStrategy` | 影响分析 |
+| `BreakingChangeRule`, `BreakingChangeGuard`, `BreakingChangePreventionConfig` | 预防措施 |
 
 ## 示例
 
