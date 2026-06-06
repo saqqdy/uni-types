@@ -1449,6 +1449,106 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `IsUnion<T>`, `IsIntersection<T>`, `IsOptional<T, K>`, `IsReadonly<T, K>` | 类型工具 |
 | `Equals<T, U>`, `Extends<T, U>`, `HasKey<T, K>`, `HasKeys<T, K>` | 类型比较 |
 
+### 实验性 v2 特性 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Experimental<T>`, `Unstable<T>`, `Preview<T>`, `Beta<T>` | 稳定性标记 |
+| `V2_Preview<T>`, `V2_Experimental<T>`, `V2_Alpha<T>`, `V2_Beta<T>` | v2.0.0 预览特性 |
+| `FeatureFlag<T, Flag>`, `FeatureGate<T, Condition>`, `ConditionalFeature<T, Condition>` | 特性开关 |
+| `TryFeature<T, Available>`, `OptInFeature<T, OptedIn>` | 实验性工具 |
+| `StabilityLevel`, `StableFeature<T>`, `BetaFeature<T>`, `AlphaFeature<T>` | 稳定性级别 |
+
+### 统一类型系统预览 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `TypeV2<T>`, `OpsV2<T>`, `ExtV2<T>`, `UtilV2<T>` | 核心 v2 包装器 |
+| `PickRequiredV2<T, K>`, `DeepPartialV2<T>`, `DeepReadonlyV2<T>`, `DeepRequiredV2<T>` | V2 实现 |
+| `UnifiedPick<T, K>`, `UnifiedOmit<T, K>`, `UnifiedPartial<T>`, `UnifiedRequired<T>` | 统一操作 |
+| `UnifiedMerge<T, U>`, `UnifiedDeepMerge<T, U>` | 统一合并 |
+| `IsEqualV2<T, U>`, `IsSubtypeV2<T, U>`, `IsSupertypeV2<T, U>` | V2 类型谓词 |
+| `TypeBuilderV2<T>`, `V1Compat<T>`, `V2Migration<T, U>` | 迁移辅助 |
+
+### 高阶类型预览 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `HKTV2<F, A>`, `KindV2<F, A>`, `ApplyV2<F, A>` | HKT 原语 |
+| `TypeConstructorV2<F>`, `ConstructV2<F, Args>` | 类型构造器 |
+| `FunctorV2<F>`, `FunctorMap<F, A, B>` | 函子预览 |
+| `MonadV2<M>`, `MonadPure<M, A>`, `MonadChain<M, A, B>` | 单子预览 |
+| `ApplicativeV2<F>`, `ApplicativeLift2<F, A, B, C>` | 应用函子预览 |
+| `HKTIdentity<A>`, `HKTConst<A>`, `HKTCompose<F, G, A>` | HKT 工具 |
+
+### 效果系统预览 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `EffectV2<T, E>`, `PureV2<T>`, `IOV2<T>` | 核心效果类型 |
+| `TrackEffect<T, E>`, `EffectList<T>`, `EffectSafe<T>` | 效果追踪 |
+| `HandlerV2<E, T>`, `HandleV2<T, E>`, `HandleAllV2<T>` | 效果处理器 |
+| `EffectMap<T, F>`, `EffectFlatMap<T, F>` | 效果组合 |
+| `EffectType`, `IOEffect`, `AsyncEffect`, `StateEffect<S>`, `ErrorEffect<E>` | 效果类型标记 |
+
+### 插件系统预览 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `PluginV2<T>`, `PluginAPIV2<T>`, `PluginContextV2<T>` | 插件核心 |
+| `PluginHookV2<T>`, `HookTypeV2`, `HookHandlerV2<T>` | 插件钩子 |
+| `PluginInitV2<T>`, `PluginLoadV2<T>`, `PluginConfigV2<T>` | 插件生命周期 |
+| `PluginRegistryV2<T>`, `RegisteredPlugin<T>` | 插件注册表 |
+| `PluginMetadataV2`, `PluginServicesV2` | 插件元数据 |
+
+### 互操作增强 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `Interop<T, Library>`, `ConvertTo<T, Target>`, `ConvertFrom<T, Source>` | 库互操作 |
+| `ToZodSchema<T>`, `FromZodSchema<T>`, `ToYupSchema<T>`, `FromYupSchema<T>` | Schema 互操作 |
+| `ToJSONSchema<T>`, `FromJSONSchema<T>` | JSON Schema 互操作 |
+| `ToReact<T>`, `ToVue<T>`, `ToSvelte<T>`, `ToAngular<T>` | 框架互操作 |
+| `ToTypeFest<T>`, `FromTypeFest<T>`, `ToTsToolbelt<T>`, `FromTsToolbelt<T>` | 类型库互操作 |
+
+### 开发者工具集成 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `IDEIntegration<T>`, `LanguageServer<T>`, `ServerCapabilities` | IDE 集成 |
+| `CodeAction<T>`, `CodeActionKind`, `CodeLens<T>` | 代码操作 |
+| `CompletionItem<T>`, `CompletionProvider<T>`, `SmartCompletion<T>` | 自动补全 |
+| `RefactorAction<T>`, `RefactorSuggestion<T>`, `RefactorPreview<T>` | 重构 |
+| `SnippetTemplate<T>`, `SafeRefactor<T>` | 代码片段与安全重构 |
+
+### 文档生成 v2 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `V2TypeDocumentation<T>`, `AutoDoc<T>`, `DocTemplate<T>`, `DocExample<T>` | 文档类型 |
+| `GenerateJSDoc<T>`, `JSDocTagV2`, `JSDocTemplate<T>` | JSDoc 生成 |
+| `APIDocumentation<T>`, `EndpointDoc<T>`, `ParameterDoc<T>` | API 文档 |
+| `DocRenderOptions`, `DocRenderResult` | 文档渲染 |
+
+### 社区反馈系统 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `FeatureFeedback<T>`, `BugReport<T>`, `FeatureRequest<T>` | 反馈类型 |
+| `BugSeverity`, `FeaturePriority`, `FeatureCategory` | 分类 |
+| `Survey<T>`, `SurveyQuestion<T>`, `SurveyResult<T>` | 调查类型 |
+| `FeedbackAnalysis<T>`, `SentimentResult` | 分析 |
+| `IssueCategory`, `IssueTemplate<T>`, `IssueTrackingConfig` | 问题追踪 |
+
+### RC 质量门禁 *(v1.12.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `QualityGate<T>`, `GateCondition<T>`, `GateResult`, `GateSeverity` | 质量门禁 |
+| `ValidateRC<T>`, `RCValidationReport<T>`, `RCReadiness` | RC 验证 |
+| `ReleaseCriteria<T>`, `ReleaseCriteriaType`, `ReleaseBlocker` | 发布标准 |
+| `RCConfig`, `NotificationConfig`, `NotificationChannel` | RC 配置 |
+
 ### 迁移工具 *(v1.11.0)*
 
 | 类型 | 描述 |

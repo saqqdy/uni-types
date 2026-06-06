@@ -1449,6 +1449,106 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `IsUnion<T>`, `IsIntersection<T>`, `IsOptional<T, K>`, `IsReadonly<T, K>` | Type utilities |
 | `Equals<T, U>`, `Extends<T, U>`, `HasKey<T, K>`, `HasKeys<T, K>` | Type comparisons |
 
+### Experimental v2 Features *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `Experimental<T>`, `Unstable<T>`, `Preview<T>`, `Beta<T>` | Stability markers |
+| `V2_Preview<T>`, `V2_Experimental<T>`, `V2_Alpha<T>`, `V2_Beta<T>` | v2.0.0 preview features |
+| `FeatureFlag<T, Flag>`, `FeatureGate<T, Condition>`, `ConditionalFeature<T, Condition>` | Feature flags |
+| `TryFeature<T, Available>`, `OptInFeature<T, OptedIn>` | Experimental utilities |
+| `StabilityLevel`, `StableFeature<T>`, `BetaFeature<T>`, `AlphaFeature<T>` | Stability levels |
+
+### Unified Type System Preview *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `TypeV2<T>`, `OpsV2<T>`, `ExtV2<T>`, `UtilV2<T>` | Core v2 wrappers |
+| `PickRequiredV2<T, K>`, `DeepPartialV2<T>`, `DeepReadonlyV2<T>`, `DeepRequiredV2<T>` | V2 implementations |
+| `UnifiedPick<T, K>`, `UnifiedOmit<T, K>`, `UnifiedPartial<T>`, `UnifiedRequired<T>` | Unified operations |
+| `UnifiedMerge<T, U>`, `UnifiedDeepMerge<T, U>` | Unified merging |
+| `IsEqualV2<T, U>`, `IsSubtypeV2<T, U>`, `IsSupertypeV2<T, U>` | V2 type predicates |
+| `TypeBuilderV2<T>`, `V1Compat<T>`, `V2Migration<T, U>` | Migration helpers |
+
+### HKT Preview *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `HKTV2<F, A>`, `KindV2<F, A>`, `ApplyV2<F, A>` | HKT primitives |
+| `TypeConstructorV2<F>`, `ConstructV2<F, Args>` | Type constructors |
+| `FunctorV2<F>`, `FunctorMap<F, A, B>` | Functor preview |
+| `MonadV2<M>`, `MonadPure<M, A>`, `MonadChain<M, A, B>` | Monad preview |
+| `ApplicativeV2<F>`, `ApplicativeLift2<F, A, B, C>` | Applicative preview |
+| `HKTIdentity<A>`, `HKTConst<A>`, `HKTCompose<F, G, A>` | HKT utilities |
+
+### Effect System Preview *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `EffectV2<T, E>`, `PureV2<T>`, `IOV2<T>` | Core effect types |
+| `TrackEffect<T, E>`, `EffectList<T>`, `EffectSafe<T>` | Effect tracking |
+| `HandlerV2<E, T>`, `HandleV2<T, E>`, `HandleAllV2<T>` | Effect handlers |
+| `EffectMap<T, F>`, `EffectFlatMap<T, F>` | Effect composition |
+| `EffectType`, `IOEffect`, `AsyncEffect`, `StateEffect<S>`, `ErrorEffect<E>` | Effect type markers |
+
+### Plugin System Preview *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `PluginV2<T>`, `PluginAPIV2<T>`, `PluginContextV2<T>` | Plugin core |
+| `PluginHookV2<T>`, `HookTypeV2`, `HookHandlerV2<T>` | Plugin hooks |
+| `PluginInitV2<T>`, `PluginLoadV2<T>`, `PluginConfigV2<T>` | Plugin lifecycle |
+| `PluginRegistryV2<T>`, `RegisteredPlugin<T>` | Plugin registry |
+| `PluginMetadataV2`, `PluginServicesV2` | Plugin metadata |
+
+### Interop Enhancements *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `Interop<T, Library>`, `ConvertTo<T, Target>`, `ConvertFrom<T, Source>` | Library interop |
+| `ToZodSchema<T>`, `FromZodSchema<T>`, `ToYupSchema<T>`, `FromYupSchema<T>` | Schema interop |
+| `ToJSONSchema<T>`, `FromJSONSchema<T>` | JSON Schema interop |
+| `ToReact<T>`, `ToVue<T>`, `ToSvelte<T>`, `ToAngular<T>` | Framework interop |
+| `ToTypeFest<T>`, `FromTypeFest<T>`, `ToTsToolbelt<T>`, `FromTsToolbelt<T>` | Type library interop |
+
+### Developer Tools Integration *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `IDEIntegration<T>`, `LanguageServer<T>`, `ServerCapabilities` | IDE integration |
+| `CodeAction<T>`, `CodeActionKind`, `CodeLens<T>` | Code actions |
+| `CompletionItem<T>`, `CompletionProvider<T>`, `SmartCompletion<T>` | Auto-completion |
+| `RefactorAction<T>`, `RefactorSuggestion<T>`, `RefactorPreview<T>` | Refactoring |
+| `SnippetTemplate<T>`, `SafeRefactor<T>` | Snippets & safe refactoring |
+
+### Documentation Generation v2 *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `V2TypeDocumentation<T>`, `AutoDoc<T>`, `DocTemplate<T>`, `DocExample<T>` | Documentation types |
+| `GenerateJSDoc<T>`, `JSDocTagV2`, `JSDocTemplate<T>` | JSDoc generation |
+| `APIDocumentation<T>`, `EndpointDoc<T>`, `ParameterDoc<T>` | API documentation |
+| `DocRenderOptions`, `DocRenderResult` | Documentation rendering |
+
+### Community Feedback System *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `FeatureFeedback<T>`, `BugReport<T>`, `FeatureRequest<T>` | Feedback types |
+| `BugSeverity`, `FeaturePriority`, `FeatureCategory` | Classification |
+| `Survey<T>`, `SurveyQuestion<T>`, `SurveyResult<T>` | Survey types |
+| `FeedbackAnalysis<T>`, `SentimentResult` | Analysis |
+| `IssueCategory`, `IssueTemplate<T>`, `IssueTrackingConfig` | Issue tracking |
+
+### RC Quality Gates *(v1.12.0)*
+
+| Type | Description |
+|------|-------------|
+| `QualityGate<T>`, `GateCondition<T>`, `GateResult`, `GateSeverity` | Quality gates |
+| `ValidateRC<T>`, `RCValidationReport<T>`, `RCReadiness` | RC validation |
+| `ReleaseCriteria<T>`, `ReleaseCriteriaType`, `ReleaseBlocker` | Release criteria |
+| `RCConfig`, `NotificationConfig`, `NotificationChannel` | RC configuration |
+
 ### Migration Utilities *(v1.11.0)*
 
 | Type | Description |
