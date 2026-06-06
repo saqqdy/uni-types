@@ -188,6 +188,32 @@ export type {
 	TypeSet,
 } from './collection'
 
+// Community Feedback System (v1.12.0)
+export type {
+	AttachmentInfo,
+	AutoLabelRule,
+	BugReport,
+	BugSeverity,
+	EnvironmentInfo,
+	FeatureCategory,
+	FeatureFeedback,
+	FeaturePriority,
+	FeatureRequest,
+	FeedbackAnalysis,
+	IssueCategory,
+	IssueTemplate,
+	IssueTrackingConfig,
+	SentimentResult,
+	SuggestionCategory,
+	SuggestionStatus,
+	Survey,
+	SurveyQuestion,
+	SurveyQuestionType,
+	SurveyResult,
+	TemplateField,
+	UserSuggestion,
+} from './community'
+
 // Type-Level Compiler (v1.6.0)
 export type {
 	ArrayExpression,
@@ -645,6 +671,36 @@ export * from './deprecation'
 // DevOps Types (v1.10.0)
 export * from './devops'
 
+// Developer Tools Integration (v1.12.0)
+export type {
+	CodeAction,
+	CodeActionKind,
+	CodeLens,
+	CompletionContext,
+	CompletionItem,
+	CompletionItemKind,
+	CompletionProvider,
+	DevToolsCommand,
+	DiagnosticItem,
+	DiagnosticSeverity,
+	IDEFeature,
+	IDEIntegration,
+	LanguageServer,
+	RefactorAction,
+	RefactorImpact,
+	RefactorKind,
+	RefactorPreview,
+	RefactorSafetyAssessment,
+	RefactorSuggestion,
+	SafeRefactor,
+	ServerCapabilities,
+	SmartCompletion,
+	SnippetTemplate,
+	TextDocumentSyncKind,
+	TextEdit,
+	WorkspaceEdit,
+} from './devtools'
+
 // Distributed Systems (v1.6.0)
 export type {
 	AppendEntriesRequest,
@@ -781,12 +837,58 @@ export type {
 	TypeSignature,
 } from './docgen'
 
+export type {
+	APIDocumentation,
+	AuthDoc,
+	AutoDoc,
+	DocExample,
+	DocOutputFormat,
+	DocRenderOptions,
+	DocRenderResult,
+	DocTemplate,
+	DocTemplateType,
+	EndpointDoc,
+	GenerateJSDoc,
+	JSDocTagV2,
+	JSDocTemplate,
+	ParameterDoc,
+	RequestBodyDoc,
+	ResponseDoc,
+	UsagePattern,
+	DeprecationInfoV2 as V2DeprecationInfo,
+	TypeDocumentation as V2TypeDocumentation,
+} from './docgen-v2'
+
 // Ecosystem integration (v1.2.0)
 export type {
 	ComponentProps,
 	PrismaCreateInput,
 	PropsWithChildren,
 } from './ecosystem'
+
+// Effect System Preview (v1.12.0)
+export type {
+	AsyncEffect,
+	EffectConfig,
+	EffectFlatMap,
+	EffectfulV2,
+	EffectList,
+	EffectMap,
+	EffectRuntime,
+	EffectSafe,
+	EffectSequence,
+	EffectTypeV2,
+	EffectV2,
+	ErrorEffect,
+	HandleAllV2,
+	HandlerV2,
+	HandleV2,
+	IOEffect,
+	IOV2,
+	PureV2,
+	StateEffect,
+	TrackEffect,
+} from './effect'
 
 // Enhanced Error Messages (v1.11.0)
 export * from './enhanced-error'
@@ -891,6 +993,33 @@ export type {
 
 // Type-Level Event System (v1.9.0)
 export * from './event-system'
+
+// Experimental v2 Features (v1.12.0)
+export type {
+	AlphaFeature,
+	Beta,
+	BetaFeature,
+	ConditionalFeature,
+	Experimental,
+	ExperimentalAPI,
+	ExperimentalFeature,
+	ExperimentalFeatureFlag,
+	FeatureGate,
+	FeatureMetadata,
+	FeatureRegistry,
+	FlaggedFeature,
+	OptInFeature,
+	Preview,
+	PreviewAPI,
+	StabilityLevel,
+	StableFeature,
+	TryFeature,
+	Unstable,
+	V2_Alpha,
+	V2_Beta,
+	V2_Experimental,
+	V2_Preview,
+} from './experimental'
 
 export type {
 	AbsolutePath,
@@ -1190,8 +1319,16 @@ export * from './graphics'
 // GraphQL Integration (v1.5.0)
 export * from './graphql'
 
+// ============================================================================
+// v1.7.0 - Metaprogramming Utilities
+// ============================================================================
+
 // Type guards
 export * from './guards'
+
+// ============================================================================
+// v1.7.0 - Type Decorators
+// ============================================================================
 
 // Higher-Kinded Types (v1.10.0)
 export type {
@@ -1223,12 +1360,46 @@ export type {
 	Uncurried,
 } from './hkt'
 
+// ============================================================================
+// v1.7.0 - Code Generation Templates
+// ============================================================================
+
+// Higher-Kinded Types (HKT) Preview (v1.12.0)
+export type {
+	ApplicativeLift2,
+	ApplicativeV2,
+	ApplyV2,
+	ConstructV2,
+	FunctorMap,
+	FunctorV2,
+	HKTCompose,
+	HKTConst,
+	HKTFlip,
+	HKTIdentity,
+	HKTPartial,
+	HKTV2,
+	KindV2,
+	MonadChain,
+	MonadFlatten,
+	MonadPure,
+	MonadV2,
+	TypeConstructorV2,
+} from './hkt-v2'
+
+// ============================================================================
+// v1.7.0 - Framework Integrations
+// ============================================================================
+
 // Type-level HTTP & API (v1.4.0)
 export type {
 	Middleware as HTTPMiddleware,
 	HTTPStatus,
 	Route,
 } from './http'
+
+// ============================================================================
+// v1.7.0 - Type-Safe Configuration
+// ============================================================================
 
 // Internationalization (v1.6.0)
 export type {
@@ -1284,11 +1455,15 @@ export type {
 	UnitType,
 } from './i18n'
 
+// ============================================================================
+// v1.7.0 - Type Visualization
+// ============================================================================
+
 // Type inference
 export * from './infer'
 
 // ============================================================================
-// v1.7.0 - Metaprogramming Utilities
+// v1.7.0 - Type-Level Cryptography
 // ============================================================================
 
 // Type Inference Enhancements (v1.6.0)
@@ -1349,7 +1524,7 @@ export type {
 } from './inference'
 
 // ============================================================================
-// v1.7.0 - Type Decorators
+// v1.7.0 - Type-Level Date/Time
 // ============================================================================
 
 export type {
@@ -1437,21 +1612,49 @@ export type {
 } from './inference-engine'
 
 // ============================================================================
-// v1.7.0 - Code Generation Templates
+// v1.7.0 - Type-Level Advanced Math
 // ============================================================================
 
 // Type-level interop (v1.4.0)
 export * from './interop'
 
 // ============================================================================
-// v1.7.0 - Framework Integrations
+// v1.7.0 - Type-Level Sorting & Searching
+// ============================================================================
+
+// Interop Enhancements (v1.12.0)
+export type {
+	BiDirectional,
+	ConvertFrom,
+	ConvertTo,
+	FromJSONSchema,
+	FromTsToolbelt,
+	FromTypeFest,
+	FromYupSchema,
+	FromZodSchema,
+	Interop,
+	InteropMap,
+	InteropResult,
+	ToAngular,
+	ToJSONSchema,
+	ToReact,
+	ToSvelte,
+	ToTsToolbelt,
+	ToTypeFest,
+	ToVue,
+	ToYupSchema,
+	ToZodSchema,
+} from './interop-v2'
+
+// ============================================================================
+// v1.8.0 - Type Inference Engine
 // ============================================================================
 
 // Key utilities (v1.1.0)
 export * from './keys'
 
 // ============================================================================
-// v1.7.0 - Type-Safe Configuration
+// v1.8.0 - Type-Level Database Operations (Extended)
 // ============================================================================
 
 // Logging & Observability (v1.5.0)
@@ -1497,7 +1700,7 @@ export type {
 } from './logging'
 
 // ============================================================================
-// v1.7.0 - Type Visualization
+// v1.8.0 - Type-Level Network Protocols
 // ============================================================================
 
 export type {
@@ -1602,7 +1805,7 @@ export type {
 } from './math-advanced'
 
 // ============================================================================
-// v1.7.0 - Type-Level Cryptography
+// v1.8.0 - Type-Level File System
 // ============================================================================
 
 export type {
@@ -1639,7 +1842,7 @@ export type {
 } from './meta'
 
 // ============================================================================
-// v1.7.0 - Type-Level Date/Time
+// v1.8.0 - Type-Level Compiler Extensions
 // ============================================================================
 
 // Microservices Architecture (v1.5.0)
@@ -1674,14 +1877,14 @@ export type {
 } from './microservice'
 
 // ============================================================================
-// v1.7.0 - Type-Level Advanced Math
+// v1.8.0 - Type-Level Debugging Tools
 // ============================================================================
 
 // Migration Utilities (v1.11.0)
 export * from './migration'
 
 // ============================================================================
-// v1.7.0 - Type-Level Sorting & Searching
+// v1.8.0 - Type-Level Optimizer
 // ============================================================================
 
 // Performance Monitoring (v1.6.0)
@@ -1733,7 +1936,7 @@ export type {
 } from './monitoring'
 
 // ============================================================================
-// v1.8.0 - Type Inference Engine
+// v1.8.0 - Type-Level Documentation Generator
 // ============================================================================
 
 export type {
@@ -1794,29 +1997,25 @@ export type {
 } from './network'
 
 // ============================================================================
-// v1.8.0 - Type-Level Database Operations (Extended)
+// v1.8.0 - Type-Level Test Framework (Extended)
 // ============================================================================
 
 // Type-Level Language Processing (v1.9.0)
 export * from './nlp'
 
 // ============================================================================
-// v1.8.0 - Type-Level Network Protocols
+// v1.8.0 - Type-Level Package Manager
 // ============================================================================
 
 // Numeric utilities (v1.1.0)
 export * from './numeric'
 
 // ============================================================================
-// v1.8.0 - Type-Level File System
+// v1.9.0 - Advanced Domain-Specific Types
 // ============================================================================
 
 // Object utilities (v1.3.0)
 export * from './object'
-
-// ============================================================================
-// v1.8.0 - Type-Level Compiler Extensions
-// ============================================================================
 
 export type {
 	CodeMotion,
@@ -1879,10 +2078,6 @@ export type {
 	UnusedExports,
 	UsedExports,
 } from './optimizer'
-
-// ============================================================================
-// v1.8.0 - Type-Level Debugging Tools
-// ============================================================================
 
 export type {
 	Dependencies,
@@ -1949,37 +2144,17 @@ export type {
 	YarnConfig,
 } from './package-manager'
 
-// ============================================================================
-// v1.8.0 - Type-Level Optimizer
-// ============================================================================
-
 // Type-level parsers (v1.4.0)
 export * from './parsers'
-
-// ============================================================================
-// v1.8.0 - Type-Level Documentation Generator
-// ============================================================================
 
 // Path utilities (v1.1.0)
 export * from './path'
 
-// ============================================================================
-// v1.8.0 - Type-Level Test Framework (Extended)
-// ============================================================================
-
 // Pattern matching (v1.3.0)
 export * from './pattern'
 
-// ============================================================================
-// v1.8.0 - Type-Level Package Manager
-// ============================================================================
-
 // Performance optimization (v1.2.0)
 export * from './perf'
-
-// ============================================================================
-// v1.9.0 - Advanced Domain-Specific Types
-// ============================================================================
 
 // Performance Monitoring (v1.11.0)
 export * from './perf'
@@ -2028,6 +2203,30 @@ export type {
 	RegistryEntry,
 	StoredPlugin,
 } from './plugin'
+
+// Plugin System Preview (v1.12.0)
+export type {
+	HookHandlerV2,
+	HookTypeV2,
+	InitPhaseV2,
+	LoadStatusV2,
+	PluginAPIV2,
+	PluginConfigV2,
+	PluginContextV2,
+	PluginEventBusV2,
+	PluginHookV2,
+	PluginInitV2,
+	PluginLoadV2,
+	PluginLoggerV2,
+	PluginMetadataV2,
+	PluginRegistryV2,
+	PluginServicesV2,
+	PluginTypeV2,
+	PluginV2,
+	RegisteredPlugin,
+} from './plugin-v2'
+
+// ============== v1.10.0 Types ==============
 
 // Final Polish Types (v1.10.0)
 export type {
@@ -2084,6 +2283,28 @@ export * from './qa'
 
 // Type-Level Quantum Computing (v1.9.0)
 export * from './quantum'
+
+// RC Quality Gates (v1.12.0)
+export type {
+	CriteriaCheck,
+	GateCondition,
+	GateConditionType,
+	GateResult,
+	GateSeverity,
+	NotificationChannel,
+	NotificationConfig,
+	QualityGate,
+	RCCheckCategory,
+	RCConfig,
+	RCReadiness,
+	RCValidationCheck,
+	RCValidationReport,
+	RCValidationSummary,
+	ReleaseBlocker,
+	ReleaseCriteria,
+	ReleaseCriteriaType,
+	ValidateRC,
+} from './rc-gates'
 
 // Type-Level Reactive Programming (v1.9.0)
 export type {
@@ -2319,8 +2540,6 @@ export type {
 	SignedData,
 } from './security'
 
-// ============== v1.10.0 Types ==============
-
 // Type-level state machines (v1.4.0)
 export type {
 	BuildStateMachine,
@@ -2394,6 +2613,10 @@ export type {
 	TestSummary,
 } from './test-framework'
 
+// ============================================================================
+// v1.12.0 - v2.0.0 Release Candidate
+// ============================================================================
+
 export type {
 	Assert,
 	AssertEqual,
@@ -2436,7 +2659,6 @@ export type {
 	Worker,
 	WorkerPool,
 } from './test-framework'
-
 // Type-level testing (v1.4.0)
 export * from './testing'
 
@@ -2508,6 +2730,31 @@ export type {
 	Ultimate,
 } from './ultimate'
 
+export type {
+	DeepPartialV2,
+	DeepReadonlyV2,
+	DeepRequiredV2,
+	ExtV2,
+	IsArrayV2,
+	IsEqualV2,
+	IsSubtypeV2,
+	IsSupertypeV2,
+	OpsV2,
+	PickRequiredV2,
+	TypeBuilderV2,
+	TypeV2,
+	UnifiedDeepMerge,
+	UnifiedMerge,
+	UnifiedOmit,
+	UnifiedPartial,
+	UnifiedPick,
+	UnifiedRequired,
+	UtilV2,
+	V1Compat,
+	V2APIVersion,
+	V2Migration,
+} from './unified'
+
 // Utility types
 export * from './utils'
 
@@ -2543,7 +2790,6 @@ export type {
 	ValidatorResult,
 	ValidationError as ValidatorValidationError,
 } from './validation'
-
 export type {
 	AddedProperties,
 	ASCIIGraph,
