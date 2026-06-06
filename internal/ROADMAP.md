@@ -16,7 +16,7 @@ This document outlines the development roadmap for `uni-types`.
 - [x] [1.9.0](#190) - Advanced domain-specific types (2026-04-26)
 - [x] [1.10.0](#1100) - Ultimate type system (2026-05-02)
 - [ ] [1.11.0](#1110) - Migration & deprecation tools (Planned)
-- [ ] [1.12.0](#1120) - v2.0.0 Release Candidate (Planned)
+- [x] [1.12.0](#1120) - v2.0.0 Release Candidate (2026-06-06)
 - [ ] [1.13.0](#1130) - Final bridge to v2.0.0 (Planned - Final 1.x Release)
 - [ ] [2.0.0](#200) - Next generation (Future)
 
