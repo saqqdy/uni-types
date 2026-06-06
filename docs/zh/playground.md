@@ -1420,6 +1420,124 @@ type VersionChangelogT = VersionChangelog
 type BreakingChangeGuardT = BreakingChangeGuard
 ```
 
+### v1.12.0 类型
+
+```typescript
+// v1.12.0 - 实验性 v2 功能
+type ExpFeature = Experimental<{ value: string }>
+type UnstableFeature = Unstable<{ value: string }>
+type PreviewFeature = Preview<{ value: string }>
+type BetaFeatureV2 = Beta<{ value: string }>
+type V2Preview = V2_Preview<{ value: string }>
+type V2Exp = V2_Experimental<{ value: string }>
+type FeatureFlagT = FeatureFlag<{ value: string }, 'new-feature'>
+type FeatureGateT = FeatureGate<{ value: string }, true>
+type TryExp = TryFeature<{ value: string }, true>
+type OptIn = OptInFeature<{ value: string }, true>
+type StabilityT = StabilityLevel
+type StableFeat = StableFeature<{ value: string }>
+
+// v1.12.0 - 统一类型系统
+type TypeV2T = TypeV2<{ name: string }>
+type OpsV2T = OpsV2<{ name: string }>
+type PickReqV2 = PickRequiredV2<{ name?: string; age?: number }, 'name'>
+type DeepPartialV2T = DeepPartialV2<{ a: { b: { c: string } } }>
+type DeepReadonlyV2T = DeepReadonlyV2<{ a: { b: string } }>
+type DeepRequiredV2T = DeepRequiredV2<{ a?: { b?: string } }>
+type UnifiedPickT = UnifiedPick<{ a: string; b: number }, 'a'>
+type UnifiedMergeT = UnifiedMerge<{ a: string }, { b: number }>
+type UnifiedDeepMergeT = UnifiedDeepMerge<{ a: { x: string } }, { a: { y: number } }>
+type IsEqualV2T = IsEqualV2<string, string>
+type TypeBuilderT = TypeBuilderV2<{ name: string }>
+type V1CompatT = V1Compat<{ value: string }>
+
+// v1.12.0 - 高阶类型预览
+type HKTApply = HKTV2<{ _type: unknown }, string>
+type KindV2T = KindV2<(a: string) => number, string>
+type ApplyV2T = ApplyV2<(a: string) => number, string>
+type ConstructV2T = ConstructV2<(a: string, b: number) => boolean, [string, number]>
+type FunctorV2T = FunctorV2<{ _type: unknown }>
+type MonadV2T = MonadV2<{ _type: unknown }>
+type ApplicativeV2T = ApplicativeV2<{ _type: unknown }>
+type HKTId = HKTIdentity<string>
+type HKTConstT = HKTConst<string, number>
+type HKTComposeT = HKTCompose<F, G, string>
+
+// v1.12.0 - 效果系统
+type EffectT = EffectV2<string, ['io']>
+type PureT = PureV2<string>
+type IOV2T = IOV2<string>
+type TrackedT = TrackEffect<PureV2<string>, 'async'>
+type EffectListT = EffectList<EffectV2<string, ['io', 'async']>>
+type EffectSafeT = EffectSafe<PureV2<string>>
+type HandledT = HandleV2<EffectV2<string, ['io', 'async']>, 'io'>
+type HandleAllT = HandleAllV2<EffectV2<string, ['io']>>
+type EffectTypeT = EffectType
+
+// v1.12.0 - 插件系统 v2
+type PluginV2T = PluginV2<{ config: string }>
+type PluginAPIV2T = PluginAPIV2<{ config: string }>
+type PluginHookV2T = PluginHookV2<string>
+type PluginRegistryV2T = PluginRegistryV2<{ config: string }>
+type PluginConfigV2T = PluginConfigV2<{ port: number }>
+type PluginMetadataV2T = PluginMetadataV2
+type RegisteredPluginT = RegisteredPlugin<{ config: string }>
+
+// v1.12.0 - 互操作增强
+type InteropT = Interop<{ name: string }, 'zod'>
+type ConvertToZod = ConvertTo<{ name: string }, 'zod'>
+type ConvertFromZod = ConvertFrom<{ type: 'object' }, 'zod'>
+type ToZodT = ToZodSchema<{ name: string; age: number }>
+type FromZodT = FromZodSchema<{ type: 'object'; shape: unknown }>
+type ToYupT = ToYupSchema<{ name: string }>
+type ToJSONSchemaT = ToJSONSchema<{ name: string; age: number }>
+type BiDirT = BiDirectional<{ name: string }, { name: string }>
+type ToReactT = ToReact<{ value: string }>
+type ToVueT = ToVue<{ value: string }>
+type InteropResultT = InteropResult<{ name: string }, 'zod', 'yup'>
+
+// v1.12.0 - 开发者工具
+type IDEIntT = IDEIntegration<{ name: string }>
+type LangServerT = LanguageServer<{ name: string }>
+type CodeActionT = CodeAction<{ name: string }>
+type CodeLensT = CodeLens<{ name: string }>
+type CompletionItemT = CompletionItem<{ name: string }>
+type SmartCompletionT = SmartCompletion<{ name: string }>
+type RefactorActionT = RefactorAction<{ name: string }>
+type SafeRefactorT = SafeRefactor<{ name: string }>
+type RefactorPreviewT = RefactorPreview<{ name: string }>
+type SnippetTemplateT = SnippetTemplate<{ name: string }>
+
+// v1.12.0 - 文档生成 v2
+type TypeDocV2T = TypeDocumentation<{ name: string }>
+type AutoDocT = AutoDoc<{ name: string }>
+type DocTemplateV2T = DocTemplate<{ name: string }>
+type GenerateJSDocT = GenerateJSDoc<{ name: string }>
+type APIDocV2T = APIDocumentation<{ name: string }>
+type EndpointDocT = EndpointDoc<{ name: string }>
+type DocRenderOptionsT = DocRenderOptions
+
+// v1.12.0 - 社区反馈
+type FeatureFeedbackT = FeatureFeedback<{ userId: string }>
+type BugReportT = BugReport<{ userId: string }>
+type FeatureRequestT = FeatureRequest<{ userId: string }>
+type UserSuggestionT = UserSuggestion<{ userId: string }>
+type SurveyT = Survey<{ userId: string }>
+type SurveyResultT = SurveyResult<{ userId: string }>
+type FeedbackAnalysisT = FeedbackAnalysis<{ userId: string }>
+type IssueTemplateT = IssueTemplate<{ name: string }>
+
+// v1.12.0 - RC 质量门控
+type QualityGateT = QualityGate<{ coverage: number }>
+type GateConditionT = GateCondition<number>
+type ValidateRCT = ValidateRC<{ coverage: number }>
+type RCValidationReportT = RCValidationReport<{ coverage: number }>
+type RCReadinessT = RCReadiness
+type ReleaseCriteriaT = ReleaseCriteria<number>
+type ReleaseBlockerT = ReleaseBlocker
+type RCConfigT = RCConfig
+```
+
 ## 外部资源
 
 - [TypeScript Playground](https://www.typescriptlang.org/play) - TypeScript 官方演练场
