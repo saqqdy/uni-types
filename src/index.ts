@@ -125,6 +125,23 @@ export * from './brand'
 // Breaking Change Detection (v1.11.0)
 export * from './breaking-change'
 
+// Breaking Changes - Final (v1.13.0)
+export type {
+	AnalyzeImpact,
+	BreakingChangeCategory,
+	BreakingChangeDoc,
+	BreakingChangeImpact,
+	BreakingChangeLog,
+	BreakingChangeSeverity,
+	BreakingChangeTimeline,
+	ImpactLevel,
+	MigrationEffort,
+	MitigationPlan,
+	MitigationStep,
+	MitigationStrategy,
+	MitigationType,
+} from './breaking-change-final'
+
 // Build Tools Types (v1.10.0)
 export * from './build-tools'
 
@@ -213,6 +230,29 @@ export type {
 	TemplateField,
 	UserSuggestion,
 } from './community'
+
+// Community & Ecosystem (v1.13.0)
+export type {
+	BestPractice,
+	CommunityApproved,
+	CommunityContributed,
+	CommunityPattern,
+	CommunityPlugin,
+	CommunityPluginAPI,
+	CommunityPluginEntry,
+	CommunityPluginHook,
+	PluginHookType as CommunityPluginHookType,
+	CommunityPluginRegistry,
+	CookbookCategory,
+	CookbookExample,
+	CookbookPattern,
+	CookbookRecipe,
+	PatternCategory,
+	Recipe,
+	RecipeCategory,
+	RecipeExample,
+	RecipeLibrary,
+} from './community-ecosystem'
 
 // Type-Level Compiler (v1.6.0)
 export type {
@@ -859,6 +899,25 @@ export type {
 	TypeDocumentation as V2TypeDocumentation,
 } from './docgen-v2'
 
+// Dual Mode Support (v1.13.0)
+export type {
+	APIMode,
+	BridgeStatus,
+	BridgeV1,
+	BridgeV2,
+	CompatBridge,
+	CompatibilityLevel,
+	DualMode,
+	MigrationPath,
+	MixedMode,
+	ModeConfig,
+	ModeOptions,
+	SwitchMode,
+	SwitchStatus,
+	V1Mode,
+	V2Mode,
+} from './dual-mode'
+
 // Ecosystem integration (v1.2.0)
 export type {
 	ComponentProps,
@@ -892,6 +951,26 @@ export type {
 
 // Enhanced Error Messages (v1.11.0)
 export * from './enhanced-error'
+
+// End-of-Life Planning (v1.13.0)
+export type {
+	EndOfLife,
+	EOLMigration,
+	EOLMigrationComplexity,
+	EOLPhase,
+	EOLSchedule,
+	EOLWarning,
+	EOLWarningLevel,
+	LegacyMigration,
+	LegacySupport,
+	LegacySupportLevel,
+	LegacyTimeline,
+	Sunset,
+	SunsetMigration,
+	SunsetSchedule,
+	SunsetStatus,
+	SunsetWarning,
+} from './eol'
 
 // Type-Level Error Handling (v1.9.0)
 export type {
@@ -1083,6 +1162,26 @@ export type {
 	WriteOptions,
 } from './filesystem'
 
+// Final Documentation (v1.13.0)
+export type {
+	DocArchive,
+	DocBundle,
+	DocExportFormat,
+	DocStatus,
+	DocStep,
+	ExportFinalDocs,
+	FinalDoc,
+	GuidedMigration,
+	GuideSection,
+	InteractiveGuide,
+	InteractiveStep,
+	MigrationDoc,
+	StepByStep,
+	TransitionGuide,
+	TransitionPhase,
+	UpgradeGuide,
+} from './final-doc'
+
 export type {
 	AstroFrontmatter,
 	AstroGlobal,
@@ -1199,6 +1298,10 @@ export type {
 	WriterOps,
 } from './functional'
 
+// ============================================================================
+// v1.7.0 - Metaprogramming Utilities
+// ============================================================================
+
 // Function utilities (v1.1.0)
 export type {
 	AsyncReturnType,
@@ -1206,6 +1309,10 @@ export type {
 	Parameters,
 	ReturnType,
 } from './functions'
+
+// ============================================================================
+// v1.7.0 - Type Decorators
+// ============================================================================
 
 // Type-Level Game Development (v1.9.0)
 export type {
@@ -1268,6 +1375,10 @@ export type {
 	Velocity,
 } from './game'
 
+// ============================================================================
+// v1.7.0 - Code Generation Templates
+// ============================================================================
+
 export type {
 	Adapter,
 	ASTTransformer,
@@ -1313,21 +1424,29 @@ export type {
 	YAMLOptions,
 } from './generate'
 
+// ============================================================================
+// v1.7.0 - Framework Integrations
+// ============================================================================
+
 // Type-Level Graphics (v1.9.0)
 export * from './graphics'
+
+// ============================================================================
+// v1.7.0 - Type-Safe Configuration
+// ============================================================================
 
 // GraphQL Integration (v1.5.0)
 export * from './graphql'
 
 // ============================================================================
-// v1.7.0 - Metaprogramming Utilities
+// v1.7.0 - Type Visualization
 // ============================================================================
 
 // Type guards
 export * from './guards'
 
 // ============================================================================
-// v1.7.0 - Type Decorators
+// v1.7.0 - Type-Level Cryptography
 // ============================================================================
 
 // Higher-Kinded Types (v1.10.0)
@@ -1361,7 +1480,7 @@ export type {
 } from './hkt'
 
 // ============================================================================
-// v1.7.0 - Code Generation Templates
+// v1.7.0 - Type-Level Date/Time
 // ============================================================================
 
 // Higher-Kinded Types (HKT) Preview (v1.12.0)
@@ -1387,7 +1506,7 @@ export type {
 } from './hkt-v2'
 
 // ============================================================================
-// v1.7.0 - Framework Integrations
+// v1.7.0 - Type-Level Advanced Math
 // ============================================================================
 
 // Type-level HTTP & API (v1.4.0)
@@ -1398,7 +1517,7 @@ export type {
 } from './http'
 
 // ============================================================================
-// v1.7.0 - Type-Safe Configuration
+// v1.7.0 - Type-Level Sorting & Searching
 // ============================================================================
 
 // Internationalization (v1.6.0)
@@ -1456,14 +1575,14 @@ export type {
 } from './i18n'
 
 // ============================================================================
-// v1.7.0 - Type Visualization
+// v1.8.0 - Type Inference Engine
 // ============================================================================
 
 // Type inference
 export * from './infer'
 
 // ============================================================================
-// v1.7.0 - Type-Level Cryptography
+// v1.8.0 - Type-Level Database Operations (Extended)
 // ============================================================================
 
 // Type Inference Enhancements (v1.6.0)
@@ -1524,7 +1643,7 @@ export type {
 } from './inference'
 
 // ============================================================================
-// v1.7.0 - Type-Level Date/Time
+// v1.8.0 - Type-Level Network Protocols
 // ============================================================================
 
 export type {
@@ -1612,14 +1731,14 @@ export type {
 } from './inference-engine'
 
 // ============================================================================
-// v1.7.0 - Type-Level Advanced Math
+// v1.8.0 - Type-Level File System
 // ============================================================================
 
 // Type-level interop (v1.4.0)
 export * from './interop'
 
 // ============================================================================
-// v1.7.0 - Type-Level Sorting & Searching
+// v1.8.0 - Type-Level Compiler Extensions
 // ============================================================================
 
 // Interop Enhancements (v1.12.0)
@@ -1647,14 +1766,40 @@ export type {
 } from './interop-v2'
 
 // ============================================================================
-// v1.8.0 - Type Inference Engine
+// v1.8.0 - Type-Level Debugging Tools
 // ============================================================================
 
 // Key utilities (v1.1.0)
 export * from './keys'
 
 // ============================================================================
-// v1.8.0 - Type-Level Database Operations (Extended)
+// v1.8.0 - Type-Level Optimizer
+// ============================================================================
+
+// v2.0.0 Launch Preparation (v1.13.0)
+export type {
+	AnnouncementAudience,
+	Criterion,
+	LaunchAnnouncement,
+	LaunchCategory,
+	LaunchChecklist,
+	LaunchChecklistItem,
+	LaunchCriteria,
+	LaunchNotes,
+	LaunchPhase,
+	LaunchReadinessStatus,
+	LaunchReady,
+	LaunchReport,
+	LaunchStatusFinal as LaunchStatus,
+	LaunchTimeline,
+	LaunchValidationCheck,
+	LaunchValidationFinal,
+	LaunchValidationResult,
+	ValidateLaunch,
+} from './launch'
+
+// ============================================================================
+// v1.8.0 - Type-Level Documentation Generator
 // ============================================================================
 
 // Logging & Observability (v1.5.0)
@@ -1700,7 +1845,7 @@ export type {
 } from './logging'
 
 // ============================================================================
-// v1.8.0 - Type-Level Network Protocols
+// v1.8.0 - Type-Level Test Framework (Extended)
 // ============================================================================
 
 export type {
@@ -1805,7 +1950,7 @@ export type {
 } from './math-advanced'
 
 // ============================================================================
-// v1.8.0 - Type-Level File System
+// v1.8.0 - Type-Level Package Manager
 // ============================================================================
 
 export type {
@@ -1842,7 +1987,7 @@ export type {
 } from './meta'
 
 // ============================================================================
-// v1.8.0 - Type-Level Compiler Extensions
+// v1.9.0 - Advanced Domain-Specific Types
 // ============================================================================
 
 // Microservices Architecture (v1.5.0)
@@ -1876,16 +2021,38 @@ export type {
 	RetryPolicy as ServiceRetryPolicy,
 } from './microservice'
 
-// ============================================================================
-// v1.8.0 - Type-Level Debugging Tools
-// ============================================================================
-
 // Migration Utilities (v1.11.0)
 export * from './migration'
 
-// ============================================================================
-// v1.8.0 - Type-Level Optimizer
-// ============================================================================
+// Complete Migration Toolkit (v1.13.0)
+export type {
+	AutoMigrate,
+	BatchMigration,
+	BatchMigrationStatus,
+	BatchOptions,
+	ChecklistItem,
+	MigrationBatch,
+	MigrationChange,
+	MigrationChangeType,
+	MigrationChecklist,
+	MigrationError,
+	MigrationErrors,
+	MigrationProgress,
+	MigrationRollback,
+	MigrationSteps,
+	MigrationStepStatus,
+	MigrationSummary,
+	MigrationToolkit,
+	MigrationToolkitStatus,
+	MigrationWarning,
+	MigrationWizard,
+	MigrationWizardStep,
+	RollbackAction,
+	RollbackPoint,
+	ValidateComplete,
+	ValidationCheck,
+	ValidationOutcome,
+} from './migration-toolkit'
 
 // Performance Monitoring (v1.6.0)
 export type {
@@ -1934,10 +2101,6 @@ export type {
 	TraceContext,
 	TraceSpan,
 } from './monitoring'
-
-// ============================================================================
-// v1.8.0 - Type-Level Documentation Generator
-// ============================================================================
 
 export type {
 	gRPCMethod,
@@ -1996,23 +2159,11 @@ export type {
 	WSOptions,
 } from './network'
 
-// ============================================================================
-// v1.8.0 - Type-Level Test Framework (Extended)
-// ============================================================================
-
 // Type-Level Language Processing (v1.9.0)
 export * from './nlp'
 
-// ============================================================================
-// v1.8.0 - Type-Level Package Manager
-// ============================================================================
-
 // Numeric utilities (v1.1.0)
 export * from './numeric'
-
-// ============================================================================
-// v1.9.0 - Advanced Domain-Specific Types
-// ============================================================================
 
 // Object utilities (v1.3.0)
 export * from './object'
@@ -2144,6 +2295,8 @@ export type {
 	YarnConfig,
 } from './package-manager'
 
+// ============== v1.10.0 Types ==============
+
 // Type-level parsers (v1.4.0)
 export * from './parsers'
 
@@ -2158,6 +2311,26 @@ export * from './perf'
 
 // Performance Monitoring (v1.11.0)
 export * from './perf'
+
+// Final Performance Optimization (v1.13.0)
+export type {
+	BenchmarkMetrics,
+	BenchmarkResultFinal,
+	FastTransition,
+	OptimizationTipFinal,
+	OptimizedMigration,
+	PerformanceBenchmarkFinal,
+	PerformanceGrade,
+	PerformanceHintCategory,
+	PerformanceHintFinal,
+	PerformanceLevel,
+	MigrationStrategy as PerformanceMigrationStrategy,
+	PerformanceRegression,
+	PerformanceWarningFinal,
+	RegressionSeverity,
+	TransitionSpeed,
+	UltimatePerformance,
+} from './performance-final'
 
 // Plugin System Types (v1.6.0)
 export type {
@@ -2225,8 +2398,6 @@ export type {
 	PluginV2,
 	RegisteredPlugin,
 } from './plugin-v2'
-
-// ============== v1.10.0 Types ==============
 
 // Final Polish Types (v1.10.0)
 export type {
@@ -2367,9 +2538,12 @@ export type {
 	WritableSignal,
 } from './reactive'
 
+// ============================================================================
+// v1.12.0 - v2.0.0 Release Candidate
+// ============================================================================
+
 // Record utilities (v1.1.0)
 export * from './record'
-
 // Schema validation (v1.2.0)
 export type {
 	CompositeGuard,
@@ -2540,6 +2714,31 @@ export type {
 	SignedData,
 } from './security'
 
+// Final Stability & Polish (v1.13.0)
+export type {
+	BreakingChangePreparedFinal,
+	CompleteFinal,
+	DocumentedFinal,
+	FinalizedFinal,
+	FinishedFinal,
+	FrozenFinal,
+	LockedFinal,
+	LockLevel,
+	MigrationComplexity,
+	MigrationReadyFinal,
+	ProductionReadyFinal,
+	ReleaseReadyFinal,
+	SLALevel,
+	StableFinal,
+	StrictnessLevel,
+	TestedFinal,
+	TypedFinal,
+	UpgradePathFinal,
+	V2ReadyFinal,
+	ValidatedFinal,
+	ValidationStatus,
+} from './stability-final'
+
 // Type-level state machines (v1.4.0)
 export type {
 	BuildStateMachine,
@@ -2558,7 +2757,6 @@ export type {
 
 // String utilities (v1.3.0)
 export * from './string'
-
 // Template literal utilities (v1.1.0)
 export * from './template'
 
@@ -2613,10 +2811,6 @@ export type {
 	TestSummary,
 } from './test-framework'
 
-// ============================================================================
-// v1.12.0 - v2.0.0 Release Candidate
-// ============================================================================
-
 export type {
 	Assert,
 	AssertEqual,
@@ -2659,6 +2853,11 @@ export type {
 	Worker,
 	WorkerPool,
 } from './test-framework'
+
+// ============================================================================
+// v1.13.0 - Final Bridge to v2.0.0
+// ============================================================================
+
 // Type-level testing (v1.4.0)
 export * from './testing'
 
@@ -2758,6 +2957,26 @@ export type {
 // Utility types
 export * from './utils'
 
+// v2.0.0 Beta Features (v1.13.0)
+export type {
+	BetaFeatureEntry,
+	BetaFeedback as BetaFeatureFeedback,
+	BetaFeatureRegistry,
+	BetaGateStatus,
+	BetaOmit,
+	BetaPartial,
+	BetaPick,
+	BetaPromotionResult,
+	BetaQualityGate,
+	BetaReady,
+	BetaRequired,
+	BetaStable,
+	V2_BetaExt,
+	V2_BetaOps,
+	V2_BetaType,
+	V2_BetaUtil,
+} from './v2-beta'
+
 // Validation Rules (v1.5.0)
 export type {
 	ArrayFieldValidator,
@@ -2790,6 +3009,7 @@ export type {
 	ValidatorResult,
 	ValidationError as ValidatorValidationError,
 } from './validation'
+
 export type {
 	AddedProperties,
 	ASCIIGraph,
