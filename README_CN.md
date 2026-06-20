@@ -1549,6 +1549,96 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `ReleaseCriteria<T>`, `ReleaseCriteriaType`, `ReleaseBlocker` | 发布标准 |
 | `RCConfig`, `NotificationConfig`, `NotificationChannel` | RC 配置 |
 
+### 完整迁移工具包 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `MigrationToolkit<T>`, `AutoMigrate<T>`, `MigrationWizard<T>` | 迁移工具核心 |
+| `BatchMigration<T>`, `MigrationBatch<T>`, `MigrationProgress<T>` | 批量迁移 |
+| `ValidateComplete<T>`, `MigrationChecklist<T>`, `MigrationErrors<T>` | 验证与错误 |
+| `MigrationRollback<T>`, `RollbackPoint<T>`, `RollbackAction<T>` | 回滚支持 |
+| `MigrationChange`, `MigrationChangeType`, `MigrationSummary` | 变更追踪 |
+
+### v2.0.0 Beta 特性 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `V2_BetaType<T>`, `V2_BetaOps<T>`, `V2_BetaExt<T>`, `V2_BetaUtil<T>` | Beta 核心包装器 |
+| `BetaPick<T, K>`, `BetaOmit<T, K>`, `BetaPartial<T>`, `BetaRequired<T>` | Beta 工具类型 |
+| `BetaQualityGate<T>`, `BetaReady<T>`, `BetaStable<T>` | 质量门禁 |
+| `BetaFeatureRegistry`, `BetaFeatureEntry`, `BetaPromotionResult<T>` | 特性注册表 |
+
+### 最终破坏性变更 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `BreakingChangeDoc<T>`, `BreakingChangeLog<T>`, `BreakingChangeSeverity` | 变更文档 |
+| `BreakingChangeImpact<T>`, `ImpactLevel`, `MigrationEffort` | 影响评估 |
+| `AnalyzeImpact<T>`, `ImpactReport<T>` | 影响分析 |
+| `MitigationStrategy<T>`, `MitigationPlan<T>`, `MitigationStep<T>` | 缓解策略 |
+| `BreakingChangeCategory`, `BreakingChangeTimeline` | 分类 |
+
+### 双模式支持 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `DualMode<T>`, `V1Mode<T>`, `V2Mode<T>`, `MixedMode<T, U>` | 双模式类型 |
+| `SwitchMode<T, From, To>`, `ModeConfig<T>`, `ModeOptions` | 模式切换 |
+| `CompatBridge<T>`, `BridgeV1<T>`, `BridgeV2<T>`, `BridgeStatus` | 兼容性桥接 |
+| `MigrationPath<From, To>`, `CompatibilityLevel` | 迁移路径 |
+
+### 最终性能优化 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `UltimatePerformance<T>`, `PerformanceLevel`, `OptimizedMigration<T>` | 性能核心 |
+| `FastTransition<T>`, `TransitionSpeed` | 快速过渡 |
+| `PerformanceBenchmarkFinal<T>`, `BenchmarkMetrics`, `PerformanceGrade` | 基准测试 |
+| `PerformanceRegression<T>`, `PerformanceHintFinal<T>` | 回归与提示 |
+
+### 社区与生态系统 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `CommunityContributed<T>`, `CommunityApproved<T>`, `BestPractice<T>` | 社区类型 |
+| `CommunityPlugin<T>`, `CommunityPluginRegistry<T>`, `CommunityPluginAPI<T>` | 插件生态 |
+| `Recipe<T>`, `RecipeLibrary<T>`, `RecipeExample<T>` | 配方类型 |
+| `CookbookRecipe<T>`, `CookbookExample<T>`, `CookbookPattern<T>` | 食谱类型 |
+
+### 最终文档 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `FinalDoc<T>`, `MigrationDoc<T>`, `UpgradeGuide<T>` | 文档类型 |
+| `TransitionGuide<T>`, `TransitionPhase`, `GuideSection` | 过渡指南 |
+| `ExportFinalDocs<T>`, `DocBundle<T>`, `DocArchive<T>` | 文档导出 |
+| `InteractiveGuide<T>`, `StepByStep<T>`, `GuidedMigration<T>` | 交互式指南 |
+
+### 最终稳定性与打磨 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `StableFinal<T>`, `FrozenFinal<T>`, `LockedFinal<T>`, `FinalizedFinal<T>` | 稳定性标记 |
+| `TestedFinal<T>`, `DocumentedFinal<T>`, `ValidatedFinal<T>` | 质量保证 |
+| `CompleteFinal<T>`, `ProductionReadyFinal<T>`, `ReleaseReadyFinal<T>` | 完整性 |
+| `V2ReadyFinal<T>`, `MigrationReadyFinal<T>`, `UpgradePathFinal<T>` | v2 就绪 |
+
+### 生命周期终结规划 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `EndOfLife<T>`, `EOLSchedule<T>`, `EOLWarning<T>` | EOL 类型 |
+| `Sunset<T>`, `SunsetSchedule<T>`, `SunsetWarning<T>` | 日落工具 |
+| `LegacySupport<T>`, `LegacyTimeline<T>`, `LegacyMigration<T, U>` | 遗留支持 |
+
+### v2.0.0 发布准备 *(v1.13.0)*
+
+| 类型 | 描述 |
+|------|------|
+| `LaunchReady<T>`, `LaunchChecklist<T>`, `LaunchCriteria<T>` | 发布就绪 |
+| `ValidateLaunch<T>`, `LaunchValidationCheck`, `LaunchReport<T>` | 发布验证 |
+| `LaunchAnnouncement<T>`, `LaunchNotes`, `LaunchTimeline` | 发布沟通 |
+
 ### 迁移工具 *(v1.11.0)*
 
 | 类型 | 描述 |

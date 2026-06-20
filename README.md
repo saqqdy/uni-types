@@ -1549,6 +1549,96 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `ReleaseCriteria<T>`, `ReleaseCriteriaType`, `ReleaseBlocker` | Release criteria |
 | `RCConfig`, `NotificationConfig`, `NotificationChannel` | RC configuration |
 
+### Complete Migration Toolkit *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `MigrationToolkit<T>`, `AutoMigrate<T>`, `MigrationWizard<T>` | Migration toolkit core |
+| `BatchMigration<T>`, `MigrationBatch<T>`, `MigrationProgress<T>` | Batch migration |
+| `ValidateComplete<T>`, `MigrationChecklist<T>`, `MigrationErrors<T>` | Validation & errors |
+| `MigrationRollback<T>`, `RollbackPoint<T>`, `RollbackAction<T>` | Rollback support |
+| `MigrationChange`, `MigrationChangeType`, `MigrationSummary` | Change tracking |
+
+### v2.0.0 Beta Features *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `V2_BetaType<T>`, `V2_BetaOps<T>`, `V2_BetaExt<T>`, `V2_BetaUtil<T>` | Beta core wrappers |
+| `BetaPick<T, K>`, `BetaOmit<T, K>`, `BetaPartial<T>`, `BetaRequired<T>` | Beta utility types |
+| `BetaQualityGate<T>`, `BetaReady<T>`, `BetaStable<T>` | Quality gates |
+| `BetaFeatureRegistry`, `BetaFeatureEntry`, `BetaPromotionResult<T>` | Feature registry |
+
+### Final Breaking Changes *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `BreakingChangeDoc<T>`, `BreakingChangeLog<T>`, `BreakingChangeSeverity` | Change documentation |
+| `BreakingChangeImpact<T>`, `ImpactLevel`, `MigrationEffort` | Impact assessment |
+| `AnalyzeImpact<T>`, `ImpactReport<T>` | Impact analysis |
+| `MitigationStrategy<T>`, `MitigationPlan<T>`, `MitigationStep<T>` | Mitigation |
+| `BreakingChangeCategory`, `BreakingChangeTimeline` | Categorization |
+
+### Dual Mode Support *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `DualMode<T>`, `V1Mode<T>`, `V2Mode<T>`, `MixedMode<T, U>` | Dual mode types |
+| `SwitchMode<T, From, To>`, `ModeConfig<T>`, `ModeOptions` | Mode switching |
+| `CompatBridge<T>`, `BridgeV1<T>`, `BridgeV2<T>`, `BridgeStatus` | Compatibility bridge |
+| `MigrationPath<From, To>`, `CompatibilityLevel` | Migration path |
+
+### Final Performance Optimization *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `UltimatePerformance<T>`, `PerformanceLevel`, `OptimizedMigration<T>` | Performance core |
+| `FastTransition<T>`, `TransitionSpeed` | Fast transitions |
+| `PerformanceBenchmarkFinal<T>`, `BenchmarkMetrics`, `PerformanceGrade` | Benchmarking |
+| `PerformanceRegression<T>`, `PerformanceHintFinal<T>` | Regression & hints |
+
+### Community & Ecosystem *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `CommunityContributed<T>`, `CommunityApproved<T>`, `BestPractice<T>` | Community types |
+| `CommunityPlugin<T>`, `CommunityPluginRegistry<T>`, `CommunityPluginAPI<T>` | Plugin ecosystem |
+| `Recipe<T>`, `RecipeLibrary<T>`, `RecipeExample<T>` | Recipe types |
+| `CookbookRecipe<T>`, `CookbookExample<T>`, `CookbookPattern<T>` | Cookbook types |
+
+### Final Documentation *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `FinalDoc<T>`, `MigrationDoc<T>`, `UpgradeGuide<T>` | Documentation types |
+| `TransitionGuide<T>`, `TransitionPhase`, `GuideSection` | Transition guides |
+| `ExportFinalDocs<T>`, `DocBundle<T>`, `DocArchive<T>` | Documentation export |
+| `InteractiveGuide<T>`, `StepByStep<T>`, `GuidedMigration<T>` | Interactive guides |
+
+### Final Stability & Polish *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `StableFinal<T>`, `FrozenFinal<T>`, `LockedFinal<T>`, `FinalizedFinal<T>` | Stability markers |
+| `TestedFinal<T>`, `DocumentedFinal<T>`, `ValidatedFinal<T>` | Quality assurance |
+| `CompleteFinal<T>`, `ProductionReadyFinal<T>`, `ReleaseReadyFinal<T>` | Completeness |
+| `V2ReadyFinal<T>`, `MigrationReadyFinal<T>`, `UpgradePathFinal<T>` | v2 readiness |
+
+### End-of-Life Planning *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `EndOfLife<T>`, `EOLSchedule<T>`, `EOLWarning<T>` | EOL types |
+| `Sunset<T>`, `SunsetSchedule<T>`, `SunsetWarning<T>` | Sunset utilities |
+| `LegacySupport<T>`, `LegacyTimeline<T>`, `LegacyMigration<T, U>` | Legacy support |
+
+### v2.0.0 Launch Preparation *(v1.13.0)*
+
+| Type | Description |
+|------|-------------|
+| `LaunchReady<T>`, `LaunchChecklist<T>`, `LaunchCriteria<T>` | Launch readiness |
+| `ValidateLaunch<T>`, `LaunchValidationCheck`, `LaunchReport<T>` | Launch validation |
+| `LaunchAnnouncement<T>`, `LaunchNotes`, `LaunchTimeline` | Launch communication |
+
 ### Migration Utilities *(v1.11.0)*
 
 | Type | Description |
