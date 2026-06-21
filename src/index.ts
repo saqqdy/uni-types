@@ -705,6 +705,38 @@ export type {
 // Deep operations
 export * from './deep'
 
+// Dependent Types Simulation (v2.0.0)
+export type {
+	AssertKeys as AssertKeysV2,
+	AssertShape as AssertShapeV2,
+	AssertType,
+	AssertValues as AssertValuesV2,
+	Dep,
+	DepCompute,
+	DepFmap,
+	DepIf,
+	DepIndex,
+	DepKey,
+	DepMatch,
+	DepValue,
+	Exactly as ExactlyV2,
+	Proof,
+	Prove,
+	Refine,
+	Refined,
+	Satisfies as SatisfiesV2,
+	SuchThat,
+	TypeCompatible,
+	TypeEq,
+	TypeExtends,
+	TypeNotEq,
+	Unrefine,
+	Unverified,
+	ValueOf,
+	Verified as VerifiedV2,
+	Where,
+} from './dependent-types'
+
 // Deprecation Management (v1.11.0)
 export * from './deprecation'
 
@@ -1243,6 +1275,10 @@ export type {
 	UniversalMiddleware,
 } from './framework'
 
+// ============================================================================
+// v1.7.0 - Metaprogramming Utilities
+// ============================================================================
+
 // Functional Programming Patterns (v1.6.0)
 export type {
 	Applicative,
@@ -1299,7 +1335,7 @@ export type {
 } from './functional'
 
 // ============================================================================
-// v1.7.0 - Metaprogramming Utilities
+// v1.7.0 - Type Decorators
 // ============================================================================
 
 // Function utilities (v1.1.0)
@@ -1311,7 +1347,7 @@ export type {
 } from './functions'
 
 // ============================================================================
-// v1.7.0 - Type Decorators
+// v1.7.0 - Code Generation Templates
 // ============================================================================
 
 // Type-Level Game Development (v1.9.0)
@@ -1376,7 +1412,7 @@ export type {
 } from './game'
 
 // ============================================================================
-// v1.7.0 - Code Generation Templates
+// v1.7.0 - Framework Integrations
 // ============================================================================
 
 export type {
@@ -1425,28 +1461,28 @@ export type {
 } from './generate'
 
 // ============================================================================
-// v1.7.0 - Framework Integrations
+// v1.7.0 - Type-Safe Configuration
 // ============================================================================
 
 // Type-Level Graphics (v1.9.0)
 export * from './graphics'
 
 // ============================================================================
-// v1.7.0 - Type-Safe Configuration
+// v1.7.0 - Type Visualization
 // ============================================================================
 
 // GraphQL Integration (v1.5.0)
 export * from './graphql'
 
 // ============================================================================
-// v1.7.0 - Type Visualization
+// v1.7.0 - Type-Level Cryptography
 // ============================================================================
 
 // Type guards
 export * from './guards'
 
 // ============================================================================
-// v1.7.0 - Type-Level Cryptography
+// v1.7.0 - Type-Level Date/Time
 // ============================================================================
 
 // Higher-Kinded Types (v1.10.0)
@@ -1480,7 +1516,7 @@ export type {
 } from './hkt'
 
 // ============================================================================
-// v1.7.0 - Type-Level Date/Time
+// v1.7.0 - Type-Level Advanced Math
 // ============================================================================
 
 // Higher-Kinded Types (HKT) Preview (v1.12.0)
@@ -1506,7 +1542,7 @@ export type {
 } from './hkt-v2'
 
 // ============================================================================
-// v1.7.0 - Type-Level Advanced Math
+// v1.7.0 - Type-Level Sorting & Searching
 // ============================================================================
 
 // Type-level HTTP & API (v1.4.0)
@@ -1517,7 +1553,7 @@ export type {
 } from './http'
 
 // ============================================================================
-// v1.7.0 - Type-Level Sorting & Searching
+// v1.8.0 - Type Inference Engine
 // ============================================================================
 
 // Internationalization (v1.6.0)
@@ -1575,14 +1611,14 @@ export type {
 } from './i18n'
 
 // ============================================================================
-// v1.8.0 - Type Inference Engine
+// v1.8.0 - Type-Level Database Operations (Extended)
 // ============================================================================
 
 // Type inference
 export * from './infer'
 
 // ============================================================================
-// v1.8.0 - Type-Level Database Operations (Extended)
+// v1.8.0 - Type-Level Network Protocols
 // ============================================================================
 
 // Type Inference Enhancements (v1.6.0)
@@ -1643,7 +1679,7 @@ export type {
 } from './inference'
 
 // ============================================================================
-// v1.8.0 - Type-Level Network Protocols
+// v1.8.0 - Type-Level File System
 // ============================================================================
 
 export type {
@@ -1731,14 +1767,14 @@ export type {
 } from './inference-engine'
 
 // ============================================================================
-// v1.8.0 - Type-Level File System
+// v1.8.0 - Type-Level Compiler Extensions
 // ============================================================================
 
 // Type-level interop (v1.4.0)
 export * from './interop'
 
 // ============================================================================
-// v1.8.0 - Type-Level Compiler Extensions
+// v1.8.0 - Type-Level Debugging Tools
 // ============================================================================
 
 // Interop Enhancements (v1.12.0)
@@ -1766,14 +1802,14 @@ export type {
 } from './interop-v2'
 
 // ============================================================================
-// v1.8.0 - Type-Level Debugging Tools
+// v1.8.0 - Type-Level Optimizer
 // ============================================================================
 
 // Key utilities (v1.1.0)
 export * from './keys'
 
 // ============================================================================
-// v1.8.0 - Type-Level Optimizer
+// v1.8.0 - Type-Level Documentation Generator
 // ============================================================================
 
 // v2.0.0 Launch Preparation (v1.13.0)
@@ -1799,7 +1835,7 @@ export type {
 } from './launch'
 
 // ============================================================================
-// v1.8.0 - Type-Level Documentation Generator
+// v1.8.0 - Type-Level Test Framework (Extended)
 // ============================================================================
 
 // Logging & Observability (v1.5.0)
@@ -1845,7 +1881,7 @@ export type {
 } from './logging'
 
 // ============================================================================
-// v1.8.0 - Type-Level Test Framework (Extended)
+// v1.8.0 - Type-Level Package Manager
 // ============================================================================
 
 export type {
@@ -1950,7 +1986,7 @@ export type {
 } from './math-advanced'
 
 // ============================================================================
-// v1.8.0 - Type-Level Package Manager
+// v1.9.0 - Advanced Domain-Specific Types
 // ============================================================================
 
 export type {
@@ -1985,10 +2021,6 @@ export type {
 	TypeInfo,
 	Width,
 } from './meta'
-
-// ============================================================================
-// v1.9.0 - Advanced Domain-Specific Types
-// ============================================================================
 
 // Microservices Architecture (v1.5.0)
 export type {
@@ -2053,6 +2085,30 @@ export type {
 	ValidationCheck,
 	ValidationOutcome,
 } from './migration-toolkit'
+
+// New Module System (v2.0.0)
+export type {
+	Alias as AliasV2,
+	BundleFormat as BundleFormatV2,
+	DependencyType as DependencyTypeV2,
+	Export as ExportV2,
+	Import as ImportV2,
+	ModuleBundle as ModuleBundleV2,
+	ModuleChunk as ModuleChunkV2,
+	ModuleDependency as ModuleDependencyV2,
+	ModuleGraph as ModuleGraphV2,
+	ModuleNode as ModuleNodeV2,
+	ModuleResolution as ModuleResolutionV2,
+	ModuleScope as ModuleScopeV2,
+	Module as ModuleV2,
+	ModuleVersion as ModuleVersionV2,
+	Namespace as NamespaceV2,
+	Qualified as QualifiedV2,
+	ReExport as ReExportV2,
+	ResolutionStrategy as ResolutionStrategyV2,
+	ScopedMember as ScopedMemberV2,
+	VersionCompatibility as VersionCompatibilityV2,
+} from './module-system'
 
 // Performance Monitoring (v1.6.0)
 export type {
@@ -2167,6 +2223,8 @@ export * from './numeric'
 
 // Object utilities (v1.3.0)
 export * from './object'
+
+// ============== v1.10.0 Types ==============
 
 export type {
 	CodeMotion,
@@ -2295,8 +2353,6 @@ export type {
 	YarnConfig,
 } from './package-manager'
 
-// ============== v1.10.0 Types ==============
-
 // Type-level parsers (v1.4.0)
 export * from './parsers'
 
@@ -2311,6 +2367,35 @@ export * from './perf'
 
 // Performance Monitoring (v1.11.0)
 export * from './perf'
+
+// Performance Architecture (v2.0.0)
+export type {
+	Cached as CachedV2,
+	CompactRepresentation as CompactRepresentationV2,
+	CompilationTime as CompilationTimeV2,
+	DeferredEvaluation as DeferredEvaluationV2,
+	Fast as FastV2,
+	IncrementalType as IncrementalTypeV2,
+	InlineHint as InlineHintV2,
+	Lazy as LazyV2,
+	LightWeight as LightWeightV2,
+	Memoized as MemoizedV2,
+	Minimal as MinimalV2,
+	NoInfer as NoInferV2,
+	Optimized as OptimizedV2,
+	OptimizeInference as OptimizeInferenceV2,
+	PerformanceHint as PerformanceHintV2,
+	PerformanceWarning as PerformanceWarningV2,
+	PrecomputedValue as PrecomputedValueV2,
+	Precompute as PrecomputeV2,
+	Preserve as PreserveV2,
+	ReduceComplexity as ReduceComplexityV2,
+	ReduceRecursion as ReduceRecursionV2,
+	SharedStructure as SharedStructureV2,
+	SimplifyForCompiler as SimplifyForCompilerV2,
+	TypeComplexity as TypeComplexityV2,
+	TypeSize as TypeSizeV2,
+} from './perf-arch'
 
 // Final Performance Optimization (v1.13.0)
 export type {
@@ -2452,9 +2537,12 @@ export type {
 // Quality Assurance Types (v1.10.0)
 export * from './qa'
 
+// ============================================================================
+// v1.12.0 - v2.0.0 Release Candidate
+// ============================================================================
+
 // Type-Level Quantum Computing (v1.9.0)
 export * from './quantum'
-
 // RC Quality Gates (v1.12.0)
 export type {
 	CriteriaCheck,
@@ -2538,12 +2626,9 @@ export type {
 	WritableSignal,
 } from './reactive'
 
-// ============================================================================
-// v1.12.0 - v2.0.0 Release Candidate
-// ============================================================================
-
 // Record utilities (v1.1.0)
 export * from './record'
+
 // Schema validation (v1.2.0)
 export type {
 	CompositeGuard,
@@ -2713,7 +2798,6 @@ export type {
 	SignatureVerificationResult,
 	SignedData,
 } from './security'
-
 // Final Stability & Polish (v1.13.0)
 export type {
 	BreakingChangePreparedFinal,
@@ -2757,6 +2841,11 @@ export type {
 
 // String utilities (v1.3.0)
 export * from './string'
+
+// ============================================================================
+// v1.13.0 - Final Bridge to v2.0.0
+// ============================================================================
+
 // Template literal utilities (v1.1.0)
 export * from './template'
 
@@ -2854,12 +2943,32 @@ export type {
 	WorkerPool,
 } from './test-framework'
 
-// ============================================================================
-// v1.13.0 - Final Bridge to v2.0.0
-// ============================================================================
-
 // Type-level testing (v1.4.0)
 export * from './testing'
+
+// Type-Level Macros (v2.0.0)
+export type {
+	ApplyRules as ApplyRulesV2,
+	ApplyRule as ApplyRuleV2,
+	CombineMacro as CombineMacroV2,
+	DefineMacro as DefineMacroV2,
+	Generic as GenericV2,
+	Inline as InlineV2,
+	LoadMacro as LoadMacroV2,
+	MacroCompose as MacroComposeV2,
+	MacroDebug as MacroDebugV2,
+	MacroExpandAll as MacroExpandAllV2,
+	MacroExpand as MacroExpandV2,
+	MacroFlip as MacroFlipV2,
+	MacroPartial as MacroPartialV2,
+	MacroPipe as MacroPipeV2,
+	MacroRule as MacroRuleV2,
+	MacroTrace as MacroTraceV2,
+	Macro as MacroV2,
+	RewriteRule as RewriteRuleV2,
+	Specialize as SpecializeV2,
+	Template as TemplateV2,
+} from './type-macros'
 
 export type {
 	BuildConfig,
@@ -2976,6 +3085,8 @@ export type {
 	V2_BetaType,
 	V2_BetaUtil,
 } from './v2-beta'
+
+// ============== v2.0.0 Features ==============
 
 // Validation Rules (v1.5.0)
 export type {
