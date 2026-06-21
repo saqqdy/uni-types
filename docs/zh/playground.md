@@ -970,6 +970,207 @@ import type {
 } from 'uni-types'
 ```
 
+### 依赖类型模拟 *(v2.0.0)*
+
+```typescript
+import type {
+  Dep, DepValue, DepIndex, DepKey,
+  ValueOf, Where, SuchThat, Satisfies, Exactly,
+  Proof, Prove, Verified, Unverified,
+  Refined, Refine, Unrefine,
+  AssertType, AssertShape, AssertKeys, AssertValues,
+  TypeEq, TypeNotEq, TypeExtends, TypeCompatible,
+  DepIf, DepMatch, DepFmap, DepCompute
+} from 'uni-types'
+
+// ── 核心：类型依赖于值的依赖类型 ──
+type StrictNum = Dep<number, number>              // number
+type Mismatch = Dep<string, number>              // never
+
+// ── 值依赖：将类型锁定为特定字面量 ──
+type TrueFlag = DepValue<boolean, true>          // true
+type Port80 = DepValue<number, 80>              // 80
+
+// ── 索引依赖：元组级别查找 ──
+type Second = DepIndex<['a', 'b', 'c'], 1>      // 'b'
+
+// ── 键依赖：属性级别访问 ──
+type Age = DepKey<{ name: string; age: number }, 'age'>  // number
+
+// ── 条件收窄 ──
+type NonEmpty = Where<string, string>            // string（收窄）
+type Numeric = SuchThat<number, number>         // number（收窄）
+
+// ── 精确匹配 — 不允许多余属性 ──
+type Exact = Exactly<{ name: string }, { name: string }>  // { name: string }
+type Reject = Exactly<{ name: string; x: number }, { name: string }>  // never
+
+// ── 证明携带类型 ──
+type EmailProof = Prove<string, 'Email'>         // Proof<string, 'Email'>
+type VerifiedUser = Verified<User>               // User & { __verified__: true; __verifiedAt__: number }
+type RawUser = Unverified<VerifiedUser>          // User
+
+// ── 精化类型 ──
+type PositiveInt = Refined<number, (x: number) => x is number>
+type EmailStr = Refine<string, 'Email'>          // string & { __refinement__: 'Email' }
+type Plain = Unrefine<EmailStr>                  // string
+
+// ── 类型级别相等性 ──
+type Same = TypeEq<string, number>              // false
+type NotSame = TypeNotEq<string, number>        // true
+type Extends = TypeExtends<'hi', string>        // true
+
+// ── 类型级别计算 ──
+type IfTrue = DepIf<true, 'yes', 'no'>          // 'yes'
+type AdminRole = DepMatch<'admin', { admin: 'full'; user: 'limited'; default: 'none' }>  // 'full'
+```
+
+### 类型级宏 *(v2.0.0)*
+
+```typescript
+import type {
+  Macro, MacroRule, MacroExpand, MacroExpandAll,
+  Inline, Specialize, Generic, Template,
+  DefineMacro, LoadMacro, CombineMacro,
+  RewriteRule, ApplyRule, ApplyRules,
+  MacroCompose, MacroPipe, MacroFlip, MacroPartial,
+  MacroDebug, MacroTrace
+} from 'uni-types'
+
+// ── 定义重写规则 ──
+type Stringify = MacroRule<string, `value:${string}`>
+type Numerify  = MacroRule<number, 'num'>
+type Boolify   = MacroRule<boolean, 'bool'>
+
+// ── 单步扩展 ──
+type Ex1 = MacroExpand<string, [Stringify, Numerify]>   // `value:${string}`
+type Ex2 = MacroExpand<number, [Stringify, Numerify]>    // 'num'
+
+// ── 完全扩展直到不动点 ──
+type Fully = MacroExpandAll<MyType, [Stringify, Numerify]>
+
+// ── 内联：展平交叉类型 ──
+type Flat = Inline<{ a: string } & { b: number }>  // { a: string; b: number }
+
+// ── 特化泛型类型 ──
+type Ret = Specialize<(x: string) => number, [string]>  // number
+
+// ── 定义和加载宏 ──
+type MacroDef = DefineMacro<{
+  name: 'StringifyAll'
+  parameters: ['T']
+  body: MacroExpandAll<unknown, [Stringify]>
+  rules: [Stringify]
+}>
+type Ready = LoadMacro<MacroDef>
+
+// ── 组合与管道 ──
+type Comp = MacroCompose<MacroA, MacroB>
+type Pipe = MacroPipe<Input, [MacroA, MacroB, MacroC]>
+
+// ── 翻转与偏应用 ──
+type Flip = MacroFlip<A, B>                         // [B, A]
+type Part = MacroPartial<MacroA, { name: string }>  // 偏应用
+
+// ── 调试与追踪 ──
+type Dbg = MacroDebug<string>                       // { _original, _expanded, _steps, _rulesApplied }
+type Trc = MacroTrace<string, [Stringify]>          // 调试信息 + 最终结果
+```
+
+### 模块系统 *(v2.0.0)*
+
+```typescript
+import type {
+  Module, Export, Import, ReExport,
+  Namespace, Qualified, Alias,
+  ModuleGraph, ModuleNode, ModuleDependency, DependencyType,
+  ModuleResolution, ResolutionStrategy,
+  ModuleScope, ScopedMember,
+  ModuleBundle, BundleFormat, ModuleChunk,
+  ModuleVersion, VersionCompatibility
+} from 'uni-types'
+
+// ── 定义类型级模块 ──
+type UserModule = Module<{
+  User: { id: string; name: string; email: string }
+  UserService: { findById(id: string): User }
+}>
+
+// ── 通过命名空间限定访问 ──
+type NS = Namespace<{ User: { id: string }; Service: { find(): void }>
+type U = Qualified<NS, 'User'>      // { id: string }
+type S = Qualified<NS, 'Service'>   // { find(): void }
+
+// ── 导出 / 导入 / 重新导出 ──
+type Exp = Export<User>             // User & { __exported__: true }
+type Imp = Import<Utils>           // Utils & { __imported__: true; __from__: string }
+type ReExp = ReExport<External>    // 从另一个模块重新导出
+
+// ── 类型别名 ──
+type UserName = Alias<string, 'UserName'>  // string & { __alias__: 'UserName' }
+
+// ── 作用域可见性 ──
+type Public = ScopedMember<{ api: API }, {
+  scope: ModuleScope    // 'public' | 'protected' | 'private' | 'internal'
+  deprecated: false
+  since: '2.0.0'
+}>
+
+// ── 版本控制 ──
+type V2 = ModuleVersion<{ major: 2; minor: 0; patch: 0 }>
+type Compat = VersionCompatibility  // 'compatible' | 'semver-compatible' | 'breaking' | 'unknown'
+```
+
+### 性能架构 *(v2.0.0)*
+
+```typescript
+import type {
+  Fast, Cached, Lazy, Memoized, NoInfer,
+  Optimized, InlineHint, Preserve,
+  Precompute, PrecomputedValue,
+  ReduceComplexity, SimplifyForCompiler, OptimizeInference,
+  LightWeight, Minimal, CompactRepresentation, SharedStructure,
+  TypeHint, PerformanceHint, CompilerHint, HintKind,
+  TypeComplexity, CompilationTime, TypeSize,
+  PerformanceWarning, IncrementalType, DeferredEvaluation
+} from 'uni-types'
+
+// ── 性能原语 ──
+type FastUser = Fast<User>                      // 展平交叉类型和数组
+type CachedResult = Cached<ComplexComputation>  // 缓存类型计算
+type Deferred = Lazy<DeepNestedType>            // 延迟求值
+type Memo = Memoized<HeavyType>                 // 记忆化昂贵计算
+
+// ── 优化标记 ──
+type Opt = Optimized<User>                      // 标记为已优化
+function cfg<T>(c: NoInfer<T>): T { return c }  // 阻止推断
+type Preserved = Preserve<readonly ['a', 'b']>  // 阻止类型扩展
+
+// ── 编译器提示 ──
+type Hinted = TypeHint<Data, 'cache'>       // 附加缓存提示
+// HintKind = 'optimize' | 'inline' | 'cache' | 'defer' | 'noinfer'
+
+// ── 编译优化 ──
+type Pre = Precompute<{ a: string } & { b: number }>  // { a: string; b: number }
+type Simpler = ReduceComplexity<{ deeply: { nested: { type: string } } }>
+
+// ── 内存优化 ──
+type Light = LightWeight<Config>             // 轻量级标记
+type Min = Minimal<Config>                  // 仅保留函数成员
+type Compact = CompactRepresentation<Data>  // 紧凑表示
+type Shared = SharedStructure<ConfigA, ConfigB>  // 共享键/值
+
+// ── 构建性能 ──
+type DefEval = DeferredEvaluation<HeavyType> // 延迟到首次使用
+type Incr = IncrementalType<User>            // 增量类型检查
+// → User & { __incremental__: true; __version__: number }
+
+// ── 性能监控 ──
+type C = TypeComplexity<User>               // 1 | 2 | 3
+type T = CompilationTime<User>              // 'fast' | 'moderate' | 'slow'
+type S = TypeSize<User>                     // 'small' | 'medium' | 'large'
+```
+
 ### 迁移工具包 *(v1.13.0)*
 
 ```typescript

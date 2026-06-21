@@ -500,6 +500,16 @@ export default defineConfig({
 							],
 							text: 'v1.11.0 Migration Tools',
 						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/api/dependent-types', text: 'Dependent Types' },
+								{ link: '/api/type-macros', text: 'Type-Level Macros' },
+								{ link: '/api/module-system', text: 'Module System' },
+								{ link: '/api/perf-arch', text: 'Performance Architecture' },
+							],
+							text: 'v2.0.0',
+						},
 					],
 					'/guide/': [
 						{
@@ -641,6 +651,17 @@ export default defineConfig({
 								{ link: '/guide/launch-prep', text: 'v2.0.0 Launch Prep' },
 							],
 							text: 'v1.13.0',
+						},
+						{
+							items: [
+								{ link: '/guide/dependent-types', text: 'Dependent Types' },
+								{ link: '/guide/type-level-macros', text: 'Type-Level Macros' },
+								{ link: '/guide/module-system', text: 'Module System' },
+								{ link: '/guide/performance-architecture', text: 'Performance Architecture' },
+								{ link: '/guide/plugin-system', text: 'Plugin System' },
+								{ link: '/guide/unified-type-system', text: 'Unified Type System' },
+							],
+							text: 'v2.0.0',
 						},
 					],
 				},
@@ -1140,6 +1161,16 @@ export default defineConfig({
 							],
 							text: 'v1.11.0 迁移工具',
 						},
+						{
+							collapsed: false,
+							items: [
+								{ link: '/zh/api/dependent-types', text: '依赖类型' },
+								{ link: '/zh/api/type-macros', text: '类型级宏' },
+								{ link: '/zh/api/module-system', text: '模块系统' },
+								{ link: '/zh/api/perf-arch', text: '性能架构' },
+							],
+							text: 'v2.0.0',
+						},
 					],
 					'/zh/guide/': [
 						{
@@ -1281,6 +1312,17 @@ export default defineConfig({
 								{ link: '/zh/guide/launch-prep', text: 'v2.0.0 发布准备' },
 							],
 							text: 'v1.13.0',
+						},
+						{
+							items: [
+								{ link: '/zh/guide/dependent-types', text: '依赖类型' },
+								{ link: '/zh/guide/type-level-macros', text: '类型级宏' },
+								{ link: '/zh/guide/module-system', text: '模块系统' },
+								{ link: '/zh/guide/performance-architecture', text: '性能架构' },
+								{ link: '/zh/guide/plugin-system', text: '插件系统' },
+								{ link: '/zh/guide/unified-type-system', text: '统一类型系统' },
+							],
+							text: 'v2.0.0',
 						},
 					],
 				},

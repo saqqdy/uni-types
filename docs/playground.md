@@ -1006,6 +1006,227 @@ import type {
 } from 'uni-types'
 ```
 
+### Dependent Types Simulation *(v2.0.0)*
+
+```typescript
+import type {
+  Dep, DepValue, DepIndex, DepKey,
+  ValueOf, Where, SuchThat, Satisfies, Exactly,
+  Proof, Prove, Verified, Unverified,
+  Refined, Refine, Unrefine,
+  AssertType, AssertShape, AssertKeys, AssertValues,
+  TypeEq, TypeNotEq, TypeExtends, TypeCompatible,
+  DepIf, DepMatch, DepFmap, DepCompute
+} from 'uni-types'
+
+// ── Core: dependent types where type depends on a value ──
+type StrictNum = Dep<number, number>              // number
+type Mismatch = Dep<string, number>              // never
+
+// ── Value-dependent: lock a type to a specific literal ──
+type TrueFlag = DepValue<boolean, true>          // true
+type Port80 = DepValue<number, 80>              // 80
+
+// ── Index-dependent: tuple lookup at the type level ──
+type Second = DepIndex<['a', 'b', 'c'], 1>      // 'b'
+
+// ── Key-dependent: property access at the type level ──
+type Age = DepKey<{ name: string; age: number }, 'age'>  // number
+
+// ── Conditional narrowing ──
+type NonEmpty = Where<string, string>            // string (narrowed)
+type Numeric = SuchThat<number, number>          // number (narrowed)
+
+// ── Exact matching — no excess properties ──
+type Exact = Exactly<{ name: string }, { name: string }>  // { name: string }
+type Reject = Exactly<{ name: string; x: number }, { name: string }>  // never
+
+// ── Proof-carrying types ──
+type EmailProof = Prove<string, 'Email'>         // Proof<string, 'Email'>
+type VerifiedUser = Verified<User>               // User & { __verified__: true; __verifiedAt__: number }
+type RawUser = Unverified<VerifiedUser>          // User
+
+// ── Refined types with predicates ──
+type PositiveInt = Refined<number, (x: number) => x is number>
+type EmailStr = Refine<string, 'Email'>          // string & { __refinement__: 'Email' }
+type Plain = Unrefine<EmailStr>                  // string
+
+// ── Type-level equality & compatibility ──
+type Same = TypeEq<string, number>              // false
+type NotSame = TypeNotEq<string, number>        // true
+type Extends = TypeExtends<'hi', string>        // true
+type Compat = TypeCompatible<string, number>    // false
+
+// ── Computation at the type level ──
+type IfTrue = DepIf<true, 'yes', 'no'>          // 'yes'
+type AdminRole = DepMatch<'admin', { admin: 'full'; user: 'limited'; default: 'none' }>  // 'full'
+```
+
+### Type-Level Macros *(v2.0.0)*
+
+```typescript
+import type {
+  Macro, MacroRule, MacroExpand, MacroExpandAll,
+  Inline, Specialize, Generic, Template,
+  DefineMacro, LoadMacro, CombineMacro,
+  RewriteRule, ApplyRule, ApplyRules,
+  MacroCompose, MacroPipe, MacroFlip, MacroPartial,
+  MacroDebug, MacroTrace
+} from 'uni-types'
+
+// ── Define rewrite rules ──
+type Stringify = MacroRule<string, `value:${string}`>
+type Numerify  = MacroRule<number, 'num'>
+type Boolify   = MacroRule<boolean, 'bool'>
+
+// ── Single-step expansion ──
+type Ex1 = MacroExpand<string, [Stringify, Numerify]>   // `value:${string}`
+type Ex2 = MacroExpand<number, [Stringify, Numerify]>    // 'num'
+
+// ── Full expansion until fixed point ──
+type Fully = MacroExpandAll<MyType, [Stringify, Numerify]>
+
+// ── Inline: flatten intersections ──
+type Flat = Inline<{ a: string } & { b: number }>  // { a: string; b: number }
+
+// ── Specialize generic type ──
+type Ret = Specialize<(x: string) => number, [string]>  // number
+
+// ── Generic / Template markers ──
+type Gen = Generic<Map<string, number>, [string, number]>
+type Tpl = Template<{ name: string; params: Record<string, unknown> }>
+
+// ── Define & load macros ──
+type MacroDef = DefineMacro<{
+  name: 'StringifyAll'
+  parameters: ['T']
+  body: MacroExpandAll<unknown, [Stringify]>
+  rules: [Stringify]
+}>
+type Ready = LoadMacro<MacroDef>
+
+// ── Combine two macros ──
+type Combined = CombineMacro<MacroA, MacroB>
+
+// ── Apply rules sequentially ──
+type Seq = ApplyRules<string, [Stringify, Numerify, Boolify]>
+
+// ── Compose & pipe ──
+type Comp = MacroCompose<MacroA, MacroB>
+type Pipe = MacroPipe<Input, [MacroA, MacroB, MacroC]>
+
+// ── Flip & partial application ──
+type Flip = MacroFlip<A, B>                         // [B, A]
+type Part = MacroPartial<MacroA, { name: string }>  // partial application
+
+// ── Debug & trace ──
+type Dbg = MacroDebug<string>                       // { _original, _expanded, _steps, _rulesApplied }
+type Trc = MacroTrace<string, [Stringify]>          // Debug info + final result
+```
+
+### Module System *(v2.0.0)*
+
+```typescript
+import type {
+  Module, Export, Import, ReExport,
+  Namespace, Qualified, Alias,
+  ModuleGraph, ModuleNode, ModuleDependency, DependencyType,
+  ModuleResolution, ResolutionStrategy,
+  ModuleScope, ScopedMember,
+  ModuleBundle, BundleFormat, ModuleChunk,
+  ModuleVersion, VersionCompatibility
+} from 'uni-types'
+
+// ── Define a type-level module ──
+type UserModule = Module<{
+  User: { id: string; name: string; email: string }
+  UserService: { findById(id: string): User }
+}>
+
+// ── Qualified access via namespaces ──
+type NS = Namespace<{ User: { id: string }; Service: { find(): void }>
+type U = Qualified<NS, 'User'>      // { id: string }
+type S = Qualified<NS, 'Service'>   // { find(): void }
+
+// ── Export / Import / ReExport markers ──
+type Exp = Export<User>             // User & { __exported__: true }
+type Imp = Import<Utils>           // Utils & { __imported__: true; __from__: string }
+type ReExp = ReExport<External>    // Re-exported from another module
+
+// ── Type aliases ──
+type UserName = Alias<string, 'UserName'>  // string & { __alias__: 'UserName' }
+
+// ── Scoped visibility ──
+type Public = ScopedMember<{ api: API }, {
+  scope: ModuleScope    // 'public' | 'protected' | 'private' | 'internal'
+  deprecated: false
+  since: '2.0.0'
+}>
+
+// ── Module bundling ──
+type Bundle = ModuleBundle & {
+  name: 'core'
+  modules: ['users', 'auth']
+  format: BundleFormat    // 'esm' | 'cjs' | 'umd' | 'iife' | 'system'
+  treeShaking: true
+}
+
+// ── Versioning ──
+type V2 = ModuleVersion<{ major: 2; minor: 0; patch: 0 }>
+type Compat = VersionCompatibility  // 'compatible' | 'semver-compatible' | 'breaking' | 'unknown'
+```
+
+### Performance Architecture *(v2.0.0)*
+
+```typescript
+import type {
+  Fast, Cached, Lazy, Memoized, NoInfer,
+  Optimized, InlineHint, Preserve,
+  Precompute, PrecomputedValue,
+  ReduceComplexity, SimplifyForCompiler, OptimizeInference,
+  LightWeight, Minimal, CompactRepresentation, SharedStructure,
+  TypeHint, PerformanceHint, CompilerHint, HintKind,
+  TypeComplexity, CompilationTime, TypeSize,
+  PerformanceWarning, IncrementalType, DeferredEvaluation
+} from 'uni-types'
+
+// ── Performance primitives ──
+type FastUser = Fast<User>                      // Flatten intersections & arrays
+type CachedResult = Cached<ComplexComputation>  // Cache type computation
+type Deferred = Lazy<DeepNestedType>            // Defer evaluation
+type Memo = Memoized<HeavyType>                 // Memoize expensive computation
+
+// ── Optimization flags ──
+type Opt = Optimized<User>                      // Mark as pre-optimized
+function cfg<T>(c: NoInfer<T>): T { return c }  // Block inference
+type Preserved = Preserve<readonly ['a', 'b']>  // Prevent widening
+
+// ── Compiler hints ──
+type Hinted = TypeHint<Data, 'cache'>       // Attach hint
+// HintKind = 'optimize' | 'inline' | 'cache' | 'defer' | 'noinfer'
+
+// ── Compilation optimization ──
+type Pre = Precompute<{ a: string } & { b: number }>  // { a: string; b: number }
+type Simpler = ReduceComplexity<{ deeply: { nested: { type: string } } }>
+type OptInf = OptimizeInference<ComplexGeneric<Deep>>
+
+// ── Memory optimization ──
+type Light = LightWeight<Config>             // Lightweight marker
+type Min = Minimal<Config>                  // Only function members
+type Compact = CompactRepresentation<Data>  // Compact form
+type Shared = SharedStructure<ConfigA, ConfigB>  // Shared keys/values
+
+// ── Build performance ──
+type DefEval = DeferredEvaluation<HeavyType> // Defer until first use
+type Incr = IncrementalType<User>            // Incremental checking
+// → User & { __incremental__: true; __version__: number }
+
+// ── Performance monitoring ──
+type C = TypeComplexity<User>               // 1 | 2 | 3
+type T = CompilationTime<User>              // 'fast' | 'moderate' | 'slow'
+type S = TypeSize<User>                     // 'small' | 'medium' | 'large'
+```
+
 ### Migration Toolkit *(v1.13.0)*
 
 ```typescript
@@ -1766,6 +1987,58 @@ type LaunchCoordinationT = LaunchCoordination<{ version: '2.0.0'; timing: 'synch
 type CompatibilityMatrixT = CompatibilityMatrix<{ version: '2.0.0' }>
 type PostLaunchMonitorT = PostLaunchMonitor<{ version: '2.0.0'; monitoring: true }>
 type LaunchReadinessT = LaunchReadiness<{ version: '2.0.0'; overall: 'ready' }>
+```
+
+### v2.0.0 Types
+
+```typescript
+// v2.0.0 - Dependent Types Simulation
+type DepT = Dep<string, string>
+type DepValueT = DepValue<number, 42>
+type DepIndexT = DepIndex<['a', 'b', 'c'], 1>
+type DepKeyT = DepKey<{ name: string; age: number }, 'name'>
+type ValueOfT = ValueOf<string | number, number>
+type WhereT = Where<string, string>
+type SuchThatT = SuchThat<string, string>
+type ExactlyT = Exactly<{ name: string }, { name: string }>
+type ProofT = Proof<string, 'NonEmpty'>
+type ProveT = Prove<string, 'Email'>
+type VerifiedT = Verified<User>
+type RefinedT = Refined<number, (x: number) => x is number>
+type RefineT = Refine<string, 'Email'>
+type TypeEqT = TypeEq<string, number>
+type DepIfT = DepIf<true, 'yes', 'no'>
+type DepMatchT = DepMatch<'admin', { admin: 'full'; user: 'limited' }>
+
+// v2.0.0 - Type-Level Macros
+type MacroExpandT = MacroExpand<string, [MacroRule<string, `v:${string}`>]>
+type MacroExpandAllT = MacroExpandAll<MyType, [MacroRule<string, `v:${string}`>]>
+type InlineT = Inline<{ a: string } & { b: number }>
+type SpecializeT = Specialize<(x: string) => boolean, [string]>
+type CombineMacroT = CombineMacro<MacroA, MacroB>
+type MacroPipeT = MacroPipe<InputType, [MacroA, MacroB]>
+type ApplyRulesT = ApplyRules<string, [RewriteRule<string, number>]>
+
+// v2.0.0 - Module System
+type UserModuleT = Module<{ User: { id: string }; Service: { find(): void }>
+type QualifiedT = Qualified<Namespace<{ User: { id: string } }>, 'User'>
+type ScopedT = ScopedMember<{ value: API }, { scope: 'public'; deprecated: false }>
+type ModuleVersionT = ModuleVersion<{ major: 2; minor: 0; patch: 0 }>
+
+// v2.0.0 - Performance Architecture
+type FastT = Fast<User>
+type CachedT = Cached<ComplexType>
+type LazyT = Lazy<DeepNestedType>
+type MemoizedT = Memoized<HeavyType>
+type NoInferT = NoInfer<string>
+type PrecomputeT = Precompute<{ a: string } & { b: number }>
+type ReduceComplexityT = ReduceComplexity<{ deeply: { nested: { type: string } } }>
+type LightWeightT = LightWeight<Config>
+type SharedStructT = SharedStructure<ConfigA, ConfigB>
+type TypeComplexityT = TypeComplexity<User>
+type CompilationSpeedT = CompilationTime<User>
+type TypeSizeT = TypeSize<User>
+type IncrementalT = IncrementalType<User>
 ```
 
 ## External Resources
