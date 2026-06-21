@@ -18,7 +18,7 @@
 
 ## 特性
 
-- 🎯 **2500+ 类型工具** - 覆盖各种使用场景的全面类型助手
+- 🎯 **3000+ 类型工具** - 覆盖各种使用场景的全面类型助手
 - 🔒 **类型安全** - 完整的 TypeScript 支持，严格的类型检查
 - 📦 **零依赖** - 轻量级，支持 tree-shaking
 - 🚀 **TypeScript 5.x** - 使用最新 TypeScript 特性构建
@@ -1710,6 +1710,477 @@ type Result = If<true, 'success', 'error'> // 'success'
 | `ImpactAnalysis`, `AffectedComponent`, `RiskLevel`, `MitigationStrategy` | 影响分析 |
 | `BreakingChangeRule`, `BreakingChangeGuard`, `BreakingChangePreventionConfig` | 预防措施 |
 
+## v2.0.0 — 新特性
+
+v2.0.0 是 uni-types 的重大版本升级，带来革命性的架构改进：
+
+### 统一类型系统
+```typescript
+import type { TypeV2, OpsV2, UnifiedPick, UnifiedMerge } from 'uni-types'
+type Result = UnifiedPick<User, 'name' | 'email'>
+type Merged = UnifiedMerge<Defaults, Config>
+```
+
+### 高阶类型 (HKT)
+```typescript
+import type { HKTV2, KindV2, ApplyV2, FunctorV2, MonadV2 } from 'uni-types'
+type Applied = ApplyV2<MyConstructor, string>
+```
+
+### 效应系统
+```typescript
+import type { EffectV2, PureV2, IOV2, HandlerV2 } from 'uni-types'
+type Safe = PureV2<string>
+type SideEffect = IOV2<string>
+```
+
+### 依赖类型模拟 *(v2.0.0)*
+
+TypeScript 原生不支持依赖类型（依赖于值的类型），但 uni-types v2.0.0 通过条件类型、证明携带类型和精化类型来模拟此行为，实现更精确的类型级别检查。
+
+```typescript
+import type {
+  Dep, DepValue, DepIndex, DepKey,
+  ValueOf, Where, SuchThat, Satisfies, Exactly,
+  Proof, Prove, Verified, Unverified,
+  Refined, Refine, Unrefine,
+  AssertType, AssertShape, AssertKeys, AssertValues,
+  TypeEq, TypeNotEq, TypeExtends, TypeCompatible,
+  DepIf, DepMatch, DepFmap, DepCompute
+} from 'uni-types'
+
+// ── 核心依赖类型 ──────────────────────────────────────
+// Dep — 约束类型继承某个模式
+type StrictNumber = Dep<number, number>           // number
+type NeverIfMismatch = Dep<string, number>        // never
+
+// DepValue — 将类型锁定为特定值
+type TrueFlag = DepValue<boolean, true>           // true
+type FortyTwo = DepValue<number, 42>              // 42
+
+// DepIndex — 在元组中按索引查找类型
+type Second = DepIndex<['a', 'b', 'c'], 1>       // 'b'
+
+// DepKey — 按键查找属性类型
+type NameType = DepKey<{ name: string; age: number }, 'name'>  // string
+
+// ── 条件收窄 ─────────────────────────────────────────
+type NonEmptyString = Where<string, string>       // string（收窄）
+type NumericValue = SuchThat<number, number>      // number（收窄）
+
+// Satisfies — 验证约束而不扩展
+interface AppConfig { host: string; port: number }
+interface FullConfig extends AppConfig { debug: boolean }
+type ValidConfig = Satisfies<FullConfig, AppConfig>  // FullConfig ✓
+
+// Exactly — 不允许多余属性
+type ExactShape = Exactly<{ name: string }, { name: string }>          // { name: string }
+type NoExcess = Exactly<{ name: string; extra: number }, { name: string }>  // never
+
+// ── 证明携带类型 ─────────────────────────────────────
+type EmailProof = Prove<string, 'Email'>          // Proof<string, 'Email'>
+type VerifiedUser = Verified<User>                // User & { __verified__: true; __verifiedAt__: number }
+type RawUser = Unverified<VerifiedUser>           // User（移除验证）
+
+// ── 精化类型 ─────────────────────────────────────────
+type PositiveInt = Refined<number, (x: number) => x is number>
+type EmailString = Refine<string, 'Email'>        // string & { __refinement__: 'Email' }
+type PlainString = Unrefine<EmailString>          // string
+
+// ── 类型级别相等性 ───────────────────────────────────
+type IsSame = TypeEq<string, number>              // false
+type IsNotSame = TypeNotEq<string, number>        // true
+type DoesExtend = TypeExtends<'hello', string>    // true
+type Compatible = TypeCompatible<string, number>  // false
+
+// ── 类型级别计算 ─────────────────────────────────────
+type Result = DepIf<true, 'success', 'error'>     // 'success'
+type Matched = DepMatch<'admin', { admin: 'full'; user: 'limited'; default: 'none' }>  // 'full'```typescript
+import type { Dep, ValueOf, Where, Proof, Prove, Verified, Exactly, Satisfies, Refined, Refine, TypeEq, DepIf, DepMatch } from 'uni-types'
+
+// 依赖类型 — 类型依赖于值级别参数
+type StrictNumber = Dep<number, number>
+
+// 值依赖类型 — 将类型约束为匹配特定值
+type TrueFlag = ValueOf<boolean, true>
+
+// 使用 Where / SuchThat 进行条件类型收窄
+type NonEmptyString = Where<string, string>
+
+// 证明携带类型 — 携带约束成立的证明
+type EmailProof = Prove<string, 'Email'>
+type VerifiedUser = Verified<User>  // 证明携带类型
+type UnverifiedUser = Unverified<VerifiedUser>  // 移除验证
+
+// 精确类型匹配 — 不允许多余属性
+type ExactUser = Exactly<{ name: string; age: number }, { name: string; age: number }>
+
+// Satisfies — 验证类型满足约束而不扩展
+type SafeConfig = Satisfies<Config, AppConfig>
+
+// 精化类型 — 为类型附加谓词
+type PositiveInt = Refined<number, (x: number) => x is number>
+type RefinedEmail = Refine<string, 'Email'>
+
+// 类型级别相等性检查
+type IsSame = TypeEq<string, number>  // false
+
+// 类型级别条件判断和模式匹配
+type Result = DepIf<true, 'success', 'error'>  // 'success'
+type Matched = DepMatch<'admin', { admin: 'full'; user: 'limited'; default: 'none' }>  // 'full'
+```
+
+| 类型 | 描述 |
+|------|------|
+| `Dep<T, P>` | 模拟的依赖类型 |
+| `DepValue<T, V>` | 值依赖类型 |
+| `ValueOf<T, V>` | 提取匹配特定值的类型 |
+| `Where<T, Condition>` | 条件类型约束 |
+| `SuchThat<T, Predicate>` | 基于谓词的类型收窄 |
+| `Satisfies<T, Constraint>` | 验证类型满足约束而不扩展 |
+| `Exactly<T, Shape>` | 精确类型匹配（不允许多余属性） |
+| `Proof<T, P>` | 类型级别证明载体 |
+| `Prove<T, Constraint>` | 创建类型满足约束的证明 |
+| `Verified<T>` | 已验证（证明携带）类型 |
+| `Unverified<T>` | 移除类型的验证标记 |
+| `Refined<T, Predicate>` | 带有谓词的精化类型 |
+| `Refine<T, R>` | 对类型应用精化 |
+| `Unrefine<T>` | 移除类型的精化标记 |
+| `TypeEq<A, B>` | 严格类型相等性检查 |
+| `TypeNotEq<A, B>` | 严格类型不等性检查 |
+| `TypeExtends<A, B>` | 检查 A 是否继承 B |
+| `TypeCompatible<A, B>` | 检查两个类型是否兼容 |
+| `DepIf<Cond, Then, Else>` | 类型级别条件判断 |
+| `DepMatch<T, Cases>` | 类型级别模式匹配 |
+
+### 类型级宏 *(v2.0.0)*
+
+宏系统通过基于规则的重写扩展和模板生成提供编译时的类型变换。可以定义重写规则、组合宏，并可追踪扩展步骤以调试。
+
+```typescript
+import type {
+  Macro, MacroRule, MacroExpand, MacroExpandAll,
+  Inline, Specialize, Generic, Template,
+  DefineMacro, LoadMacro, CombineMacro,
+  RewriteRule, ApplyRule, ApplyRules,
+  MacroCompose, MacroPipe, MacroFlip, MacroPartial,
+  MacroDebug, MacroTrace
+} from 'uni-types'
+
+// ── 定义重写规则 ─────────────────────────────────
+type StringifyRule = MacroRule<string, `value:${string}`>
+type NumberRule    = MacroRule<number, 'num'>
+type BoolRule      = MacroRule<boolean, 'bool'>
+
+// ── 单步扩展 ─────────────────────────────────────
+type Expanded    = MacroExpand<string, [StringifyRule, NumberRule]>   // `value:${string}`
+type ExpandedNum = MacroExpand<number, [StringifyRule, NumberRule]>   // 'num'
+
+// ── 完全扩展直到不动点 ─────────────────────────────
+type FullyExpanded = MacroExpandAll<MyType, [StringifyRule, NumberRule]>
+
+// ── 内联 — 移除类型间接引用 ───────────────────────
+type Inlined = Inline<{ a: string } & { b: number }>    // { a: string; b: number }
+
+// ── 特化 — 用具体参数应用泛型类型 ─────────────────
+type Spec = Specialize<(x: string, y: number) => boolean, [string, number]>  // boolean
+
+// ── 标记类型为泛型/模板 ─────────────────────────────
+type GenericMap  = Generic<Map<string, number>, [string, number]>
+type MyTemplate = Template<{ name: string; params: Record<string, unknown> }>
+
+// ── 定义和加载宏 ─────────────────────────────────
+type MyMacro = DefineMacro<{
+  name: 'StringifyAll'
+  parameters: ['T']
+  body: MacroExpandAll<unknown, [StringifyRule]>
+  rules: [StringifyRule]
+}>
+type Loaded = LoadMacro<MyMacro>
+
+// ── 组合宏 ───────────────────────────────────────
+type Combined = CombineMacro<MacroA, MacroB>
+
+// ── 顺序应用规则 ─────────────────────────────────
+type StepResult = ApplyRules<string, [StringifyRule, NumberRule, BoolRule]>
+
+// ── 组合与管道 ─────────────────────────────────────
+type Composed = MacroCompose<MacroA, MacroB>
+type Piped   = MacroPipe<InputType, [MacroA, MacroB, MacroC]>
+
+// ── 翻转与偏应用 ──────────────────────────────────
+type Flipped = MacroFlip<A, B>                             // → [B, A]
+type Partial = MacroPartial<MacroA, { name: string }>      // → 预应用 name 的宏
+
+// ── 调试与追踪 ─────────────────────────────────────
+type DebugInfo   = MacroDebug<string>                      // → { _original, _expanded, _steps, _rulesApplied }
+type TraceResult = MacroTrace<string, [StringifyRule]>     // → 调试信息 + 最终结果```typescript
+import type { Macro, MacroRule, MacroExpand, MacroExpandAll, Inline, Specialize, Generic, Template, DefineMacro, CombineMacro, ApplyRules, MacroCompose, MacroPipe, MacroDebug, MacroTrace } from 'uni-types'
+
+// 定义重写规则
+type StringifyRule = MacroRule<string, \`value:\${string}\`>
+type NumberRule = MacroRule<number, 'num'>
+
+// 单步扩展
+type Expanded = MacroExpand<string, [StringifyRule, NumberRule]>  // `value:${string}`
+
+// 完全扩展直到不动点
+type FullyExpanded = MacroExpandAll<MyType, [StringifyRule, NumberRule]>
+
+// 内联类型（移除间接引用）
+type Inlined = Inline<{ a: string } & { b: number }>  // { a: string; b: number }
+
+// 特化泛型类型
+type Spec = Specialize<(x: string, y: number) => boolean, [string, number]>  // boolean
+
+// 组合宏
+type Combined = CombineMacro<MacroA, MacroB>
+
+// 管道式宏处理
+type Piped = MacroPipe<InputType, [MacroA, MacroB, MacroC]>
+
+// 追踪宏扩展以调试
+type TraceResult = MacroTrace<MyType, [StringifyRule]>
+```
+
+| 类型 | 描述 |
+|------|------|
+| `Macro<T>` | 核心宏类型 |
+| `MacroRule<Input, Output>` | 单条重写规则 |
+| `MacroExpand<T, Rules>` | 单步展开宏 |
+| `MacroExpandAll<T, Rules>` | 完全展开直到不动点 |
+| `Inline<T>` | 内联类型（移除间接引用） |
+| `Specialize<T, Args>` | 特化泛型类型 |
+| `Generic<T, Params>` | 标记类型为泛型 |
+| `Template<T>` | 类型级模板 |
+| `DefineMacro<T>` | 定义新宏 |
+| `LoadMacro<D>` | 加载宏定义 |
+| `CombineMacro<A, B>` | 组合两个宏 |
+| `RewriteRule<From, To>` | 类型级重写规则 |
+| `ApplyRule<T, R>` | 应用单条重写规则 |
+| `ApplyRules<T, Rules>` | 按顺序应用多条规则 |
+| `MacroCompose<A, B>` | 组合两个宏 |
+| `MacroPipe<T, Ms>` | 管道式宏处理 |
+| `MacroFlip<A, B>` | 翻转宏参数 |
+| `MacroPartial<M, First>` | 部分应用宏 |
+| `MacroDebug<T>` | 调试信息 |
+| `MacroTrace<T, Rules>` | 追踪宏扩展 |
+
+### 模块系统 *(v2.0.0)*
+
+全新的模块系统提供类型级别的导入导出、命名空间管理、依赖图和作用域可见性等特性，改进模块组织方式，提供更清晰的 API 接口。
+
+```typescript
+import type {
+  Module, Export, Import, ReExport,
+  Namespace, Qualified, Alias,
+  ModuleGraph, ModuleNode, ModuleDependency, DependencyType,
+  ModuleResolution, ResolutionStrategy,
+  ModuleScope, ScopedMember,
+  ModuleBundle, BundleFormat, ModuleChunk,
+  ModuleVersion, VersionCompatibility
+} from 'uni-types'
+
+// ── 定义类型级模块 ──────────────────────────────────
+type UserModule = Module<{
+  User: { id: string; name: string; email: string }
+  UserService: { findById(id: string): User; create(data: Omit<User, 'id'>): User }
+}>
+
+// ── 限定类型引用 — 从命名空间中访问类型 ─────────────
+type UserNS = Namespace<{
+  User: { id: string }; Service: { find(): void }
+}>
+type UserType = Qualified<UserNS, 'User'>      // { id: string }
+type ServiceType = Qualified<UserNS, 'Service'> // { find(): void }
+
+// ── 模块导出和导入 ──────────────────────────────────
+type ExportedUser = Export<User>               // User & { __exported__: true }
+type ImportedUtils = Import<Utils>             // Utils & { __imported__: true; __from__: string }
+type ReExportedTypes = ReExport<ExternalTypes>  // 从另一个模块重新导出
+
+// ── 类型别名 ─────────────────────────────────────────
+type UserName = Alias<string, 'UserName'>     // string & { __alias__: 'UserName' }
+
+// ── 依赖图 ─────────────────────────────────────────
+// ModuleGraph, ModuleNode, ModuleDependency 提供类型级别的
+// 模块关系分析和依赖类型
+type MyDep = ModuleDependency & {
+  from: 'app'; to: 'shared'; type: DependencyType  // 'import' | 're-export' | 'dynamic-import' | 'side-effect'
+}
+
+// ── 作用域成员可见性 ─────────────────────────────────
+type PublicAPI = ScopedMember<{ value: API }, {
+  scope: ModuleScope     // 'public' | 'protected' | 'private' | 'internal'
+  deprecated: false
+  since: '2.0.0'
+}>
+
+// ── 模块打包 ──────────────────────────────────────────
+type MyBundle = ModuleBundle & {
+  name: 'core'
+  modules: ['users', 'auth', 'api']
+  format: BundleFormat    // 'esm' | 'cjs' | 'umd' | 'iife' | 'system'
+  treeShaking: true
+}
+
+// ── 模块版本控制 ──────────────────────────────────────
+type V2 = ModuleVersion<{ major: 2; minor: 0; patch: 0 }>
+type Compat = VersionCompatibility  // 'compatible' | 'semver-compatible' | 'breaking' | 'unknown'```typescript
+import type { Module, Export, Import, ReExport, Namespace, Qualified, Alias, ModuleGraph, ModuleResolution, ModuleScope, ModuleBundle, ModuleVersion } from 'uni-types'
+
+// 定义类型级模块
+type UserModule = Module<{
+  User: { id: string; name: string }
+  UserService: { findById(id: string): User }
+}>
+
+// 限定类型引用 — 从命名空间中访问类型
+type UserNS = Namespace<{ User: { id: string }; Service: { find(): void }>
+type UserType = Qualified<UserNS, 'User'>  // { id: string }
+
+// 模块导出和导入
+type ExportedUser = Export<User>       // 标记类型为已导出
+type ImportedUtils = Import<Utils>    // 标记类型为已导入
+
+// 作用域成员可见性
+type PublicAPI = ScopedMember<{ value: API }, { scope: 'public'; deprecated: false; since: '2.0.0' }>
+
+// 模块版本控制
+type V2 = ModuleVersion<{ major: 2; minor: 0; patch: 0 }>
+```
+
+| 类型 | 描述 |
+|------|------|
+| `Module<T>` | 类型级模块 |
+| `Export<T>` | 类型级导出 |
+| `Import<T>` | 类型级导入 |
+| `ReExport<T>` | 类型级重新导出 |
+| `Namespace<T>` | 类型级命名空间 |
+| `Qualified<NS, Key>` | 限定类型引用 |
+| `Alias<T, Name>` | 类型别名 |
+| `ModuleGraph` | 依赖图 |
+| `ModuleNode` | 模块图中的节点 |
+| `ModuleDependency` | 依赖边 |
+| `ModuleResolution<T>` | 解析结果 |
+| `ResolutionStrategy` | 模块解析策略 |
+| `ModuleScope` | 可见性范围（public/protected/private/internal） |
+| `ScopedMember<T>` | 带可见性的成员 |
+| `ModuleBundle` | 模块打包 |
+| `BundleFormat` | 输出格式（esm/cjs/umd/iife/system） |
+| `ModuleChunk` | 打包分块 |
+| `ModuleVersion` | 版本信息 |
+| `VersionCompatibility` | 版本间兼容性 |
+
+### 性能架构 *(v2.0.0)*
+
+为最大化编译性能重写，提供类型级别的性能标注和优化工具，包括缓存、惰性求值、递归削减和编译器提示等。
+
+```typescript
+import type {
+  Fast, Cached, Lazy, Memoized, NoInfer,
+  Optimized, InlineHint, Preserve,
+  Precompute, PrecomputedValue,
+  ReduceComplexity, SimplifyForCompiler, OptimizeInference,
+  LightWeight, Minimal, CompactRepresentation, SharedStructure,
+  TypeHint, PerformanceHint, CompilerHint, HintKind,
+  TypeComplexity, CompilationTime, TypeSize,
+  PerformanceWarning, IncrementalType, DeferredEvaluation
+} from 'uni-types'
+
+// ── 性能原语 ────────────────────────────────────────────
+type FastUser = Fast<User>          // 展平交叉类型和数组，加速类型检查
+type CachedResult = Cached<ComplexComputation>  // 缓存类型计算结果
+type DeferredType = Lazy<DeepNestedType>        // 延迟求值直到需要时
+type MemoizedResult = Memoized<HeavyType>       // 记忆化昂贵的类型计算
+
+// ── 优化标记 ───────────────────────────────────────────
+type OptimizedUser = Optimized<User>             // 标记为已优化
+function createConfig<T>(config: NoInfer<T>): T { return config }  // 阻止推断
+type PreservedValue = Preserve<readonly ['a', 'b']>  // 阻止类型扩展
+type InlinedType = InlineHint<{ a: string } & { b: number }>  // 内联提示
+
+// ── 编译器提示 ─────────────────────────────────────────
+type Hinted = TypeHint<Data, 'cache'>           // 附加优化提示
+type PerfHinted = PerformanceHint<Data>         // 性能专用提示
+// HintKind = 'optimize' | 'inline' | 'cache' | 'defer' | 'noinfer'
+
+// ── 编译优化 ─────────────────────────────────────────────
+type Precomputed = Precompute<{ a: string } & { b: number } & { c: boolean }>
+// → { a: string; b: number; c: boolean }
+
+type Simplified = ReduceComplexity<{ deeply: { nested: { type: string } } }>
+type OptimizedInf = OptimizeInference<ComplexGeneric<DeepType>>
+
+// ── 内存优化 ──────────────────────────────────────────────
+type LightConfig = LightWeight<Config>           // 轻量级标记
+type MinConfig = Minimal<Config>                // 仅保留函数成员
+type Compact = CompactRepresentation<Data>      // 紧凑表示
+type Shared = SharedStructure<ConfigA, ConfigB> // 共享键/值
+
+// ── 构建性能 ──────────────────────────────────────────────
+type Deferred = DeferredEvaluation<HeavyType>    // 延迟到首次使用
+type Versioned = IncrementalType<User>           // 增量类型检查支持
+// → User & { __incremental__: true; __version__: number }
+
+// ── 性能监控 ──────────────────────────────────────────────
+type Complexity = TypeComplexity<User>           // 1 | 2 | 3
+type Speed = CompilationTime<User>              // 'fast' | 'moderate' | 'slow'
+type Size = TypeSize<User>                      // 'small' | 'medium' | 'large'
+
+// PerformanceWarning 在类型超过阈值时提供反馈
+type Warning = PerformanceWarning<User>          // → { _type, _severity, _message, _suggestion }```typescript
+import type { Fast, Cached, Lazy, Memoized, NoInfer, Optimized, Precompute, ReduceComplexity, SimplifyForCompiler, LightWeight, Minimal, CompactRepresentation, SharedStructure, InlineHint, TypeHint, PerformanceHint, CompilerHint, TypeComplexity, CompilationTime, TypeSize, PerformanceWarning, IncrementalType } from 'uni-types'
+
+// 标记类型为性能优化
+type FastUser = Fast<User>  // 展平交叉类型和数组
+
+// 缓存类型计算结果
+type CachedResult = Cached<ComplexComputation>
+
+// 延迟类型求值直到需要时
+type DeferredType = Lazy<DeepNestedType>
+
+// 记忆化昂贵的类型计算
+type MemoizedResult = Memoized<HeavyType>
+
+// 阻止 TypeScript 推断类型参数
+function createConfig<T>(config: NoInfer<T>): T { return config }
+
+// 声明时预计算
+type Precomputed = Precompute<{ a: string } & { b: number } & { c: boolean }>  // { a: string; b: number; c: boolean }
+
+// 削减类型复杂度
+type Simplified = ReduceComplexity<{ deeply: { nested: { type: string } } }>
+
+// 轻量级类型标记
+type LightConfig = LightWeight<Config>
+
+// 类型间共享结构
+type Shared = SharedStructure<ConfigA, ConfigB>
+
+// 编译器优化提示
+type Hinted = TypeHint<Data, 'cache'>
+
+// 性能监控
+type Complexity = TypeComplexity<User>   // 1 | 2 | 3
+type Speed = CompilationTime<User>       // 'fast' | 'moderate' | 'slow'
+type Size = TypeSize<User>              // 'small' | 'medium' | 'large'
+
+// 增量类型检查支持
+type Versioned = IncrementalType<User>  // User & { __incremental__: true; __version__: number }
+```
+
+### 插件系统 / 迁移提示
+
+```typescript
+import type { PluginV2, PluginAPIV2, PluginHookV2, PluginRegistryV2 } from 'uni-types'
+
+// 可扩展架构，支持类型安全插件
+```
+
+> **注意：** 所有 v1.x API 保持完全向后兼容。v2.0.0 在现有 API 旁边添加新的统一 API。
+
 ## 示例
 
 ```typescript
@@ -1717,53 +2188,14 @@ import type {
   SnakeCase,
   CamelCaseKeys,
   UnionToIntersection,
-  AtLeastOne,
-  Microservice,
-  ServiceConfig,
-  EventBus,
-  Workflow
+  AtLeastOne
 } from 'uni-types'
 
-// 字符串命名转换
 SnakeCase<'XMLParser'>  // 'xml_parser'
-CamelCaseKeys<{ user_name: string, user_age: number }>
-// { userName: string, userAge: number }
-
-// 联合转交叉
 UnionToIntersection<{ a: string } | { b: number }>
 // { a: string } & { b: number }
 
-// 至少需要一个属性
 type Options = AtLeastOne<{ a?: string; b?: number; c?: boolean }>
-// 必须有 a、b、c 中的至少一个
-
-// v1.5.0 - 微服务架构
-const userService: Microservice = {
-  name: 'user-service',
-  version: '1.0.0',
-  config: {
-    name: 'user-service',
-    version: '1.0.0',
-    port: 3000,
-    host: '0.0.0.0',
-    env: 'production'
-  },
-  start: async () => { /* 启动服务器 */ },
-  stop: async () => { /* 优雅关闭 */ },
-  health: async () => ({ status: 'healthy', timestamp: new Date(), service: 'user-service', version: '1.0.0', uptime: 0, checks: {} })
-}
-
-// v1.5.0 - 事件总线
-type AppEvents = EventBus<{
-  userCreated: { id: string; name: string }
-  orderPlaced: { orderId: string; userId: string }
-}>
-
-// v1.5.0 - 工作流
-type OrderWorkflow = Workflow<{
-  orderId: string
-  status: 'pending' | 'processing' | 'completed'
-}>
 ```
 
 ## 开发

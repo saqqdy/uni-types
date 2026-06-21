@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2026-06-20
+
+### Added
+
+#### Dependent Types Simulation
+- `Dep<T, P>`, `DepValue<T, V>`, `DepIndex<T, I>`, `DepKey<T, K>` - Core dependent types
+- `ValueOf<T, V>`, `Where<T, Condition>`, `SuchThat<T, Predicate>` - Value-dependent types
+- `Satisfies<T, Constraint>`, `Exactly<T, Shape>` - Type constraint verification
+- `Proof<T, P>`, `Prove<T, Constraint>`, `Verified<T>`, `Unverified<T>` - Proof-carrying types
+- `Refined<T, Predicate>`, `Refine<T, R>`, `Unrefine<T>` - Refinement types
+- `AssertType<T, U>`, `AssertShape<T, Shape>`, `AssertKeys<T, K>`, `AssertValues<T, V>` - Type assertions
+- `TypeEq<A, B>`, `TypeNotEq<A, B>`, `TypeExtends<A, B>`, `TypeCompatible<A, B>` - Type-level equality
+- `DepCompute<T>`, `DepIf<Cond, Then, Else>`, `DepMatch<T, Cases>`, `DepFmap<T, F>` - Type-level computation
+
+#### Type-Level Macros
+- `Macro<T>`, `MacroRule<Input, Output>`, `MacroExpand<T, Rules>`, `MacroExpandAll<T, Rules>` - Macro core
+- `Inline<T>`, `Specialize<T, Args>`, `Generic<T, Params>`, `Template<T>` - Built-in macros
+- `DefineMacro<T>`, `LoadMacro<D>`, `CombineMacro<A, B>` - Macro definition
+- `RewriteRule<From, To>`, `ApplyRule<T, R>`, `ApplyRules<T, Rules>` - Rewrite utilities
+- `MacroCompose<A, B>`, `MacroPipe<T, Ms>`, `MacroPartial<M, Partial>`, `MacroFlip<A, B>` - Combinators
+- `MacroDebug<T>`, `MacroTrace<T, Rules>` - Macro debugging
+
+#### New Module System
+- `Module<T>`, `Export<T>`, `Import<T>`, `ReExport<T>` - Module core
+- `Namespace<T>`, `Qualified<NS, Key>`, `Alias<T, Name>` - Namespace types
+- `ModuleGraph`, `ModuleNode`, `ModuleDependency`, `DependencyType` - Module graph
+- `ModuleResolution<T>`, `ResolutionStrategy` - Module resolution
+- `ModuleScope`, `ScopedMember<T>` - Module scope
+- `ModuleBundle`, `BundleFormat`, `ModuleChunk` - Module bundling
+- `ModuleVersion`, `VersionCompatibility` - Module versioning
+
+#### Performance Architecture
+- `Fast<T>`, `Cached<T>`, `Lazy<T>`, `Memoized<T>` - Performance primitives
+- `Optimized<T>`, `NoInfer<T>`, `Preserve<T>`, `InlineHint<T>` - Optimization flags
+- `CompilerHint<T>`, `HintKind`, `TypeHint<T>`, `PerformanceHint<T>` - Compiler hints
+- `ReduceComplexity<T>`, `SimplifyForCompiler<T>`, `OptimizeInference<T>`, `ReduceRecursion<T, Depth>` - Compilation optimization
+- `LightWeight<T>`, `Minimal<T>`, `CompactRepresentation<T>`, `SharedStructure<A, B>` - Memory optimization
+- `Precompute<T>`, `PrecomputedValue<T, V>`, `DeferredEvaluation<T>`, `IncrementalType<T>` - Build performance
+- `TypeComplexity<T>`, `CompilationTime<T>`, `TypeSize<T>`, `PerformanceWarning<T>` - Performance monitoring
+
+### Changed
+- Promoted all v2 preview modules from beta to stable
+- Unified module now exports stable `UnifiedPick`, `UnifiedOmit`, `UnifiedPartial`, `UnifiedRequired`, `UnifiedMerge`, `UnifiedDeepMerge`
+- HKT module now exports stable `HKTV2`, `KindV2`, `ApplyV2`, `FunctorV2`, `MonadV2`, `ApplicativeV2`
+- Effect module now exports stable `EffectV2`, `PureV2`, `IOV2`, `HandlerV2`, `HandleV2`
+- Plugin module now exports stable `PluginV2`, `PluginAPIV2`, `PluginHookV2`, `PluginRegistryV2`
+
+### Migration Guide
+- All v1.x APIs remain fully backward compatible
+- New unified APIs added alongside existing ones
+- Use migration toolkit for automated migration: `AutoMigrate<T>`, `MigrationWizard<T>`
+- Dual mode support allows v1.x and v2.0 types to coexist: `DualMode<T>`, `CompatBridge<T>`
+
 ## [1.13.0] - 2026-06-13
 
 ### Added
